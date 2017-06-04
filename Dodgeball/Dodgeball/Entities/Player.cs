@@ -10,6 +10,7 @@ using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Math;
 using System.Linq;
+using Dodgeball.AI;
 using Microsoft.Xna.Framework;
 
 namespace Dodgeball.Entities
@@ -26,9 +27,12 @@ namespace Dodgeball.Entities
 
         public PositionedObjectList<Player> AllPlayers { get; set; }
 
-        Ball BallHolding { get; set; }
+        public Ball BallHolding { get; set; }
 
-        #endregion
+        //Debug property so AI knows when to resume control of player-controlled Player
+        public bool HasInputs => MovementInput != null;
+
+	    #endregion
 
         #region Initialize
         /// <summary>
@@ -56,6 +60,16 @@ namespace Dodgeball.Entities
             AimingInput = gamePad.RightStick;
             TauntButton = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
         }
+
+	    public void InitializeAIControl(AIController aicontrol)
+	    {
+	        this.ActiveMarkerRuntimeInstance.Visible = false;
+
+	        MovementInput = aicontrol.MovementInput;
+	        ActionButton = aicontrol.ActionButton;
+	        AimingInput = aicontrol.AimingInput;
+	        TauntButton = aicontrol.TauntButton;
+	    }
 
         public void ClearInput()
         {

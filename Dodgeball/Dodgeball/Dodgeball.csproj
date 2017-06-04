@@ -114,6 +114,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\AIController.SimulatedInput.cs">
+      <DependentUpon>AIController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AI\AIController.cs" />
+    <Compile Include="AI\AIController.DecisionLogic.cs">
+      <DependentUpon>AIController.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="Entities\Ball.cs" />
     <Compile Include="Entities\Ball.Generated.cs">
