@@ -49,6 +49,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TextureFile</Name>
     </None>
+    <None Include="GumProject\Components\ActiveMarker.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ActiveMarker</Name>
+    </None>
     <None Include="GumProject\Components\WorldComponent.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WorldComponent</Name>

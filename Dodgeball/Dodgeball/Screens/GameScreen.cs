@@ -46,7 +46,6 @@ namespace Dodgeball.Screens
         void CustomActivity(bool firstTimeCalled)
 		{
             CollisionActivity();
-
 		}
 
         private void CollisionActivity()
@@ -62,10 +61,12 @@ namespace Dodgeball.Screens
             if(BallInstance.XVelocity < 0 && BallInstance.X < -1920/2.0f)
             {
                 BallInstance.XVelocity *= -1;
+                BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
             }
             if (BallInstance.XVelocity > 0 && BallInstance.X > 1920 / 2.0f)
             {
                 BallInstance.XVelocity *= -1;
+                BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
             }
 
             float top = 400;
@@ -74,12 +75,13 @@ namespace Dodgeball.Screens
             if(BallInstance.YVelocity > 0 && BallInstance.Y > top)
             {
                 BallInstance.YVelocity *= -1;
+                BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
             }
-            if(  BallInstance.YVelocity < 0 && BallInstance.Y < bottom)
+            if (  BallInstance.YVelocity < 0 && BallInstance.Y < bottom)
             {
                 BallInstance.YVelocity *= -1;
+                BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
             }
-
         }
 
         private void BallVsPlayerCollision()
@@ -92,6 +94,13 @@ namespace Dodgeball.Screens
                     {
                         BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Held;
                         BallInstance.AttachTo(player, false);
+
+                        foreach(var playerToClear in PlayerList)
+                        {
+                            playerToClear.ClearInput();
+                        }
+
+                        player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
 
                         player.PickUpBall(BallInstance);
 

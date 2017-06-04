@@ -474,7 +474,24 @@
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceFile />
+          <SourceName />
+          <SourceClassType>ActiveMarkerRuntime</SourceClassType>
+          <InstanceName>ActiveMarkerRuntimeInstance</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
       </NamedObjects>
+      <Events>
+        <EventResponseSave>
+          <EventName>PlayerThrewBall</EventName>
+          <BeforeOrAfter>After</BeforeOrAfter>
+          <DelegateType>System.EventHandler</DelegateType>
+        </EventResponseSave>
+      </Events>
       <Is2D>true</Is2D>
     </EntitySave>
   </Entities>

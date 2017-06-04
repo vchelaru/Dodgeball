@@ -120,7 +120,13 @@
       <DependentUpon>Ball.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\Player.Event.cs">
+      <DependentUpon>Player.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Player.Generated.cs">
+      <DependentUpon>Player.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Player.Generated.Event.cs">
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalContent.Generated.cs" />
@@ -211,6 +217,7 @@
     <Compile Include="GumCore\VariableListSave.cs" />
     <Compile Include="GumCore\VariableSave.cs" />
     <Compile Include="GumCore\VariableSaveExtensionMethods.cs" />
+    <Compile Include="GumRuntimes\ActiveMarkerRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CharacterSelectScreenGumRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CircleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ColoredRectangleRuntime.Generated.cs" />

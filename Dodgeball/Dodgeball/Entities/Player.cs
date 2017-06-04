@@ -10,6 +10,7 @@ using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Math;
 using System.Linq;
+using Microsoft.Xna.Framework;
 
 namespace Dodgeball.Entities
 {
@@ -37,12 +38,14 @@ namespace Dodgeball.Entities
         /// </summary>
         private void CustomInitialize()
 		{
-
+            this.ActiveMarkerRuntimeInstance.Visible = false;
 
 		}
 
         public void InitializeXbox360Controls(Xbox360GamePad gamePad)
         {
+            this.ActiveMarkerRuntimeInstance.Visible = true;
+
             var movementLocal = new Multiple2DInputs();
             movementLocal.Inputs.Add(gamePad.LeftStick);
             movementLocal.Inputs.Add(gamePad.DPad);
@@ -52,6 +55,19 @@ namespace Dodgeball.Entities
 
             AimingInput = gamePad.RightStick;
             TauntButton = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
+        }
+
+        public void ClearInput()
+        {
+            this.ActiveMarkerRuntimeInstance.Visible = false;
+
+            MovementInput = null;
+            ActionButton = null;
+
+            AimingInput = null;
+            TauntButton = null;
+
+            Velocity = Vector3.Zero;
         }
 
         internal void PickUpBall(Ball ballInstance)
@@ -70,7 +86,15 @@ namespace Dodgeball.Entities
             MovementActivity();
 
             ThrowingActivity();
+
+            HudActivity();
 		}
+
+        private void HudActivity()
+        {
+            this.ActiveMarkerRuntimeInstance.X = this.X;
+            this.ActiveMarkerRuntimeInstance.Y = this.Y + 50;
+        }
 
         private void ThrowingActivity()
         {
@@ -103,6 +127,9 @@ namespace Dodgeball.Entities
             BallHolding.CurrentOwnershipState = Ball.OwnershipState.Thrown;
 
             BallHolding = null;
+
+            this.ClearInput();
+            targetPlayer.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
 
         }
 
