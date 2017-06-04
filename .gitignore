@@ -1,0 +1,11 @@
+*.user
+*.aeproperties
+.vs/
+*.tmp
+*.Generated.cs
+*.cachefile
+*.csvSettings
+Dodgeball/Dodgeball/bin/
+Dodgeball/Dodgeball/obj/
+Dodgeball/DodgeballContent/obj/
+*.metaproj
