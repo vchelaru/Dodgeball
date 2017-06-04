@@ -18,8 +18,9 @@ namespace Dodgeball.Screens
 {
 	public partial class GameScreen
 	{
+        #region Initialize
 
-		void CustomInitialize()
+        void CustomInitialize()
         {
             InitializeInput();
 
@@ -40,6 +41,8 @@ namespace Dodgeball.Screens
             Player1.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
         }
 
+        #endregion
+
         void CustomActivity(bool firstTimeCalled)
 		{
             CollisionActivity();
@@ -49,6 +52,34 @@ namespace Dodgeball.Screens
         private void CollisionActivity()
         {
             BallVsPlayerCollision();
+
+            BallVsWallsCollision();
+        }
+
+        private void BallVsWallsCollision()
+        {
+
+            if(BallInstance.XVelocity < 0 && BallInstance.X < -1920/2.0f)
+            {
+                BallInstance.XVelocity *= -1;
+            }
+            if (BallInstance.XVelocity > 0 && BallInstance.X > 1920 / 2.0f)
+            {
+                BallInstance.XVelocity *= -1;
+            }
+
+            float top = 400;
+            float bottom = -1080 / 2.0f;
+
+            if(BallInstance.YVelocity > 0 && BallInstance.Y > top)
+            {
+                BallInstance.YVelocity *= -1;
+            }
+            if(  BallInstance.YVelocity < 0 && BallInstance.Y < bottom)
+            {
+                BallInstance.YVelocity *= -1;
+            }
+
         }
 
         private void BallVsPlayerCollision()
