@@ -367,6 +367,18 @@
           <DefaultValue xsi:type="xsd:boolean">true</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>bool</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>ShowPlayerTargetingLine</Name>
+          <Type>bool</Type>
+          <DefaultValue xsi:type="xsd:boolean">true</DefaultValue>
+          <IsShared>true</IsShared>
+        </CustomVariable>
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
       <Name>Entities\DebuggingVariables</Name>
@@ -539,12 +551,124 @@
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>Entity</SourceType>
+          <SourceClassType>Entities\TargetingLine</SourceClassType>
+          <InstanceName>TargetingLineInstance</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
       </NamedObjects>
       <Events>
         <EventResponseSave>
           <EventName>PlayerThrewBall</EventName>
           <BeforeOrAfter>After</BeforeOrAfter>
           <DelegateType>System.EventHandler</DelegateType>
+        </EventResponseSave>
+      </Events>
+      <Is2D>true</Is2D>
+    </EntitySave>
+    <EntitySave>
+      <Tags>
+        <string>GLUE</string>
+      </Tags>
+      <Source>GLUE</Source>
+      <CustomVariables>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>X</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Y</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Z</Name>
+          <Type>float</Type>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>bool</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>Visible</Name>
+          <Type>bool</Type>
+          <CreatesEvent>true</CreatesEvent>
+        </CustomVariable>
+      </CustomVariables>
+      <ImplementsIVisible>true</ImplementsIVisible>
+      <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
+      <Name>Entities\TargetingLine</Name>
+      <NamedObjects>
+        <NamedObjectSave>
+          <CustomProperty>
+            <Type>bool</Type>
+            <Member>Visible</Member>
+            <ValueAsBool>false</ValueAsBool>
+          </CustomProperty>
+          <CustomProperty>
+            <Member>Points</Member>
+            <ValueAsListOfVector2>
+              <Vector2>
+                <X>2500</X>
+                <Y>0</Y>
+              </Vector2>
+              <Vector2>
+                <X>0</X>
+                <Y>0</Y>
+              </Vector2>
+            </ValueAsListOfVector2>
+          </CustomProperty>
+          <CustomProperty>
+            <Member>Points</Member>
+            <ValueAsListOfVector2>
+              <Vector2>
+                <X>2000</X>
+                <Y>0</Y>
+              </Vector2>
+              <Vector2>
+                <X>0</X>
+                <Y>0</Y>
+              </Vector2>
+            </ValueAsListOfVector2>
+          </CustomProperty>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceClassType>Polygon</SourceClassType>
+          <InstanceName>PolygonInstance</InstanceName>
+          <HasPublicProperty>true</HasPublicProperty>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IncludeInICollidable>false</IncludeInICollidable>
+          <IncludeInIClickable>false</IncludeInIClickable>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+      </NamedObjects>
+      <Events>
+        <EventResponseSave>
+          <EventName>AfterVisibleSet</EventName>
+          <SourceVariable>Visible</SourceVariable>
+          <BeforeOrAfter>After</BeforeOrAfter>
         </EventResponseSave>
       </Events>
       <Is2D>true</Is2D>

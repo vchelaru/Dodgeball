@@ -43,8 +43,7 @@ namespace Dodgeball.Entities
         private void CustomInitialize()
 		{
             this.ActiveMarkerRuntimeInstance.Visible = false;
-
-		}
+        }
 
         public void InitializeXbox360Controls(Xbox360GamePad gamePad)
         {
@@ -59,9 +58,20 @@ namespace Dodgeball.Entities
 
             AimingInput = gamePad.RightStick;
             TauntButton = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
+
+            #if DEBUG
+            if (DebuggingVariables.ShowPlayerTargetingLine)
+            {
+                TargetingLineInstance.Visible = true;
+            }
+            else
+            {
+                TargetingLineInstance.Visible = false;
+            }
+            #endif
         }
 
-	    public void InitializeAIControl(AIController aicontrol)
+        public void InitializeAIControl(AIController aicontrol)
 	    {
 	        this.ActiveMarkerRuntimeInstance.Visible = false;
 
@@ -69,7 +79,9 @@ namespace Dodgeball.Entities
 	        ActionButton = aicontrol.ActionButton;
 	        AimingInput = aicontrol.AimingInput;
 	        TauntButton = aicontrol.TauntButton;
-	    }
+
+	        TargetingLineInstance.Visible = false;
+        }
 
         public void ClearInput()
         {
@@ -100,12 +112,31 @@ namespace Dodgeball.Entities
 		{
             MovementActivity();
 
+		    AimingActivity();
+
             ThrowingActivity();
 
             HudActivity();
 		}
 
-        private void HudActivity()
+	    private void AimingActivity()
+	    {
+	        if (AimingInput != null)
+	        {
+	            // Now we get the world X and Y of the Cursor (can also use Mouse)
+	            float worldX = AimingInput.X;
+	            float worldY = AimingInput.Y;
+
+	            // Now get the desired rotation for the Sprite
+	            float desiredRotation = (float)Math.Atan2(
+	                worldY, worldX);
+
+	            // finally set the Sprite's rotation
+	            TargetingLineInstance.RelativeRotationZ = desiredRotation;
+            }
+	    }
+
+	    private void HudActivity()
         {
             this.ActiveMarkerRuntimeInstance.X = this.X;
             this.ActiveMarkerRuntimeInstance.Y = this.Y + 55;
@@ -132,6 +163,23 @@ namespace Dodgeball.Entities
         private void ExecuteThrow()
         {
             var targetPlayer = AllPlayers.First(player => player.TeamIndex != this.TeamIndex);
+
+            //Aim for a specific player if the player is aiming
+            if (AimingInput != null && Math.Abs(AimingInput.Magnitude) > 0.05)
+            {
+                var closestTargetDistance = double.MaxValue;
+
+                foreach (var otherTeamPlayer in AllPlayers.Where(p => p.TeamIndex != TeamIndex))
+                {
+                    var otherPlayerPosition = new Point3D(otherTeamPlayer.Position);
+                    var targetDistance = TargetingLineInstance.PolygonInstance.VectorFrom(otherPlayerPosition).Length();
+                    if (targetDistance < closestTargetDistance)
+                    {
+                        closestTargetDistance = targetDistance;
+                        targetPlayer = otherTeamPlayer;
+                    }
+                }
+            }
 
             var direction = targetPlayer.Position - this.Position;
             direction.Normalize();

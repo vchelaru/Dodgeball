@@ -89,6 +89,7 @@ namespace Dodgeball.AI
 
                     X = moveRight ? 1 : moveLeft ? -1 : 0;
                     Y = moveUp ? 1 : moveDown ? -1 : 0;
+                    Magnitude = (Math.Abs(X) + Math.Abs(Y)) / 2;
                 }
             }
         }
