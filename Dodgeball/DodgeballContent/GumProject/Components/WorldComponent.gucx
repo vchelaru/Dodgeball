@@ -105,7 +105,13 @@
     <Variable>
       <Type>float</Type>
       <Name>Team0Rectangle.Width</Name>
-      <Value xsi:type="xsd:float">896</Value>
+      <Value xsi:type="xsd:float">49</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>Team0Rectangle.Width Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -165,7 +171,13 @@
     <Variable>
       <Type>float</Type>
       <Name>Team1Rectangle.Width</Name>
-      <Value xsi:type="xsd:float">914</Value>
+      <Value xsi:type="xsd:float">49</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>Team1Rectangle.Width Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
