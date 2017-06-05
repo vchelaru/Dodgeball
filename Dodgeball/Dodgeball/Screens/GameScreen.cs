@@ -76,18 +76,18 @@ namespace Dodgeball.Screens
         private void BallVsWallsCollision()
         {
 
-            if(BallInstance.XVelocity < 0 && BallInstance.X < -1920/2.0f)
+            if(BallInstance.XVelocity < 0 && BallInstance.X < -1920/2.0f + 30)
             {
                 BallInstance.XVelocity *= -1;
                 BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
             }
-            if (BallInstance.XVelocity > 0 && BallInstance.X > 1920 / 2.0f)
+            if (BallInstance.XVelocity > 0 && BallInstance.X > 1920 / 2.0f - 30)
             {
                 BallInstance.XVelocity *= -1;
                 BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
             }
 
-            float top = 300;
+            float top = 200;
             float bottom = -1080 / 2.0f;
 
             if(BallInstance.YVelocity > 0 && BallInstance.Y > top)
@@ -95,7 +95,7 @@ namespace Dodgeball.Screens
                 BallInstance.YVelocity *= -1;
                 BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
             }
-            if (  BallInstance.YVelocity < 0 && BallInstance.Y < bottom)
+            if (  BallInstance.YVelocity < 0 && BallInstance.Y < bottom + 30)
             {
                 BallInstance.YVelocity *= -1;
                 BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
