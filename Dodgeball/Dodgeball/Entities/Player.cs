@@ -123,15 +123,7 @@ namespace Dodgeball.Entities
 	    {
 	        if (AimingInput != null)
 	        {
-	            // Now we get the world X and Y of the Cursor (can also use Mouse)
-	            float worldX = AimingInput.X;
-	            float worldY = AimingInput.Y;
-
-	            // Now get the desired rotation for the Sprite
-	            float desiredRotation = (float)Math.Atan2(
-	                worldY, worldX);
-
-	            // finally set the Sprite's rotation
+	            var desiredRotation = (float)Math.Atan2(AimingInput.Y, AimingInput.X);
 	            TargetingLineInstance.RelativeRotationZ = desiredRotation;
             }
 	    }
