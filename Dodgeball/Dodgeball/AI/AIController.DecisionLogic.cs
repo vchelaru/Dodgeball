@@ -4,33 +4,17 @@ namespace Dodgeball.AI
 {
     public partial class AIController
     {
-        private bool ShouldThrowBall => _ball.CurrentOwnershipState == Ball.OwnershipState.Held && _ball.ThrowOwner == _player;
+        private bool ShouldThrowBall => _ball.CurrentOwnershipState == Ball.OwnershipState.Held && _player.BallHolding != null && _ballHeldTime > _timeToDelayThrow;
 
         private bool ShouldTaunt => _ball.CurrentOwnershipState == Ball.OwnershipState.Held && _ball.OwnerTeam == _player.TeamIndex && _ball.ThrowOwner != _player;
 
-        private bool ShouldWander => _ball.CurrentOwnershipState == Ball.OwnershipState.Free ||
-                                     (_ball.CurrentOwnershipState == Ball.OwnershipState.Held && _ball.OwnerTeam != _player.TeamIndex);
+        private bool ShouldWander => _ball.CurrentOwnershipState == Ball.OwnershipState.Held || 
+            (_ball.CurrentOwnershipState == Ball.OwnershipState.Thrown && _ball.ThrowOwner.TeamIndex == _player.TeamIndex);
 
-        private bool ShouldDodge => _ball.CurrentOwnershipState == Ball.OwnershipState.Thrown &&
+        private bool ShouldDodge => (_ball.CurrentOwnershipState == Ball.OwnershipState.Thrown || _ball.CurrentOwnershipState == Ball.OwnershipState.Held) &&
                                     _ball.OwnerTeam != _player.TeamIndex;
 
-        private AI2DInput.Directions AimDirection()
-        {
-            //TODO:  Aim at particular player
-            return AI2DInput.Directions.Down;
-        }
-
-        private AI2DInput.Directions WanderDirection()
-        {
-            //TODO:  Wander an area
-            return AI2DInput.Directions.None;
-        }
-
-        private AI2DInput.Directions DodgeDirection()
-        {
-            //TODO: Dodge intelligently away from ball
-            return (AI2DInput.Directions.Down | AI2DInput.Directions.Right);
-        }
+        private bool ShouldRetrieveBall => _ball.CurrentOwnershipState == Ball.OwnershipState.Free;
 
         private void MakeDecisions()
         {
@@ -38,16 +22,52 @@ namespace Dodgeball.AI
 
             if (ShouldThrowBall)
             {
-                var aimingDirections = AimDirection();
-                _aimingInput.Move(aimingDirections);
+                _aimingInput.Move(AimDirection());
 
                 _actionButton.Press();
+                _actionButton.Release();
+                _ballHeldTime = 0;
                 hasActed = true;
             }
             else
             {
                 _actionButton.Release();
                 _aimingInput.Move(AI2DInput.Directions.None);
+            }
+
+            if (!hasActed && ShouldWander)
+            {
+                _isWandering = true;
+                _wanderDirection = WanderDirection();
+                _movementInput.Move(_wanderDirection);
+                
+                hasActed = true;
+            }
+            else
+            {
+                _isWandering = false;
+                _wanderDirection = AI2DInput.Directions.None;
+                _timeWandering = 0;
+            }
+
+            if (!hasActed && ShouldDodge)
+            {
+                _isDodging = true;
+                _dodgeDirection = DodgeDirection();
+                _movementInput.Move(_dodgeDirection);
+                hasActed = true;
+            }
+            else
+            {
+                _isDodging = false;
+                _dodgeDirection = AI2DInput.Directions.None;
+                _timeDodging = 0;
+            }
+
+            if (!hasActed && ShouldRetrieveBall)
+            {
+                _movementInput.Move(RetrieveBallDirections());
+                hasActed = true;
             }
 
             if (!hasActed && ShouldTaunt)
@@ -60,24 +80,7 @@ namespace Dodgeball.AI
                 _tauntButton.Release();
             }
 
-            if (!hasActed && ShouldWander)
-            {
-                var wanderDirections = WanderDirection();
-                _movementInput.Move(wanderDirections);
-                hasActed = true;
-            }
-            else
-            {
-                _aimingInput.Move(AI2DInput.Directions.None);
-            }
-
-            if (!hasActed && ShouldDodge)
-            {
-                var dodgeDirections = DodgeDirection();
-                _movementInput.Move(dodgeDirections);
-                hasActed = true;
-            }
-            else
+            if (!hasActed)
             {
                 _movementInput.Move(AI2DInput.Directions.None);
             }

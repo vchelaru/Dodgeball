@@ -6,16 +6,38 @@ using System.Threading.Tasks;
 using Dodgeball.Entities;
 using FlatRedBall.Input;
 using FlatRedBall.Math;
+using FlatRedBall.Utilities;
 
 namespace Dodgeball.AI
 {
     public partial class AIController
     {
         #region Fields/Properties
+
+        //Object references
         private readonly Player _player;
         private PositionedObjectList<Player> _allPlayers;
         private readonly Ball _ball;
-        
+
+        //Random determinations
+        private Random random;
+
+        //Ball-throwing logic
+        private double _ballHeldTime;
+        private double _timeToDelayThrow = 1;
+
+        //Wandering logic
+        private bool _isWandering;
+        private double _timeToWander = 2;
+        private double _timeWandering = 0;
+        private AI2DInput.Directions _wanderDirection = AI2DInput.Directions.None;
+
+        //Dodge logic
+        private bool _isDodging;
+        private double _timeToDodge = 2;
+        private double _timeDodging = 0;
+        private AI2DInput.Directions _dodgeDirection = AI2DInput.Directions.None;
+
         //Public interfaces for use by Player expecting a controller
         public I2DInput MovementInput { get; private set; }
         public IPressableInput ActionButton { get; private set; }
@@ -32,6 +54,7 @@ namespace Dodgeball.AI
         #region Initialize
         public AIController(Player player, Ball ball)
         {
+            //Object references
             _player = player;
             _allPlayers = player.AllPlayers;
             _ball = ball;
@@ -48,6 +71,9 @@ namespace Dodgeball.AI
             TauntButton = _tauntButton;
             AimingInput = _aimingInput;
 
+            //Private random with seed
+            random = new Random(Guid.NewGuid().GetHashCode());
+
             AssignInputsToPlayer();
         }
         #endregion
@@ -58,8 +84,26 @@ namespace Dodgeball.AI
             //Re-assign inputs if the player has taken control of the character for debug logic
             if (!_player.HasInputs) AssignInputsToPlayer();
 
+            UpdateConditions();
             MakeDecisions();
         }
+
+        private void UpdateConditions()
+        {
+            if (_player.BallHolding != null)
+            {
+                _ballHeldTime += FlatRedBall.TimeManager.LastSecondDifference;
+            }
+            if (_isWandering)
+            {
+                _timeWandering += FlatRedBall.TimeManager.LastSecondDifference;
+            }
+            if (_isDodging)
+            {
+                _timeDodging += FlatRedBall.TimeManager.LastSecondDifference;
+            }
+        }
+
         #endregion
 
         private void AssignInputsToPlayer()

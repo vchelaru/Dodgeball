@@ -87,6 +87,7 @@ namespace Dodgeball.Entities
         internal void PickUpBall(Ball ballInstance)
         {
             BallHolding = ballInstance;
+            BallHolding.ThrowOwner = null;
             ballInstance.OwnerTeam = this.TeamIndex;
         }
 
@@ -142,9 +143,13 @@ namespace Dodgeball.Entities
 
             BallHolding = null;
 
-            this.ClearInput();
-            targetPlayer.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
-
+#if DEBUG
+            if (DebuggingVariables.PlayerAlwaysControlsBallholder)
+            {
+                this.ClearInput();
+                targetPlayer.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+            }
+#endif
         }
 
         private void MovementActivity()
