@@ -143,16 +143,6 @@
     <Compile Include="Entities\Player.Generated.Event.cs">
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entities\TargetingLine.cs" />
-    <Compile Include="Entities\TargetingLine.Event.cs">
-      <DependentUpon>TargetingLine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TargetingLine.Generated.cs">
-      <DependentUpon>TargetingLine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TargetingLine.Generated.Event.cs">
-      <DependentUpon>TargetingLine.cs</DependentUpon>
-    </Compile>
     <Compile Include="GlobalContent.Generated.cs" />
     <Compile Include="GumCore\AnimationFrame.cs" />
     <Compile Include="GumCore\Atlas.cs" />
