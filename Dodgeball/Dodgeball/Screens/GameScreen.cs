@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-
+using Dodgeball.AI;
+using Dodgeball.Entities;
 using FlatRedBall;
 using FlatRedBall.Input;
 using FlatRedBall.Instructions;
@@ -11,24 +12,35 @@ using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Localization;
-
+using Microsoft.Xna.Framework;
 
 
 namespace Dodgeball.Screens
 {
 	public partial class GameScreen
 	{
+	    private List<AIController> AIControllers;
         #region Initialize
 
         void CustomInitialize()
         {
-            InitializeInput();
-
             SharePlayerReferences();
-
+            AssignAIControllers();
+            InitializeInput();
         }
 
-        private void SharePlayerReferences()
+	    private void AssignAIControllers()
+	    {
+	        AIControllers = new List<AIController>();
+
+            foreach (var player in this.PlayerList)
+	        {
+	            var newAI = new AIController(player, BallInstance);
+                AIControllers.Add(newAI);
+	        }
+        }
+
+	    private void SharePlayerReferences()
         {
             foreach(var player in this.PlayerList)
             {
@@ -48,11 +60,19 @@ namespace Dodgeball.Screens
         void CustomActivity(bool firstTimeCalled)
 		{
             CollisionActivity();
-
+		    AIActivity();
 #if DEBUG
             DebugActivity();
 #endif
         }
+
+	    private void AIActivity()
+	    {
+	        foreach (var AI in AIControllers)
+	        {
+	            AI.Activity();
+	        }
+	    }
 
 #if DEBUG
         private void DebugActivity()
@@ -66,11 +86,29 @@ namespace Dodgeball.Screens
 
         private void CollisionActivity()
         {
+            PlayerVsPlayerCollision();
+
             BallVsPlayerCollision();
 
             BallVsWallsCollision();
 
             CheckForEndOfGame();
+        }
+
+	    private void PlayerVsPlayerCollision()
+	    {
+	        // Destroys aren't being called here so we can forward-loop
+	        for (var i = 0; i < PlayerList.Count; i++)
+	        {
+	            var firstPlayer = PlayerList[i];
+	            for (var j = i + 1; j < PlayerList.Count; j++)
+	            {
+	                var secondPlayer = PlayerList[j];
+
+	                firstPlayer.CircleInstance.CollideAgainstBounce(
+	                    secondPlayer.CircleInstance, 1, 1, 0.1f);
+	            }
+	        }
         }
 
         private void BallVsWallsCollision()
@@ -162,14 +200,20 @@ namespace Dodgeball.Screens
         private void PerformPickupLogic(Entities.Player player)
         {
             BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Held;
+            BallInstance.Velocity = Vector3.Zero;
             BallInstance.AttachTo(player, false);
 
-            foreach (var playerToClear in PlayerList)
+            #if DEBUG
+            if (DebuggingVariables.PlayerAlwaysControlsBallholder)
             {
-                playerToClear.ClearInput();
-            }
+                foreach (var playerToClear in PlayerList)
+                {
+                    playerToClear.ClearInput();
+                }
 
-            player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+                player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+            }
+            #endif
 
             player.PickUpBall(BallInstance);
         }
