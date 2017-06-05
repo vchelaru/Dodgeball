@@ -69,6 +69,8 @@ namespace Dodgeball.Screens
             BallVsPlayerCollision();
 
             BallVsWallsCollision();
+
+            CheckForEndOfGame();
         }
 
         private void BallVsWallsCollision()
@@ -85,7 +87,7 @@ namespace Dodgeball.Screens
                 BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
             }
 
-            float top = 400;
+            float top = 300;
             float bottom = -1080 / 2.0f;
 
             if(BallInstance.YVelocity > 0 && BallInstance.Y > top)
@@ -170,6 +172,20 @@ namespace Dodgeball.Screens
             player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
 
             player.PickUpBall(BallInstance);
+        }
+
+        private void CheckForEndOfGame()
+        {
+            if(!PlayerList.Any(item => item.TeamIndex == 0))
+            {
+                // Team 1 wins
+                MoveToScreen(typeof(WrapUpScreen));
+            }
+            else if(!PlayerList.Any(item => item.TeamIndex == 1))
+            {
+                // Team 0 wins
+                MoveToScreen(typeof(WrapUpScreen));
+            }
         }
 
         #endregion

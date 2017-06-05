@@ -434,6 +434,28 @@
           <Type>float</Type>
           <DefaultValue xsi:type="xsd:float">200</DefaultValue>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>DamageWhenHitting</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">60</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>ThrowVelocity</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">1000</DefaultValue>
+        </CustomVariable>
       </CustomVariables>
       <ImplementsIVisible>true</ImplementsIVisible>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>

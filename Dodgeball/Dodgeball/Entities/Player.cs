@@ -125,22 +125,17 @@ namespace Dodgeball.Entities
 
         internal void GetHitBy(Ball ballInstance)
         {
-            float damageToDeal = 20;
-            this.HealthPercentage -= damageToDeal;
-
-
+            this.HealthPercentage -= DamageWhenHitting;
         }
 
         private void ExecuteThrow()
         {
-            float ThrowSpeed = 400;
-
             var targetPlayer = AllPlayers.First(player => player.TeamIndex != this.TeamIndex);
 
             var direction = targetPlayer.Position - this.Position;
             direction.Normalize();
             BallHolding.Detach();
-            BallHolding.Velocity = direction * ThrowSpeed;
+            BallHolding.Velocity = direction * ThrowVelocity;
 
             BallHolding.ThrowOwner = this;
             BallHolding.CurrentOwnershipState = Ball.OwnershipState.Thrown;
