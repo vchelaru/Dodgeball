@@ -43,7 +43,9 @@ namespace Dodgeball.Entities
         private void CustomInitialize()
 		{
             this.ActiveMarkerRuntimeInstance.Visible = false;
-        }
+
+		    CircleInstance.Color = TeamIndex == 0 ? Color.Red : Color.Blue;
+		}
 
         public void InitializeXbox360Controls(Xbox360GamePad gamePad)
         {

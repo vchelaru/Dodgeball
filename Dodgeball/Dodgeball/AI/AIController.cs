@@ -27,12 +27,14 @@ namespace Dodgeball.AI
         private double _timeToDelayThrow = 1;
 
         //Wandering logic
+        private const double MaxWanderTime = 3;
         private bool _isWandering;
         private double _timeToWander = 2;
         private double _timeWandering = 0;
         private AI2DInput.Directions _wanderDirection = AI2DInput.Directions.None;
 
         //Dodge logic
+        private const double MaxDodgeTime = 2;
         private bool _isDodging;
         private double _timeToDodge = 2;
         private double _timeDodging = 0;

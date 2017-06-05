@@ -10,6 +10,7 @@
 
         private AI2DInput.Directions WanderDirection()
         {
+            //Use an existing wander direction to make movement more natural
             if (_timeWandering < _timeToWander && _wanderDirection != AI2DInput.Directions.None)
             {
                 //If player has gone out of bounds, remove the offending direction from the enum
@@ -19,6 +20,11 @@
             }
             else
             {
+                //Mark the start of a new wander
+                _timeWandering = 0;
+
+                _timeToWander = MaxWanderTime * random.NextDouble();
+
                 //Random directions
                 var upDown = random.NextDouble() > 0.5
                     ? AI2DInput.Directions.Up
@@ -42,6 +48,7 @@
 
         private AI2DInput.Directions DodgeDirection()
         {
+            //Use an existing dodge direction to make movement more natural
             if (_timeDodging < _timeToDodge && _dodgeDirection != AI2DInput.Directions.None)
             {
                 //If player has gone out of bounds, remove the offending direction from the enum
@@ -51,6 +58,11 @@
             }
             else
             {
+                //Mark the start of a new dodge
+                _timeDodging = 0;
+
+                _timeToDodge = MaxDodgeTime * random.NextDouble();
+
                 var movement = _ball.Position - _player.Position;
                 movement.Normalize();
 
@@ -94,17 +106,17 @@
             var newDirections = originalDirections;
             //If player has gone out of bounds, remove the offending direction from the enum
             //TODO:  Measure size of arena rather than hard-code it
-            if (_player.Y > 540) newDirections = newDirections & ~(AI2DInput.Directions.Up);
-            else if (_player.Y < -540) newDirections = newDirections & ~(AI2DInput.Directions.Down);
+            if (_player.Y > 540) newDirections &= ~(AI2DInput.Directions.Up);
+            else if (_player.Y < -540) newDirections &= ~(AI2DInput.Directions.Down);
 
-            if (_player.X > 960) newDirections = newDirections & ~(AI2DInput.Directions.Right);
-            else if (_player.X < -960) newDirections = newDirections & ~(AI2DInput.Directions.Left);
+            if (_player.X > 960) newDirections &= ~(AI2DInput.Directions.Right);
+            else if (_player.X < -960) newDirections &= ~(AI2DInput.Directions.Left);
 
             //Don't let player cross center boundary
             if (_player.Position.X >= 0 && _player.TeamIndex == 0)
-                newDirections = newDirections & ~(AI2DInput.Directions.Right);
+                newDirections &= ~(AI2DInput.Directions.Right);
             if (_player.Position.X <= 0 && _player.TeamIndex == 1)
-                newDirections = newDirections & ~(AI2DInput.Directions.Left);
+                newDirections &= ~(AI2DInput.Directions.Left);
 
             return newDirections;
         }
