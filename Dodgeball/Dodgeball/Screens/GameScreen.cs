@@ -46,7 +46,21 @@ namespace Dodgeball.Screens
         void CustomActivity(bool firstTimeCalled)
 		{
             CollisionActivity();
-		}
+
+#if DEBUG
+            DebugActivity();
+#endif
+        }
+
+#if DEBUG
+        private void DebugActivity()
+        {
+            if(InputManager.Keyboard.KeyPushed(Microsoft.Xna.Framework.Input.Keys.R))
+            {
+                this.RestartScreen(reloadContent: true);
+            }
+        }
+#endif
 
         private void CollisionActivity()
         {
