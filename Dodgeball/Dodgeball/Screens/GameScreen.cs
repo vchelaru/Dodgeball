@@ -43,6 +43,8 @@ namespace Dodgeball.Screens
 
         #endregion
 
+        #region Activity
+
         void CustomActivity(bool firstTimeCalled)
 		{
             CollisionActivity();
@@ -106,17 +108,7 @@ namespace Dodgeball.Screens
                 {
                     if (player.CollideAgainst(BallInstance))
                     {
-                        BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Held;
-                        BallInstance.AttachTo(player, false);
-
-                        foreach(var playerToClear in PlayerList)
-                        {
-                            playerToClear.ClearInput();
-                        }
-
-                        player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
-
-                        player.PickUpBall(BallInstance);
+                        PerformPickupLogic(player);
 
                         break;
                     }
@@ -124,28 +116,63 @@ namespace Dodgeball.Screens
             }
             else if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Thrown)
             {
-                foreach (var player in PlayerList)
+                // reverse loop since players can be removed:
+                for(int i = PlayerList.Count - 1; i > -1; i--)
                 {
+                    var player = PlayerList[i];
+
                     if (BallInstance.ThrowOwner != player && player.CollideAgainst(BallInstance))
                     {
-                        if (BallInstance.OwnerTeam != player.TeamIndex)
-                        {
-                            // OUCH
-                            player.GetHitBy(BallInstance);
-                        }
-                        else
-                        {
-                            // bounce! No damage though
-                        }
-
-                        // make the ball bounce off the player:
-                        BallInstance.CollideAgainstBounce(player, 0, 1, 1);
-                        BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
+                        PerformGetHitLogic(player);
                     }
                 }
             }
             // don't perform collision if the ball is being held
         }
+
+        private void PerformGetHitLogic(Entities.Player player)
+        {
+            if (BallInstance.OwnerTeam != player.TeamIndex)
+            {
+                // OUCH
+                player.GetHitBy(BallInstance);
+
+            }
+            else
+            {
+                // bounce! No damage though
+            }
+
+
+
+            // make the ball bounce off the player:
+            BallInstance.CollideAgainstBounce(player, 0, 1, 1);
+            BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
+
+            // do this after collision:
+            // We may want to have animations, flashing, etc, but for now destroy the guy!
+            if(player.HealthPercentage <= 0)
+            {
+                player.Destroy();
+            }
+        }
+
+        private void PerformPickupLogic(Entities.Player player)
+        {
+            BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Held;
+            BallInstance.AttachTo(player, false);
+
+            foreach (var playerToClear in PlayerList)
+            {
+                playerToClear.ClearInput();
+            }
+
+            player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+
+            player.PickUpBall(BallInstance);
+        }
+
+        #endregion
 
         void CustomDestroy()
 		{
