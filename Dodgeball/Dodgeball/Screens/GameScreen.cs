@@ -113,7 +113,6 @@ namespace Dodgeball.Screens
 
         private void BallVsWallsCollision()
         {
-
             if(BallInstance.XVelocity < 0 && BallInstance.X < -1920/2.0f + 30)
             {
                 BallInstance.XVelocity *= -1;
