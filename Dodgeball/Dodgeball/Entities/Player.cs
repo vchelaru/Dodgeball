@@ -107,7 +107,12 @@ namespace Dodgeball.Entities
         private void HudActivity()
         {
             this.ActiveMarkerRuntimeInstance.X = this.X;
-            this.ActiveMarkerRuntimeInstance.Y = this.Y + 50;
+            this.ActiveMarkerRuntimeInstance.Y = this.Y + 55;
+
+            this.HealthBarRuntimeInstance.X = this.X - this.HealthBarRuntimeInstance.Width/2;
+            this.HealthBarRuntimeInstance.Y = this.Y + 35;
+            this.HealthBarRuntimeInstance.HealthWidth = this.HealthPercentage;
+
         }
 
         private void ThrowingActivity()

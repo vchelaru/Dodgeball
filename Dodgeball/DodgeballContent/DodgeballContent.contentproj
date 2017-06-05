@@ -53,6 +53,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ActiveMarker</Name>
     </None>
+    <None Include="GumProject\Components\HealthBar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>HealthBar</Name>
+    </None>
     <None Include="GumProject\Components\WorldComponent.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WorldComponent</Name>
