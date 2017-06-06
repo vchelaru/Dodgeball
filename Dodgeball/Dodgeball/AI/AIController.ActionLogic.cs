@@ -80,7 +80,7 @@
 
                 timeToDodge = MaxDodgeTime * random.NextDouble();
 
-                var movement = _ball.Position - player.Position;
+                var movement = ball.Position - player.Position;
                 movement.Normalize();
 
                 var upDown = movement.Y > 0
@@ -101,14 +101,14 @@
 
         private AI2DInput.Directions RetrieveBallDirections()
         {
-            var leftRight = _ball.Position.X > player.Position.X
+            var leftRight = ball.Position.X > player.Position.X
                 ? AI2DInput.Directions.Right
                 : AI2DInput.Directions.Left;
 
             if (player.Position.X >= player.TeamRectangleRight && player.TeamIndex == 0) leftRight = AI2DInput.Directions.None;
             if (player.Position.X <= player.TeamRectangleLeft && player.TeamIndex == 1) leftRight = AI2DInput.Directions.None;
 
-            var upDown = _ball.Position.Y > player.Position.Y
+            var upDown = ball.Position.Y > player.Position.Y
                 ? AI2DInput.Directions.Up
                 : AI2DInput.Directions.Down;
 
