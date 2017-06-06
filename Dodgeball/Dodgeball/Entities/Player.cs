@@ -28,6 +28,7 @@ namespace Dodgeball.Entities
         public PositionedObjectList<Player> AllPlayers { get; set; }
 
         public Ball BallHolding { get; set; }
+	    public bool IsHoldingBall => BallHolding != null;
 
         //Debug property so AI knows when to resume control of player-controlled Player
         public bool HasInputs => MovementInput != null;
@@ -107,8 +108,10 @@ namespace Dodgeball.Entities
             HudActivity();
 
         #if DEBUG
-		    if (BallHolding != null && DebuggingVariables.ShowTargetedPlayers) ShowTargetedPlayers();
+		    if (IsHoldingBall && DebuggingVariables.ShowTargetedPlayers) ShowTargetedPlayers();
 #endif
+
+		    SetAnimation();
 		}
 
 #if DEBUG
@@ -128,17 +131,17 @@ namespace Dodgeball.Entities
         private void HudActivity()
         {
             this.ActiveMarkerRuntimeInstance.X = this.X;
-            this.ActiveMarkerRuntimeInstance.Y = this.Y + 55;
+            this.ActiveMarkerRuntimeInstance.Y = this.Y + 200;
 
             this.HealthBarRuntimeInstance.X = this.X - this.HealthBarRuntimeInstance.Width/2;
-            this.HealthBarRuntimeInstance.Y = this.Y + 35;
+            this.HealthBarRuntimeInstance.Y = this.Y + 160;
             this.HealthBarRuntimeInstance.HealthWidth = this.HealthPercentage;
 
         }
 
         private void ThrowingActivity()
         {
-            if(ActionButton != null && ActionButton.WasJustReleased && BallHolding != null)
+            if(ActionButton != null && ActionButton.WasJustReleased && IsHoldingBall)
             {
                 ExecuteThrow();
             }
@@ -216,13 +219,76 @@ namespace Dodgeball.Entities
 
         private void MovementActivity()
         {
-
-            if(MovementInput != null)
+            if (MovementInput != null && SpriteInstance.CurrentChainName != "Throw")
             {
                 this.Velocity.X = MovementInput.X * MovementSpeed;
                 this.Velocity.Y = MovementInput.Y * MovementSpeed;
-
             }
+
+            //Keep player from moving over line
+            if ((TeamIndex == 0 && Position.X >= -30) ||
+                (TeamIndex == 1 && Position.X <= 30))
+            {
+                Position.X = (TeamIndex == 0 ? -31 : 31);
+            }
+        }
+
+	    private void SetAnimation()
+	    {
+	        if (ActionButton != null)
+	        {
+	            if (ActionButton.IsDown && IsHoldingBall)
+	            {
+	                SpriteInstance.SetAnimationChain("Throw");
+	                
+	            }
+                else if (ActionButton.IsDown)
+	            {
+	                SpriteInstance.SetAnimationChain("Dodge");
+	            }
+
+	            if (TeamIndex == 0)
+	            {
+	                SpriteInstance.FlipHorizontal = true;
+	            }
+	            else
+	            {
+	                SpriteInstance.FlipHorizontal = false;
+	            }
+            }
+
+	        if ((SpriteInstance.CurrentChainName != "Throw" && SpriteInstance.CurrentChainName != "Dodge") ||
+	            SpriteInstance.JustCycled)
+	        {
+
+	            if (MovementInput.X != 0 || MovementInput.Y != 0)
+	            {
+	                SpriteInstance.SetAnimationChain("Run");
+
+	                if (Velocity.X < 0)
+	                {
+	                    SpriteInstance.FlipHorizontal = false;
+	                }
+	                else
+	                {
+	                    SpriteInstance.FlipHorizontal = true;
+	                }
+	            }
+	            else
+	            {
+	                SpriteInstance.SetAnimationChain("Idle");
+	                if (TeamIndex == 0)
+	                {
+	                    SpriteInstance.FlipHorizontal = true;
+	                }
+	                else
+	                {
+	                    SpriteInstance.FlipHorizontal = false;
+	                }
+	            }
+	        }
+
+	        SpriteInstance.RelativeY = 64f;
         }
 
         #endregion

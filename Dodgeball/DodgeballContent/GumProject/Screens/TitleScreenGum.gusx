@@ -3,5 +3,35 @@
   <Name>TitleScreenGum</Name>
   <State>
     <Name>Default</Name>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>PlaceHolderBackground.Height Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <IsFile>true</IsFile>
+      <Type>string</Type>
+      <Name>PlaceHolderBackground.SourceFile</Name>
+      <Value xsi:type="xsd:string">PlayingField.png</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>PlaceHolderBackground.Width Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <VariableList xsi:type="VariableListSaveOfString">
+      <Type>string</Type>
+      <Name>AnimationFrames</Name>
+      <IsFile>false</IsFile>
+      <IsHiddenInPropertyGrid>false</IsHiddenInPropertyGrid>
+      <Value />
+    </VariableList>
   </State>
+  <Instance>
+    <Name>PlaceHolderBackground</Name>
+    <BaseType>Sprite</BaseType>
+  </Instance>
 </ScreenSave>

@@ -26,7 +26,7 @@
     <Variable>
       <Type>float</Type>
       <Name>GameArea.Height</Name>
-      <Value xsi:type="xsd:float">708</Value>
+      <Value xsi:type="xsd:float">564</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -44,7 +44,7 @@
     <Variable>
       <Type>float</Type>
       <Name>GameArea.Y</Name>
-      <Value xsi:type="xsd:float">321</Value>
+      <Value xsi:type="xsd:float">482</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

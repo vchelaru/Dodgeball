@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dodgeball.Entities;
+using Dodgeball.GumRuntimes;
 using FlatRedBall.Input;
 using FlatRedBall.Math;
 using FlatRedBall.Utilities;
@@ -92,7 +93,7 @@ namespace Dodgeball.AI
 
         private void UpdateConditions()
         {
-            if (_player.BallHolding != null)
+            if (_player.IsHoldingBall)
             {
                 _ballHeldTime += FlatRedBall.TimeManager.LastSecondDifference;
             }
