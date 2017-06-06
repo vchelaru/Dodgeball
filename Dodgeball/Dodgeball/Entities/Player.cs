@@ -44,6 +44,7 @@ namespace Dodgeball.Entities
 		{
             this.ActiveMarkerRuntimeInstance.Visible = false;
 
+		    CircleInstance.Color = TeamIndex == 0 ? Color.Red : Color.Blue;
 		}
 
         public void InitializeXbox360Controls(Xbox360GamePad gamePad)
@@ -59,9 +60,10 @@ namespace Dodgeball.Entities
 
             AimingInput = gamePad.RightStick;
             TauntButton = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
+
         }
 
-	    public void InitializeAIControl(AIController aicontrol)
+        public void InitializeAIControl(AIController aicontrol)
 	    {
 	        this.ActiveMarkerRuntimeInstance.Visible = false;
 
@@ -69,7 +71,7 @@ namespace Dodgeball.Entities
 	        ActionButton = aicontrol.ActionButton;
 	        AimingInput = aicontrol.AimingInput;
 	        TauntButton = aicontrol.TauntButton;
-	    }
+        }
 
         public void ClearInput()
         {
@@ -103,7 +105,25 @@ namespace Dodgeball.Entities
             ThrowingActivity();
 
             HudActivity();
+
+        #if DEBUG
+		    if (BallHolding != null && DebuggingVariables.ShowTargetedPlayers) ShowTargetedPlayers();
+#endif
 		}
+
+#if DEBUG
+	    private void ShowTargetedPlayers()
+	    {
+            foreach (var player in AllPlayers)
+            {
+                player.CircleInstance.Color = (player.TeamIndex == 0 ? Color.Red : Color.Blue);
+            }
+
+	        var targetPlayer = GetTargetedPlayer();
+	        targetPlayer.CircleInstance.Color = Color.Yellow;
+        }
+#endif
+
 
         private void HudActivity()
         {
@@ -131,7 +151,7 @@ namespace Dodgeball.Entities
 
         private void ExecuteThrow()
         {
-            var targetPlayer = AllPlayers.First(player => player.TeamIndex != this.TeamIndex);
+            var targetPlayer = GetTargetedPlayer();
 
             var direction = targetPlayer.Position - this.Position;
             direction.Normalize();
@@ -151,6 +171,48 @@ namespace Dodgeball.Entities
             }
 #endif
         }
+
+	    private Player GetTargetedPlayer()
+	    {
+	        var opposingTeamPlayers = AllPlayers.Where(p => p.TeamIndex != TeamIndex).ToList();
+
+            //Default to closest player
+	        var targetedPlayer = opposingTeamPlayers.Aggregate(
+	                (p1, p2) => (p1.Position - Position).Length() < (p2.Position - Position).Length() ? p1 : p2);
+
+            //Choose target if player is aiming
+	        if (AimingInput != null && Math.Abs(AimingInput.Magnitude) > 0.05)
+	        {
+	            var minX = opposingTeamPlayers.Min(p => p.Position.X);
+	            var maxX = opposingTeamPlayers.Max(p => p.Position.X);
+	            var minY = opposingTeamPlayers.Min(p => p.Position.Y);
+	            var maxY = opposingTeamPlayers.Max(p => p.Position.Y);
+
+	            var midX = (minX + maxX) / 2;
+	            var midY = (minY + maxY) / 2;
+
+	            var aimPositionX = midX + (AimingInput.X * Math.Abs(maxX - minX));
+	            var aimPositionY = midY + (AimingInput.Y * Math.Abs(maxY - minY));
+
+	            var aimPosition = new Vector3(aimPositionX, aimPositionY, 0);
+
+	            var closestTargetDistance = double.MaxValue;
+	            foreach (var otherTeamPlayer in opposingTeamPlayers)
+	            {
+	                //Multiply distance by aiming input to infer importance of the difference in direction
+	                var relativeVector = otherTeamPlayer.Position - aimPosition;
+	                var targetDistance = (Math.Abs(relativeVector.X) * Math.Abs(AimingInput.X)) +
+	                                     (Math.Abs(relativeVector.Y) * Math.Abs(AimingInput.Y));
+
+	                if (targetDistance < closestTargetDistance)
+	                {
+	                    closestTargetDistance = targetDistance;
+	                    targetedPlayer = otherTeamPlayer;
+	                }
+	            }
+            }
+	        return targetedPlayer;
+	    }
 
         private void MovementActivity()
         {
