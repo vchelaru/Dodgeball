@@ -23,7 +23,7 @@ namespace Dodgeball.AI
             if (ShouldThrowBall)
             {
                 _aimingInput.Move(AimDirection());
-                _movementInput.Move(AI2DInput.Directions.None);
+                movementInput.Move(AI2DInput.Directions.None);
                 _actionButton.Press();
                 _actionButton.Release();
                 _ballHeldTime = 0;
@@ -41,7 +41,7 @@ namespace Dodgeball.AI
                 var decisionToRetrieveBall = random.NextDouble() < 0.6;
                 if (decisionToRetrieveBall || isRetrieving)
                 {
-                    _movementInput.Move(RetrieveBallDirections());
+                    movementInput.Move(RetrieveBallDirections());
                     isRetrieving = true;
                     hasActed = true;
                 }
@@ -56,7 +56,7 @@ namespace Dodgeball.AI
             {
                 isDodging = true;
                 dodgeDirection = DodgeDirection();
-                _movementInput.Move(dodgeDirection);
+                movementInput.Move(dodgeDirection);
                 hasActed = true;
             }
             else
@@ -71,7 +71,7 @@ namespace Dodgeball.AI
             {
                 isWandering = true;
                 wanderDirection = WanderDirection();
-                _movementInput.Move(wanderDirection);
+                movementInput.Move(wanderDirection);
 
                 hasActed = true;
             }
@@ -95,7 +95,7 @@ namespace Dodgeball.AI
 
             if (!hasActed)
             {
-                _movementInput.Move(AI2DInput.Directions.None);
+                movementInput.Move(AI2DInput.Directions.None);
                 _aimingInput.Move(AI2DInput.Directions.None);
                 _actionButton.Release();
             }

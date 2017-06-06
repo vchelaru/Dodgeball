@@ -17,15 +17,15 @@ namespace Dodgeball.AI
 
         //Object references
         private readonly Player player;
-        private PositionedObjectList<Player> _allPlayers;
-        private readonly Ball _ball;
+        private PositionedObjectList<Player> allPlayers;
+        private readonly Ball ball;
 
         //Random determinations
         private Random random;
 
         //Ball-throwing logic
-        private double _ballHeldTime;
-        private double _timeToDelayThrow = 1;
+        private double ballHeldTime;
+        private double timeToDelayThrow = 1;
 
         //Wandering logic
         private const double MaxWanderTime = 1.5;
@@ -62,8 +62,8 @@ namespace Dodgeball.AI
         {
             //Object references
             this.player = player;
-            _allPlayers = player.AllPlayers;
-            _ball = ball;
+            allPlayers = player.AllPlayers;
+            this.ball = ball;
 
             //Local simulated inputs
             _movementInput = new AI2DInput();
@@ -98,7 +98,7 @@ namespace Dodgeball.AI
         {
             if (player.IsHoldingBall)
             {
-                _ballHeldTime += FlatRedBall.TimeManager.LastSecondDifference;
+                ballHeldTime += FlatRedBall.TimeManager.LastSecondDifference;
             }
             if (isWandering)
             {
