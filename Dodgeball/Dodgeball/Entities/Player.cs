@@ -11,7 +11,9 @@ using FlatRedBall.Math.Geometry;
 using FlatRedBall.Math;
 using System.Linq;
 using Dodgeball.AI;
+using Dodgeball.GumRuntimes;
 using Microsoft.Xna.Framework;
+using RenderingLibrary;
 
 namespace Dodgeball.Entities
 {
@@ -29,6 +31,16 @@ namespace Dodgeball.Entities
 
         public Ball BallHolding { get; set; }
 	    public bool IsHoldingBall => BallHolding != null;
+
+	    public WorldComponentRuntime WorldComponent;
+	    public IPositionedSizedObject TeamRectangle => (TeamIndex == 0
+	        ? WorldComponent.LeftTeamRectangle
+	        : WorldComponent.RightTeamRectangle);
+        
+	    public float TeamRectangleRight => (TeamRectangle.X + TeamRectangle.Width) - FlatRedBall.Camera.Main.OrthogonalWidth / 2;
+	    public float TeamRectangleLeft => TeamRectangle.X  - FlatRedBall.Camera.Main.OrthogonalWidth / 2;
+	    public float TeamRectangleTop => -TeamRectangle.Y;
+        public float TeamRectangleBottom => (-TeamRectangle.Y + -TeamRectangle.Height);
 
         //Debug property so AI knows when to resume control of player-controlled Player
         public bool HasInputs => MovementInput != null;
@@ -136,7 +148,6 @@ namespace Dodgeball.Entities
             this.HealthBarRuntimeInstance.X = this.X - this.HealthBarRuntimeInstance.Width/2;
             this.HealthBarRuntimeInstance.Y = this.Y + 160;
             this.HealthBarRuntimeInstance.HealthWidth = this.HealthPercentage;
-
         }
 
         private void ThrowingActivity()
@@ -225,11 +236,20 @@ namespace Dodgeball.Entities
                 this.Velocity.Y = MovementInput.Y * MovementSpeed;
             }
 
-            //Keep player from moving over line
-            if ((TeamIndex == 0 && Position.X >= -30) ||
-                (TeamIndex == 1 && Position.X <= 30))
+            //Keep player from moving over lines
+            Position.X = Position.X > TeamRectangleRight
+                ? TeamRectangleRight
+                : Position.X < TeamRectangleLeft
+                    ? TeamRectangleLeft
+                    : Position.X;
+
+            if (Position.Y > TeamRectangleTop)
             {
-                Position.X = (TeamIndex == 0 ? -31 : 31);
+                Position.Y = TeamRectangleTop;
+            }
+            else if (Position.Y < TeamRectangleBottom)
+            {
+                Position.Y = TeamRectangleBottom;
             }
         }
 

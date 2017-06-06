@@ -4,15 +4,15 @@ namespace Dodgeball.AI
 {
     public partial class AIController
     {
-        private bool ShouldThrowBall => _ball.CurrentOwnershipState == Ball.OwnershipState.Held && _player.IsHoldingBall && _ballHeldTime > _timeToDelayThrow;
+        private bool ShouldThrowBall => _ball.CurrentOwnershipState == Ball.OwnershipState.Held && player.IsHoldingBall && _ballHeldTime > _timeToDelayThrow;
 
-        private bool ShouldTaunt => _ball.CurrentOwnershipState == Ball.OwnershipState.Held && _ball.OwnerTeam == _player.TeamIndex && _ball.ThrowOwner != _player;
+        private bool ShouldTaunt => _ball.CurrentOwnershipState == Ball.OwnershipState.Held && _ball.OwnerTeam == player.TeamIndex && _ball.ThrowOwner != player;
 
-        private bool ShouldWander => _ball.CurrentOwnershipState == Ball.OwnershipState.Held || 
-            (_ball.CurrentOwnershipState == Ball.OwnershipState.Thrown && _ball.ThrowOwner.TeamIndex == _player.TeamIndex);
+        private bool ShouldWander => (_ball.CurrentOwnershipState == Ball.OwnershipState.Held || _ball.CurrentOwnershipState == Ball.OwnershipState.Thrown) && 
+                                    _ball.OwnerTeam == player.TeamIndex;
 
-        private bool ShouldDodge => (_ball.CurrentOwnershipState == Ball.OwnershipState.Thrown) &&
-                                    _ball.OwnerTeam != _player.TeamIndex;
+        private bool ShouldDodge => (_ball.CurrentOwnershipState == Ball.OwnershipState.Held || _ball.CurrentOwnershipState == Ball.OwnershipState.Thrown) &&
+                                    _ball.OwnerTeam != player.TeamIndex;
 
         private bool ShouldRetrieveBall => _ball.CurrentOwnershipState == Ball.OwnershipState.Free;
 
@@ -30,54 +30,59 @@ namespace Dodgeball.AI
                 hasActed = true;
             }
 
-            if (!hasActed && !_isWandering && !_isDodging)
+            if (!hasActed && !isWandering && !isDodging)
             {
-                var decisionToDoNothing = random.NextDouble() > 0.001;
+                var decisionToDoNothing = random.NextDouble() < 0.01;
                 hasActed = decisionToDoNothing;
             }
 
             if (!hasActed && ShouldRetrieveBall)
             {
-                var decisionToRetrieveBall = random.NextDouble() > 0.005;
-                if (decisionToRetrieveBall)
+                var decisionToRetrieveBall = random.NextDouble() < 0.6;
+                if (decisionToRetrieveBall || isRetrieving)
                 {
                     _movementInput.Move(RetrieveBallDirections());
+                    isRetrieving = true;
                     hasActed = true;
                 }
             }
-
-            var decisionToDodge = random.NextDouble() > 0.01;
-            if (!hasActed && !_isWandering && (ShouldDodge && (decisionToDodge || _isDodging)))
+            else
             {
-                _isDodging = true;
-                _dodgeDirection = DodgeDirection();
-                _movementInput.Move(_dodgeDirection);
+                isRetrieving = false;
+            }
+
+            var decisionToDodge = random.NextDouble() < 0.2;
+            if (!hasActed && !isWandering && (ShouldDodge && (decisionToDodge || isDodging)))
+            {
+                isDodging = true;
+                dodgeDirection = DodgeDirection();
+                _movementInput.Move(dodgeDirection);
                 hasActed = true;
             }
             else
             {
-                _isDodging = false;
-                _dodgeDirection = AI2DInput.Directions.None;
-                _timeDodging = 0;
+                isDodging = false;
+                dodgeDirection = AI2DInput.Directions.None;
+                timeDodging = 0;
             }
 
-            var decisionToWander = random.NextDouble() > 0.01;
-            if (!hasActed && !_isDodging && (ShouldWander && (decisionToWander || _isWandering)))
+            var decisionToWander = random.NextDouble() < 0.01;
+            if (!hasActed && !isDodging && (ShouldWander && (decisionToWander || isWandering)))
             {
-                _isWandering = true;
-                _wanderDirection = WanderDirection();
-                _movementInput.Move(_wanderDirection);
+                isWandering = true;
+                wanderDirection = WanderDirection();
+                _movementInput.Move(wanderDirection);
 
                 hasActed = true;
             }
             else
             {
-                _isWandering = false;
-                _wanderDirection = AI2DInput.Directions.None;
-                _timeWandering = 0;
+                isWandering = false;
+                wanderDirection = AI2DInput.Directions.None;
+                timeWandering = 0;
             }
 
-            var decisionToTaunt = random.NextDouble() > 0.003;
+            var decisionToTaunt = random.NextDouble() < 0.003;
             if (!hasActed && (ShouldTaunt && decisionToTaunt))
             {
                 _tauntButton.Press();

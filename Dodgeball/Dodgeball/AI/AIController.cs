@@ -16,7 +16,7 @@ namespace Dodgeball.AI
         #region Fields/Properties
 
         //Object references
-        private readonly Player _player;
+        private readonly Player player;
         private PositionedObjectList<Player> _allPlayers;
         private readonly Ball _ball;
 
@@ -28,18 +28,21 @@ namespace Dodgeball.AI
         private double _timeToDelayThrow = 1;
 
         //Wandering logic
-        private const double MaxWanderTime = 3;
-        private bool _isWandering;
-        private double _timeToWander = 2;
-        private double _timeWandering = 0;
-        private AI2DInput.Directions _wanderDirection = AI2DInput.Directions.None;
+        private const double MaxWanderTime = 1.5;
+        private bool isWandering;
+        private double timeToWander = 2;
+        private double timeWandering = 0;
+        private AI2DInput.Directions wanderDirection = AI2DInput.Directions.None;
+
+        //Retrieving logic
+        private bool isRetrieving;
 
         //Dodge logic
-        private const double MaxDodgeTime = 2;
-        private bool _isDodging;
-        private double _timeToDodge = 2;
-        private double _timeDodging = 0;
-        private AI2DInput.Directions _dodgeDirection = AI2DInput.Directions.None;
+        private const double MaxDodgeTime = 1;
+        private bool isDodging;
+        private double timeToDodge = 2;
+        private double timeDodging = 0;
+        private AI2DInput.Directions dodgeDirection = AI2DInput.Directions.None;
 
         //Public interfaces for use by Player expecting a controller
         public I2DInput MovementInput { get; private set; }
@@ -58,7 +61,7 @@ namespace Dodgeball.AI
         public AIController(Player player, Ball ball)
         {
             //Object references
-            _player = player;
+            this.player = player;
             _allPlayers = player.AllPlayers;
             _ball = ball;
 
@@ -85,7 +88,7 @@ namespace Dodgeball.AI
         public void Activity()
         {
             //Re-assign inputs if the player has taken control of the character for debug logic
-            if (!_player.HasInputs) AssignInputsToPlayer();
+            if (!player.HasInputs) AssignInputsToPlayer();
 
             UpdateConditions();
             MakeDecisions();
@@ -93,17 +96,17 @@ namespace Dodgeball.AI
 
         private void UpdateConditions()
         {
-            if (_player.IsHoldingBall)
+            if (player.IsHoldingBall)
             {
                 _ballHeldTime += FlatRedBall.TimeManager.LastSecondDifference;
             }
-            if (_isWandering)
+            if (isWandering)
             {
-                _timeWandering += FlatRedBall.TimeManager.LastSecondDifference;
+                timeWandering += FlatRedBall.TimeManager.LastSecondDifference;
             }
-            if (_isDodging)
+            if (isDodging)
             {
-                _timeDodging += FlatRedBall.TimeManager.LastSecondDifference;
+                timeDodging += FlatRedBall.TimeManager.LastSecondDifference;
             }
         }
 
@@ -111,7 +114,7 @@ namespace Dodgeball.AI
 
         private void AssignInputsToPlayer()
         {
-            _player?.InitializeAIControl(this);
+            player?.InitializeAIControl(this);
         }
     }
 }

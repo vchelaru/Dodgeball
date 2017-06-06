@@ -244,7 +244,10 @@
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TitleScreenGumRuntime.Generated.cs" />
-    <Compile Include="GumRuntimes\WorldComponentRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\WorldComponentRuntime.cs" />
+    <Compile Include="GumRuntimes\WorldComponentRuntime.Generated.cs">
+      <DependentUpon>WorldComponentRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\WrapUpScreenGumRuntime.Generated.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />

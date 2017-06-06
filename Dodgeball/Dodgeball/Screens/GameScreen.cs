@@ -45,6 +45,7 @@ namespace Dodgeball.Screens
             foreach(var player in this.PlayerList)
             {
                 player.AllPlayers = PlayerList;
+                player.WorldComponent = WorldComponentInstance;
             }
         }
 
