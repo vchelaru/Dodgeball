@@ -237,11 +237,14 @@ namespace Dodgeball.Entities
             }
 
             //Keep player from moving over lines
-            Position.X = Position.X > TeamRectangleRight
-                ? TeamRectangleRight
-                : Position.X < TeamRectangleLeft
-                    ? TeamRectangleLeft
-                    : Position.X;
+            if (Position.X > TeamRectangleRight)
+            {
+                Position.X = TeamRectangleRight;
+            }
+            else if (Position.X < TeamRectangleLeft)
+            {
+                Position.X = TeamRectangleLeft;
+            }
 
             if (Position.Y > TeamRectangleTop)
             {
