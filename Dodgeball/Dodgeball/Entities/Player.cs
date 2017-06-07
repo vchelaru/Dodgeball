@@ -320,7 +320,7 @@ namespace Dodgeball.Entities
 	            }
 	        }
 
-	        SpriteInstance.RelativeY = 64f;
+	        this.SpriteInstance.RelativeY = this.SpriteInstance.Height / 2.0f;
         }
 
         #endregion
