@@ -40,11 +40,6 @@
       </ReferencedFiles>
       <NamedObjects>
         <NamedObjectSave>
-          <CustomProperty>
-            <Type>bool</Type>
-            <Member>Visible</Member>
-            <ValueAsBool>true</ValueAsBool>
-          </CustomProperty>
           <SourceType>File</SourceType>
           <SourceFile>GumProject/Screens/GameScreenGum.gusx</SourceFile>
           <SourceName>PlaceHolderBackground (Dodgeball.GumRuntimes.SpriteRuntime)</SourceName>
@@ -116,7 +111,7 @@
               <AttachToContainer>true</AttachToContainer>
               <GenerateTimedEmit>true</GenerateTimedEmit>
               <IndependentOfCamera>true</IndependentOfCamera>
-              <LayerOn>Top Layer (Engine Layer)</LayerOn>
+              <LayerOn>GameLayer</LayerOn>
             </NamedObjectSave>
             <NamedObjectSave>
               <CustomProperty>
@@ -570,6 +565,11 @@
             <Type>float</Type>
             <Member>Radius</Member>
             <ValueAsFloat>64</ValueAsFloat>
+          </CustomProperty>
+          <CustomProperty>
+            <Type>bool</Type>
+            <Member>Visible</Member>
+            <ValueAsBool>true</ValueAsBool>
           </CustomProperty>
           <SourceType>FlatRedBallType</SourceType>
           <SourceClassType>Circle</SourceClassType>
