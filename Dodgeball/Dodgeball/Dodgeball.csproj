@@ -124,6 +124,7 @@
     <Compile Include="AI\AIController.DecisionLogic.cs">
       <DependentUpon>AIController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataRuntime\GameStats.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
     <Compile Include="Entities\Ball.cs" />
     <Compile Include="Entities\Ball.Generated.cs">

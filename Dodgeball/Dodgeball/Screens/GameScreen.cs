@@ -13,7 +13,8 @@ using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Localization;
 using Microsoft.Xna.Framework;
-
+using Dodgeball.DataRuntime;
+using Microsoft.Xna.Framework.Input;
 
 namespace Dodgeball.Screens
 {
@@ -61,7 +62,11 @@ namespace Dodgeball.Screens
         void CustomActivity(bool firstTimeCalled)
 		{
             CollisionActivity();
+
 		    AIActivity();
+
+            CheckForEndOfGame();
+
 #if DEBUG
             DebugActivity();
 #endif
@@ -93,7 +98,6 @@ namespace Dodgeball.Screens
 
             BallVsWallsCollision();
 
-            CheckForEndOfGame();
         }
 
 	    private void PlayerVsPlayerCollision()
@@ -220,14 +224,32 @@ namespace Dodgeball.Screens
 
         private void CheckForEndOfGame()
         {
-            if(!PlayerList.Any(item => item.TeamIndex == 0))
+            bool didTeam0Win = !PlayerList.Any(item => item.TeamIndex == 1);
+            bool didTeam1Win = !PlayerList.Any(item => item.TeamIndex == 0);
+
+#if DEBUG
+            var keyboard = InputManager.Keyboard;
+            bool ctrlDown = keyboard.KeyDown(Microsoft.Xna.Framework.Input.Keys.LeftControl);
+            if (keyboard.KeyPushed(Keys.D1) && ctrlDown)
             {
-                // Team 1 wins
+                didTeam0Win = true;
+            }
+            if (keyboard.KeyPushed(Keys.D2) && ctrlDown)
+            {
+                didTeam1Win = true;
+            }
+#endif
+
+            if (didTeam1Win)
+            {
+                GameStats.WinningTeam0Based = 1;
+
                 MoveToScreen(typeof(WrapUpScreen));
             }
-            else if(!PlayerList.Any(item => item.TeamIndex == 1))
+            else if(didTeam0Win)
             {
-                // Team 0 wins
+                GameStats.WinningTeam0Based = 0;
+
                 MoveToScreen(typeof(WrapUpScreen));
             }
         }

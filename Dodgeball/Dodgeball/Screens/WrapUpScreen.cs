@@ -11,8 +11,7 @@ using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Localization;
-
-
+using Dodgeball.DataRuntime;
 
 namespace Dodgeball.Screens
 {
@@ -21,7 +20,7 @@ namespace Dodgeball.Screens
 
 		void CustomInitialize()
 		{
-
+            TextInstance.Text = $"Team {GameStats.WinningTeam0Based + 1} Wins!";
 
 		}
 
