@@ -5,50 +5,46 @@
   <CoordinateType>Pixel</CoordinateType>
   <AnimationChain>
     <Name>Idle</Name>
-    <ColorKey>0</ColorKey>
     <Frame>
       <TextureName>HumanPlaceholder.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>0</LeftCoordinate>
       <RightCoordinate>256</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>256</BottomCoordinate>
+      <TopCoordinate>33</TopCoordinate>
+      <BottomCoordinate>222</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>Run</Name>
-    <ColorKey>0</ColorKey>
     <Frame>
       <TextureName>HumanPlaceholder.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>512</LeftCoordinate>
       <RightCoordinate>768</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>256</BottomCoordinate>
+      <TopCoordinate>44</TopCoordinate>
+      <BottomCoordinate>220</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>Throw</Name>
-    <ColorKey>0</ColorKey>
     <Frame>
       <TextureName>HumanPlaceholder.png</TextureName>
       <FrameLength>0.5</FrameLength>
       <LeftCoordinate>768</LeftCoordinate>
       <RightCoordinate>1024</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>256</BottomCoordinate>
+      <TopCoordinate>67</TopCoordinate>
+      <BottomCoordinate>227</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>Dodge</Name>
-    <ColorKey>0</ColorKey>
     <Frame>
       <TextureName>HumanPlaceholder.png</TextureName>
       <FrameLength>0.5</FrameLength>
       <LeftCoordinate>256</LeftCoordinate>
       <RightCoordinate>512</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>256</BottomCoordinate>
+      <TopCoordinate>13</TopCoordinate>
+      <BottomCoordinate>229</BottomCoordinate>
     </Frame>
   </AnimationChain>
 </AnimationChainArraySave>
