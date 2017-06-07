@@ -109,14 +109,6 @@ namespace FlatRedBall.Gum
 
         }
 
-        public GraphicalUiElement CreateAndUseEmptyGraphicalUiElement()
-        {
-            this.element = new GraphicalUiElement();
-            this.element.AddToManagers();
-
-            return element;
-        }
-
         public void AssignReferences()
         {
             this.element.AssignReferences();

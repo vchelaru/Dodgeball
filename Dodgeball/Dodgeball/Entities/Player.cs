@@ -56,6 +56,7 @@ namespace Dodgeball.Entities
         private void CustomInitialize()
 		{
             this.ActiveMarkerRuntimeInstance.Visible = false;
+            this.EnergyBarRuntimeInstance.Visible = false;
 
 		    CircleInstance.Color = TeamIndex == 0 ? Color.Red : Color.Blue;
 		}
@@ -63,6 +64,7 @@ namespace Dodgeball.Entities
         public void InitializeXbox360Controls(Xbox360GamePad gamePad)
         {
             this.ActiveMarkerRuntimeInstance.Visible = true;
+            this.EnergyBarRuntimeInstance.Visible = true;
 
             var movementLocal = new Multiple2DInputs();
             movementLocal.Inputs.Add(gamePad.LeftStick);
@@ -79,8 +81,9 @@ namespace Dodgeball.Entities
         public void InitializeAIControl(AIController aicontrol)
 	    {
 	        this.ActiveMarkerRuntimeInstance.Visible = false;
+            this.EnergyBarRuntimeInstance.Visible = false;
 
-	        MovementInput = aicontrol.MovementInput;
+            MovementInput = aicontrol.MovementInput;
 	        ActionButton = aicontrol.ActionButton;
 	        AimingInput = aicontrol.AimingInput;
 	        TauntButton = aicontrol.TauntButton;
@@ -89,6 +92,7 @@ namespace Dodgeball.Entities
         public void ClearInput()
         {
             this.ActiveMarkerRuntimeInstance.Visible = false;
+            this.EnergyBarRuntimeInstance.Visible = false;
 
             MovementInput = null;
             ActionButton = null;
@@ -148,6 +152,11 @@ namespace Dodgeball.Entities
             this.HealthBarRuntimeInstance.X = this.X - this.HealthBarRuntimeInstance.Width/2;
             this.HealthBarRuntimeInstance.Y = this.Y + 160;
             this.HealthBarRuntimeInstance.HealthWidth = this.HealthPercentage;
+
+
+            this.EnergyBarRuntimeInstance.X = this.X;
+            this.EnergyBarRuntimeInstance.Y = this.Y;
+            this.EnergyBarRuntimeInstance.EnergyHeight = this.EnergyPercentage;
         }
 
         private void ThrowingActivity()

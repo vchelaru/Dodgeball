@@ -634,6 +634,16 @@
           <IndependentOfCamera>true</IndependentOfCamera>
           <LayerOn>Top Layer (Engine Layer)</LayerOn>
         </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceFile />
+          <SourceName />
+          <SourceClassType>EnergyBarRuntime</SourceClassType>
+          <InstanceName>EnergyBarRuntimeInstance</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
       </NamedObjects>
       <ReferencedFiles>
         <ReferencedFileSave>
