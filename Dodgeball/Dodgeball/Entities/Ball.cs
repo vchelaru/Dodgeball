@@ -79,6 +79,11 @@ namespace Dodgeball.Entities
 
                 // make it bounce, but lose some height
                 AltitudeVelocity *= -BounceCoefficient;
+
+                if(CurrentOwnershipState == OwnershipState.Thrown)
+                {
+                    CurrentOwnershipState = OwnershipState.Free;
+                }
             }
         }
 
