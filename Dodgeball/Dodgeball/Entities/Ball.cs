@@ -76,7 +76,7 @@ namespace Dodgeball.Entities
             {
                 // move it above the ground 
                 SpriteInstance.RelativeBottom = 0;
-
+                GlobalContent.ball_bounce.Play();
                 // make it bounce, but lose some height
                 AltitudeVelocity *= -BounceCoefficient;
 

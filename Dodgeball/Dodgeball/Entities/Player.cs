@@ -33,6 +33,8 @@ namespace Dodgeball.Entities
 	    private bool justReleasedBall = false;
 	    public bool IsHoldingBall => BallHolding != null;
 
+        public bool IsDodging { get; private set; }
+
 	    public WorldComponentRuntime WorldComponent;
 	    public IPositionedSizedObject TeamRectangle => (TeamIndex == 0
 	        ? WorldComponent.LeftTeamRectangle
@@ -131,7 +133,7 @@ namespace Dodgeball.Entities
 		{
             MovementActivity();
 
-            ThrowingActivity();
+            ThrowOrDodgeActivity();
 
             HudActivity();
 
@@ -174,10 +176,16 @@ namespace Dodgeball.Entities
             ThrowChargeMeterRuntimeInstance.Y = Y+200;
         }
 
-        private void ThrowingActivity()
+        private void ThrowOrDodgeActivity()
         {
             if(ActionButton != null)
             {
+                if (ActionButton.WasJustPressed && !IsHoldingBall)
+                {
+                    IsDodging = true;
+                    GlobalContent.player_dodge.Play();
+                }
+
                 if (ActionButton.WasJustPressed) ThrowChargeMeterRuntimeInstance.Reset();
                 ThrowChargeMeterRuntimeInstance.Visible = ActionButton.IsDown &&  IsHoldingBall;
 
@@ -227,6 +235,7 @@ namespace Dodgeball.Entities
 
             BallHolding = null;
             justReleasedBall = true;
+            GlobalContent.ball_throw.Play();
 
             #if DEBUG
             if (DebuggingVariables.PlayerAlwaysControlsBallholder)
@@ -316,9 +325,16 @@ namespace Dodgeball.Entities
 	                SpriteInstance.SetAnimationChain("Throw");
 	                justReleasedBall = false;
 	            }
-                else if (ActionButton.IsDown && !IsHoldingBall)
+                else if (IsDodging)
 	            {
-	                SpriteInstance.SetAnimationChain("Dodge");
+	                if (SpriteInstance.CurrentChainName == "Dodge" && SpriteInstance.JustCycled)
+	                {
+	                    IsDodging = false;
+	                }
+	                else
+	                {
+	                    SpriteInstance.SetAnimationChain("Dodge");
+                    }
 	            }
 
 	            if (TeamIndex == 0)

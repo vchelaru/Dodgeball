@@ -153,7 +153,8 @@ namespace Dodgeball.Screens
             {
                 if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Free)
                 {
-                    foreach (var player in PlayerList)
+                    //Can't catch a ball you're dodging
+                    foreach (var player in PlayerList.Where(player => !player.IsDodging))
                     {
                         if (player.CollideAgainst(BallInstance))
                         {
@@ -165,10 +166,11 @@ namespace Dodgeball.Screens
                 }
                 else if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Thrown)
                 {
+                    var nonDodgingPlayers = PlayerList.Where(player => !player.IsDodging).ToList();
                     // reverse loop since players can be removed:
-                    for (int i = PlayerList.Count - 1; i > -1; i--)
+                    for (int i = nonDodgingPlayers.Count - 1; i > -1; i--)
                     {
-                        var player = PlayerList[i];
+                        var player = nonDodgingPlayers[i];
 
                         if (BallInstance.ThrowOwner != player && player.CollideAgainst(BallInstance))
                         {

@@ -206,6 +206,23 @@
       <Name>yellowgreen</Name>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalContent\Sounds\ball_bounce.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_bounce</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_dodge.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_dodge</Name>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
