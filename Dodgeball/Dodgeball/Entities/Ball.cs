@@ -13,6 +13,8 @@ namespace Dodgeball.Entities
 {
 	public partial class Ball
 	{
+        #region Enums
+
         public enum OwnershipState
         {
             Free,
@@ -20,12 +22,20 @@ namespace Dodgeball.Entities
             Held
         }
 
+        #endregion
+
+        #region Fields / Properties
+
+        public float Altitude { get; set; }
+        public float AltitudeVelocity { get; set; } = 0;
+
         public int OwnerTeam { get; set; }
 
         public Player ThrowOwner { get; set; }
 
         public OwnershipState CurrentOwnershipState { get; set; }
 
+        #endregion
 
 
         /// <summary>
@@ -33,19 +43,46 @@ namespace Dodgeball.Entities
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
         /// added to managers will not have this method called.
         /// </summary>
-		private void CustomInitialize()
+        private void CustomInitialize()
 		{
-
+            Altitude = this.HeightWhenThrown;
 
 		}
 
 		private void CustomActivity()
 		{
-
-
+            PerformFallingAndBouncingActivity();
 		}
 
-		private void CustomDestroy()
+        private void PerformFallingAndBouncingActivity()
+        {
+            bool shouldFallAndBounce = this.CurrentOwnershipState != OwnershipState.Held;
+
+            if(shouldFallAndBounce)
+            {
+                // linear approx. is fine:
+                AltitudeVelocity += TimeManager.SecondDifference * -BallGravity;
+                Altitude += TimeManager.SecondDifference * AltitudeVelocity;
+            }
+            else
+            {
+                Altitude = HeightWhenThrown;
+                AltitudeVelocity = 0;
+            }
+
+            this.SpriteInstance.RelativeY = Altitude + SpriteInstance.Height / 2.0f;
+
+            if(SpriteInstance.RelativeBottom < 0 && AltitudeVelocity < 0)
+            {
+                // move it above the ground 
+                SpriteInstance.RelativeBottom = 0;
+
+                // make it bounce, but lose some height
+                AltitudeVelocity *= -BounceCoefficient;
+            }
+        }
+
+        private void CustomDestroy()
 		{
 
 

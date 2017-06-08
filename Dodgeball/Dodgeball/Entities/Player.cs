@@ -177,6 +177,16 @@ namespace Dodgeball.Entities
             var targetPlayer = GetTargetedPlayer();
 
             var direction = targetPlayer.Position - this.Position;
+
+            var distanceToTarget = direction.Length();
+
+            var timeToTarget = .5f * distanceToTarget / ThrowVelocity;
+
+            // arc that badboy:
+            float desiredYVelocity = BallHolding.BallGravity * timeToTarget;
+
+            BallHolding.AltitudeVelocity = desiredYVelocity;
+
             direction.Normalize();
             BallHolding.Detach();
             BallHolding.Velocity = direction * ThrowVelocity;
@@ -293,7 +303,7 @@ namespace Dodgeball.Entities
 	            SpriteInstance.JustCycled)
 	        {
 
-	            if (MovementInput.X != 0 || MovementInput.Y != 0)
+	            if (MovementInput?.X != 0 || MovementInput?.Y != 0)
 	            {
 	                SpriteInstance.SetAnimationChain("Run");
 
