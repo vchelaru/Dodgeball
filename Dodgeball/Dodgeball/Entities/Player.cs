@@ -168,13 +168,20 @@ namespace Dodgeball.Entities
             this.EnergyBarRuntimeInstance.X = this.X + (this.TeamIndex == 0 ? -120 : 120); 
             this.EnergyBarRuntimeInstance.Y = this.Y;
             this.EnergyBarRuntimeInstance.EnergyHeight = this.EnergyPercentage;
+
+            ThrowChargeMeterRuntimeInstance.X = X;
+            ThrowChargeMeterRuntimeInstance.Y = Y+200;
         }
 
         private void ThrowingActivity()
         {
-            if(ActionButton != null && ActionButton.WasJustReleased && IsHoldingBall)
+            if(ActionButton != null)
             {
-                ExecuteThrow();
+                ThrowChargeMeterRuntimeInstance.Visible = ActionButton.IsDown &&  IsHoldingBall;
+
+                if (IsHoldingBall && ActionButton.IsDown) ThrowChargeMeterRuntimeInstance.ChargeActivity();
+
+                if (ActionButton.WasJustReleased && IsHoldingBall) ExecuteThrow();
             }
         }
 
@@ -185,6 +192,17 @@ namespace Dodgeball.Entities
 
         private void ExecuteThrow()
         {
+            if (ThrowChargeMeterRuntimeInstance.FailedThrow)
+            {
+                //TODO:  They failed!  Now what?  Using half of minimum velocity for now
+                ThrowVelocity = MinThrowVelocity / 2;
+            }
+            else
+            {
+                ThrowVelocity = MinThrowVelocity + ((MaxThrowVelocity - MinThrowVelocity) *
+                                                    ThrowChargeMeterRuntimeInstance.EffectiveChargePercent);
+            }
+
             var targetPlayer = GetTargetedPlayer();
 
             var direction = targetPlayer.Position - this.Position;
@@ -207,13 +225,13 @@ namespace Dodgeball.Entities
 
             BallHolding = null;
 
-#if DEBUG
+            #if DEBUG
             if (DebuggingVariables.PlayerAlwaysControlsBallholder)
             {
                 this.ClearInput();
                 targetPlayer.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
             }
-#endif
+            #endif
         }
 
 	    private Player GetTargetedPlayer()

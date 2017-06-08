@@ -36,7 +36,7 @@ namespace Dodgeball.AI
                 hasActed = decisionToDoNothing;
             }
 
-            if (!hasActed && ShouldRetrieveBall)
+            if (!hasActed && (ShouldRetrieveBall || isRetrieving))
             {
                 var decisionToRetrieveBall = random.NextDouble() < 0.05;
                 if (decisionToRetrieveBall || isRetrieving)
@@ -86,18 +86,14 @@ namespace Dodgeball.AI
             if (!hasActed && (ShouldTaunt && decisionToTaunt))
             {
                 _tauntButton.Press();
-                hasActed = true;
-            }
-            else
-            {
                 _tauntButton.Release();
+                hasActed = true;
             }
 
             if (!hasActed)
             {
                 _movementInput.Move(AI2DInput.Directions.None);
                 _aimingInput.Move(AI2DInput.Directions.None);
-                _actionButton.Release();
             }
         }
     }

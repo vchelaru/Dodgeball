@@ -108,6 +108,10 @@ namespace Dodgeball.AI
             {
                 timeDodging += FlatRedBall.TimeManager.LastSecondDifference;
             }
+            if (isRetrieving)
+            {
+                isRetrieving = ShouldRetrieveBall;
+            }
         }
 
         #endregion

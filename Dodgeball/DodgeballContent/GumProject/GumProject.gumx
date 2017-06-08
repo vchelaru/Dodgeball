@@ -41,6 +41,10 @@
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>
+    <Name>ThrowChargeMeter</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>WorldComponent</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>

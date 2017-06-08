@@ -246,6 +246,10 @@
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TeamSelectionBoxesRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TextRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\ThrowChargeMeterRuntime.cs" />
+    <Compile Include="GumRuntimes\ThrowChargeMeterRuntime.Generated.cs">
+      <DependentUpon>ThrowChargeMeterRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GumRuntimes\TitleScreenGumRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\WorldComponentRuntime.cs" />
     <Compile Include="GumRuntimes\WorldComponentRuntime.Generated.cs">
