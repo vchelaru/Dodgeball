@@ -388,6 +388,17 @@
           <Type>float</Type>
           <DefaultValue xsi:type="xsd:float">130</DefaultValue>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>BounceCoefficient</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">0.8</DefaultValue>
+        </CustomVariable>
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
       <Name>Entities\Ball</Name>
@@ -581,6 +592,18 @@
           <Name>ThrowVelocity</Name>
           <Type>float</Type>
           <DefaultValue xsi:type="xsd:float">1000</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>PlayerHeight</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">200</DefaultValue>
+          <IsShared>true</IsShared>
         </CustomVariable>
       </CustomVariables>
       <ImplementsIVisible>true</ImplementsIVisible>

@@ -21,6 +21,7 @@ namespace Dodgeball.Screens
 	public partial class GameScreen
 	{
 	    private List<AIController> AIControllers;
+
         #region Initialize
 
         void CustomInitialize()
@@ -146,32 +147,37 @@ namespace Dodgeball.Screens
 
         private void BallVsPlayerCollision()
         {
-            if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Free)
-            {
-                foreach (var player in PlayerList)
-                {
-                    if (player.CollideAgainst(BallInstance))
-                    {
-                        PerformPickupLogic(player);
+            bool isAbovePlayers = BallInstance.Altitude > Player.PlayerHeight;
 
-                        break;
+            if (isAbovePlayers == false)
+            {
+                if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Free)
+                {
+                    foreach (var player in PlayerList)
+                    {
+                        if (player.CollideAgainst(BallInstance))
+                        {
+                            PerformPickupLogic(player);
+
+                            break;
+                        }
                     }
                 }
-            }
-            else if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Thrown)
-            {
-                // reverse loop since players can be removed:
-                for(int i = PlayerList.Count - 1; i > -1; i--)
+                else if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Thrown)
                 {
-                    var player = PlayerList[i];
-
-                    if (BallInstance.ThrowOwner != player && player.CollideAgainst(BallInstance))
+                    // reverse loop since players can be removed:
+                    for (int i = PlayerList.Count - 1; i > -1; i--)
                     {
-                        PerformGetHitLogic(player);
+                        var player = PlayerList[i];
+
+                        if (BallInstance.ThrowOwner != player && player.CollideAgainst(BallInstance))
+                        {
+                            PerformGetHitLogic(player);
+                        }
                     }
                 }
+                // don't perform collision if the ball is being held
             }
-            // don't perform collision if the ball is being held
         }
 
         private void PerformGetHitLogic(Entities.Player player)
