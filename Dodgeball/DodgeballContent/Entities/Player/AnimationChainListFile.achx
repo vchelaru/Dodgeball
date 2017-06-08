@@ -6,45 +6,101 @@
   <AnimationChain>
     <Name>Idle</Name>
     <Frame>
-      <TextureName>HumanPlaceholder.png</TextureName>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>0</LeftCoordinate>
       <RightCoordinate>256</RightCoordinate>
-      <TopCoordinate>33</TopCoordinate>
-      <BottomCoordinate>222</BottomCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>Run</Name>
     <Frame>
-      <TextureName>HumanPlaceholder.png</TextureName>
-      <FrameLength>0.1</FrameLength>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
       <LeftCoordinate>512</LeftCoordinate>
       <RightCoordinate>768</RightCoordinate>
-      <TopCoordinate>44</TopCoordinate>
-      <BottomCoordinate>220</BottomCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>768</LeftCoordinate>
+      <RightCoordinate>1024</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1792</LeftCoordinate>
+      <RightCoordinate>2048</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>Throw</Name>
     <Frame>
-      <TextureName>HumanPlaceholder.png</TextureName>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.5</FrameLength>
-      <LeftCoordinate>768</LeftCoordinate>
-      <RightCoordinate>1024</RightCoordinate>
-      <TopCoordinate>67</TopCoordinate>
-      <BottomCoordinate>227</BottomCoordinate>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>Dodge</Name>
     <Frame>
-      <TextureName>HumanPlaceholder.png</TextureName>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.5</FrameLength>
-      <LeftCoordinate>256</LeftCoordinate>
-      <RightCoordinate>512</RightCoordinate>
-      <TopCoordinate>13</TopCoordinate>
-      <BottomCoordinate>229</BottomCoordinate>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
     </Frame>
   </AnimationChain>
 </AnimationChainArraySave>

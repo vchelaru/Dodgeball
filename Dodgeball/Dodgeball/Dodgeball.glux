@@ -591,7 +591,7 @@
           </Properties>
           <Name>MovementSpeed</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">200</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">700</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>
