@@ -50,8 +50,7 @@
                         ? AI2DInput.Directions.Left
                         : AI2DInput.Directions.Right;
                 }
-
-                wanderDirection = upDown | leftRight;
+                wanderDirection = RemoveOffendingDirections(upDown | leftRight);
             }
             return wanderDirection;
         }
@@ -83,9 +82,9 @@
                 var movement = ball.Position - player.Position;
                 movement.Normalize();
 
-                var upDown = movement.Y > 0
+                var upDown = movement.Y < 0
                     ? AI2DInput.Directions.Up
-                    : movement.Y < 0
+                    : movement.Y > 0
                         ? AI2DInput.Directions.Down
                         : AI2DInput.Directions.None;
                 var leftRight = movement.X > 0
@@ -94,7 +93,7 @@
                         ? AI2DInput.Directions.Right
                         : AI2DInput.Directions.None;
 
-                dodgeDirection = upDown | leftRight;
+                dodgeDirection = RemoveOffendingDirections(upDown | leftRight);
             }
             return dodgeDirection;
         }
@@ -119,11 +118,13 @@
         {
             var newDirections = originalDirections;
             //If player has gone out of bounds, remove the offending direction from the enum
-            if (player.Y > player.TeamRectangleTop) newDirections &= ~(AI2DInput.Directions.Up);
-            else if (player.Y < player.TeamRectangleBottom) newDirections &= ~(AI2DInput.Directions.Down);
+            if (player.IsOnTop) newDirections &= ~(AI2DInput.Directions.Up);
+            else if (player.IsOnBottom) newDirections &= ~(AI2DInput.Directions.Down);
 
-            if (player.X > player.TeamRectangleRight) newDirections &= ~(AI2DInput.Directions.Right);
-            else if (player.X < player.TeamRectangleLeft) newDirections &= ~(AI2DInput.Directions.Left);
+            if ((player.TeamIndex == 0 && player.IsInFront) ||
+                (player.TeamIndex == 1 && player.IsInBack)) newDirections &= ~(AI2DInput.Directions.Right);
+            else if ((player.TeamIndex == 0 && player.IsInBack) ||
+                    (player.TeamIndex == 1 && player.IsInFront)) newDirections &= ~(AI2DInput.Directions.Left);
 
             return newDirections;
         }

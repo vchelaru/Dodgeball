@@ -39,8 +39,19 @@ namespace Dodgeball.Entities
         
 	    public float TeamRectangleRight => (TeamRectangle.X + TeamRectangle.Width) - FlatRedBall.Camera.Main.OrthogonalWidth / 2;
 	    public float TeamRectangleLeft => TeamRectangle.X  - FlatRedBall.Camera.Main.OrthogonalWidth / 2;
-	    public float TeamRectangleTop => -TeamRectangle.Y;
-        public float TeamRectangleBottom => (-TeamRectangle.Y + -TeamRectangle.Height);
+	    public float TeamRectangleTop => TeamRectangle.Y;
+        public float TeamRectangleBottom => TeamRectangle.Y - TeamRectangle.Height;
+
+        //Properties to determine player location in relation to team rectangle
+	    public bool IsInBack => TeamIndex == 0
+	        ? Position.X <= TeamRectangleLeft + (0.2f * TeamRectangle.Width)
+	        : Position.X >= TeamRectangleLeft + (0.8f * TeamRectangle.Width);
+	    public bool IsInFront => TeamIndex == 0
+	        ? Position.X >= TeamRectangleLeft + (0.8f * TeamRectangle.Width)
+	        : Position.X <= TeamRectangleLeft + (0.2f * TeamRectangle.Width);
+
+	    public bool IsOnTop => Position.Y >= TeamRectangleBottom + (0.8f * TeamRectangle.Height);
+	    public bool IsOnBottom => Position.Y <= TeamRectangleBottom + (0.2f * TeamRectangle.Height);
 
         //Debug property so AI knows when to resume control of player-controlled Player
         public bool HasInputs => MovementInput != null;
