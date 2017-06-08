@@ -26,8 +26,8 @@ namespace Dodgeball.Entities
 
         #region Fields / Properties
 
-        float ballAltitude;
-        float altitudeVelocity = 0;
+        public float Altitude { get; set; }
+        public float AltitudeVelocity { get; set; } = 0;
 
         public int OwnerTeam { get; set; }
 
@@ -45,7 +45,7 @@ namespace Dodgeball.Entities
         /// </summary>
         private void CustomInitialize()
 		{
-            ballAltitude = this.HeightWhenThrown;
+            Altitude = this.HeightWhenThrown;
 
 		}
 
@@ -61,24 +61,24 @@ namespace Dodgeball.Entities
             if(shouldFallAndBounce)
             {
                 // linear approx. is fine:
-                altitudeVelocity += TimeManager.SecondDifference * -BallGravity;
-                ballAltitude += TimeManager.SecondDifference * altitudeVelocity;
+                AltitudeVelocity += TimeManager.SecondDifference * -BallGravity;
+                Altitude += TimeManager.SecondDifference * AltitudeVelocity;
             }
             else
             {
-                ballAltitude = HeightWhenThrown;
-                altitudeVelocity = 0;
+                Altitude = HeightWhenThrown;
+                AltitudeVelocity = 0;
             }
 
-            this.SpriteInstance.RelativeY = ballAltitude + SpriteInstance.Height / 2.0f;
+            this.SpriteInstance.RelativeY = Altitude + SpriteInstance.Height / 2.0f;
 
-            if(SpriteInstance.RelativeBottom < 0 && altitudeVelocity < 0)
+            if(SpriteInstance.RelativeBottom < 0 && AltitudeVelocity < 0)
             {
                 // move it above the ground 
                 SpriteInstance.RelativeBottom = 0;
 
                 // make it bounce, but lose some height
-                altitudeVelocity *= -.95f;
+                AltitudeVelocity *= -BounceCoefficient;
             }
         }
 
