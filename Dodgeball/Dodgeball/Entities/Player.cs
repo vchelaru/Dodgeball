@@ -293,7 +293,7 @@ namespace Dodgeball.Entities
 	            SpriteInstance.JustCycled)
 	        {
 
-	            if (MovementInput.X != 0 || MovementInput.Y != 0)
+	            if (MovementInput?.X != 0 || MovementInput?.Y != 0)
 	            {
 	                SpriteInstance.SetAnimationChain("Run");
 
