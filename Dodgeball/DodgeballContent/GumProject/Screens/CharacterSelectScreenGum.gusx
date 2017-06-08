@@ -4,4 +4,8 @@
   <State>
     <Name>Default</Name>
   </State>
+  <Instance>
+    <Name>TeamSelectionBoxesInstance</Name>
+    <BaseType>TeamSelectionBoxes</BaseType>
+  </Instance>
 </ScreenSave>
