@@ -12,7 +12,9 @@ namespace Dodgeball.GumRuntimes
         #region Fields/Properties
         private const float MaxValidThrowPercent = 80;
         private float baseChargeRate = 1.5f;
-        private float currentChargeRate => baseChargeRate * (1 + MeterPercent / 100);
+        private float defaultChargeLevel = 40f;
+
+        private float currentChargeRate => baseChargeRate * (1 + MeterPercent / 50);
         private int chargeDirection = 1;
 
         public float EffectiveChargePercent => MeterPercent / MaxValidThrowPercent;
@@ -44,6 +46,11 @@ namespace Dodgeball.GumRuntimes
                 SlidingIndicatorRectangle.Green = 255;
                 SlidingIndicatorRectangle.Red = (int)(255 * (1-(MeterPercent / 80)));
             }
+        }
+
+        public void Reset()
+        {
+            MeterPercent = defaultChargeLevel;
         }
     }
 }

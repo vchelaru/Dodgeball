@@ -30,6 +30,7 @@ namespace Dodgeball.Entities
         public PositionedObjectList<Player> AllPlayers { get; set; }
 
         public Ball BallHolding { get; set; }
+	    private bool justReleasedBall = false;
 	    public bool IsHoldingBall => BallHolding != null;
 
 	    public WorldComponentRuntime WorldComponent;
@@ -177,6 +178,7 @@ namespace Dodgeball.Entities
         {
             if(ActionButton != null)
             {
+                if (ActionButton.WasJustPressed) ThrowChargeMeterRuntimeInstance.Reset();
                 ThrowChargeMeterRuntimeInstance.Visible = ActionButton.IsDown &&  IsHoldingBall;
 
                 if (IsHoldingBall && ActionButton.IsDown) ThrowChargeMeterRuntimeInstance.ChargeActivity();
@@ -224,6 +226,7 @@ namespace Dodgeball.Entities
             BallHolding.CurrentOwnershipState = Ball.OwnershipState.Thrown;
 
             BallHolding = null;
+            justReleasedBall = true;
 
             #if DEBUG
             if (DebuggingVariables.PlayerAlwaysControlsBallholder)
@@ -308,12 +311,12 @@ namespace Dodgeball.Entities
 	    {
 	        if (ActionButton != null)
 	        {
-	            if (ActionButton.IsDown && IsHoldingBall)
+	            if (ActionButton.WasJustReleased && justReleasedBall)
 	            {
 	                SpriteInstance.SetAnimationChain("Throw");
-	                
+	                justReleasedBall = false;
 	            }
-                else if (ActionButton.IsDown)
+                else if (ActionButton.IsDown && !IsHoldingBall)
 	            {
 	                SpriteInstance.SetAnimationChain("Dodge");
 	            }
