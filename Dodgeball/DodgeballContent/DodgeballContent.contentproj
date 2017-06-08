@@ -57,6 +57,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>HumanPlaceholder</Name>
     </None>
+    <None Include="Entities\Player\PlayerAnimationSheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayerAnimationSheet</Name>
+    </None>
     <None Include="GumProject\Components\ActiveMarker.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ActiveMarker</Name>
