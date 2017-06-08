@@ -15,12 +15,16 @@ using FlatRedBall.Localization;
 using Microsoft.Xna.Framework;
 using Dodgeball.DataRuntime;
 using Microsoft.Xna.Framework.Input;
+using RenderingLibrary;
 
 namespace Dodgeball.Screens
 {
 	public partial class GameScreen
 	{
 	    private List<AIController> AIControllers;
+
+	    private float PlayAreaTop => (WorldComponentInstance as IPositionedSizedObject).Y;
+	    private float PlayAreaBottom => PlayAreaTop - (WorldComponentInstance as IPositionedSizedObject).Height;
 
         #region Initialize
 
@@ -130,15 +134,12 @@ namespace Dodgeball.Screens
                 BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
             }
 
-            float top = 200;
-            float bottom = -1080 / 2.0f;
-
-            if(BallInstance.YVelocity > 0 && BallInstance.Y > top)
+            if(BallInstance.YVelocity > 0 && BallInstance.Y > PlayAreaTop)
             {
                 BallInstance.YVelocity *= -1;
                 BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
             }
-            if (  BallInstance.YVelocity < 0 && BallInstance.Y < bottom + 30)
+            if (  BallInstance.YVelocity < 0 && BallInstance.Y < PlayAreaBottom + 30)
             {
                 BallInstance.YVelocity *= -1;
                 BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
