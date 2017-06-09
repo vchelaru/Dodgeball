@@ -15,6 +15,8 @@ namespace Dodgeball.AI
     {
         #region Fields/Properties
 
+        private const double distanceToConsiderDodging = 500;
+
         //Object references
         private readonly Player player;
         private PositionedObjectList<Player> allPlayers;
@@ -37,12 +39,12 @@ namespace Dodgeball.AI
         //Retrieving logic
         private bool isRetrieving;
 
-        //Dodge logic
-        private const double MaxDodgeTime = 1;
-        private bool isDodging;
-        private double timeToDodge = 2;
-        private double timeDodging = 0;
-        private AI2DInput.Directions dodgeDirection = AI2DInput.Directions.None;
+        //Evasion logic
+        private const double MaxEvasionTime = 1;
+        private bool isEvading;
+        private double timeToEvade = 2;
+        private double timeEvading = 0;
+        private AI2DInput.Directions evasionDirection = AI2DInput.Directions.None;
 
         //Public interfaces for use by Player expecting a controller
         public I2DInput MovementInput { get; private set; }
@@ -104,9 +106,9 @@ namespace Dodgeball.AI
             {
                 timeWandering += FlatRedBall.TimeManager.LastSecondDifference;
             }
-            if (isDodging)
+            if (isEvading)
             {
-                timeDodging += FlatRedBall.TimeManager.LastSecondDifference;
+                timeEvading += FlatRedBall.TimeManager.LastSecondDifference;
             }
             if (isRetrieving)
             {

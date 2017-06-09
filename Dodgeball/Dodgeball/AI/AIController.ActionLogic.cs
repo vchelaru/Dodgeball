@@ -57,27 +57,27 @@
 
         private AI2DInput.Directions DodgeDirection()
         {
-            if (timeDodging >= timeToDodge)
+            if (timeEvading >= timeToEvade)
             {
-                isDodging = false;
-                dodgeDirection = AI2DInput.Directions.None;
+                isEvading = false;
+                evasionDirection = AI2DInput.Directions.None;
             }
             //Use an existing dodge direction to make movement more natural
-            else if (timeDodging < timeToDodge && dodgeDirection != AI2DInput.Directions.None)
+            else if (timeEvading < timeToEvade && evasionDirection != AI2DInput.Directions.None)
             {
                 //If player has gone out of bounds, start a new direction
-                var currentDirection = dodgeDirection;
-                dodgeDirection = RemoveOffendingDirections(dodgeDirection);
+                var currentDirection = evasionDirection;
+                evasionDirection = RemoveOffendingDirections(evasionDirection);
 
-                if (dodgeDirection != currentDirection) dodgeDirection = AI2DInput.Directions.None;
+                if (evasionDirection != currentDirection) evasionDirection = AI2DInput.Directions.None;
             }
 
-            if (isDodging && dodgeDirection == AI2DInput.Directions.None)
+            if (isEvading && evasionDirection == AI2DInput.Directions.None)
             {
                 //Mark the start of a new dodge
-                timeDodging = 0;
+                timeEvading = 0;
 
-                timeToDodge = MaxDodgeTime * random.NextDouble();
+                timeToEvade = MaxEvasionTime * random.NextDouble();
 
                 var movement = ball.Position - player.Position;
                 movement.Normalize();
@@ -93,9 +93,9 @@
                         ? AI2DInput.Directions.Right
                         : AI2DInput.Directions.None;
 
-                dodgeDirection = RemoveOffendingDirections(upDown | leftRight);
+                evasionDirection = RemoveOffendingDirections(upDown | leftRight);
             }
-            return dodgeDirection;
+            return evasionDirection;
         }
 
         private AI2DInput.Directions RetrieveBallDirections()
