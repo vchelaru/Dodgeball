@@ -13,7 +13,7 @@ namespace Dodgeball.AI
         private float probOfDodge = 0.015f;
         private float probOfBallRetrieval = 0.03f;
         private float probOfEvasion = 0.08f;
-        private float probOfWandering = 0.01f;
+        private float probOfWandering = 0.005f;
         private float probOfTaunting = 0.003f;
         #endregion
 

@@ -38,13 +38,19 @@
     <Variable>
       <Type>float</Type>
       <Name>GameArea.X</Name>
-      <Value xsi:type="xsd:float">30</Value>
+      <Value xsi:type="xsd:float">36</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
       <Name>GameArea.Y</Name>
-      <Value xsi:type="xsd:float">482</Value>
+      <Value xsi:type="xsd:float">-58</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>GameArea.Y Units</Name>
+      <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

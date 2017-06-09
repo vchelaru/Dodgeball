@@ -23,8 +23,8 @@ namespace Dodgeball.Screens
 	{
 	    private List<AIController> AIControllers;
 
-	    private float PlayAreaTop => (WorldComponentInstance as IPositionedSizedObject).Y;
-	    private float PlayAreaBottom => PlayAreaTop - (WorldComponentInstance as IPositionedSizedObject).Height;
+	    private float PlayAreaTop => -WorldComponentInstance.PlayArea.Y + (FlatRedBall.Camera.Main.OrthogonalHeight/2);
+	    private float PlayAreaBottom => PlayAreaTop - WorldComponentInstance.PlayArea.Height;
 
         #region Initialize
 
@@ -99,10 +99,12 @@ namespace Dodgeball.Screens
         {
             PlayerVsPlayerCollision();
 
-            BallVsPlayerCollision();
+            if (BallInstance.CurrentOwnershipState != Ball.OwnershipState.Held)
+            {
+                BallVsPlayerCollision();
 
-            BallVsWallsCollision();
-
+                BallVsWallsCollision();
+            }
         }
 
 	    private void PlayerVsPlayerCollision()
