@@ -87,11 +87,13 @@ namespace Dodgeball.Entities
                 //Only make bounce sound if it hit hard enough
                 if (AltitudeVelocity > 50)
                 {
-                    var ballPitch = AltitudeVelocity / 500f;
+                    var ballPitch = MathHelper.Clamp(AltitudeVelocity / 500f, 0, 1);
                     var ballPan = MathHelper.Clamp(Position.X / (FlatRedBall.Camera.Main.OrthogonalWidth / 2),-1,1);
-                    ballBounce.Pitch = MathHelper.Clamp(ballPitch, 0, 1);
+                    ballBounce.Pitch = ballPitch;
+                    ballBounce.Volume = ballPitch;
                     ballBounce.Pan = ballPan;
                     ballBounce.Play();
+                    
                 }
 
                 if (CurrentOwnershipState == OwnershipState.Thrown)
