@@ -12,7 +12,7 @@ namespace Dodgeball.GumRuntimes
         #region Fields/Properties
         private const float MaxValidThrowPercent = 80;
         private float baseChargeRate = 1.5f;
-        private float defaultChargeLevel = 40f;
+        private float defaultChargeLevel = 10f;
 
         private float currentChargeRate => baseChargeRate * (1 + MeterPercent / 50);
         private int chargeDirection = 1;

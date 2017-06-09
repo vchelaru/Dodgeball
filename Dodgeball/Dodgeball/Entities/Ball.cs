@@ -8,6 +8,8 @@ using FlatRedBall.AI.Pathfinding;
 using FlatRedBall.Graphics.Animation;
 using FlatRedBall.Graphics.Particle;
 using FlatRedBall.Math.Geometry;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Dodgeball.Entities
 {
@@ -35,6 +37,8 @@ namespace Dodgeball.Entities
 
         public OwnershipState CurrentOwnershipState { get; set; }
 
+	    private SoundEffectInstance ballBounce;
+
         #endregion
 
 
@@ -46,7 +50,7 @@ namespace Dodgeball.Entities
         private void CustomInitialize()
 		{
             Altitude = this.HeightWhenThrown;
-
+		    ballBounce = GlobalContent.ball_bounce.CreateInstance();
 		}
 
 		private void CustomActivity()
@@ -76,11 +80,21 @@ namespace Dodgeball.Entities
             {
                 // move it above the ground 
                 SpriteInstance.RelativeBottom = 0;
-                GlobalContent.ball_bounce.Play();
+                
                 // make it bounce, but lose some height
                 AltitudeVelocity *= -BounceCoefficient;
 
-                if(CurrentOwnershipState == OwnershipState.Thrown)
+                //Only make bounce sound if it hit hard enough
+                if (AltitudeVelocity > 50)
+                {
+                    var ballPitch = AltitudeVelocity / 500f;
+                    var ballPan = MathHelper.Clamp(Position.X / (FlatRedBall.Camera.Main.OrthogonalWidth / 2),-1,1);
+                    ballBounce.Pitch = MathHelper.Clamp(ballPitch, 0, 1);
+                    ballBounce.Pan = ballPan;
+                    ballBounce.Play();
+                }
+
+                if (CurrentOwnershipState == OwnershipState.Thrown)
                 {
                     CurrentOwnershipState = OwnershipState.Free;
                 }
