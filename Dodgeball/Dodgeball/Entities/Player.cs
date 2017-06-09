@@ -30,7 +30,10 @@ namespace Dodgeball.Entities
         public PositionedObjectList<Player> AllPlayers { get; set; }
 
         public Ball BallHolding { get; set; }
+	    private bool justReleasedBall = false;
 	    public bool IsHoldingBall => BallHolding != null;
+
+        public bool IsDodging { get; private set; }
 
 	    public WorldComponentRuntime WorldComponent;
 	    public IPositionedSizedObject TeamRectangle => (TeamIndex == 0
@@ -39,8 +42,19 @@ namespace Dodgeball.Entities
         
 	    public float TeamRectangleRight => (TeamRectangle.X + TeamRectangle.Width) - FlatRedBall.Camera.Main.OrthogonalWidth / 2;
 	    public float TeamRectangleLeft => TeamRectangle.X  - FlatRedBall.Camera.Main.OrthogonalWidth / 2;
-	    public float TeamRectangleTop => -TeamRectangle.Y;
-        public float TeamRectangleBottom => (-TeamRectangle.Y + -TeamRectangle.Height);
+	    public float TeamRectangleTop => TeamRectangle.Y;
+        public float TeamRectangleBottom => TeamRectangle.Y - TeamRectangle.Height;
+
+        //Properties to determine player location in relation to team rectangle
+	    public bool IsInBack => TeamIndex == 0
+	        ? Position.X <= TeamRectangleLeft + (0.2f * TeamRectangle.Width)
+	        : Position.X >= TeamRectangleLeft + (0.8f * TeamRectangle.Width);
+	    public bool IsInFront => TeamIndex == 0
+	        ? Position.X >= TeamRectangleLeft + (0.8f * TeamRectangle.Width)
+	        : Position.X <= TeamRectangleLeft + (0.2f * TeamRectangle.Width);
+
+	    public bool IsOnTop => Position.Y >= TeamRectangleBottom + (0.8f * TeamRectangle.Height);
+	    public bool IsOnBottom => Position.Y <= TeamRectangleBottom + (0.2f * TeamRectangle.Height);
 
         //Debug property so AI knows when to resume control of player-controlled Player
         public bool HasInputs => MovementInput != null;
@@ -119,7 +133,7 @@ namespace Dodgeball.Entities
 		{
             MovementActivity();
 
-            ThrowingActivity();
+            ThrowOrDodgeActivity();
 
             HudActivity();
 
@@ -157,13 +171,27 @@ namespace Dodgeball.Entities
             this.EnergyBarRuntimeInstance.X = this.X + (this.TeamIndex == 0 ? -120 : 120); 
             this.EnergyBarRuntimeInstance.Y = this.Y;
             this.EnergyBarRuntimeInstance.EnergyHeight = this.EnergyPercentage;
+
+            ThrowChargeMeterRuntimeInstance.X = X;
+            ThrowChargeMeterRuntimeInstance.Y = Y+200;
         }
 
-        private void ThrowingActivity()
+        private void ThrowOrDodgeActivity()
         {
-            if(ActionButton != null && ActionButton.WasJustReleased && IsHoldingBall)
+            if(ActionButton != null)
             {
-                ExecuteThrow();
+                if (ActionButton.WasJustPressed && !IsHoldingBall)
+                {
+                    IsDodging = true;
+                    GlobalContent.player_dodge.Play();
+                }
+
+                if (ActionButton.WasJustPressed) ThrowChargeMeterRuntimeInstance.Reset();
+                ThrowChargeMeterRuntimeInstance.Visible = ActionButton.IsDown &&  IsHoldingBall;
+
+                if (IsHoldingBall && ActionButton.IsDown) ThrowChargeMeterRuntimeInstance.ChargeActivity();
+
+                if (ActionButton.WasJustReleased && IsHoldingBall) ExecuteThrow();
             }
         }
 
@@ -174,6 +202,17 @@ namespace Dodgeball.Entities
 
         private void ExecuteThrow()
         {
+            if (ThrowChargeMeterRuntimeInstance.FailedThrow)
+            {
+                //TODO:  They failed!  Now what?  Using half of minimum velocity for now
+                ThrowVelocity = MinThrowVelocity / 2;
+            }
+            else
+            {
+                ThrowVelocity = MinThrowVelocity + ((MaxThrowVelocity - MinThrowVelocity) *
+                                                    ThrowChargeMeterRuntimeInstance.EffectiveChargePercent);
+            }
+
             var targetPlayer = GetTargetedPlayer();
 
             var direction = targetPlayer.Position - this.Position;
@@ -195,14 +234,16 @@ namespace Dodgeball.Entities
             BallHolding.CurrentOwnershipState = Ball.OwnershipState.Thrown;
 
             BallHolding = null;
+            justReleasedBall = true;
+            GlobalContent.ball_throw.Play();
 
-#if DEBUG
+            #if DEBUG
             if (DebuggingVariables.PlayerAlwaysControlsBallholder)
             {
                 this.ClearInput();
                 targetPlayer.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
             }
-#endif
+            #endif
         }
 
 	    private Player GetTargetedPlayer()
@@ -279,14 +320,21 @@ namespace Dodgeball.Entities
 	    {
 	        if (ActionButton != null)
 	        {
-	            if (ActionButton.IsDown && IsHoldingBall)
+	            if (ActionButton.WasJustReleased && justReleasedBall)
 	            {
 	                SpriteInstance.SetAnimationChain("Throw");
-	                
+	                justReleasedBall = false;
 	            }
-                else if (ActionButton.IsDown)
+                else if (IsDodging)
 	            {
-	                SpriteInstance.SetAnimationChain("Dodge");
+	                if (SpriteInstance.CurrentChainName == "Dodge" && SpriteInstance.JustCycled)
+	                {
+	                    IsDodging = false;
+	                }
+	                else
+	                {
+	                    SpriteInstance.SetAnimationChain("Dodge");
+                    }
 	            }
 
 	            if (TeamIndex == 0)

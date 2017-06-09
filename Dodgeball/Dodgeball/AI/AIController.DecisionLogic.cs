@@ -30,15 +30,15 @@ namespace Dodgeball.AI
                 hasActed = true;
             }
 
-            if (!hasActed && !isWandering && !isDodging)
+            if (!hasActed && !isWandering && !isDodging && !isRetrieving)
             {
-                var decisionToDoNothing = random.NextDouble() < 0.01;
+                var decisionToDoNothing = random.NextDouble() < 0.05;
                 hasActed = decisionToDoNothing;
             }
 
-            if (!hasActed && ShouldRetrieveBall)
+            if (!hasActed && (ShouldRetrieveBall || isRetrieving))
             {
-                var decisionToRetrieveBall = random.NextDouble() < 0.6;
+                var decisionToRetrieveBall = random.NextDouble() < 0.05;
                 if (decisionToRetrieveBall || isRetrieving)
                 {
                     _movementInput.Move(RetrieveBallDirections());
@@ -51,7 +51,7 @@ namespace Dodgeball.AI
                 isRetrieving = false;
             }
 
-            var decisionToDodge = random.NextDouble() < 0.2;
+            var decisionToDodge = random.NextDouble() < 0.08;
             if (!hasActed && !isWandering && (ShouldDodge && (decisionToDodge || isDodging)))
             {
                 isDodging = true;
@@ -86,18 +86,14 @@ namespace Dodgeball.AI
             if (!hasActed && (ShouldTaunt && decisionToTaunt))
             {
                 _tauntButton.Press();
-                hasActed = true;
-            }
-            else
-            {
                 _tauntButton.Release();
+                hasActed = true;
             }
 
             if (!hasActed)
             {
                 _movementInput.Move(AI2DInput.Directions.None);
                 _aimingInput.Move(AI2DInput.Directions.None);
-                _actionButton.Release();
             }
         }
     }

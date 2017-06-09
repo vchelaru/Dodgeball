@@ -6044,6 +6044,22 @@
             </summary>
             <param name="instruction">The instruction to remove</param>
         </member>
+        <member name="M:FlatRedBall.Instructions.InstructionManager.ExecuteInstructionsOnConsideringTime(FlatRedBall.Instructions.IInstructable)">
+            <summary>
+            Attempts to execute instructions held by the argument instructable according to the TimeManager.CurrentTime.
+            Executed instructions will either be removed or cycled if the CycleTime is greater than 0.
+            </summary>
+            <param name="instructable">The instructable to execute instructions on.</param>
+        </member>
+        <member name="M:FlatRedBall.Instructions.InstructionManager.ExecuteInstructionsOnConsideringTime(FlatRedBall.Instructions.IInstructable,System.Double)">
+            <summary>
+            Attempts to execute instructions held by the argument instruct
+            able according to the currentTime value.
+            Executed instructions will either be removed or cycled if the CycleTime is greater than 0.
+            </summary>
+            <param name="instructable">The instructable to execute instructions on.</param>
+            <param name="currentTime">The time to compare to instructions in the instructable instance.</param>
+        </member>
         <member name="M:FlatRedBall.Instructions.InstructionManager.Remove(FlatRedBall.Instructions.Instruction)">
             <summary>
             Removes the argument instruction from the internal list. A removed instruction will not
