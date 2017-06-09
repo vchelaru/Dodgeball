@@ -14,6 +14,7 @@ using FlatRedBall.Math.Geometry;
 using FlatRedBall.Localization;
 using Microsoft.Xna.Framework;
 using Dodgeball.DataRuntime;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using RenderingLibrary;
 
@@ -21,6 +22,7 @@ namespace Dodgeball.Screens
 {
 	public partial class GameScreen
 	{
+	    private SoundEffectInstance playerHitSound;
 	    private List<AIController> AIControllers;
 
 	    private float PlayAreaTop => -WorldComponentInstance.PlayArea.Y + (FlatRedBall.Camera.Main.OrthogonalHeight/2);
@@ -30,6 +32,7 @@ namespace Dodgeball.Screens
 
         void CustomInitialize()
         {
+            playerHitSound = GlobalContent.player_hit.CreateInstance();
             SharePlayerReferences();
             AssignAIControllers();
             InitializeInput();
@@ -125,26 +128,16 @@ namespace Dodgeball.Screens
 
         private void BallVsWallsCollision()
         {
-            if(BallInstance.XVelocity < 0 && BallInstance.X < -1920/2.0f + 30)
-            {
-                BallInstance.XVelocity *= -1;
-                BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
-            }
-            if (BallInstance.XVelocity > 0 && BallInstance.X > 1920 / 2.0f - 30)
-            {
-                BallInstance.XVelocity *= -1;
-                BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
+            if (BallInstance.XVelocity < 0 && BallInstance.X < -1920/2.0f + 30 ||
+                BallInstance.XVelocity > 0 && BallInstance.X > 1920 / 2.0f - 30)
+            { 
+                BallInstance.BounceOffWall(isLeftOrRightWall: true);
             }
 
-            if(BallInstance.YVelocity > 0 && BallInstance.Y > PlayAreaTop)
+            if(BallInstance.YVelocity > 0 && BallInstance.Y > PlayAreaTop ||
+                BallInstance.YVelocity < 0 && BallInstance.Y < PlayAreaBottom + 30)
             {
-                BallInstance.YVelocity *= -1;
-                BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
-            }
-            if (  BallInstance.YVelocity < 0 && BallInstance.Y < PlayAreaBottom + 30)
-            {
-                BallInstance.YVelocity *= -1;
-                BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
+                BallInstance.BounceOffWall(isLeftOrRightWall: false);
             }
         }
 
@@ -198,6 +191,12 @@ namespace Dodgeball.Screens
                 // bounce! No damage though
             }
 
+            //Make a hit sound
+            var playerHitPan = MathHelper.Clamp(player.X / 540f, -1, 1);
+            var playerHitVol = MathHelper.Clamp(BallInstance.Velocity.Length() / 1000f, 0, 1);
+            playerHitSound.Pan = playerHitPan;
+            playerHitSound.Volume = playerHitVol;
+            playerHitSound.Play();
 
 
             // make the ball bounce off the player:

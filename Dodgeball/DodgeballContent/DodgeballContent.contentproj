@@ -217,10 +217,20 @@
       <Processor>SoundEffectProcessor</Processor>
       <Name>ball_throw</Name>
     </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_wall_bounce.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_wall_bounce</Name>
+    </Compile>
     <Compile Include="GlobalContent\Sounds\player_dodge.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Name>player_dodge</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_hit.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_hit</Name>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

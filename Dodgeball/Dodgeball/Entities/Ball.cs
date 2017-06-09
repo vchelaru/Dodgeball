@@ -37,7 +37,9 @@ namespace Dodgeball.Entities
 
         public OwnershipState CurrentOwnershipState { get; set; }
 
-	    private SoundEffectInstance ballBounce;
+	    private SoundEffectInstance ballFloorBounceSound;
+	    private SoundEffectInstance ballWallBounceSound;
+	    private SoundEffectInstance ballThrowSound;
 
         #endregion
 
@@ -50,9 +52,11 @@ namespace Dodgeball.Entities
         private void CustomInitialize()
 		{
             Altitude = this.HeightWhenThrown;
-		    ballBounce = GlobalContent.ball_bounce.CreateInstance();
+		    ballFloorBounceSound = GlobalContent.ball_bounce.CreateInstance();
+		    ballWallBounceSound = GlobalContent.ball_wall_bounce.CreateInstance();
+		    ballThrowSound = GlobalContent.ball_throw.CreateInstance();
 #if DEBUG
-		    if (DebuggingVariables.ShowBallTrajectory)
+            if (DebuggingVariables.ShowBallTrajectory)
 		    {
 		        TrajectoryPolygon.Visible = true;
 		        TrajectoryPolygon.Color = Color.Red;
@@ -83,7 +87,20 @@ namespace Dodgeball.Entities
 #endif
 	    }
 
-	    private void PerformFallingAndBouncingActivity()
+	    public void PerformThrownLogic(Player player, Vector3 velocity)
+	    {
+	        Velocity = velocity;
+	        ThrowOwner = player;
+	        CurrentOwnershipState = Ball.OwnershipState.Thrown;
+
+            var ballThrowPan = MathHelper.Clamp(X / 540f, -1, 1);
+	        var ballThrowVol = MathHelper.Clamp(Velocity.Length() / 1000f, 0, 1);
+            ballThrowSound.Pan = ballThrowPan;
+	        ballThrowSound.Volume = ballThrowVol;
+            ballThrowSound.Play();
+        }
+
+        private void PerformFallingAndBouncingActivity()
         {
             bool shouldFallAndBounce = this.CurrentOwnershipState != OwnershipState.Held;
 
@@ -114,10 +131,10 @@ namespace Dodgeball.Entities
                 {
                     var ballPitch = MathHelper.Clamp(AltitudeVelocity / 500f, 0, 1);
                     var ballPan = MathHelper.Clamp(Position.X / (FlatRedBall.Camera.Main.OrthogonalWidth / 2),-1,1);
-                    ballBounce.Pitch = ballPitch;
-                    ballBounce.Volume = ballPitch;
-                    ballBounce.Pan = ballPan;
-                    ballBounce.Play();
+                    ballFloorBounceSound.Pitch = ballPitch;
+                    ballFloorBounceSound.Volume = ballPitch;
+                    ballFloorBounceSound.Pan = ballPan;
+                    ballFloorBounceSound.Play();
                     
                 }
 
@@ -126,6 +143,28 @@ namespace Dodgeball.Entities
                     CurrentOwnershipState = OwnershipState.Free;
                 }
             }
+        }
+
+
+	    public void BounceOffWall(bool isLeftOrRightWall)
+	    {
+	        var bounceVolume = 0f;
+	        if (isLeftOrRightWall)
+	        {
+	            bounceVolume = MathHelper.Clamp(Math.Abs(XVelocity) / 1000f,0,1);
+                XVelocity *= -1;
+	        }
+	        else
+	        {
+	            bounceVolume = MathHelper.Clamp(Math.Abs(YVelocity) / 1000f, 0, 1);
+                YVelocity *= -1;
+            }
+	        var bouncePan = MathHelper.Clamp(X / 540f,-1,1);
+	        ballWallBounceSound.Pan = bouncePan;
+	        ballWallBounceSound.Pitch = bounceVolume/4;
+	        ballWallBounceSound.Volume = bounceVolume;
+            ballWallBounceSound.Play();
+            CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
         }
 
         private void CustomDestroy()

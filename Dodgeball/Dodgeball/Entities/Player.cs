@@ -13,6 +13,7 @@ using System.Linq;
 using Dodgeball.AI;
 using Dodgeball.GumRuntimes;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using RenderingLibrary;
 
 namespace Dodgeball.Entities
@@ -20,6 +21,8 @@ namespace Dodgeball.Entities
 	public partial class Player
 	{
         #region Fields/Properties
+
+	    private SoundEffectInstance playerDodgeSound;
 
         I2DInput MovementInput { get; set; }
         IPressableInput ActionButton { get; set; }
@@ -68,7 +71,9 @@ namespace Dodgeball.Entities
         /// added to managers will not have this method called.
         /// </summary>
         private void CustomInitialize()
-		{
+        {
+            playerDodgeSound = GlobalContent.player_dodge.CreateInstance();
+
             this.ActiveMarkerRuntimeInstance.Visible = false;
             this.EnergyBarRuntimeInstance.Visible = false;
 
@@ -180,10 +185,12 @@ namespace Dodgeball.Entities
         {
             if(ActionButton != null)
             {
-                if (ActionButton.WasJustPressed && !IsHoldingBall)
+                if (ActionButton.WasJustPressed && !IsDodging && !IsHoldingBall)
                 {
                     IsDodging = true;
-                    GlobalContent.player_dodge.Play();
+                    var dodgeSoundPan = MathHelper.Clamp(X / 540f, -1, 1);
+                    playerDodgeSound.Pan = dodgeSoundPan;
+                    playerDodgeSound.Play();
                 }
 
                 if (ActionButton.WasJustPressed) ThrowChargeMeterRuntimeInstance.Reset();
@@ -228,16 +235,11 @@ namespace Dodgeball.Entities
 
             direction.Normalize();
             BallHolding.Detach();
-            BallHolding.Velocity = direction * ThrowVelocity;
-
-            BallHolding.ThrowOwner = this;
-            BallHolding.CurrentOwnershipState = Ball.OwnershipState.Thrown;
+            BallHolding.PerformThrownLogic(this, direction * ThrowVelocity);
 
             BallHolding = null;
             justReleasedBall = true;
-            GlobalContent.ball_throw.Play();
-
-            #if DEBUG
+#if DEBUG
             if (DebuggingVariables.PlayerAlwaysControlsBallholder)
             {
                 this.ClearInput();
@@ -326,7 +328,7 @@ namespace Dodgeball.Entities
 	    {
 	        if (ActionButton != null)
 	        {
-	            if (ActionButton.WasJustReleased && justReleasedBall)
+	            if (justReleasedBall)
 	            {
 	                SpriteInstance.SetAnimationChain("Throw");
 	                justReleasedBall = false;
