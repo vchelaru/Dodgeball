@@ -51,14 +51,39 @@ namespace Dodgeball.Entities
 		{
             Altitude = this.HeightWhenThrown;
 		    ballBounce = GlobalContent.ball_bounce.CreateInstance();
-		}
+#if DEBUG
+		    if (DebuggingVariables.ShowBallTrajectory)
+		    {
+		        TrajectoryPolygon.Visible = true;
+		        TrajectoryPolygon.Color = Color.Red;
+		    }
+		    else
+		    {
+#endif
+		        TrajectoryPolygon.Visible = false;
+#if DEBUG
+		    }
+#endif
+        }
 
-		private void CustomActivity()
+        private void CustomActivity()
 		{
             PerformFallingAndBouncingActivity();
+		    UpdateTrajectoryRotation();
 		}
 
-        private void PerformFallingAndBouncingActivity()
+	    private void UpdateTrajectoryRotation()
+	    {
+	        TrajectoryPolygon.RelativeRotationZ = (float) Math.Atan2(Velocity.Y, Velocity.X);
+#if DEBUG
+	        if (DebuggingVariables.ShowBallTrajectory)
+	        {
+	            TrajectoryPolygon.Visible = Velocity.X != 0 || Velocity.Y != 0;
+	        }
+#endif
+	    }
+
+	    private void PerformFallingAndBouncingActivity()
         {
             bool shouldFallAndBounce = this.CurrentOwnershipState != OwnershipState.Held;
 
