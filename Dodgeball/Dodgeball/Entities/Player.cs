@@ -290,10 +290,16 @@ namespace Dodgeball.Entities
 
         private void MovementActivity()
         {
-            if (MovementInput != null && SpriteInstance.CurrentChainName != "Throw")
+            if (MovementInput != null &&
+                SpriteInstance.CurrentChainName != "Throw" && SpriteInstance.CurrentChainName != "Aim")
             {
                 this.Velocity.X = MovementInput.X * MovementSpeed;
                 this.Velocity.Y = MovementInput.Y * MovementSpeed;
+            }
+            else
+            {
+                this.Velocity.X = 0;
+                this.Velocity.Y = 0;
             }
 
             //Keep player from moving over lines
@@ -325,13 +331,17 @@ namespace Dodgeball.Entities
 	                SpriteInstance.SetAnimationChain("Throw");
 	                justReleasedBall = false;
 	            }
+                else if (ActionButton.IsDown && IsHoldingBall)
+	            {
+	                SpriteInstance.SetAnimationChain("Aim");
+	            }
                 else if (IsDodging)
 	            {
 	                if (SpriteInstance.CurrentChainName == "Dodge" && SpriteInstance.JustCycled)
 	                {
 	                    IsDodging = false;
 	                }
-	                else
+	                else if (SpriteInstance.CurrentChainName != "Dodge")
 	                {
 	                    SpriteInstance.SetAnimationChain("Dodge");
                     }
@@ -347,14 +357,21 @@ namespace Dodgeball.Entities
 	            }
             }
 
-	        if ((SpriteInstance.CurrentChainName != "Throw" && SpriteInstance.CurrentChainName != "Dodge") ||
+	        if ((SpriteInstance.CurrentChainName != "Throw" && SpriteInstance.CurrentChainName != "Aim" && SpriteInstance.CurrentChainName != "Dodge") ||
 	            SpriteInstance.JustCycled)
 	        {
 
 	            if (MovementInput?.X != 0 || MovementInput?.Y != 0)
 	            {
-	                SpriteInstance.SetAnimationChain("Run");
-
+	                if (IsHoldingBall)
+	                {
+	                    SpriteInstance.SetAnimationChain(("RunHold"));
+	                }
+	                else
+	                {
+	                    SpriteInstance.SetAnimationChain("Run");
+                    }
+	                
 	                if (Velocity.X < 0)
 	                {
 	                    SpriteInstance.FlipHorizontal = false;
@@ -378,7 +395,8 @@ namespace Dodgeball.Entities
 	            }
 	        }
 
-	        this.SpriteInstance.RelativeY = this.SpriteInstance.Height / 2.0f;
+	        SpriteInstance.Animate = SpriteInstance.CurrentChainName != "Aim";
+            this.SpriteInstance.RelativeY = this.SpriteInstance.Height / 2.0f;
         }
 
         #endregion
