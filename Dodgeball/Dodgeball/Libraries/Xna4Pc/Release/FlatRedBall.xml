@@ -5496,9 +5496,9 @@
             A two-axis input device which can return a range of values on both axes.
             </summary>
         </member>
-        <member name="F:FlatRedBall.Input.AnalogStick.mDPadOnValue">
+        <member name="F:FlatRedBall.Input.AnalogStick.DPadOnValue">
             <summary>
-            The mDPadOnValue and mDPadOffValue
+            The DPadOnValue and DPadOffValue
             values are used to simulate D-Pad control
             with the analog stick.  When the user is above
             the absolute value of the mDPadOnValue then it is
