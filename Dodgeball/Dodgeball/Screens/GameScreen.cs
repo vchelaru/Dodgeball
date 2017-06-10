@@ -163,13 +163,15 @@ namespace Dodgeball.Screens
                 }
                 else if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Thrown)
                 {
-                    var validPlayers = PlayerList.Where(player => !player.IsDodging && !player.IsHit).ToList();
                     // reverse loop since players can be removed:
-                    for (int i = validPlayers.Count - 1; i > -1; i--)
+                    for (int i = PlayerList.Count - 1; i > -1; i--)
                     {
-                        var player = validPlayers[i];
+                        var player = PlayerList[i];
 
-                        if (BallInstance.ThrowOwner != player && player.CollideAgainst(BallInstance))
+                        if (BallInstance.ThrowOwner != player && 
+                            player.IsDodging == false &&
+                            player.IsHit == false &&
+                            player.CollideAgainst(BallInstance))
                         {
                             PerformGetHitLogic(player);
                         }
