@@ -6,10 +6,8 @@ namespace Dodgeball.AI
     public partial class AIController
     {
         #region Constant Decision Probabilities
-        //The % chance of an action, when appropriate, on each frame
 
-        //Always get out of the way of the player throwing a ball
-        private float probOfGettingOutOfTheWay = 1f;
+        //The % chance of an action, when appropriate, on each frame
 
         //Bypasses all below actions, used as difficulty modifier
         private float probOfInaction = 0.05f;
@@ -19,22 +17,30 @@ namespace Dodgeball.AI
         private float probOfEvasion = 0.08f;
         private float probOfWandering = 0.005f;
         private float probOfTaunting = 0.003f;
+
         #endregion
 
         #region Decision checks
-        private bool ShouldThrowBall => ball.CurrentOwnershipState == Ball.OwnershipState.Held && player.IsHoldingBall && ballHeldTime > timeToDelayThrow;
 
-        private bool ShouldTaunt => ball.CurrentOwnershipState == Ball.OwnershipState.Held && ball.OwnerTeam == player.TeamIndex && ball.ThrowOwner != player;
+        private bool ShouldPositionForThrow => ball.ThrowOwner == player && !player.IsInFront;
 
-        private bool ShouldWander => (ball.CurrentOwnershipState == Ball.OwnershipState.Held || ball.CurrentOwnershipState == Ball.OwnershipState.Thrown) && 
-                                    ball.OwnerTeam == player.TeamIndex;
+        private bool ShouldThrowBall => player.IsHoldingBall && ballHeldTime > timeToDelayThrow;
 
-        private bool ShouldEvade => (ball.CurrentOwnershipState == Ball.OwnershipState.Held || ball.CurrentOwnershipState == Ball.OwnershipState.Thrown) &&
+        private bool ShouldTaunt => ball.CurrentOwnershipState == Ball.OwnershipState.Held &&
+                                    ball.OwnerTeam == player.TeamIndex && ball.ThrowOwner != player;
+
+        private bool ShouldWander => (ball.CurrentOwnershipState == Ball.OwnershipState.Held ||
+                                      ball.CurrentOwnershipState == Ball.OwnershipState.Thrown) &&
+                                     ball.ThrowOwner != player &&
+                                     ball.OwnerTeam == player.TeamIndex;
+
+        private bool ShouldEvade => (ball.CurrentOwnershipState == Ball.OwnershipState.Held ||
+                                     ball.CurrentOwnershipState == Ball.OwnershipState.Thrown) &&
                                     ball.OwnerTeam != player.TeamIndex;
 
         private bool ShouldDodge => (ball.CurrentOwnershipState == Ball.OwnershipState.Thrown &&
                                      ball.OwnerTeam != player.TeamIndex &&
-                                    !player.IsDodging &&
+                                     !player.IsDodging &&
                                      (ball.Position - player.Position).Length() < distanceToConsiderDodging &&
                                      ball.TrajectoryPolygon.CollideAgainst(player.CircleInstance));
 
@@ -42,36 +48,48 @@ namespace Dodgeball.AI
 
         private bool ShouldGetOutOfTheWayOfBallHolder => ball.CurrentOwnershipState == Ball.OwnershipState.Held &&
                                                          ball.OwnerTeam == player.TeamIndex &&
+                                                         ball.ThrowOwner != player &&
+                                                         ball.ThrowOwner.IsCharging &&
                                                          ((player.TeamIndex == 0 && player.X >= ball.ThrowOwner.X ||
                                                            player.TeamIndex == 1 && player.X <= ball.ThrowOwner.X)) &&
-                        //Multiply the Y-difference by the X-difference to create a cone of avoidance
-                        Math.Abs(player.Y - ball.ThrowOwner.Y) <= Math.Max(maxTolerableDistanceToBallHolder, maxTolerableDistanceToBallHolder * Math.Abs(player.X - ball.ThrowOwner.X)/125);
+                                                         //Multiply the Y-difference by the X-difference to create a cone of avoidance
+                                                         Math.Abs(player.Y - ball.ThrowOwner.Y) <=
+                                                         Math.Max(maxTolerableDistanceToBallHolder,
+                                                             maxTolerableDistanceToBallHolder *
+                                                             Math.Abs(player.X - ball.ThrowOwner.X) / 125);
 
         #endregion
 
         private void MakeDecisions()
         {
+            //release action button from previous dodge
+            if (!player.IsHoldingBall && _actionButton.IsDown)
+            {
+                _actionButton.Release();
+            }
+
             var hasActed = false;
 
             if (ShouldGetOutOfTheWayOfBallHolder)
             {
-                var decisionToGetOutOfTheWay = random.NextDouble() <= probOfGettingOutOfTheWay;
-                if (decisionToGetOutOfTheWay)
-                {
-                    //Remove the directions that got them here in the first place
-                    wanderDirection = AI2DInput.Directions.None;
-
-                    _movementInput.Move(RetrieveGetOutOfTheWayDirections());
-                    hasActed = true;
-                }
+                isGettingOutOfTheWay = true;
+                _movementInput.Move(RetrieveGetOutOfTheWayDirections());
+                hasActed = true;
             }
             else
             {
-                getOutOfTheWayDirections = AI2DInput.Directions.None;
+                isGettingOutOfTheWay = false;
             }
 
-            if (ShouldThrowBall)
+            if (!hasActed && ShouldPositionForThrow)
             {
+                isPositioningForThrow = true;
+                _movementInput.Move(RetrieveDirectionsForThrowPositioning());
+                hasActed = true;
+            }
+            else if (!hasActed && ShouldThrowBall)
+            {
+                isPositioningForThrow = false;
                 _aimingInput.Move(AimDirection());
                 _movementInput.Move(AI2DInput.Directions.None);
                 _actionButton.Press();
@@ -79,11 +97,16 @@ namespace Dodgeball.AI
                 ballHeldTime = 0;
                 hasActed = true;
             }
+            else
+            {
+                isPositioningForThrow = false;
+            }
 
             if (!hasActed && !isWandering && !isEvading && !isRetrieving)
             {
                 var decisionToDoNothing = random.NextDouble() < probOfInaction;
                 hasActed = decisionToDoNothing;
+                currentMovementDirections = AI2DInput.Directions.None;
             }
 
             if (!hasActed && ShouldDodge)
@@ -94,9 +117,6 @@ namespace Dodgeball.AI
                     _actionButton.Press();
                     hasActed = true;
                 }
-            } else if (_actionButton.IsDown)
-            {
-                _actionButton.Release();
             }
 
             if (!hasActed && (ShouldRetrieveBall || isRetrieving))
@@ -118,14 +138,13 @@ namespace Dodgeball.AI
             if (!hasActed && !isWandering && (ShouldEvade && (decisionToEvade || isEvading)))
             {
                 isEvading = true;
-                evasionDirection = DodgeDirection();
-                _movementInput.Move(evasionDirection);
+                currentMovementDirections = DodgeDirection();
+                _movementInput.Move(currentMovementDirections);
                 hasActed = true;
             }
             else
             {
                 isEvading = false;
-                evasionDirection = AI2DInput.Directions.None;
                 timeEvading = 0;
             }
 
@@ -133,15 +152,14 @@ namespace Dodgeball.AI
             if (!hasActed && !isEvading && (ShouldWander && (decisionToWander || isWandering)))
             {
                 isWandering = true;
-                wanderDirection = WanderDirection();
-                _movementInput.Move(wanderDirection);
+                currentMovementDirections = WanderDirection();
+                _movementInput.Move(currentMovementDirections);
 
                 hasActed = true;
             }
             else
             {
                 isWandering = false;
-                wanderDirection = AI2DInput.Directions.None;
                 timeWandering = 0;
             }
 
@@ -155,6 +173,7 @@ namespace Dodgeball.AI
 
             if (!hasActed)
             {
+                currentMovementDirections = AI2DInput.Directions.None;
                 _movementInput.Move(AI2DInput.Directions.None);
                 _aimingInput.Move(AI2DInput.Directions.None);
             }

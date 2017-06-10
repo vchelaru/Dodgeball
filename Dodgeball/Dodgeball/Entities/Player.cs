@@ -65,6 +65,7 @@ namespace Dodgeball.Entities
         //Debug property so AI knows when to resume control of player-controlled Player
         public bool HasInputs => MovementInput != null;
 
+	    public bool IsCharging => SpriteInstance.CurrentChainName == "Aim";
 	    public bool IsThrowing => new[] { "Aim", "Throw" }.Contains(SpriteInstance.CurrentChainName);
         public bool IsHit => new[] {"Hit", "Fall", "Down"}.Contains(SpriteInstance.CurrentChainName);
 	    private bool ShouldFlipHitAnimation;
@@ -174,7 +175,7 @@ namespace Dodgeball.Entities
             }
 
 	        var targetPlayer = GetTargetedPlayer();
-	        targetPlayer.CircleInstance.Color = Color.Yellow;
+            if (targetPlayer != null) targetPlayer.CircleInstance.Color = Color.Yellow;
         }
 #endif
 
@@ -259,46 +260,55 @@ namespace Dodgeball.Entities
 
             var targetPlayer = GetTargetedPlayer();
 
-            var direction = targetPlayer.Position - this.Position;
-
-            if(isFailedThrow)
+            if (targetPlayer != null)
             {
-                // Throw it straight, slow, it'll hit the ground right away
-                BallHolding.AltitudeVelocity = 0; 
+                var direction = targetPlayer.Position - this.Position;
+
+                if (isFailedThrow)
+                {
+                    // Throw it straight, slow, it'll hit the ground right away
+                    BallHolding.AltitudeVelocity = 0;
+                }
+                else
+                {
+                    var distanceToTarget = direction.Length();
+
+                    var timeToTarget = .5f * distanceToTarget / ThrowVelocity;
+
+                    // arc that badboy:
+                    float desiredYVelocity = BallHolding.BallGravity * timeToTarget;
+
+                    BallHolding.AltitudeVelocity = desiredYVelocity;
+                }
+
+
+                direction.Normalize();
+                BallHolding.Detach();
+                BallHolding.PerformThrownLogic(this, direction * ThrowVelocity);
+
+                BallHolding = null;
+                justReleasedBall = true;
+
+#if DEBUG
+                if (DebuggingVariables.PlayerAlwaysControlsBallholder)
+                {
+                    this.ClearInput();
+                    targetPlayer.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+                }
+#endif
             }
-            else
-            {
-                var distanceToTarget = direction.Length();
-
-                var timeToTarget = .5f * distanceToTarget / ThrowVelocity;
-                
-                // arc that badboy:
-                float desiredYVelocity = BallHolding.BallGravity * timeToTarget;
-
-                BallHolding.AltitudeVelocity = desiredYVelocity;
-            }
-
-
-            direction.Normalize();
-            BallHolding.Detach();
-            BallHolding.PerformThrownLogic(this, direction * ThrowVelocity);
-
-            BallHolding = null;
-            justReleasedBall = true;
-
-            #if DEBUG
-            if (DebuggingVariables.PlayerAlwaysControlsBallholder)
-            {
-                this.ClearInput();
-                targetPlayer.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
-            }
-            #endif
         }
 
 	    private Player GetTargetedPlayer()
 	    {
             //Exclude our players, and exclude players that are knocked out
 	        var opposingTeamPlayers = AllPlayers.Where(p => p.TeamIndex != TeamIndex && !p.IsHit).ToList();
+            
+	        if (!opposingTeamPlayers.Any())
+	        {
+	            //No players left!
+                return null;
+	        }
 
             //Default to closest player
 	        var targetedPlayer = opposingTeamPlayers.Aggregate(

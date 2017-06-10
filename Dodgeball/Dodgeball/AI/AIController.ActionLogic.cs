@@ -13,19 +13,19 @@
             if (timeWandering >= timeToWander)
             {
                 isWandering = false;
-                wanderDirection = AI2DInput.Directions.None;
+                currentMovementDirections = AI2DInput.Directions.None;
             }
             //Use an existing wander direction to make movement more natural
-            else if (wanderDirection != AI2DInput.Directions.None)
+            else if (currentMovementDirections != AI2DInput.Directions.None)
             {
                 //If player has gone out of bounds, start a new direction
-                var currentDirection = wanderDirection;
-                wanderDirection = RemoveOffendingDirections(wanderDirection);
+                var currentDirection = currentMovementDirections;
+                currentMovementDirections = RemoveOffendingDirections(currentMovementDirections);
 
-                if (wanderDirection != currentDirection) wanderDirection = AI2DInput.Directions.None;
+                if (currentMovementDirections != currentDirection) currentMovementDirections = AI2DInput.Directions.None;
             }
 
-            if (isWandering && wanderDirection == AI2DInput.Directions.None)
+            if (isWandering && currentMovementDirections == AI2DInput.Directions.None)
             {
                 //Mark the start of a new wander
                 timeWandering = 0;
@@ -50,9 +50,9 @@
                         ? AI2DInput.Directions.Left
                         : AI2DInput.Directions.Right;
                 }
-                wanderDirection = RemoveOffendingDirections(upDown | leftRight);
+                currentMovementDirections = RemoveOffendingDirections(upDown | leftRight);
             }
-            return wanderDirection;
+            return currentMovementDirections;
         }
 
         private AI2DInput.Directions DodgeDirection()
@@ -60,19 +60,19 @@
             if (timeEvading >= timeToEvade)
             {
                 isEvading = false;
-                evasionDirection = AI2DInput.Directions.None;
+                currentMovementDirections = AI2DInput.Directions.None;
             }
             //Use an existing dodge direction to make movement more natural
-            else if (timeEvading < timeToEvade && evasionDirection != AI2DInput.Directions.None)
+            else if (timeEvading < timeToEvade && currentMovementDirections != AI2DInput.Directions.None)
             {
                 //If player has gone out of bounds, start a new direction
-                var currentDirection = evasionDirection;
-                evasionDirection = RemoveOffendingDirections(evasionDirection);
+                var currentDirection = currentMovementDirections;
+                currentMovementDirections = RemoveOffendingDirections(currentMovementDirections);
 
-                if (evasionDirection != currentDirection) evasionDirection = AI2DInput.Directions.None;
+                if (currentMovementDirections != currentDirection) currentMovementDirections = AI2DInput.Directions.None;
             }
 
-            if (isEvading && evasionDirection == AI2DInput.Directions.None)
+            if (isEvading && currentMovementDirections == AI2DInput.Directions.None)
             {
                 //Mark the start of a new dodge
                 timeEvading = 0;
@@ -93,9 +93,9 @@
                         ? AI2DInput.Directions.Right
                         : AI2DInput.Directions.None;
 
-                evasionDirection = RemoveOffendingDirections(upDown | leftRight);
+                currentMovementDirections = RemoveOffendingDirections(upDown | leftRight);
             }
-            return evasionDirection;
+            return currentMovementDirections;
         }
 
         private AI2DInput.Directions RetrieveBallDirections()
@@ -116,7 +116,7 @@
 
         private AI2DInput.Directions RetrieveGetOutOfTheWayDirections()
         {
-            if (getOutOfTheWayDirections == AI2DInput.Directions.None)
+            if (currentMovementDirections == AI2DInput.Directions.None)
             {
                 var upDown = AI2DInput.Directions.None;
                 var leftRight = AI2DInput.Directions.None;
@@ -136,9 +136,9 @@
                 {
                     leftRight = player.X < player.TeamRectangleRight - player.CircleInstance.Radius ? AI2DInput.Directions.Right : AI2DInput.Directions.Left;
                 }
-                getOutOfTheWayDirections = upDown | leftRight;
+                currentMovementDirections = upDown | leftRight;
             }
-            return getOutOfTheWayDirections;
+            return currentMovementDirections;
         }
 
         private AI2DInput.Directions RemoveOffendingDirections(AI2DInput.Directions originalDirections)
@@ -154,6 +154,25 @@
                     (player.TeamIndex == 1 && player.IsInFront)) newDirections &= ~(AI2DInput.Directions.Left);
 
             return newDirections;
+        }
+
+        private AI2DInput.Directions RetrieveDirectionsForThrowPositioning()
+        {
+            if (currentMovementDirections == AI2DInput.Directions.None)
+            {
+                currentMovementDirections = player.TeamIndex == 0
+                    ? AI2DInput.Directions.Right
+                    : AI2DInput.Directions.Left;
+                var randomUpDown = random.NextDouble();
+                if (randomUpDown > 0.5)
+                {
+                    currentMovementDirections = currentMovementDirections |
+                                                (randomUpDown > 0.75
+                                                    ? AI2DInput.Directions.Up
+                                                    : AI2DInput.Directions.Down);
+                }
+            }
+            return currentMovementDirections;
         }
     }
 }

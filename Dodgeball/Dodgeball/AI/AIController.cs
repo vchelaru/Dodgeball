@@ -17,6 +17,8 @@ namespace Dodgeball.AI
 
         private const double distanceToConsiderDodging = 500;
 
+        private AI2DInput.Directions currentMovementDirections = AI2DInput.Directions.None;
+
         //Object references
         private readonly Player player;
         private PositionedObjectList<Player> allPlayers;
@@ -26,10 +28,11 @@ namespace Dodgeball.AI
         private Random random;
 
         //Getting out of the way logic
+        private bool isGettingOutOfTheWay = false;
         private float maxTolerableDistanceToBallHolder;
-        private AI2DInput.Directions getOutOfTheWayDirections = AI2DInput.Directions.None;
 
         //Ball-throwing logic
+        private bool isPositioningForThrow = false;
         private double ballHeldTime;
         private double timeToDelayThrow = 1;
 
@@ -38,8 +41,7 @@ namespace Dodgeball.AI
         private bool isWandering;
         private double timeToWander = 2;
         private double timeWandering = 0;
-        private AI2DInput.Directions wanderDirection = AI2DInput.Directions.None;
-
+        
         //Retrieving logic
         private bool isRetrieving;
 
@@ -48,7 +50,6 @@ namespace Dodgeball.AI
         private bool isEvading;
         private double timeToEvade = 2;
         private double timeEvading = 0;
-        private AI2DInput.Directions evasionDirection = AI2DInput.Directions.None;
 
         //Public interfaces for use by Player expecting a controller
         public I2DInput MovementInput { get; private set; }
@@ -98,7 +99,7 @@ namespace Dodgeball.AI
         {
             //Re-assign inputs if the player has taken control of the character for debug logic
             if (!player.HasInputs) AssignInputsToPlayer();
-
+            UpdateInputs();
             UpdateConditions();
             MakeDecisions();
         }
@@ -121,6 +122,10 @@ namespace Dodgeball.AI
             {
                 isRetrieving = ShouldRetrieveBall;
             }
+            if (!isEvading && !isPositioningForThrow && !isWandering && !isRetrieving && !isGettingOutOfTheWay)
+            {
+                currentMovementDirections = AI2DInput.Directions.None;
+            }
         }
 
         #endregion
@@ -128,6 +133,12 @@ namespace Dodgeball.AI
         private void AssignInputsToPlayer()
         {
             player?.InitializeAIControl(this);
+        }
+
+        private void UpdateInputs()
+        {
+            if (!_actionButton.IsDown) _actionButton.Reset();
+            if (!_tauntButton.IsDown) _tauntButton.Reset();
         }
     }
 }
