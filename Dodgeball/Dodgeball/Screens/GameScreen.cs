@@ -149,8 +149,9 @@ namespace Dodgeball.Screens
             {
                 if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Free)
                 {
-                    //Can't catch a ball you're dodging
-                    foreach (var player in PlayerList.Where(player => !player.IsDodging))
+                    //Can't catch a ball you're dodging or hit
+                    var validPlayers = PlayerList.Where(player => !player.IsDodging && !player.IsHit).ToList();
+                    foreach (var player in validPlayers)
                     {
                         if (player.CollideAgainst(BallInstance))
                         {
@@ -162,11 +163,11 @@ namespace Dodgeball.Screens
                 }
                 else if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Thrown)
                 {
-                    var nonDodgingPlayers = PlayerList.Where(player => !player.IsDodging).ToList();
+                    var validPlayers = PlayerList.Where(player => !player.IsDodging && !player.IsHit).ToList();
                     // reverse loop since players can be removed:
-                    for (int i = nonDodgingPlayers.Count - 1; i > -1; i--)
+                    for (int i = validPlayers.Count - 1; i > -1; i--)
                     {
-                        var player = nonDodgingPlayers[i];
+                        var player = validPlayers[i];
 
                         if (BallInstance.ThrowOwner != player && player.CollideAgainst(BallInstance))
                         {
@@ -180,16 +181,8 @@ namespace Dodgeball.Screens
 
         private void PerformGetHitLogic(Entities.Player player)
         {
-            if (BallInstance.OwnerTeam != player.TeamIndex)
-            {
-                // OUCH
-                player.GetHitBy(BallInstance);
-
-            }
-            else
-            {
-                // bounce! No damage though
-            }
+            //Let player react and determine if they'll take damage
+            player.GetHitBy(BallInstance);
 
             //Make a hit sound
             var playerHitPan = MathHelper.Clamp(player.X / 540f, -1, 1);
@@ -198,17 +191,9 @@ namespace Dodgeball.Screens
             playerHitSound.Volume = playerHitVol;
             playerHitSound.Play();
 
-
             // make the ball bounce off the player:
             BallInstance.CollideAgainstBounce(player, 0, 1, 1);
             BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
-
-            // do this after collision:
-            // We may want to have animations, flashing, etc, but for now destroy the guy!
-            if(player.HealthPercentage <= 0)
-            {
-                player.Destroy();
-            }
         }
 
         private void PerformPickupLogic(Entities.Player player)

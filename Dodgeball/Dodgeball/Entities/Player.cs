@@ -65,7 +65,10 @@ namespace Dodgeball.Entities
         //Debug property so AI knows when to resume control of player-controlled Player
         public bool HasInputs => MovementInput != null;
 
-	    #endregion
+	    public bool IsThrowing => new[] { "Aim", "Throw" }.Contains(SpriteInstance.CurrentChainName);
+        public bool IsHit => new[] {"Hit", "Fall", "Down"}.Contains(SpriteInstance.CurrentChainName);
+
+        #endregion
 
         #region Initialize
         /// <summary>
@@ -203,36 +206,46 @@ namespace Dodgeball.Entities
                     chargeThrowComponent.Reset();
                 }
 
-                bool isCharging = IsHoldingBall && ActionButton.IsDown;
-                if (isCharging)
-                {
-                    chargeThrowComponent.ChargeActivity();
-                }
                 if (ActionButton.WasJustReleased && IsHoldingBall)
                 {
                     ExecuteThrow();
                 }
-                ThrowChargeMeterRuntimeInstance.Visible = isCharging;
-                if(ThrowChargeMeterRuntimeInstance.Visible)
+
+                bool isCharging = IsHoldingBall && ActionButton.IsDown;
+                if (isCharging)
                 {
+                    chargeThrowComponent.ChargeActivity();
                     ThrowChargeMeterRuntimeInstance.MeterPercent = chargeThrowComponent.MeterPercent;
                 }
+                ThrowChargeMeterRuntimeInstance.Visible = isCharging;
             }
         }
 
         internal void GetHitBy(Ball ballInstance)
         {
-            this.HealthPercentage -= DamageWhenHitting;
+            SpriteInstance.CurrentChainName = "Hit";
+            //Only take damage from other team
+            if (ballInstance.OwnerTeam != TeamIndex)
+            {
+                this.HealthPercentage -= DamageWhenHitting;
+            }
+
+            //Make them fall immediately if they've been knocked out
+            if (HealthPercentage <= 0)
+            {
+                SpriteInstance.CurrentChain.FrameTime = 0.1f;
+            }
+
+            //Set their reaction based on where the ball came from
+            SpriteInstance.FlipHorizontal = (ballInstance.X > X);
         }
 
         private void ExecuteThrow()
         {
             bool isFailedThrow = chargeThrowComponent.FailedThrow;
 
-
             if ( isFailedThrow)
             {
-                //TODO:  They failed!  Now what?  Using half of minimum velocity for now
                 ThrowVelocity = MinThrowVelocity;
             }
             else
@@ -269,7 +282,8 @@ namespace Dodgeball.Entities
 
             BallHolding = null;
             justReleasedBall = true;
-#if DEBUG
+
+            #if DEBUG
             if (DebuggingVariables.PlayerAlwaysControlsBallholder)
             {
                 this.ClearInput();
@@ -280,7 +294,8 @@ namespace Dodgeball.Entities
 
 	    private Player GetTargetedPlayer()
 	    {
-	        var opposingTeamPlayers = AllPlayers.Where(p => p.TeamIndex != TeamIndex).ToList();
+            //Exclude our players, and exclude players that are knocked out
+	        var opposingTeamPlayers = AllPlayers.Where(p => p.TeamIndex != TeamIndex && !p.IsHit).ToList();
 
             //Default to closest player
 	        var targetedPlayer = opposingTeamPlayers.Aggregate(
@@ -323,7 +338,7 @@ namespace Dodgeball.Entities
         private void MovementActivity()
         {
             if (MovementInput != null &&
-                SpriteInstance.CurrentChainName != "Throw" && SpriteInstance.CurrentChainName != "Aim")
+                !IsThrowing && !IsHit)
             {
                 this.Velocity.X = MovementInput.X * MovementSpeed;
                 this.Velocity.Y = MovementInput.Y * MovementSpeed;
@@ -356,7 +371,8 @@ namespace Dodgeball.Entities
 
 	    private void SetAnimation()
 	    {
-	        if (ActionButton != null)
+	        var canThrowOrDodge = ActionButton != null && !IsHit;
+	        if (canThrowOrDodge)
 	        {
 	            if (justReleasedBall)
 	            {
@@ -379,18 +395,13 @@ namespace Dodgeball.Entities
                     }
 	            }
 
-	            if (TeamIndex == 0)
-	            {
-	                SpriteInstance.FlipHorizontal = true;
-	            }
-	            else
-	            {
-	                SpriteInstance.FlipHorizontal = false;
-	            }
+	            SpriteInstance.FlipHorizontal = TeamIndex == 0;
             }
 
-	        if ((SpriteInstance.CurrentChainName != "Throw" && SpriteInstance.CurrentChainName != "Aim" && SpriteInstance.CurrentChainName != "Dodge") ||
-	            SpriteInstance.JustCycled)
+
+	        var canStandOrRun = !IsHit &&
+	                            ((!IsThrowing && !IsDodging) || SpriteInstance.JustCycled);
+            if (canStandOrRun)
 	        {
 
 	            if (MovementInput?.X != 0 || MovementInput?.Y != 0)
@@ -403,31 +414,49 @@ namespace Dodgeball.Entities
 	                {
 	                    SpriteInstance.SetAnimationChain("Run");
                     }
-	                
-	                if (Velocity.X < 0)
-	                {
-	                    SpriteInstance.FlipHorizontal = false;
-	                }
-	                else
-	                {
-	                    SpriteInstance.FlipHorizontal = true;
-	                }
+
+	                SpriteInstance.FlipHorizontal = Velocity.X > 0;
 	            }
 	            else
 	            {
 	                SpriteInstance.SetAnimationChain("Idle");
-	                if (TeamIndex == 0)
-	                {
-	                    SpriteInstance.FlipHorizontal = true;
-	                }
-	                else
-	                {
-	                    SpriteInstance.FlipHorizontal = false;
-	                }
+	                SpriteInstance.FlipHorizontal = TeamIndex == 0;
 	            }
 	        }
 
-	        SpriteInstance.Animate = SpriteInstance.CurrentChainName != "Aim";
+	        if (IsHit && SpriteInstance.JustCycled)
+	        {
+                //Maintain animation flipping between animation chain changes
+	            var shouldFlipHitAnimation = SpriteInstance.FlipHorizontal;
+
+                if (HealthPercentage > 0)
+	            {
+                    //Player still has health, goes back to normal
+	                SpriteInstance.CurrentChainName = "Idle";
+	                SpriteInstance.FlipHorizontal = (TeamIndex == 0);
+	            }
+	            else if (SpriteInstance.CurrentChainName == "Hit")
+	            {
+                    //Player is out of health, down they go
+	                SpriteInstance.CurrentChainName = "Fall";
+	                SpriteInstance.IgnoreAnimationChainTextureFlip = false;
+	                SpriteInstance.FlipHorizontal = shouldFlipHitAnimation;
+	            }
+                else if (SpriteInstance.CurrentChainName == "Fall")
+	            {
+                    //Lay on the ground for the duration of the down animation
+	                SpriteInstance.CurrentChainName = "Down";
+	                SpriteInstance.IgnoreAnimationChainTextureFlip = false;
+                    SpriteInstance.FlipHorizontal = shouldFlipHitAnimation;
+                }
+	            else
+	            {
+                    //Now they're out
+	                this.Destroy();
+	            }
+            }
+
+            SpriteInstance.Animate = SpriteInstance.CurrentChainName != "Aim";
             this.SpriteInstance.RelativeY = this.SpriteInstance.Height / 2.0f;
         }
 

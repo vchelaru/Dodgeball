@@ -193,7 +193,7 @@
     <Name>Hit</Name>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
+      <FrameLength>0.3</FrameLength>
       <LeftCoordinate>0</LeftCoordinate>
       <RightCoordinate>256</RightCoordinate>
       <TopCoordinate>1024</TopCoordinate>
@@ -255,7 +255,7 @@
     <Name>Down</Name>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
+      <FrameLength>3</FrameLength>
       <LeftCoordinate>1536</LeftCoordinate>
       <RightCoordinate>1792</RightCoordinate>
       <TopCoordinate>1024</TopCoordinate>

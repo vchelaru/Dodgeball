@@ -798,12 +798,6 @@
           <RuntimeType>FlatRedBall.Graphics.Animation.AnimationChainList</RuntimeType>
           <ProjectsToExcludeFrom />
         </ReferencedFileSave>
-        <ReferencedFileSave>
-          <Name>Entities/Player/HumanPlaceholder.png</Name>
-          <IsSharedStatic>true</IsSharedStatic>
-          <RuntimeType>Microsoft.Xna.Framework.Graphics.Texture2D</RuntimeType>
-          <ProjectsToExcludeFrom />
-        </ReferencedFileSave>
       </ReferencedFiles>
       <Events>
         <EventResponseSave>
