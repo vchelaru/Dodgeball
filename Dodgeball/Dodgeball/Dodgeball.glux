@@ -421,6 +421,17 @@
           <Type>float</Type>
           <DefaultValue xsi:type="xsd:float">0.8</DefaultValue>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>DragInFreeState</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">0.5</DefaultValue>
+        </CustomVariable>
       </CustomVariables>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
       <Name>Entities\Ball</Name>

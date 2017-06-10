@@ -35,7 +35,24 @@ namespace Dodgeball.Entities
 
         public Player ThrowOwner { get; set; }
 
-        public OwnershipState CurrentOwnershipState { get; set; }
+        OwnershipState currentOwnershipState;
+        public OwnershipState CurrentOwnershipState
+        {
+            get { return currentOwnershipState; }
+            set
+            {
+                currentOwnershipState = value;
+
+                if(currentOwnershipState == OwnershipState.Free)
+                {
+                    this.Drag = DragInFreeState;
+                }
+                else
+                {
+                    this.Drag = 0;
+                }
+            }
+        }
 
 	    private SoundEffectInstance ballFloorBounceSound;
 	    private SoundEffectInstance ballWallBounceSound;
@@ -43,7 +60,7 @@ namespace Dodgeball.Entities
 
         #endregion
 
-
+        #region Initialize Methods
         /// <summary>
         /// Initialization logic which is execute only one time for this Entity (unless the Entity is pooled).
         /// This method is called when the Entity is added to managers. Entities which are instantiated but not
@@ -69,6 +86,8 @@ namespace Dodgeball.Entities
 		    }
 #endif
         }
+
+        #endregion
 
         private void CustomActivity()
 		{
