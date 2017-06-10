@@ -67,6 +67,7 @@ namespace Dodgeball.Entities
 
 	    public bool IsThrowing => new[] { "Aim", "Throw" }.Contains(SpriteInstance.CurrentChainName);
         public bool IsHit => new[] {"Hit", "Fall", "Down"}.Contains(SpriteInstance.CurrentChainName);
+	    private bool ShouldFlipHitAnimation;
 
         #endregion
 
@@ -230,14 +231,9 @@ namespace Dodgeball.Entities
                 this.HealthPercentage -= DamageWhenHitting;
             }
 
-            //Make them fall immediately if they've been knocked out
-            if (HealthPercentage <= 0)
-            {
-                SpriteInstance.CurrentChain.FrameTime = 0.1f;
-            }
-
             //Set their reaction based on where the ball came from
-            SpriteInstance.FlipHorizontal = (ballInstance.X > X);
+            ShouldFlipHitAnimation = (ballInstance.X > X);
+            SpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
         }
 
         private void ExecuteThrow()
@@ -424,37 +420,45 @@ namespace Dodgeball.Entities
 	            }
 	        }
 
-	        if (IsHit && SpriteInstance.JustCycled)
+	        if (IsHit)
 	        {
-                //Maintain animation flipping between animation chain changes
-	            var shouldFlipHitAnimation = SpriteInstance.FlipHorizontal;
+	            SpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
 
-                if (HealthPercentage > 0)
+	            if (SpriteInstance.CurrentChainName == "Down" && !SpriteInstance.JustCycled)
 	            {
-                    //Player still has health, goes back to normal
-	                SpriteInstance.CurrentChainName = "Idle";
-	                SpriteInstance.FlipHorizontal = (TeamIndex == 0);
+                    //Make player blink before disappearing
+	                var currentTime = FlatRedBall.TimeManager.CurrentTime;
+	                SpriteInstance.Visible = currentTime % 2 == 1 || currentTime % 0.5 < 0.25;
 	            }
-	            else if (SpriteInstance.CurrentChainName == "Hit")
+                else if (SpriteInstance.JustCycled)
 	            {
-                    //Player is out of health, down they go
-	                SpriteInstance.CurrentChainName = "Fall";
-	                SpriteInstance.IgnoreAnimationChainTextureFlip = false;
-	                SpriteInstance.FlipHorizontal = shouldFlipHitAnimation;
+	                if (HealthPercentage > 0)
+	                {
+	                    //Player still has health, goes back to normal
+	                    SpriteInstance.CurrentChainName = "Idle";
+	                    SpriteInstance.FlipHorizontal = (TeamIndex == 0);
+	                }
+	                else if (SpriteInstance.CurrentChainName == "Hit")
+	                {
+	                    //Player is out of health, down they go
+	                    SpriteInstance.CurrentChainName = "Fall";
+	                    SpriteInstance.IgnoreAnimationChainTextureFlip = false;
+	                    SpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
+	                }
+	                else if (SpriteInstance.CurrentChainName == "Fall")
+	                {
+	                    //Lay on the ground for the duration of the down animation
+	                    SpriteInstance.CurrentChainName = "Down";
+	                    SpriteInstance.IgnoreAnimationChainTextureFlip = false;
+	                    SpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
+	                }
+	                else
+	                {
+	                    //Now they're out
+	                    this.Destroy();
+	                }
 	            }
-                else if (SpriteInstance.CurrentChainName == "Fall")
-	            {
-                    //Lay on the ground for the duration of the down animation
-	                SpriteInstance.CurrentChainName = "Down";
-	                SpriteInstance.IgnoreAnimationChainTextureFlip = false;
-                    SpriteInstance.FlipHorizontal = shouldFlipHitAnimation;
-                }
-	            else
-	            {
-                    //Now they're out
-	                this.Destroy();
-	            }
-            }
+	        }
 
             SpriteInstance.Animate = SpriteInstance.CurrentChainName != "Aim";
             this.SpriteInstance.RelativeY = this.SpriteInstance.Height / 2.0f;

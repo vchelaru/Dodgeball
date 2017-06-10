@@ -255,7 +255,7 @@
     <Name>Down</Name>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>3</FrameLength>
+      <FrameLength>2</FrameLength>
       <LeftCoordinate>1536</LeftCoordinate>
       <RightCoordinate>1792</RightCoordinate>
       <TopCoordinate>1024</TopCoordinate>
