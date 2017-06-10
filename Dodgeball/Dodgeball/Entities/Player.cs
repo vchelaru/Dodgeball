@@ -15,6 +15,7 @@ using Dodgeball.GumRuntimes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using RenderingLibrary;
+using Dodgeball.Components;
 
 namespace Dodgeball.Entities
 {
@@ -48,6 +49,8 @@ namespace Dodgeball.Entities
 	    public float TeamRectangleTop => TeamRectangle.Y;
         public float TeamRectangleBottom => TeamRectangle.Y - TeamRectangle.Height;
 
+        ChargeThrow chargeThrowComponent;
+
         //Properties to determine player location in relation to team rectangle
 	    public bool IsInBack => TeamIndex == 0
 	        ? Position.X <= TeamRectangleLeft + (0.2f * TeamRectangle.Width)
@@ -76,6 +79,8 @@ namespace Dodgeball.Entities
 
             this.ActiveMarkerRuntimeInstance.Visible = false;
             this.EnergyBarRuntimeInstance.Visible = false;
+
+            chargeThrowComponent = new ChargeThrow();
 
 		    CircleInstance.Color = TeamIndex == 0 ? Color.Red : Color.Blue;
 		}
@@ -193,12 +198,25 @@ namespace Dodgeball.Entities
                     playerDodgeSound.Play();
                 }
 
-                if (ActionButton.WasJustPressed) ThrowChargeMeterRuntimeInstance.Reset();
-                ThrowChargeMeterRuntimeInstance.Visible = ActionButton.IsDown &&  IsHoldingBall;
+                if (ActionButton.WasJustPressed)
+                {
+                    chargeThrowComponent.Reset();
+                }
 
-                if (IsHoldingBall && ActionButton.IsDown) ThrowChargeMeterRuntimeInstance.ChargeActivity();
-
-                if (ActionButton.WasJustReleased && IsHoldingBall) ExecuteThrow();
+                bool isCharging = IsHoldingBall && ActionButton.IsDown;
+                if (isCharging)
+                {
+                    chargeThrowComponent.ChargeActivity();
+                }
+                if (ActionButton.WasJustReleased && IsHoldingBall)
+                {
+                    ExecuteThrow();
+                }
+                ThrowChargeMeterRuntimeInstance.Visible = isCharging;
+                if(ThrowChargeMeterRuntimeInstance.Visible)
+                {
+                    ThrowChargeMeterRuntimeInstance.MeterPercent = chargeThrowComponent.MeterPercent;
+                }
             }
         }
 
@@ -209,29 +227,41 @@ namespace Dodgeball.Entities
 
         private void ExecuteThrow()
         {
-            if (ThrowChargeMeterRuntimeInstance.FailedThrow)
+            bool isFailedThrow = chargeThrowComponent.FailedThrow;
+
+
+            if ( isFailedThrow)
             {
                 //TODO:  They failed!  Now what?  Using half of minimum velocity for now
-                ThrowVelocity = MinThrowVelocity / 2;
+                ThrowVelocity = MinThrowVelocity;
             }
             else
             {
                 ThrowVelocity = MinThrowVelocity + ((MaxThrowVelocity - MinThrowVelocity) *
-                                                    ThrowChargeMeterRuntimeInstance.EffectiveChargePercent);
+                                                    chargeThrowComponent.EffectiveChargePercent);
             }
 
             var targetPlayer = GetTargetedPlayer();
 
             var direction = targetPlayer.Position - this.Position;
 
-            var distanceToTarget = direction.Length();
+            if(isFailedThrow)
+            {
+                // Throw it straight, slow, it'll hit the ground right away
+                BallHolding.AltitudeVelocity = 0; 
+            }
+            else
+            {
+                var distanceToTarget = direction.Length();
 
-            var timeToTarget = .5f * distanceToTarget / ThrowVelocity;
+                var timeToTarget = .5f * distanceToTarget / ThrowVelocity;
+                
+                // arc that badboy:
+                float desiredYVelocity = BallHolding.BallGravity * timeToTarget;
 
-            // arc that badboy:
-            float desiredYVelocity = BallHolding.BallGravity * timeToTarget;
+                BallHolding.AltitudeVelocity = desiredYVelocity;
+            }
 
-            BallHolding.AltitudeVelocity = desiredYVelocity;
 
             direction.Normalize();
             BallHolding.Detach();

@@ -9,31 +9,13 @@ namespace Dodgeball.GumRuntimes
 {
     partial class ThrowChargeMeterRuntime
     {
-        #region Fields/Properties
-        private const float MaxValidThrowPercent = 80;
-        private float baseChargeRate = 1.5f;
-        private float defaultChargeLevel = 10f;
 
-        private float currentChargeRate => baseChargeRate * (1 + MeterPercent / 50);
-        private int chargeDirection = 1;
-
-        public float EffectiveChargePercent => MeterPercent / MaxValidThrowPercent;
-        public bool FailedThrow => MeterPercent > MaxValidThrowPercent;
-        #endregion
-
-        public void ChargeActivity()
+        partial void CustomInitialize()
         {
-            MeterPercent += currentChargeRate * chargeDirection;
-
-            //Change direction at top/bottom of charge
-            if (MeterPercent < 0 || MeterPercent > 100) chargeDirection *= -1;
-
-            //Keep charge within bar
-            MeterPercent = MathHelper.Clamp(MeterPercent, 0, 100);
-
-            UpdateIndicatorColor();
+            this.MeterPercentChanged +=
+                (not, used) => UpdateIndicatorColor();
         }
-
+        
         private void UpdateIndicatorColor()
         {
             if (MeterPercent > 80)
@@ -48,9 +30,6 @@ namespace Dodgeball.GumRuntimes
             }
         }
 
-        public void Reset()
-        {
-            MeterPercent = defaultChargeLevel;
-        }
+
     }
 }

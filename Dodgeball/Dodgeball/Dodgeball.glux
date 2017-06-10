@@ -673,7 +673,7 @@
           </Properties>
           <Name>MinThrowVelocity</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">500</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">800</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -865,12 +865,24 @@
       <ProjectsToExcludeFrom />
     </ReferencedFileSave>
     <ReferencedFileSave>
+      <Properties>
+        <PropertySave>
+          <Name>UseContentPipeline</Name>
+          <ValueAsBool>true</ValueAsBool>
+        </PropertySave>
+      </Properties>
       <Name>GlobalContent/Sounds/ball_wall_bounce.wav</Name>
       <IsSharedStatic>true</IsSharedStatic>
       <HasPublicProperty>true</HasPublicProperty>
       <ProjectsToExcludeFrom />
     </ReferencedFileSave>
     <ReferencedFileSave>
+      <Properties>
+        <PropertySave>
+          <Name>UseContentPipeline</Name>
+          <ValueAsBool>true</ValueAsBool>
+        </PropertySave>
+      </Properties>
       <Name>GlobalContent/Sounds/player_hit.wav</Name>
       <IsSharedStatic>true</IsSharedStatic>
       <HasPublicProperty>true</HasPublicProperty>
