@@ -25,6 +25,10 @@ namespace Dodgeball.AI
         //Random determinations
         private Random random;
 
+        //Getting out of the way logic
+        private float maxTolerableDistanceToBallHolder;
+        private AI2DInput.Directions getOutOfTheWayDirections = AI2DInput.Directions.None;
+
         //Ball-throwing logic
         private double ballHeldTime;
         private double timeToDelayThrow = 1;
@@ -81,6 +85,9 @@ namespace Dodgeball.AI
 
             //Private random with seed
             random = new Random(Guid.NewGuid().GetHashCode());
+
+            //Determine spacing between players
+            maxTolerableDistanceToBallHolder = player.CircleInstance.Radius * 2f;
 
             AssignInputsToPlayer();
         }

@@ -1,4 +1,5 @@
-﻿using Dodgeball.Entities;
+﻿using System;
+using Dodgeball.Entities;
 
 namespace Dodgeball.AI
 {
@@ -7,7 +8,10 @@ namespace Dodgeball.AI
         #region Constant Decision Probabilities
         //The % chance of an action, when appropriate, on each frame
 
-        //Bypasses all other actions, used as difficulty modifier
+        //Always get out of the way of the player throwing a ball
+        private float probOfGettingOutOfTheWay = 1f;
+
+        //Bypasses all below actions, used as difficulty modifier
         private float probOfInaction = 0.05f;
 
         private float probOfDodge = 0.015f;
@@ -36,16 +40,34 @@ namespace Dodgeball.AI
 
         private bool ShouldRetrieveBall => ball.CurrentOwnershipState == Ball.OwnershipState.Free;
 
+        private bool ShouldGetOutOfTheWayOfBallHolder => ball.CurrentOwnershipState == Ball.OwnershipState.Held &&
+                                                         ball.OwnerTeam == player.TeamIndex &&
+                                                         ((player.TeamIndex == 0 && player.X >= ball.ThrowOwner.X ||
+                                                           player.TeamIndex == 1 && player.X <= ball.ThrowOwner.X)) &&
+                        //Multiply the Y-difference by the X-difference to create a cone of avoidance
+                        Math.Abs(player.Y - ball.ThrowOwner.Y) <= Math.Max(maxTolerableDistanceToBallHolder, maxTolerableDistanceToBallHolder * Math.Abs(player.X - ball.ThrowOwner.X)/125);
+
         #endregion
 
         private void MakeDecisions()
         {
             var hasActed = false;
 
-            if (!isWandering && !isEvading && !isRetrieving)
+            if (ShouldGetOutOfTheWayOfBallHolder)
             {
-                var decisionToDoNothing = random.NextDouble() < probOfInaction;
-                hasActed = decisionToDoNothing;
+                var decisionToGetOutOfTheWay = random.NextDouble() <= probOfGettingOutOfTheWay;
+                if (decisionToGetOutOfTheWay)
+                {
+                    //Remove the directions that got them here in the first place
+                    wanderDirection = AI2DInput.Directions.None;
+
+                    _movementInput.Move(RetrieveGetOutOfTheWayDirections());
+                    hasActed = true;
+                }
+            }
+            else
+            {
+                getOutOfTheWayDirections = AI2DInput.Directions.None;
             }
 
             if (ShouldThrowBall)
@@ -58,7 +80,13 @@ namespace Dodgeball.AI
                 hasActed = true;
             }
 
-            if (ShouldDodge)
+            if (!hasActed && !isWandering && !isEvading && !isRetrieving)
+            {
+                var decisionToDoNothing = random.NextDouble() < probOfInaction;
+                hasActed = decisionToDoNothing;
+            }
+
+            if (!hasActed && ShouldDodge)
             {
                 var decisionToDodge = random.NextDouble() < probOfDodge;
                 if (decisionToDodge)

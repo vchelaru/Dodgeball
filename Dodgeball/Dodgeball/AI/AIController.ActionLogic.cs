@@ -114,6 +114,33 @@
             return upDown | leftRight;
         }
 
+        private AI2DInput.Directions RetrieveGetOutOfTheWayDirections()
+        {
+            if (getOutOfTheWayDirections == AI2DInput.Directions.None)
+            {
+                var upDown = AI2DInput.Directions.None;
+                var leftRight = AI2DInput.Directions.None;
+                if (player.Y > ball.ThrowOwner.Y)
+                {
+                    upDown = player.Y < (player.TeamRectangleTop - player.CircleInstance.Radius) ? AI2DInput.Directions.Up : AI2DInput.Directions.Down;
+                }
+                else
+                {
+                    upDown = player.Y > (player.TeamRectangleBottom + player.CircleInstance.Radius) ? AI2DInput.Directions.Down : AI2DInput.Directions.Up;
+                }
+                if (player.TeamIndex == 0)
+                {
+                    leftRight = player.X > player.TeamRectangleLeft + player.CircleInstance.Radius ? AI2DInput.Directions.Left : AI2DInput.Directions.Right;
+                }
+                else
+                {
+                    leftRight = player.X < player.TeamRectangleRight - player.CircleInstance.Radius ? AI2DInput.Directions.Right : AI2DInput.Directions.Left;
+                }
+                getOutOfTheWayDirections = upDown | leftRight;
+            }
+            return getOutOfTheWayDirections;
+        }
+
         private AI2DInput.Directions RemoveOffendingDirections(AI2DInput.Directions originalDirections)
         {
             var newDirections = originalDirections;

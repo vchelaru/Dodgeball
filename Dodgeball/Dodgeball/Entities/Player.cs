@@ -134,7 +134,7 @@ namespace Dodgeball.Entities
         internal void PickUpBall(Ball ballInstance)
         {
             BallHolding = ballInstance;
-            BallHolding.ThrowOwner = null;
+            BallHolding.ThrowOwner = this;
             ballInstance.OwnerTeam = this.TeamIndex;
         }
 
