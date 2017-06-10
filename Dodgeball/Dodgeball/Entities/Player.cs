@@ -84,10 +84,17 @@ namespace Dodgeball.Entities
             this.ActiveMarkerRuntimeInstance.Visible = false;
             this.EnergyBarRuntimeInstance.Visible = false;
 
-            chargeThrowComponent = new ChargeThrow();
+            InstantiateChargeThrowComponent();
 
-		    CircleInstance.Color = TeamIndex == 0 ? Color.Red : Color.Blue;
-		}
+            CircleInstance.Color = TeamIndex == 0 ? Color.Red : Color.Blue;
+        }
+
+        private void InstantiateChargeThrowComponent()
+        {
+            chargeThrowComponent = new ChargeThrow();
+            chargeThrowComponent.LowEndChargeRate = LowEndChargeRate;
+            chargeThrowComponent.HighEndChargeRate = HighEndChargeRate;
+        }
 
         public void InitializeXbox360Controls(Xbox360GamePad gamePad)
         {

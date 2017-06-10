@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FlatRedBall;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,11 @@ namespace Dodgeball.Components
     {
         private const float MaxValidThrowPercent = 80;
         public float MeterPercent { get; set; }
-        private float baseChargeRate = 1.5f;
         private float defaultChargeLevel = 10f;
 
-        private float currentChargeRate => baseChargeRate * (1 + MeterPercent / 50);
+        public float LowEndChargeRate { get; set; }
+        public float HighEndChargeRate { get; set; }
+
         private int chargeDirection = 1;
 
         public float EffectiveChargePercent => MeterPercent / MaxValidThrowPercent;
@@ -24,13 +26,20 @@ namespace Dodgeball.Components
 
         public void ChargeActivity()
         {
-            MeterPercent += currentChargeRate * chargeDirection;
+            MeterPercent += GetCurrentChargeRate() * chargeDirection * TimeManager.SecondDifference;
 
             //Change direction at top/bottom of charge
             if (MeterPercent < 0 || MeterPercent > 100) chargeDirection *= -1;
 
             //Keep charge within bar
             MeterPercent = MathHelper.Clamp(MeterPercent, 0, 100);
+        }
+
+        private float GetCurrentChargeRate()
+        {
+            float normalizedMeterPercentage = MeterPercent / 100.0f;
+
+            return MathHelper.Lerp(LowEndChargeRate, HighEndChargeRate, normalizedMeterPercentage);
         }
 
         public void Reset()

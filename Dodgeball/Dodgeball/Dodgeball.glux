@@ -673,7 +673,7 @@
           </Properties>
           <Name>MinThrowVelocity</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">800</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">1000</DefaultValue>
         </CustomVariable>
         <CustomVariable>
           <Properties>
@@ -684,7 +684,29 @@
           </Properties>
           <Name>MaxThrowVelocity</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">1500</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">2500</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>LowEndChargeRate</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">35</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>HighEndChargeRate</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">330</DefaultValue>
         </CustomVariable>
       </CustomVariables>
       <ImplementsIVisible>true</ImplementsIVisible>
