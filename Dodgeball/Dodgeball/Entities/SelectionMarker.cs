@@ -43,21 +43,35 @@ namespace Dodgeball.Entities
 		{
             if(RightPress.WasJustReleased)
             {
-                if(this.CurrentPosition != MarkerPosition.Right)
+                if(CurrentPosition == MarkerPosition.Left)
                 {
-                    this.X =  this.X + 500;
-                    this.CurrentPosition++;
-                }            
+                    CurrentPosition = MarkerPosition.Center;
+                }
+                else if(CurrentPosition == MarkerPosition.Center)
+                {
+                    CurrentPosition = MarkerPosition.Right;
+                }
             }
             if (LeftPress.WasJustReleased)
             {
-                if (this.CurrentPosition != MarkerPosition.Left)
+                if (CurrentPosition == MarkerPosition.Right)
                 {
-                    this.X = this.X - 500;
-                    this.CurrentPosition--;
+                    CurrentPosition = MarkerPosition.Center;
                 }
-             
+                else if (CurrentPosition == MarkerPosition.Center)
+                {
+                    CurrentPosition = MarkerPosition.Left;
+                }
             }
+
+            switch(CurrentPosition)
+            {
+                case MarkerPosition.Left: X = -500; break;
+                case MarkerPosition.Center: X = 0; break;
+                case MarkerPosition.Right: X = 500; break;
+            }
+
+
             if (ActionButton.WasJustReleased)
             {
                 if (this.CurrentPosition != MarkerPosition.Center)
