@@ -1,0 +1,879 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EBE46970-B0EF-4151-96F2-92041F649931}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dodgeball</RootNamespace>
+    <AssemblyName>Dodgeball</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;MONOGAME; DESKTOP_GL; XNA4; FRB_XNA</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;MONOGAME; DESKTOP_GL; XNA4; FRB_XNA</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.ActionLogic.cs">
+      <Link>AI\AIController.ActionLogic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.cs">
+      <Link>AI\AIController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.DecisionLogic.cs">
+      <Link>AI\AIController.DecisionLogic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.SimulatedInput.cs">
+      <Link>AI\AIController.SimulatedInput.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Components\ChargeThrow.cs">
+      <Link>Components\ChargeThrow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\DataRuntime\GameStats.cs">
+      <Link>DataRuntime\GameStats.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\DataTypes\TileMapInfo.Generated.cs">
+      <Link>DataTypes\TileMapInfo.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\Ball.cs">
+      <Link>Entities\Ball.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\Ball.Generated.cs">
+      <Link>Entities\Ball.Generated.cs</Link>
+      <DependentUpon>Ball.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\DebuggingVariables.cs">
+      <Link>Entities\DebuggingVariables.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\DebuggingVariables.Generated.cs">
+      <Link>Entities\DebuggingVariables.Generated.cs</Link>
+      <DependentUpon>DebuggingVariables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\Player.cs">
+      <Link>Entities\Player.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\Player.Event.cs">
+      <Link>Entities\Player.Event.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\Player.Generated.cs">
+      <Link>Entities\Player.Generated.cs</Link>
+      <DependentUpon>Player.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\Player.Generated.Event.cs">
+      <Link>Entities\Player.Generated.Event.cs</Link>
+      <DependentUpon>Player.Event.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\SelectionMarker.cs">
+      <Link>Entities\SelectionMarker.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\SelectionMarker.Generated.cs">
+      <Link>Entities\SelectionMarker.Generated.cs</Link>
+      <DependentUpon>SelectionMarker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Game1.cs">
+      <Link>Game1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GlobalContent.Generated.cs">
+      <Link>GlobalContent.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\AnimationFrame.cs">
+      <Link>GumCore\AnimationFrame.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\Atlas.cs">
+      <Link>GumCore\Atlas.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\AtlasedTexture.cs">
+      <Link>GumCore\AtlasedTexture.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\BehaviorReference.cs">
+      <Link>GumCore\BehaviorReference.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\BehaviorSave.cs">
+      <Link>GumCore\BehaviorSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\BitmapCharacterInfo.cs">
+      <Link>GumCore\BitmapCharacterInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\BitmapFont.cs">
+      <Link>GumCore\BitmapFont.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\Blend.cs">
+      <Link>GumCore\Blend.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\BmfcSave.cs">
+      <Link>GumCore\BmfcSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\Camera.cs">
+      <Link>GumCore\Camera.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ComponentSave.cs">
+      <Link>GumCore\ComponentSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ContentManagerWrapper.cs">
+      <Link>GumCore\ContentManagerWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\CustomPropertySave.cs">
+      <Link>GumCore\CustomPropertySave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\DimensionUnitType.cs">
+      <Link>GumCore\DimensionUnitType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ElementBehaviorReference.cs">
+      <Link>GumCore\ElementBehaviorReference.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ElementReference.cs">
+      <Link>GumCore\ElementReference.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ElementSave.cs">
+      <Link>GumCore\ElementSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ElementSaveExtensionMethods.cs">
+      <Link>GumCore\ElementSaveExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ElementSaveExtensions.GumRuntime.cs">
+      <Link>GumCore\ElementSaveExtensions.GumRuntime.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ElementWithState.cs">
+      <Link>GumCore\ElementWithState.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\EventSave.cs">
+      <Link>GumCore\EventSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\FileManager.cs">
+      <Link>GumCore\FileManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\GraphicalUiElement.cs">
+      <Link>GumCore\GraphicalUiElement.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\GraphicalUiElement.IWindow.cs">
+      <Link>GumCore\GraphicalUiElement.IWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\GuideRectangle.cs">
+      <Link>GumCore\GuideRectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\GumAnimation.cs">
+      <Link>GumCore\GumAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\GumIdb.cs">
+      <Link>GumCore\GumIdb.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\GumProjectSave.cs">
+      <Link>GumCore\GumProjectSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\IAnimation.cs">
+      <Link>GumCore\IAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\IContentLoader.cs">
+      <Link>GumCore\IContentLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ImageData.cs">
+      <Link>GumCore\ImageData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\InstanceSave.cs">
+      <Link>GumCore\InstanceSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\InstanceSaveExtensionMethods.cs">
+      <Link>GumCore\InstanceSaveExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\InstanceSaveExtensionMethods.GumRuntime.cs">
+      <Link>GumCore\InstanceSaveExtensionMethods.GumRuntime.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\InvisibleRenderable.cs">
+      <Link>GumCore\InvisibleRenderable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\IPositionedSizedObject.cs">
+      <Link>GumCore\IPositionedSizedObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\IRenderable.cs">
+      <Link>GumCore\IRenderable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\IRenderableIpso.cs">
+      <Link>GumCore\IRenderableIpso.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\IStateContainer.cs">
+      <Link>GumCore\IStateContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\IVariableFinder.cs">
+      <Link>GumCore\IVariableFinder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\IVisible.cs">
+      <Link>GumCore\IVisible.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\Layer.cs">
+      <Link>GumCore\Layer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\LayerCameraSettings.cs">
+      <Link>GumCore\LayerCameraSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\Line.cs">
+      <Link>GumCore\Line.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\LineCircle.cs">
+      <Link>GumCore\LineCircle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\LineGrid.cs">
+      <Link>GumCore\LineGrid.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\LinePrimitive.cs">
+      <Link>GumCore\LinePrimitive.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\LineRectangle.cs">
+      <Link>GumCore\LineRectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\LoaderManager.cs">
+      <Link>GumCore\LoaderManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\MathFunctions.cs">
+      <Link>GumCore\MathFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\NamedRectangle.cs">
+      <Link>GumCore\NamedRectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\NineSlice.cs">
+      <Link>GumCore\NineSlice.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ObjectFinder.cs">
+      <Link>GumCore\ObjectFinder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\PlatformCompatability.cs">
+      <Link>GumCore\PlatformCompatability.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\RecursiveVariableFinder.cs">
+      <Link>GumCore\RecursiveVariableFinder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ReflectionManager.cs">
+      <Link>GumCore\ReflectionManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\Renderer.cs">
+      <Link>GumCore\Renderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ScreenSave.cs">
+      <Link>GumCore\ScreenSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\ShapeManager.cs">
+      <Link>GumCore\ShapeManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\SolidRectangle.cs">
+      <Link>GumCore\SolidRectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\SortableLayer.cs">
+      <Link>GumCore\SortableLayer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\Sprite.cs">
+      <Link>GumCore\Sprite.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\SpriteBatchStack.cs">
+      <Link>GumCore\SpriteBatchStack.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\SpriteManager.cs">
+      <Link>GumCore\SpriteManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\SpriteRenderer.cs">
+      <Link>GumCore\SpriteRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\StandardElementSave.cs">
+      <Link>GumCore\StandardElementSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\StandardElementsManager.cs">
+      <Link>GumCore\StandardElementsManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\StateSave.cs">
+      <Link>GumCore\StateSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\StateSaveCategory.cs">
+      <Link>GumCore\StateSaveCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\StateSaveExtensionMethods.cs">
+      <Link>GumCore\StateSaveExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\StringFunctions.cs">
+      <Link>GumCore\StringFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\SystemManagers.cs">
+      <Link>GumCore\SystemManagers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\SystemManagers.FlatRedBall.cs">
+      <Link>GumCore\SystemManagers.FlatRedBall.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\Text.cs">
+      <Link>GumCore\Text.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\TextManager.cs">
+      <Link>GumCore\TextManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\TextureFlipAnimation.cs">
+      <Link>GumCore\TextureFlipAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\TimedSpriteSheetAnimation.cs">
+      <Link>GumCore\TimedSpriteSheetAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\UnitConverter.cs">
+      <Link>GumCore\UnitConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\VariableListSave.cs">
+      <Link>GumCore\VariableListSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\VariableSave.cs">
+      <Link>GumCore\VariableSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\VariableSaveExtensionMethods.cs">
+      <Link>GumCore\VariableSaveExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\ActiveMarkerRuntime.Generated.cs">
+      <Link>GumRuntimes\ActiveMarkerRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\CharacterSelectScreenGumRuntime.Generated.cs">
+      <Link>GumRuntimes\CharacterSelectScreenGumRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\CircleRuntime.Generated.cs">
+      <Link>GumRuntimes\CircleRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\ColoredRectangleRuntime.Generated.cs">
+      <Link>GumRuntimes\ColoredRectangleRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\ContainerRuntime.Generated.cs">
+      <Link>GumRuntimes\ContainerRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\EnergyBarRuntime.Generated.cs">
+      <Link>GumRuntimes\EnergyBarRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\GameScreenGumRuntime.Generated.cs">
+      <Link>GumRuntimes\GameScreenGumRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\GumIdb.Generated.cs">
+      <Link>GumRuntimes\GumIdb.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\HealthBarRuntime.Generated.cs">
+      <Link>GumRuntimes\HealthBarRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\NineSliceRuntime.Generated.cs">
+      <Link>GumRuntimes\NineSliceRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\RectangleRuntime.Generated.cs">
+      <Link>GumRuntimes\RectangleRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SpriteRuntime.Generated.cs">
+      <Link>GumRuntimes\SpriteRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\TeamSelectionBoxesRuntime.Generated.cs">
+      <Link>GumRuntimes\TeamSelectionBoxesRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\TextRuntime.Generated.cs">
+      <Link>GumRuntimes\TextRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\ThrowChargeMeterRuntime.cs">
+      <Link>GumRuntimes\ThrowChargeMeterRuntime.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\ThrowChargeMeterRuntime.Generated.cs">
+      <Link>GumRuntimes\ThrowChargeMeterRuntime.Generated.cs</Link>
+      <DependentUpon>ThrowChargeMeterRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\TitleScreenGumRuntime.Generated.cs">
+      <Link>GumRuntimes\TitleScreenGumRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\WorldComponentRuntime.cs">
+      <Link>GumRuntimes\WorldComponentRuntime.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\WorldComponentRuntime.Generated.cs">
+      <Link>GumRuntimes\WorldComponentRuntime.Generated.cs</Link>
+      <DependentUpon>WorldComponentRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\WrapUpScreenGumRuntime.Generated.cs">
+      <Link>GumRuntimes\WrapUpScreenGumRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Performance\IEntityFactory.Generated.cs">
+      <Link>Performance\IEntityFactory.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Performance\PoolList.Generated.cs">
+      <Link>Performance\PoolList.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Screens\CharacterSelectScreen.cs">
+      <Link>Screens\CharacterSelectScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Screens\CharacterSelectScreen.Generated.cs">
+      <Link>Screens\CharacterSelectScreen.Generated.cs</Link>
+      <DependentUpon>CharacterSelectScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Screens\GameScreen.cs">
+      <Link>Screens\GameScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Screens\GameScreen.Generated.cs">
+      <Link>Screens\GameScreen.Generated.cs</Link>
+      <DependentUpon>GameScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Screens\TitleScreen.cs">
+      <Link>Screens\TitleScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Screens\TitleScreen.Generated.cs">
+      <Link>Screens\TitleScreen.Generated.cs</Link>
+      <DependentUpon>TitleScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Screens\WrapUpScreen.cs">
+      <Link>Screens\WrapUpScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Screens\WrapUpScreen.Generated.cs">
+      <Link>Screens\WrapUpScreen.Generated.cs</Link>
+      <DependentUpon>WrapUpScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Setup\CameraSetup.cs">
+      <Link>Setup\CameraSetup.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Back.cs">
+      <Link>StateInterpolation\Back.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Bounce.cs">
+      <Link>StateInterpolation\Bounce.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Circular.cs">
+      <Link>StateInterpolation\Circular.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Cubic.cs">
+      <Link>StateInterpolation\Cubic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Elastic.cs">
+      <Link>StateInterpolation\Elastic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Exponential.cs">
+      <Link>StateInterpolation\Exponential.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Instant.cs">
+      <Link>StateInterpolation\Instant.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Linear.cs">
+      <Link>StateInterpolation\Linear.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Quadratic.cs">
+      <Link>StateInterpolation\Quadratic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Quartic.cs">
+      <Link>StateInterpolation\Quartic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Quintic.cs">
+      <Link>StateInterpolation\Quintic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\ShakeTweener.cs">
+      <Link>StateInterpolation\ShakeTweener.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Sinusoidal.cs">
+      <Link>StateInterpolation\Sinusoidal.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\Tweener.cs">
+      <Link>StateInterpolation\Tweener.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\StateInterpolation\TweenerManager.cs">
+      <Link>StateInterpolation\TweenerManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileCollisions\TileShapeCollection.cs">
+      <Link>TileCollisions\TileShapeCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileEntities\TileEntityInstantiator.cs">
+      <Link>TileEntities\TileEntityInstantiator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\AbstractMapLayer.cs">
+      <Link>TileGraphics\AbstractMapLayer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\AnimationChainContainer.cs">
+      <Link>TileGraphics\AnimationChainContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\ExternalTileset.cs">
+      <Link>TileGraphics\ExternalTileset.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\LayeredTileMap.cs">
+      <Link>TileGraphics\LayeredTileMap.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\LayeredTileMapAnimation.cs">
+      <Link>TileGraphics\LayeredTileMapAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\MapDrawableBatch.cs">
+      <Link>TileGraphics\MapDrawableBatch.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\MapLayer.cs">
+      <Link>TileGraphics\MapLayer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\MapTileset.cs">
+      <Link>TileGraphics\MapTileset.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\MapTilesetTile.cs">
+      <Link>TileGraphics\MapTilesetTile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\NamedValue.cs">
+      <Link>TileGraphics\NamedValue.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\ReducedTileMapInfo.cs">
+      <Link>TileGraphics\ReducedTileMapInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\ReducedTileMapInfo.TiledMapSave.cs">
+      <Link>TileGraphics\ReducedTileMapInfo.TiledMapSave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\TileAnimation.cs">
+      <Link>TileGraphics\TileAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\TileAnimationFrame.cs">
+      <Link>TileGraphics\TileAnimationFrame.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\TiledMapSave.Conversion.cs">
+      <Link>TileGraphics\TiledMapSave.Conversion.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\TiledMapSave.Serialization.cs">
+      <Link>TileGraphics\TiledMapSave.Serialization.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\TiledMapToShapeCollectionConverter.cs">
+      <Link>TileGraphics\TiledMapToShapeCollectionConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\TileNodeNetworkCreator.cs">
+      <Link>TileGraphics\TileNodeNetworkCreator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\Tileset.cs">
+      <Link>TileGraphics\Tileset.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\TilesetExtensionMethods.cs">
+      <Link>TileGraphics\TilesetExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FlatRedBallDesktopGL, Version=2016.3.17.461, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\DesktopGl\Debug\FlatRedBallDesktopGL.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\DesktopGl\Debug\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\DesktopGl\Debug\NVorbis.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\DesktopGl\Debug\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MonoGame.Framework.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libopenal.1.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libSDL2-2.0.0.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_bounce.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_bounce</Name>
+      <Link>Content\GlobalContent\Sounds\ball_bounce.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_wall_bounce.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_wall_bounce</Name>
+      <Link>Content\GlobalContent\Sounds\ball_wall_bounce.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_dodge.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_dodge</Name>
+      <Link>Content\GlobalContent\Sounds\player_dodge.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_hit</Name>
+      <Link>Content\GlobalContent\Sounds\player_hit.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\texturefile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TextureFile</Name>
+      <Link>content\entities\ball\texturefile.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\player\animationchainlistfile.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AnimationChainListFile</Name>
+      <Link>content\entities\player\animationchainlistfile.achx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\player\playeranimationsheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayerAnimationSheet</Name>
+      <Link>content\entities\player\playeranimationsheet.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\activemarker.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ActiveMarker</Name>
+      <Link>content\gumproject\components\activemarker.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\energybar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>EnergyBar</Name>
+      <Link>content\gumproject\components\energybar.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\healthbar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>HealthBar</Name>
+      <Link>content\gumproject\components\healthbar.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\teamselectionboxes.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TeamSelectionBoxes</Name>
+      <Link>content\gumproject\components\teamselectionboxes.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\throwchargemeter.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ThrowChargeMeter</Name>
+      <Link>content\gumproject\components\throwchargemeter.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\worldcomponent.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WorldComponent</Name>
+      <Link>content\gumproject\components\worldcomponent.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font18arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Arial</Name>
+      <Link>content\gumproject\fontcache\font18arial.fnt</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font18arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Arial_0</Name>
+      <Link>content\gumproject\fontcache\font18arial_0.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font32arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font32Arial</Name>
+      <Link>content\gumproject\fontcache\font32arial.fnt</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font32arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font32Arial_0</Name>
+      <Link>content\gumproject\fontcache\font32arial_0.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial</Name>
+      <Link>content\gumproject\fontcache\font72arial.fnt</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_0</Name>
+      <Link>content\gumproject\fontcache\font72arial_0.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_1</Name>
+      <Link>content\gumproject\fontcache\font72arial_1.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_2</Name>
+      <Link>content\gumproject\fontcache\font72arial_2.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\gumproject.gumx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GumProject</Name>
+      <Link>content\gumproject\gumproject.gumx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\playingfield.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayingField</Name>
+      <Link>content\gumproject\playingfield.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\screens\characterselectscreengum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>CharacterSelectScreenGum</Name>
+      <Link>content\gumproject\screens\characterselectscreengum.gusx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\screens\gamescreengum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GameScreenGum</Name>
+      <Link>content\gumproject\screens\gamescreengum.gusx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\screens\titlescreengum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TitleScreenGum</Name>
+      <Link>content\gumproject\screens\titlescreengum.gusx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\screens\wrapupscreengum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WRapUpScreenGum</Name>
+      <Link>content\gumproject\screens\wrapupscreengum.gusx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\circle.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Circle</Name>
+      <Link>content\gumproject\standards\circle.gutx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\coloredrectangle.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ColoredRectangle</Name>
+      <Link>content\gumproject\standards\coloredrectangle.gutx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\component.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Component</Name>
+      <Link>content\gumproject\standards\component.gutx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\container.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Container</Name>
+      <Link>content\gumproject\standards\container.gutx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\nineslice.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>NineSlice</Name>
+      <Link>content\gumproject\standards\nineslice.gutx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\rectangle.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Rectangle</Name>
+      <Link>content\gumproject\standards\rectangle.gutx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\sprite.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Sprite</Name>
+      <Link>content\gumproject\standards\sprite.gutx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\standardgraphics\red_bottomcenter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_bottomCenter</Name>
+      <Link>content\gumproject\standards\standardgraphics\red_bottomcenter.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\standardgraphics\red_bottomleft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_bottomLeft</Name>
+      <Link>content\gumproject\standards\standardgraphics\red_bottomleft.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\standardgraphics\red_bottomright.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_bottomRight</Name>
+      <Link>content\gumproject\standards\standardgraphics\red_bottomright.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\standardgraphics\red_center.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_center</Name>
+      <Link>content\gumproject\standards\standardgraphics\red_center.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\standardgraphics\red_left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_left</Name>
+      <Link>content\gumproject\standards\standardgraphics\red_left.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\standardgraphics\red_right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_right</Name>
+      <Link>content\gumproject\standards\standardgraphics\red_right.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\standardgraphics\red_topcenter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_topCenter</Name>
+      <Link>content\gumproject\standards\standardgraphics\red_topcenter.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\standardgraphics\red_topleft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_topLeft</Name>
+      <Link>content\gumproject\standards\standardgraphics\red_topleft.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\standardgraphics\red_topright.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_topRight</Name>
+      <Link>content\gumproject\standards\standardgraphics\red_topright.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\text.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Text</Name>
+      <Link>content\gumproject\standards\text.gutx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\yellowgreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>yellowgreen</Name>
+      <Link>content\gumproject\yellowgreen.png</Link>
+    </None>
+    <None Include="x64\SDL2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="x64\soft_oal.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="x86\SDL2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="x86\soft_oal.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Icon.ico" />
+    <None Include="Libraries\DesktopGl\Debug\FlatRedBallDesktopGL.dll" />
+    <None Include="Libraries\DesktopGl\Debug\FlatRedBallDesktopGL.pdb" />
+    <None Include="Libraries\DesktopGl\Debug\Lidgren.Network.dll" />
+    <None Include="Libraries\DesktopGl\Debug\MonoGame.Framework.dll" />
+    <None Include="Libraries\DesktopGl\Debug\MonoGame.Framework.Net.dll" />
+    <None Include="Libraries\DesktopGl\Debug\NVorbis.dll" />
+    <None Include="Libraries\DesktopGl\Debug\OpenTK.dll" />
+    <None Include="Libraries\DesktopGl\Release\FlatRedBallDesktopGL.dll" />
+    <None Include="Libraries\DesktopGl\Release\FlatRedBallDesktopGL.pdb" />
+    <None Include="Libraries\DesktopGl\Release\Lidgren.Network.dll" />
+    <None Include="Libraries\DesktopGl\Release\MonoGame.Framework.dll" />
+    <None Include="Libraries\DesktopGl\Release\MonoGame.Framework.Net.dll" />
+    <None Include="Libraries\DesktopGl\Release\NVorbis.dll" />
+    <None Include="Libraries\DesktopGl\Release\OpenTK.dll" />
+    <Content Include="OpenTK.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="x64\libopenal.so.1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="x64\libSDL2-2.0.so.0">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="x86\libopenal.so.1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="x86\libSDL2-2.0.so.0">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -976,7 +976,9 @@
     <LoadAsynchronously>false</LoadAsynchronously>
     <RecordLockContention>false</RecordLockContention>
   </GlobalContentSettingsSave>
-  <SyncedProjects />
+  <SyncedProjects>
+    <string>../../DesktopGlSync/DesktopGlSync/DesktopGlSync.csproj</string>
+  </SyncedProjects>
   <StartUpScreen>Screens\GameScreen</StartUpScreen>
   <ResolutionPresets />
   <PerformanceSettingsSave>
