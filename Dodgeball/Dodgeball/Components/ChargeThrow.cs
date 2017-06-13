@@ -19,17 +19,15 @@ namespace Dodgeball.Components
         public float LowEndChargeRate { get; set; }
         public float HighEndChargeRate { get; set; }
 
-        private int chargeDirection = 1;
-
         public float EffectiveChargePercent => MeterPercent / MaxValidThrowPercent;
         public bool FailedThrow => MeterPercent > MaxValidThrowPercent;
 
         public void ChargeActivity()
         {
-            MeterPercent += GetCurrentChargeRate() * chargeDirection * TimeManager.SecondDifference;
+            MeterPercent += GetCurrentChargeRate() * TimeManager.SecondDifference;
 
-            //Change direction at top/bottom of charge
-            if (MeterPercent < 0 || MeterPercent > 100) chargeDirection *= -1;
+            //Reset at top of charge
+            if (MeterPercent > 100) MeterPercent = 0;
 
             //Keep charge within bar
             MeterPercent = MathHelper.Clamp(MeterPercent, 0, 100);
