@@ -34,9 +34,11 @@ namespace Dodgeball.Entities
             RightPress = InputManager.Xbox360GamePads[0].GetButton(Xbox360GamePad.Button.DPadRight);
             LeftPress = InputManager.Xbox360GamePads[0].GetButton(Xbox360GamePad.Button.DPadLeft);
 
+            var multipleAction = new MultiplePressableInputs();
+            multipleAction.Inputs.Add(gamePad.GetButton(Xbox360GamePad.Button.RightShoulder));
+            multipleAction.Inputs.Add(gamePad.GetButton(Xbox360GamePad.Button.A));
 
-            ActionButton = gamePad.GetButton(Xbox360GamePad.Button.RightShoulder);
-            ActionButton = gamePad.GetButton(Xbox360GamePad.Button.A);
+            ActionButton = multipleAction;
         }
 
         private void CustomActivity()
