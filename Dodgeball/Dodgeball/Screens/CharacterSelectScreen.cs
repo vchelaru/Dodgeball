@@ -21,15 +21,25 @@ namespace Dodgeball.Screens
 
 		void CustomInitialize()
 		{
+            InitializeInput();
 
+        }
+        private void InitializeInput()
+        {
+           SelectionMarkerInstance0.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+        }
 
-		}
-
-		void CustomActivity(bool firstTimeCalled)
+        void CustomActivity(bool firstTimeCalled)
 		{
-
-
-		}
+            TeamSelectionBoxesInstance.Circle0X = SelectionMarkerInstance0.X;
+            if (SelectionMarkerInstance0.isSelected)
+            {
+                TeamSelectionBoxesInstance.SelectedVisible = true;
+                TeamSelectionBoxesInstance.SelectedX = SelectionMarkerInstance0.X;
+                TeamSelectionBoxesInstance.SelectedY = SelectionMarkerInstance0.Y;
+            }
+                          
+        }
 
 		void CustomDestroy()
 		{

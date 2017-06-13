@@ -145,6 +145,10 @@
     <Compile Include="Entities\Player.Generated.Event.cs">
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\SelectionMarker.cs" />
+    <Compile Include="Entities\SelectionMarker.Generated.cs">
+      <DependentUpon>SelectionMarker.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalContent.Generated.cs" />
     <Compile Include="GumCore\AnimationFrame.cs" />
     <Compile Include="GumCore\Atlas.cs" />

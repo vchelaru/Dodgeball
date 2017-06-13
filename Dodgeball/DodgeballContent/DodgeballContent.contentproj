@@ -89,6 +89,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial_0</Name>
     </None>
+    <None Include="GumProject\FontCache\Font32Arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font32Arial</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font32Arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font32Arial_0</Name>
+    </None>
     <None Include="GumProject\FontCache\Font72Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font72Arial</Name>

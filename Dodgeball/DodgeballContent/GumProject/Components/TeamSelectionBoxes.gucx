@@ -12,32 +12,202 @@
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>CircleInstance.Height</Name>
+      <Name>Circle0.Height</Name>
       <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>CircleInstance.Radius</Name>
+      <Name>Circle0.Radius</Name>
       <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>CircleInstance.Width</Name>
+      <Name>Circle0.Width</Name>
       <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>CircleInstance.X</Name>
+      <Name>Circle0.X</Name>
+      <Value xsi:type="xsd:float">900</Value>
+      <ExposedAsName>Circle0X</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle0.Y</Name>
+      <Value xsi:type="xsd:float">200</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle1.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle1.Width</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle1.X</Name>
+      <Value xsi:type="xsd:float">900</Value>
+      <ExposedAsName>Circle1X</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle1.Y</Name>
+      <Value xsi:type="xsd:float">305</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle3.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle3.Width</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle3.X</Name>
       <Value xsi:type="xsd:float">900</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>CircleInstance.Y</Name>
-      <Value xsi:type="xsd:float">200</Value>
+      <Name>Circle3.Y</Name>
+      <Value xsi:type="xsd:float">515</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle4.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle4.Width</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle4.X</Name>
+      <Value xsi:type="xsd:float">900</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle4.Y</Name>
+      <Value xsi:type="xsd:float">620</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle5.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle5.Width</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle5.X</Name>
+      <Value xsi:type="xsd:float">900</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle5.Y</Name>
+      <Value xsi:type="xsd:float">725</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle6.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle6.Width</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle6.X</Name>
+      <Value xsi:type="xsd:float">900</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle6.Y</Name>
+      <Value xsi:type="xsd:float">830</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle7.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle7.Width</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle7.X</Name>
+      <Value xsi:type="xsd:float">900</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Circle7.Y</Name>
+      <Value xsi:type="xsd:float">935</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>CircleI2.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>CircleI2.Width</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>CircleI2.X</Name>
+      <Value xsi:type="xsd:float">900</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>CircleI2.Y</Name>
+      <Value xsi:type="xsd:float">410</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -47,9 +217,27 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>int</Type>
+      <Name>ColoredRectangleInstance.Blue</Name>
+      <Value xsi:type="xsd:int">128</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ColoredRectangleInstance.Green</Name>
+      <Value xsi:type="xsd:int">128</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>ColoredRectangleInstance.Height</Name>
-      <Value xsi:type="xsd:float">800</Value>
+      <Value xsi:type="xsd:float">880</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ColoredRectangleInstance.Red</Name>
+      <Value xsi:type="xsd:int">128</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -61,19 +249,62 @@
     <Variable>
       <Type>float</Type>
       <Name>ColoredRectangleInstance.X</Name>
-      <Value xsi:type="xsd:float">220</Value>
+      <Value xsi:type="xsd:float">-626</Value>
+      <ExposedAsName>ColoredRectangleInstanceX</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>ColoredRectangleInstance.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>ColoredRectangleInstance.X Units</Name>
+      <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
       <Name>ColoredRectangleInstance.Y</Name>
-      <Value xsi:type="xsd:float">160</Value>
+      <Value xsi:type="xsd:float">-503.424255</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>ColoredRectangleInstance.Y Origin</Name>
+      <Value xsi:type="xsd:int">2</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>ColoredRectangleInstance.Y Units</Name>
+      <Value xsi:type="xsd:int">8</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ColoredRectangleInstance1.Blue</Name>
+      <Value xsi:type="xsd:int">128</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ColoredRectangleInstance1.Green</Name>
+      <Value xsi:type="xsd:int">128</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
       <Name>ColoredRectangleInstance1.Height</Name>
-      <Value xsi:type="xsd:float">800</Value>
+      <Value xsi:type="xsd:float">880</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ColoredRectangleInstance1.Red</Name>
+      <Value xsi:type="xsd:int">128</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -134,14 +365,101 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>int</Type>
+      <Name>Selected.Blue</Name>
+      <Value xsi:type="xsd:int">226</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>Selected.FontSize</Name>
+      <Value xsi:type="xsd:int">32</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>Selected.Green</Name>
+      <Value xsi:type="xsd:int">43</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Selected.Height</Name>
+      <Value xsi:type="xsd:float">53</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>Selected.Red</Name>
+      <Value xsi:type="xsd:int">138</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>Selected.Text</Name>
+      <Value xsi:type="xsd:string">Selected</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>Selected.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <ExposedAsName>SelectedVisible</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Selected.X</Name>
+      <Value xsi:type="xsd:float">34</Value>
+      <ExposedAsName>SelectedX</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>Selected.X Units</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Selected.Y</Name>
+      <Value xsi:type="xsd:float">487</Value>
+      <ExposedAsName>SelectedY</ExposedAsName>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>Selected.Y Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>State</Type>
       <Name>State</Name>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
+      <Name>TextInstance.Blue</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
       <Name>TextInstance.FontSize</Name>
       <Value xsi:type="xsd:int">72</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>TextInstance.Green</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>TextInstance.Red</Name>
+      <Value xsi:type="xsd:int">255</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -170,8 +488,26 @@
     </Variable>
     <Variable>
       <Type>int</Type>
+      <Name>TextInstance1.Blue</Name>
+      <Value xsi:type="xsd:int">255</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
       <Name>TextInstance1.FontSize</Name>
       <Value xsi:type="xsd:int">72</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>TextInstance1.Green</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>TextInstance1.Red</Name>
+      <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -284,8 +620,40 @@
     <BaseType>Text</BaseType>
   </Instance>
   <Instance>
-    <Name>CircleInstance</Name>
+    <Name>Circle0</Name>
     <BaseType>Circle</BaseType>
+  </Instance>
+  <Instance>
+    <Name>Circle1</Name>
+    <BaseType>Circle</BaseType>
+  </Instance>
+  <Instance>
+    <Name>CircleI2</Name>
+    <BaseType>Circle</BaseType>
+  </Instance>
+  <Instance>
+    <Name>Circle3</Name>
+    <BaseType>Circle</BaseType>
+  </Instance>
+  <Instance>
+    <Name>Circle4</Name>
+    <BaseType>Circle</BaseType>
+  </Instance>
+  <Instance>
+    <Name>Circle5</Name>
+    <BaseType>Circle</BaseType>
+  </Instance>
+  <Instance>
+    <Name>Circle6</Name>
+    <BaseType>Circle</BaseType>
+  </Instance>
+  <Instance>
+    <Name>Circle7</Name>
+    <BaseType>Circle</BaseType>
+  </Instance>
+  <Instance>
+    <Name>Selected</Name>
+    <BaseType>Text</BaseType>
   </Instance>
   <Behaviors />
 </ComponentSave>
