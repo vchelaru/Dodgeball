@@ -60,7 +60,15 @@ namespace Dodgeball.Screens
 
         private void InitializeInput()
         {
-            Player1.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+            if(InputManager.NumberOfConnectedGamePads != 0)
+            {
+                Player1.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+            }
+            else
+            {
+                Player1.InitializeKeyboardControls();
+            }
+
         }
 
         #endregion
@@ -212,7 +220,14 @@ namespace Dodgeball.Screens
                     playerToClear.ClearInput();
                 }
 
-                player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+                if(InputManager.NumberOfConnectedGamePads != 0)
+                {
+                    player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+                }
+                else
+                {
+                    Player1.InitializeKeyboardControls();
+                }
             }
             #endif
 
