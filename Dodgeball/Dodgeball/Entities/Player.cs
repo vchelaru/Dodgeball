@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using RenderingLibrary;
 using Dodgeball.Components;
+using Microsoft.Xna.Framework.Input;
 
 namespace Dodgeball.Entities
 {
@@ -97,11 +98,21 @@ namespace Dodgeball.Entities
             chargeThrowComponent.HighEndChargeRate = HighEndChargeRate;
         }
 
+        public void InitializeKeyboardControls()
+        {
+            var keyboard = InputManager.Keyboard;
+
+            MovementInput = keyboard.Get2DInput(Keys.Left, Keys.Right, Keys.Up, Keys.Down);
+            ActionButton = keyboard.GetKey(Keys.Space);
+
+            AimingInput = keyboard.Get2DInput(Keys.J, Keys.L, Keys.I, Keys.K);
+
+            TauntButton = keyboard.GetKey(Keys.T);
+
+        }
+
         public void InitializeXbox360Controls(Xbox360GamePad gamePad)
         {
-            this.ActiveMarkerRuntimeInstance.Visible = true;
-            this.EnergyBarRuntimeInstance.Visible = true;
-
             var movementLocal = new Multiple2DInputs();
             movementLocal.Inputs.Add(gamePad.LeftStick);
             movementLocal.Inputs.Add(gamePad.DPad);
@@ -293,7 +304,14 @@ namespace Dodgeball.Entities
                 if (DebuggingVariables.PlayerAlwaysControlsBallholder)
                 {
                     this.ClearInput();
-                    targetPlayer.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+                    if(InputManager.NumberOfConnectedGamePads != 0)
+                    {
+                        targetPlayer.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+                    }
+                    else
+                    {
+                        targetPlayer.InitializeKeyboardControls();
+                    }
                 }
 #endif
             }
