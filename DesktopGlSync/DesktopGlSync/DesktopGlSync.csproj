@@ -41,15 +41,18 @@
   <ItemGroup>
     <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.ActionLogic.cs">
       <Link>AI\AIController.ActionLogic.cs</Link>
+      <DependentUpon>AIController.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.cs">
       <Link>AI\AIController.cs</Link>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.DecisionLogic.cs">
       <Link>AI\AIController.DecisionLogic.cs</Link>
+      <DependentUpon>AIController.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.SimulatedInput.cs">
       <Link>AI\AIController.SimulatedInput.cs</Link>
+      <DependentUpon>AIController.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Components\ChargeThrow.cs">
       <Link>Components\ChargeThrow.cs</Link>
@@ -79,6 +82,7 @@
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Entities\Player.Event.cs">
       <Link>Entities\Player.Event.cs</Link>
+      <DependentUpon>Player.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Entities\Player.Generated.cs">
       <Link>Entities\Player.Generated.cs</Link>
@@ -86,7 +90,7 @@
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Entities\Player.Generated.Event.cs">
       <Link>Entities\Player.Generated.Event.cs</Link>
-      <DependentUpon>Player.Event.cs</DependentUpon>
+      <DependentUpon>Player.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Entities\SelectionMarker.cs">
       <Link>Entities\SelectionMarker.cs</Link>
@@ -172,6 +176,7 @@
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\GraphicalUiElement.IWindow.cs">
       <Link>GumCore\GraphicalUiElement.IWindow.cs</Link>
+      <DependentUpon>GraphicalUiElement.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\GuideRectangle.cs">
       <Link>GumCore\GuideRectangle.cs</Link>
@@ -202,6 +207,7 @@
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\InstanceSaveExtensionMethods.GumRuntime.cs">
       <Link>GumCore\InstanceSaveExtensionMethods.GumRuntime.cs</Link>
+      <DependentUpon>InstanceSaveExtensionMethods.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\InvisibleRenderable.cs">
       <Link>GumCore\InvisibleRenderable.cs</Link>
@@ -319,6 +325,7 @@
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\SystemManagers.FlatRedBall.cs">
       <Link>GumCore\SystemManagers.FlatRedBall.cs</Link>
+      <DependentUpon>SystemManagers.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\Text.cs">
       <Link>GumCore\Text.cs</Link>
@@ -529,6 +536,7 @@
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\ReducedTileMapInfo.TiledMapSave.cs">
       <Link>TileGraphics\ReducedTileMapInfo.TiledMapSave.cs</Link>
+      <DependentUpon>ReducedTileMapInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\TileGraphics\TileAnimation.cs">
       <Link>TileGraphics\TileAnimation.cs</Link>
@@ -611,6 +619,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>player_hit</Name>
       <Link>Content\GlobalContent\Sounds\player_hit.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\animationchainball.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AnimationChainBall</Name>
+      <Link>content\entities\ball\animationchainball.achx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\ballfast.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BallFast</Name>
+      <Link>content\entities\ball\ballfast.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\ballslow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BallSlow</Name>
+      <Link>content\entities\ball\ballslow.png</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\texturefile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

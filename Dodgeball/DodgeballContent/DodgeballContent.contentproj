@@ -45,6 +45,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Entities\Ball\AnimationChainBall.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AnimationChainBall</Name>
+    </None>
+    <None Include="Entities\Ball\BallFast.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BallFast</Name>
+    </None>
+    <None Include="Entities\Ball\BallSlow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BallSlow</Name>
+    </None>
     <None Include="Entities\Ball\TextureFile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TextureFile</Name>
