@@ -635,11 +635,6 @@
       <Name>BallSlow</Name>
       <Link>content\entities\ball\ballslow.png</Link>
     </None>
-    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\texturefile.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>TextureFile</Name>
-      <Link>content\entities\ball\texturefile.png</Link>
-    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\entities\player\animationchainlistfile.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AnimationChainListFile</Name>
