@@ -92,13 +92,6 @@
       <Link>Entities\Player.Generated.Event.cs</Link>
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\SelectionMarker.cs">
-      <Link>Entities\SelectionMarker.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\SelectionMarker.Generated.cs">
-      <Link>Entities\SelectionMarker.Generated.cs</Link>
-      <DependentUpon>SelectionMarker.cs</DependentUpon>
-    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Game1.cs">
       <Link>Game1.cs</Link>
     </Compile>
