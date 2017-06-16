@@ -45,9 +45,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Entities\Ball\TextureFile.png">
+    <None Include="Entities\Ball\AnimationChainBall.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>TextureFile</Name>
+      <Name>AnimationChainBall</Name>
+    </None>
+    <None Include="Entities\Ball\BallFast.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BallFast</Name>
+    </None>
+    <None Include="Entities\Ball\BallSlow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BallSlow</Name>
     </None>
     <None Include="Entities\Player\AnimationChainListFile.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -88,14 +96,6 @@
     <None Include="GumProject\FontCache\Font18Arial_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial_0</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font32Arial.fnt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font32Arial</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font32Arial_0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font32Arial_0</Name>
     </None>
     <None Include="GumProject\FontCache\Font72Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

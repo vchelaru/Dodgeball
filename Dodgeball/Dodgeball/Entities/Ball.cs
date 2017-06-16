@@ -93,7 +93,22 @@ namespace Dodgeball.Entities
 		{
             PerformFallingAndBouncingActivity();
 		    UpdateTrajectoryRotation();
+		    SetAnimation();
 		}
+
+	    private void SetAnimation()
+	    {
+	        if (CurrentOwnershipState == OwnershipState.Thrown && Velocity.X >= 2000)
+	        {
+	            SpriteInstance.CurrentChainName = "FastBall";
+	        }
+	        else
+	        {
+	            SpriteInstance.CurrentChainName = "SlowBall";
+            }
+
+	        SpriteInstance.Visible = CurrentOwnershipState != OwnershipState.Held;
+	    }
 
 	    private void UpdateTrajectoryRotation()
 	    {

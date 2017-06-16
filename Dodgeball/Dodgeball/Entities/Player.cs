@@ -437,20 +437,12 @@ namespace Dodgeball.Entities
 
 	            if (MovementInput?.X != 0 || MovementInput?.Y != 0)
 	            {
-	                if (IsHoldingBall)
-	                {
-	                    SpriteInstance.SetAnimationChain(("RunHold"));
-	                }
-	                else
-	                {
-	                    SpriteInstance.SetAnimationChain("Run");
-                    }
-
+	                SpriteInstance.CurrentChainName = IsHoldingBall ? "RunHold" : "Run";
 	                SpriteInstance.FlipHorizontal = Velocity.X > 0;
 	            }
 	            else
 	            {
-	                SpriteInstance.SetAnimationChain("Idle");
+	                SpriteInstance.CurrentChainName = IsHoldingBall ? "IdleHold" : "Idle";
 	                SpriteInstance.FlipHorizontal = TeamIndex == 0;
 	            }
 	        }
