@@ -64,6 +64,26 @@
         <NamedObjectSave>
           <SourceType>File</SourceType>
           <SourceFile>GumProject/Screens/GameScreenGum.gusx</SourceFile>
+          <SourceName>PlayersRemaingTextTeam1 (Dodgeball.GumRuntimes.TextRuntime)</SourceName>
+          <InstanceName>PlayersRemaingTextTeam1</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+          <LayerOn>UILayer</LayerOn>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/GameScreenGum.gusx</SourceFile>
+          <SourceName>PlayersRemaingTextTeam2 (Dodgeball.GumRuntimes.TextRuntime)</SourceName>
+          <InstanceName>PlayersRemaingTextTeam2</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+          <LayerOn>UILayer</LayerOn>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>GumProject/Screens/GameScreenGum.gusx</SourceFile>
           <SourceName>PlaceHolderBackground (Dodgeball.GumRuntimes.SpriteRuntime)</SourceName>
           <InstanceName>PlaceHolderBackground</InstanceName>
           <AttachToContainer>true</AttachToContainer>
@@ -93,6 +113,18 @@
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IncludeInICollidable>false</IncludeInICollidable>
           <IndependentOfCamera>true</IndependentOfCamera>
+          <Is2D>true</Is2D>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>FlatRedBallType</SourceType>
+          <SourceFile />
+          <SourceName />
+          <SourceClassType>Layer</SourceClassType>
+          <InstanceName>UILayer</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+          <LayerOn>GameLayer</LayerOn>
           <Is2D>true</Is2D>
         </NamedObjectSave>
         <NamedObjectSave>

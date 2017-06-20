@@ -620,6 +620,21 @@
       <Name>player_hit</Name>
       <Link>Content\GlobalContent\Sounds\player_hit.xnb</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\animationchainball.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AnimationChainBall</Name>
+      <Link>content\entities\ball\animationchainball.achx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\ballfast.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BallFast</Name>
+      <Link>content\entities\ball\ballfast.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\ballslow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BallSlow</Name>
+      <Link>content\entities\ball\ballslow.png</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\texturefile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TextureFile</Name>
@@ -634,6 +649,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PlayerAnimationSheet</Name>
       <Link>content\entities\player\playeranimationsheet.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\backgroundtemphd.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BackgroundTempHD</Name>
+      <Link>content\gumproject\backgroundtemphd.jpg</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\activemarker.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
