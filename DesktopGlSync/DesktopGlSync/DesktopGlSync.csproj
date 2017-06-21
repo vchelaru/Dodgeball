@@ -92,6 +92,13 @@
       <Link>Entities\Player.Generated.Event.cs</Link>
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\SelectionMarker.cs">
+      <Link>Entities\SelectionMarker.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Entities\SelectionMarker.Generated.cs">
+      <Link>Entities\SelectionMarker.Generated.cs</Link>
+      <DependentUpon>SelectionMarker.cs</DependentUpon>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Game1.cs">
       <Link>Game1.cs</Link>
     </Compile>
@@ -637,6 +644,11 @@
       <Name>BallSlow</Name>
       <Link>content\entities\ball\ballslow.png</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\texturefile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TextureFile</Name>
+      <Link>content\entities\ball\texturefile.png</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\entities\player\animationchainlistfile.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AnimationChainListFile</Name>
@@ -646,6 +658,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PlayerAnimationSheet</Name>
       <Link>content\entities\player\playeranimationsheet.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\backgroundtemphd.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BackgroundTempHD</Name>
+      <Link>content\gumproject\backgroundtemphd.jpg</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\activemarker.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
