@@ -27,6 +27,8 @@ namespace Dodgeball.Screens
 
 	    private float PlayAreaTop => -WorldComponentInstance.PlayArea.Y + (FlatRedBall.Camera.Main.OrthogonalHeight/2);
 	    private float PlayAreaBottom => PlayAreaTop - WorldComponentInstance.PlayArea.Height;
+        private int Team1Players = 4;
+        private int Team2Players = 4;
 
         #region Initialize
 
@@ -80,6 +82,8 @@ namespace Dodgeball.Screens
             CollisionActivity();
 
 		    AIActivity();
+
+            CheckForPlayersOut();
 
             CheckForEndOfGame();
 
@@ -233,7 +237,23 @@ namespace Dodgeball.Screens
 
             player.PickUpBall(BallInstance);
         }
-
+        private void CheckForPlayersOut()
+        {
+            if(PlayerList.Count(item => item.TeamIndex == 1) < Team2Players)
+            {
+                Team2Players--;
+                PlayersRemaingTextTeam2.Text = $"{Team2Players} Players Remaing";
+                PlayersRemaingTextTeam2.Visible = true;
+                this.Call(() => PlayersRemaingTextTeam2.Visible = false).After(2);             
+            }
+            if (PlayerList.Count(item => item.TeamIndex == 0) < Team1Players)
+            {
+                Team1Players--;
+                PlayersRemaingTextTeam1.Text = $"{Team1Players} Players Remaing";
+                PlayersRemaingTextTeam1.Visible = true;
+                this.Call(() => PlayersRemaingTextTeam1.Visible = false).After(2);               
+            }
+        }
         private void CheckForEndOfGame()
         {
             bool didTeam0Win = !PlayerList.Any(item => item.TeamIndex == 1);

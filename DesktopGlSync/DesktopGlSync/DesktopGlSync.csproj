@@ -381,8 +381,17 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\NineSliceRuntime.Generated.cs">
       <Link>GumRuntimes\NineSliceRuntime.Generated.cs</Link>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\PlayButtonRuntime.Generated.cs">
+      <Link>GumRuntimes\PlayButtonRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\QuitButtonRuntime.Generated.cs">
+      <Link>GumRuntimes\QuitButtonRuntime.Generated.cs</Link>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\RectangleRuntime.Generated.cs">
       <Link>GumRuntimes\RectangleRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SettingsButtonRuntime.Generated.cs">
+      <Link>GumRuntimes\SettingsButtonRuntime.Generated.cs</Link>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SpriteRuntime.Generated.cs">
       <Link>GumRuntimes\SpriteRuntime.Generated.cs</Link>
@@ -650,6 +659,11 @@
       <Name>PlayerAnimationSheet</Name>
       <Link>content\entities\player\playeranimationsheet.png</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\backgroundtemphd.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BackgroundTempHD</Name>
+      <Link>content\gumproject\backgroundtemphd.jpg</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\activemarker.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ActiveMarker</Name>
@@ -665,6 +679,21 @@
       <Name>HealthBar</Name>
       <Link>content\gumproject\components\healthbar.gucx</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\playbutton.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayButton</Name>
+      <Link>content\gumproject\components\playbutton.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\quitbutton.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>QuitButton</Name>
+      <Link>content\gumproject\components\quitbutton.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\settingsbutton.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsButton</Name>
+      <Link>content\gumproject\components\settingsbutton.gucx</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\teamselectionboxes.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TeamSelectionBoxes</Name>
@@ -679,6 +708,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WorldComponent</Name>
       <Link>content\gumproject\components\worldcomponent.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\dodgeballlogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>DodgeballLogo</Name>
+      <Link>content\gumproject\dodgeballlogo.png</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font18arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -730,6 +764,26 @@
       <Name>PlayingField</Name>
       <Link>content\gumproject\playingfield.png</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\playoff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayOff</Name>
+      <Link>content\gumproject\playoff.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\playon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayOn</Name>
+      <Link>content\gumproject\playon.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\quitoff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>QuitOff</Name>
+      <Link>content\gumproject\quitoff.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\quiton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>QuitOn</Name>
+      <Link>content\gumproject\quiton.png</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\screens\characterselectscreengum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>CharacterSelectScreenGum</Name>
@@ -749,6 +803,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WRapUpScreenGum</Name>
       <Link>content\gumproject\screens\wrapupscreengum.gusx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\settingsoff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsOff</Name>
+      <Link>content\gumproject\settingsoff.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\settingson.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsOn</Name>
+      <Link>content\gumproject\settingson.png</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\standards\circle.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -834,6 +898,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Text</Name>
       <Link>content\gumproject\standards\text.gutx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\titlescreenbackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TitleScreenBackground</Name>
+      <Link>content\gumproject\titlescreenbackground.jpg</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\yellowgreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
