@@ -34,6 +34,11 @@
       <Value xsi:type="xsd:float">13</Value>
       <SetsValue>true</SetsValue>
     </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>PlaceHolderBackground.Parent</Name>
+      <SetsValue>true</SetsValue>
+    </Variable>
   </State>
   <Instance>
     <Name>PlaceHolderBackground</Name>

@@ -77,6 +77,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>HealthBar</Name>
     </None>
+    <None Include="GumProject\Components\PlayButton.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayButton</Name>
+    </None>
+    <None Include="GumProject\Components\QuitButton.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>QuitButton</Name>
+    </None>
+    <None Include="GumProject\Components\SettingsButton.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsButton</Name>
+    </None>
     <None Include="GumProject\Components\TeamSelectionBoxes.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TeamSelectionBoxes</Name>
@@ -88,6 +100,10 @@
     <None Include="GumProject\Components\WorldComponent.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WorldComponent</Name>
+    </None>
+    <None Include="GumProject\DodgeballLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>DodgeballLogo</Name>
     </None>
     <None Include="GumProject\FontCache\Font18Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -121,6 +137,22 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PlayingField</Name>
     </None>
+    <None Include="GumProject\PlayOff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayOff</Name>
+    </None>
+    <None Include="GumProject\PlayOn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayOn</Name>
+    </None>
+    <None Include="GumProject\QuitOff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>QuitOff</Name>
+    </None>
+    <None Include="GumProject\QuitOn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>QuitOn</Name>
+    </None>
     <None Include="GumProject\Screens\CharacterSelectScreenGum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>CharacterSelectScreenGum</Name>
@@ -136,6 +168,14 @@
     <None Include="GumProject\Screens\WRapUpScreenGum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WRapUpScreenGum</Name>
+    </None>
+    <None Include="GumProject\SettingsOff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsOff</Name>
+    </None>
+    <None Include="GumProject\SettingsOn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsOn</Name>
     </None>
     <None Include="GumProject\Standards\Circle.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -204,6 +244,10 @@
     <None Include="GumProject\Standards\Text.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Text</Name>
+    </None>
+    <None Include="GumProject\TitleScreenBackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TitleScreenBackground</Name>
     </None>
     <None Include="GumProject\yellowgreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
