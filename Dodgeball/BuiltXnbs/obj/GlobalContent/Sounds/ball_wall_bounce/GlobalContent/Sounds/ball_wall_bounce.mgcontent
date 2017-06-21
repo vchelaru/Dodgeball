@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/devin/Documents/Dodgeball/Dodgeball/DodgeballContent/GlobalContent/Sounds/ball_wall_bounce.wav</SourceFile>
-  <SourceTime>2017-06-12T15:24:57.1095446-07:00</SourceTime>
-  <DestFile>C:/Users/devin/Documents/Dodgeball/Dodgeball/BuiltXnbs/GlobalContent/Sounds/ball_wall_bounce.xnb</DestFile>
-  <DestTime>2017-06-19T20:09:29.6483353-07:00</DestTime>
+  <SourceFile>C:/Users/vchel/Documents/Dodgeball/Dodgeball/DodgeballContent/GlobalContent/Sounds/ball_wall_bounce.wav</SourceFile>
+  <SourceTime>2017-06-09T20:51:25.8725275-06:00</SourceTime>
+  <DestFile>C:/Users/vchel/Documents/Dodgeball/Dodgeball/BuiltXnbs/GlobalContent/Sounds/ball_wall_bounce.xnb</DestFile>
+  <DestTime>2017-06-20T21:02:43.1403741-06:00</DestTime>
   <Importer>WavImporter</Importer>
-  <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
+  <ImporterTime>2017-03-01T08:05:36-07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
-  <ProcessorTime>2017-03-01T07:05:36-08:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T08:05:36-07:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
     <Value>Best</Value>

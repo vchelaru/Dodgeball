@@ -81,10 +81,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>HealthBar</Name>
     </None>
-    <None Include="GumProject\Components\PlayButton.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>PlayButton</Name>
-    </None>
     <None Include="GumProject\Components\QuitButton.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>QuitButton</Name>
@@ -96,6 +92,10 @@
     <None Include="GumProject\Components\TeamSelectionBoxes.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TeamSelectionBoxes</Name>
+    </None>
+    <None Include="GumProject\Components\TextButtonOld.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TextButtonOld</Name>
     </None>
     <None Include="GumProject\Components\ThrowChargeMeter.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -136,10 +136,6 @@
     <None Include="GumProject\GumProject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GumProject</Name>
-    </None>
-    <None Include="GumProject\PlayingField.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>PlayingField</Name>
     </None>
     <None Include="GumProject\PlayOff.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
