@@ -620,6 +620,21 @@
       <Name>player_hit</Name>
       <Link>Content\GlobalContent\Sounds\player_hit.xnb</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\animationchainball.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AnimationChainBall</Name>
+      <Link>content\entities\ball\animationchainball.achx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\ballfast.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BallFast</Name>
+      <Link>content\entities\ball\ballfast.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\ballslow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BallSlow</Name>
+      <Link>content\entities\ball\ballslow.png</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\texturefile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TextureFile</Name>
