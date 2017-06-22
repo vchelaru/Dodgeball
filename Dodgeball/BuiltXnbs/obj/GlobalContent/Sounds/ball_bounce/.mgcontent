@@ -4,6 +4,6 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/vchel/Documents/Dodgeball/Dodgeball/DodgeballContent/GlobalContent/Sounds/ball_bounce.wav</File>
+    <File>D:/GameDev/Projects/Dodgeball/Dodgeball/DodgeballContent/GlobalContent/Sounds/ball_bounce.wav</File>
   </SourceFiles>
 </SourceFileCollection>

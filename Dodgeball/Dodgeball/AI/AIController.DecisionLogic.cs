@@ -1,4 +1,5 @@
 ﻿using System;
+using Dodgeball.Components;
 using Dodgeball.Entities;
 
 namespace Dodgeball.AI
@@ -18,13 +19,35 @@ namespace Dodgeball.AI
         private float probOfWandering = 0.005f;
         private float probOfTaunting = 0.003f;
 
+        private float probOfOptimalThrow = 0.015f;
+
+        //These are probabilities that aren't directly referenced by logic, but are altered then used as a dynamic probability
+        private float baseProbOfNonOptimalThrow = 0.03f;
+        #endregion
+
+        #region Dynamic Decision Probabilities
+        //The base % chance of an action, altered by conditions
+
+        private float probOfNonOptimalThrow => baseProbOfNonOptimalThrow * CurrentThrowCharge/100;
+
+        #endregion
+
+        #region Reference Properties
+        //Convenient properties that shorten references
+        private float CurrentThrowCharge => player.chargeThrowComponent.MeterPercent;
+
         #endregion
 
         #region Decision checks
 
-        private bool ShouldPositionForThrow => ball.ThrowOwner == player && !player.IsInFront;
+        private bool ShouldPositionForThrow => ball.ThrowOwner == player && !player.IsInFront && !IsChargingThrow;
 
-        private bool ShouldThrowBall => player.IsHoldingBall && ballHeldTime > timeToDelayThrow;
+        private bool ShouldThrowBall => player.IsHoldingBall && ballHeldTime > timeToDelayThrow && !IsChargingThrow;
+
+        private bool IsChargingThrow => player.IsHoldingBall && _actionButton.IsDown;
+
+        private bool ThrowChargeIsOptimal => CurrentThrowCharge > ChargeThrow.MaxValidThrowPercent * 0.8f &&
+                                             CurrentThrowCharge <= ChargeThrow.MaxValidThrowPercent;
 
         private bool ShouldTaunt => ball.CurrentOwnershipState == Ball.OwnershipState.Held &&
                                     ball.OwnerTeam == player.TeamIndex && ball.ThrowOwner != player;
@@ -49,7 +72,6 @@ namespace Dodgeball.AI
         private bool ShouldGetOutOfTheWayOfBallHolder => ball.CurrentOwnershipState == Ball.OwnershipState.Held &&
                                                          ball.OwnerTeam == player.TeamIndex &&
                                                          ball.ThrowOwner != player &&
-                                                         ball.ThrowOwner.IsCharging &&
                                                          ((player.TeamIndex == 0 && player.X >= ball.ThrowOwner.X ||
                                                            player.TeamIndex == 1 && player.X <= ball.ThrowOwner.X)) &&
                                                          //Multiply the Y-difference by the X-difference to create a cone of avoidance
@@ -87,19 +109,27 @@ namespace Dodgeball.AI
                 _movementInput.Move(RetrieveDirectionsForThrowPositioning());
                 hasActed = true;
             }
-            else if (!hasActed && ShouldThrowBall)
+            else
+            {
+                isPositioningForThrow = false;
+            }
+
+            if (!hasActed && ShouldThrowBall)
             {
                 isPositioningForThrow = false;
                 _aimingInput.Move(AimDirection());
                 _movementInput.Move(AI2DInput.Directions.None);
                 _actionButton.Press();
-                _actionButton.Release();
                 ballHeldTime = 0;
                 hasActed = true;
             }
-            else
+            else if (!hasActed && IsChargingThrow)
             {
-                isPositioningForThrow = false;
+                var chanceOfThrow = random.NextDouble();
+                var decisionToRelease = (!ThrowChargeIsOptimal && (chanceOfThrow < probOfNonOptimalThrow)) ||
+                                        (ThrowChargeIsOptimal && chanceOfThrow < probOfOptimalThrow);
+                if (decisionToRelease) _actionButton.Release();
+                hasActed = true;
             }
 
             if (!hasActed && !isWandering && !isEvading && !isRetrieving)

@@ -50,7 +50,7 @@ namespace Dodgeball.Entities
 	    public float TeamRectangleTop => TeamRectangle.Y;
         public float TeamRectangleBottom => TeamRectangle.Y - TeamRectangle.Height;
 
-        ChargeThrow chargeThrowComponent;
+        public ChargeThrow chargeThrowComponent;
 
         //Properties to determine player location in relation to team rectangle
 	    public bool IsInBack => TeamIndex == 0

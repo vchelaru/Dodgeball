@@ -42,6 +42,12 @@ namespace Dodgeball.AI
                 IsDown = false;
                 WasJustPressed = false;
             }
+
+            public void Update()
+            {
+                if (IsDown && WasJustPressed) WasJustPressed = false;
+                if (!IsDown && WasJustReleased) WasJustReleased = false;
+            }
         }
         #endregion
 
