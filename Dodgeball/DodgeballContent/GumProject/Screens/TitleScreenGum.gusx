@@ -221,6 +221,48 @@
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>TreeOneSprite.Y Units</Name>
+      <Value xsi:type="xsd:int">7</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>TreeOneSprite.Y Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>TreeOneSprite.Y</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>TreeOneSprite.X Units</Name>
+      <Value xsi:type="xsd:int">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>TreeOneSprite.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>TreeOneSprite.X</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>TreeOneSprite.Parent</Name>
+      <Value xsi:type="xsd:string">MidgroundContainer</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
     <VariableList xsi:type="VariableListSaveOfString">
       <Type>string</Type>
       <Name>AnimationFrames</Name>
@@ -249,5 +291,9 @@
   <Instance>
     <Name>PlayButtonInstance2</Name>
     <BaseType>TextButton</BaseType>
+  </Instance>
+  <Instance>
+    <Name>TreeOneSprite</Name>
+    <BaseType>Sprite</BaseType>
   </Instance>
 </ScreenSave>

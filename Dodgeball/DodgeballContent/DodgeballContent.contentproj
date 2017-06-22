@@ -65,6 +65,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PlayerAnimationSheet</Name>
     </None>
+    <None Include="GumProject\BackgroundSpriteSheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BackgroundSpriteSheet</Name>
+    </None>
     <None Include="GumProject\BackgroundTempHD.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>BackgroundTempHD</Name>

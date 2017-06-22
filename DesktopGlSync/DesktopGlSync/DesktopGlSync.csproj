@@ -653,6 +653,11 @@
       <Name>PlayerAnimationSheet</Name>
       <Link>content\entities\player\playeranimationsheet.png</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\backgroundspritesheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BackgroundSpriteSheet</Name>
+      <Link>content\gumproject\backgroundspritesheet.png</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\backgroundtemphd.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>BackgroundTempHD</Name>
