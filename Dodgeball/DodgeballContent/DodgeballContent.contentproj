@@ -81,21 +81,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>HealthBar</Name>
     </None>
-    <None Include="GumProject\Components\QuitButton.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>QuitButton</Name>
-    </None>
-    <None Include="GumProject\Components\SettingsButton.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>SettingsButton</Name>
-    </None>
     <None Include="GumProject\Components\TeamSelectionBoxes.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TeamSelectionBoxes</Name>
     </None>
-    <None Include="GumProject\Components\TextButtonOld.gucx">
+    <None Include="GumProject\Components\TextButton.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>TextButtonOld</Name>
+      <Name>TextButton</Name>
     </None>
     <None Include="GumProject\Components\ThrowChargeMeter.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -117,6 +109,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial_0</Name>
     </None>
+    <None Include="GumProject\FontCache\Font48Arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font48Arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font48Arial_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial_1</Name>
+    </None>
     <None Include="GumProject\FontCache\Font72Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font72Arial</Name>
@@ -137,22 +141,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GumProject</Name>
     </None>
-    <None Include="GumProject\PlayOff.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>PlayOff</Name>
-    </None>
-    <None Include="GumProject\PlayOn.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>PlayOn</Name>
-    </None>
-    <None Include="GumProject\QuitOff.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>QuitOff</Name>
-    </None>
-    <None Include="GumProject\QuitOn.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>QuitOn</Name>
-    </None>
     <None Include="GumProject\Screens\CharacterSelectScreenGum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>CharacterSelectScreenGum</Name>
@@ -168,14 +156,6 @@
     <None Include="GumProject\Screens\WRapUpScreenGum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WRapUpScreenGum</Name>
-    </None>
-    <None Include="GumProject\SettingsOff.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>SettingsOff</Name>
-    </None>
-    <None Include="GumProject\SettingsOn.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>SettingsOn</Name>
     </None>
     <None Include="GumProject\Standards\Circle.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

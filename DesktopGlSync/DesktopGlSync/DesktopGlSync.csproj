@@ -381,14 +381,8 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\NineSliceRuntime.Generated.cs">
       <Link>GumRuntimes\NineSliceRuntime.Generated.cs</Link>
     </Compile>
-    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\QuitButtonRuntime.Generated.cs">
-      <Link>GumRuntimes\QuitButtonRuntime.Generated.cs</Link>
-    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\RectangleRuntime.Generated.cs">
       <Link>GumRuntimes\RectangleRuntime.Generated.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SettingsButtonRuntime.Generated.cs">
-      <Link>GumRuntimes\SettingsButtonRuntime.Generated.cs</Link>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SpriteRuntime.Generated.cs">
       <Link>GumRuntimes\SpriteRuntime.Generated.cs</Link>
@@ -396,8 +390,8 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\TeamSelectionBoxesRuntime.Generated.cs">
       <Link>GumRuntimes\TeamSelectionBoxesRuntime.Generated.cs</Link>
     </Compile>
-    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\TextButtonOldRuntime.Generated.cs">
-      <Link>GumRuntimes\TextButtonOldRuntime.Generated.cs</Link>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\TextButtonRuntime.Generated.cs">
+      <Link>GumRuntimes\TextButtonRuntime.Generated.cs</Link>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\TextRuntime.Generated.cs">
       <Link>GumRuntimes\TextRuntime.Generated.cs</Link>
@@ -679,25 +673,15 @@
       <Name>HealthBar</Name>
       <Link>content\gumproject\components\healthbar.gucx</Link>
     </None>
-    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\quitbutton.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>QuitButton</Name>
-      <Link>content\gumproject\components\quitbutton.gucx</Link>
-    </None>
-    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\settingsbutton.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>SettingsButton</Name>
-      <Link>content\gumproject\components\settingsbutton.gucx</Link>
-    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\teamselectionboxes.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TeamSelectionBoxes</Name>
       <Link>content\gumproject\components\teamselectionboxes.gucx</Link>
     </None>
-    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\textbuttonold.gucx">
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\textbutton.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>TextButtonOld</Name>
-      <Link>content\gumproject\components\textbuttonold.gucx</Link>
+      <Name>TextButton</Name>
+      <Link>content\gumproject\components\textbutton.gucx</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\throwchargemeter.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -733,6 +717,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font32Arial_0</Name>
       <Link>content\gumproject\fontcache\font32arial_0.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font48arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial</Name>
+      <Link>content\gumproject\fontcache\font48arial.fnt</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font48arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial_0</Name>
+      <Link>content\gumproject\fontcache\font48arial_0.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font48arial_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial_1</Name>
+      <Link>content\gumproject\fontcache\font48arial_1.png</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
