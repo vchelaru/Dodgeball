@@ -239,17 +239,20 @@ namespace Dodgeball.Screens
         }
         private void CheckForPlayersOut()
         {
+            string playersRemaining = "Players Remaining";
             if(PlayerList.Count(item => item.TeamIndex == 1) < Team2Players)
             {
                 Team2Players--;
-                PlayersRemaingTextTeam2.Text = $"{Team2Players} Players Remaing";
+                if (Team2Players == 1) { playersRemaining = "Player Remaining"; } 
+                PlayersRemaingTextTeam2.Text = $"{Team2Players}" + playersRemaining;
                 PlayersRemaingTextTeam2.Visible = true;
                 this.Call(() => PlayersRemaingTextTeam2.Visible = false).After(2);             
             }
             if (PlayerList.Count(item => item.TeamIndex == 0) < Team1Players)
             {
                 Team1Players--;
-                PlayersRemaingTextTeam1.Text = $"{Team1Players} Players Remaing";
+                if (Team1Players == 1) { playersRemaining = "Player Remaining"; }
+                PlayersRemaingTextTeam2.Text = $"{Team1Players}" + playersRemaining;
                 PlayersRemaingTextTeam1.Visible = true;
                 this.Call(() => PlayersRemaingTextTeam1.Visible = false).After(2);               
             }
