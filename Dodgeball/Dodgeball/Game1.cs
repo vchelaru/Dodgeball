@@ -68,7 +68,7 @@ namespace Dodgeball
 
             FlatRedBall.Screens.ScreenManager.Activity();
 
-            base.Update(gameTime);
+            base.Update(gameTime); 
         }
 
         protected override void Draw(GameTime gameTime)
