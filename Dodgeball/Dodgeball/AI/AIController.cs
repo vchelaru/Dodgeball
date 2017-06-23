@@ -8,17 +8,51 @@ using Dodgeball.GumRuntimes;
 using FlatRedBall.Input;
 using FlatRedBall.Math;
 using FlatRedBall.Utilities;
+using Microsoft.Xna.Framework;
 
 namespace Dodgeball.AI
 {
     public partial class AIController
     {
-        #region Fields/Properties
 
-        private const double distanceToConsiderDodging = 500;
+        #region Difficulty Fields/Properties
+        /// <summary>
+        /// This determines how difficult the AI is on a scale of 1-9
+        /// </summary>
+        private int difficultyLevel = 5;
+        public int DifficultyLevel {
+            get { return difficultyLevel; }
+            set { difficultyLevel = (int)MathHelper.Clamp(value, 1, 9); }
+        }
+
+        /// <summary>
+        /// Multiply probabilities by this property if we want them to increase with difficulty
+        /// </summary>
+        private float IncreaseWithDifficulty => DifficultyLevel / 9f;
+
+        /// <summary>
+        /// Multiply probabilities by this property if we want them to decrease with difficulty
+        /// </summary>
+        private float DecreaseWithDifficulty => 1 - IncreaseWithDifficulty;
+        #endregion
+
+        #region Input/Control Fields & Properties
+        //Public interfaces for use by Player expecting a controller
+        public I2DInput MovementInput { get; private set; }
+        public IPressableInput ActionButton { get; private set; }
+        public I2DInput AimingInput { get; private set; }
+        public IPressableInput TauntButton { get; private set; }
+
+        //Local simulated inputs controlled by AI
+        private readonly AI2DInput _movementInput;
+        private readonly AI2DInput _aimingInput;
+        private readonly AIPressableInput _actionButton;
+        private readonly AIPressableInput _tauntButton;
 
         private AI2DInput.Directions currentMovementDirections = AI2DInput.Directions.None;
+        #endregion
 
+        #region Other Fields/Properties
         //Object references
         private readonly Player player;
         private PositionedObjectList<Player> allPlayers;
@@ -51,22 +85,15 @@ namespace Dodgeball.AI
         private double timeToEvade = 2;
         private double timeEvading = 0;
 
-        //Public interfaces for use by Player expecting a controller
-        public I2DInput MovementInput { get; private set; }
-        public IPressableInput ActionButton { get; private set; }
-        public I2DInput AimingInput { get; private set; }
-        public IPressableInput TauntButton { get; private set; }
-
-        //Local simulated inputs controlled by AI
-        private readonly AI2DInput _movementInput;
-        private readonly AI2DInput _aimingInput;
-        private readonly AIPressableInput _actionButton;
-        private readonly AIPressableInput _tauntButton;
+        //Dodging logic
+        private const double distanceToConsiderDodging = 500;
         #endregion
 
         #region Initialize
-        public AIController(Player player, Ball ball)
+        public AIController(Player player, Ball ball, int difficulty = 5)
         {
+            DifficultyLevel = difficulty;
+
             //Object references
             this.player = player;
             allPlayers = player.AllPlayers;
@@ -130,6 +157,7 @@ namespace Dodgeball.AI
 
         #endregion
 
+        #region Input methods
         private void AssignInputsToPlayer()
         {
             player?.InitializeAIControl(this);
@@ -137,8 +165,15 @@ namespace Dodgeball.AI
 
         private void UpdateInputs()
         {
+            //release action button from previous dodge
+            if (!player.IsHoldingBall && _actionButton.IsDown)
+            {
+                _actionButton.Release();
+            }
+
             _actionButton.Update();
             _tauntButton.Update();
         }
+        #endregion
     }
 }

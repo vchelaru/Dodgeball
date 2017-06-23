@@ -1,34 +1,48 @@
 ﻿using System;
 using Dodgeball.Components;
 using Dodgeball.Entities;
+using Microsoft.Xna.Framework.GamerServices;
 
 namespace Dodgeball.AI
 {
     public partial class AIController
     {
-        #region Constant Decision Probabilities
+        #region Constant Probabilities
 
         //The % chance of an action, when appropriate, on each frame
 
         //Bypasses all below actions, used as difficulty modifier
-        private float probOfInaction = 0.05f;
+        private readonly float _probOfInaction = 0.1f;
 
-        private float probOfDodge = 0.015f;
-        private float probOfBallRetrieval = 0.03f;
-        private float probOfEvasion = 0.08f;
-        private float probOfWandering = 0.005f;
-        private float probOfTaunting = 0.003f;
+        private readonly float _probOfDodge = 0.03f;
+        private readonly float _probOfBallRetrieval = 0.05f;
+        private readonly float _probOfEvasion = 0.1f;
+        private readonly float _probOfWandering = 0.01f;
+        private readonly float _probOfTaunting = 0.003f;
 
-        private float probOfOptimalThrow = 0.015f;
+        private readonly float _probOfOptimalThrow = 0.04f;
 
         //These are probabilities that aren't directly referenced by logic, but are altered then used as a dynamic probability
-        private float baseProbOfNonOptimalThrow = 0.03f;
+        private readonly float _baseProbOfSuboptimalThrow = 0.1f;
         #endregion
 
-        #region Dynamic Decision Probabilities
-        //The base % chance of an action, altered by conditions
+        #region Dynamic Probabilities
+        //The base chance of an action, altered by conditions
+        private float _probOfNonOptimalThrow => _baseProbOfSuboptimalThrow * CurrentThrowCharge/100;
 
-        private float probOfNonOptimalThrow => baseProbOfNonOptimalThrow * CurrentThrowCharge/100;
+        #endregion
+
+        #region Difficulty-adjusted Probabilities
+        //Final probability after conditions and difficulty modification have been considered
+        private float ProbabilityOfInaction => _probOfInaction * DecreaseWithDifficulty;
+        private float ProbabilityOfDodge => _probOfDodge * IncreaseWithDifficulty;
+        private float ProbabilityOfBallRetrieval => _probOfBallRetrieval * IncreaseWithDifficulty;
+        private float ProbabilityOfEvasion => _probOfEvasion * IncreaseWithDifficulty;
+        private float ProbabilityOfWandering => _probOfWandering * IncreaseWithDifficulty;
+        private float ProbabilityOfTaunting => _probOfTaunting * (DecreaseWithDifficulty / 2);
+        private float ProbabilityOfOptimalThrow => _probOfOptimalThrow * IncreaseWithDifficulty;
+        private float ProbabilityOfSuboptimalThrow => _baseProbOfSuboptimalThrow * DecreaseWithDifficulty;
+
 
         #endregion
 
@@ -84,15 +98,43 @@ namespace Dodgeball.AI
 
         private void MakeDecisions()
         {
-            //release action button from previous dodge
-            if (!player.IsHoldingBall && _actionButton.IsDown)
-            {
-                _actionButton.Release();
-            }
-
             var hasActed = false;
 
-            if (ShouldGetOutOfTheWayOfBallHolder)
+            ConsiderGettingOutOfTheWay(ref hasActed);
+
+            ConsiderPositioningToThrow(ref hasActed);
+
+            ConsiderThrowingTheBall(ref hasActed);
+
+            ConsiderDoingNothing(ref hasActed);
+
+            ConsiderDodging(ref hasActed);
+
+            ConsiderRetrievingTheBall(ref hasActed);
+
+            ConsiderEvading(ref hasActed);
+
+            ConsiderWanderingAimlessly(ref hasActed);
+
+            ConsiderTaunting(ref hasActed);
+
+            //Release controls /movement if not acting
+            ResetInputs(hasActed);
+        }
+
+        private void ResetInputs(bool hasActed)
+        {
+            if (!hasActed)
+            {
+                currentMovementDirections = AI2DInput.Directions.None;
+                _movementInput.Move(AI2DInput.Directions.None);
+                _aimingInput.Move(AI2DInput.Directions.None);
+            }
+        }
+
+        private void ConsiderGettingOutOfTheWay(ref bool hasActed)
+        {
+            if (!hasActed && ShouldGetOutOfTheWayOfBallHolder)
             {
                 isGettingOutOfTheWay = true;
                 _movementInput.Move(RetrieveGetOutOfTheWayDirections());
@@ -102,7 +144,10 @@ namespace Dodgeball.AI
             {
                 isGettingOutOfTheWay = false;
             }
+        }
 
+        private void ConsiderPositioningToThrow(ref bool hasActed)
+        {
             if (!hasActed && ShouldPositionForThrow)
             {
                 isPositioningForThrow = true;
@@ -113,7 +158,10 @@ namespace Dodgeball.AI
             {
                 isPositioningForThrow = false;
             }
+        }
 
+        private void ConsiderThrowingTheBall(ref bool hasActed)
+        {
             if (!hasActed && ShouldThrowBall)
             {
                 isPositioningForThrow = false;
@@ -126,32 +174,43 @@ namespace Dodgeball.AI
             else if (!hasActed && IsChargingThrow)
             {
                 var chanceOfThrow = random.NextDouble();
-                var decisionToRelease = (!ThrowChargeIsOptimal && (chanceOfThrow < probOfNonOptimalThrow)) ||
-                                        (ThrowChargeIsOptimal && chanceOfThrow < probOfOptimalThrow);
+                var decisionToRelease = (!ThrowChargeIsOptimal && (chanceOfThrow < ProbabilityOfSuboptimalThrow)) ||
+                                        (ThrowChargeIsOptimal && chanceOfThrow < ProbabilityOfOptimalThrow);
                 if (decisionToRelease) _actionButton.Release();
                 hasActed = true;
             }
+        }
 
+        private void ConsiderDoingNothing(ref bool hasActed)
+        {
             if (!hasActed && !isWandering && !isEvading && !isRetrieving)
             {
-                var decisionToDoNothing = random.NextDouble() < probOfInaction;
+                var decisionToDoNothing = random.NextDouble() < ProbabilityOfInaction;
                 hasActed = decisionToDoNothing;
                 currentMovementDirections = AI2DInput.Directions.None;
+                _movementInput.Move(AI2DInput.Directions.None);
+                _aimingInput.Move(AI2DInput.Directions.None);
             }
+        }
 
+        private void ConsiderDodging(ref bool hasActed)
+        {
             if (!hasActed && ShouldDodge)
             {
-                var decisionToDodge = random.NextDouble() < probOfDodge;
+                var decisionToDodge = random.NextDouble() < ProbabilityOfDodge;
                 if (decisionToDodge)
                 {
                     _actionButton.Press();
                     hasActed = true;
                 }
             }
+        }
 
+        private void ConsiderRetrievingTheBall(ref bool hasActed)
+        {
             if (!hasActed && (ShouldRetrieveBall || isRetrieving))
             {
-                var decisionToRetrieveBall = random.NextDouble() < probOfBallRetrieval;
+                var decisionToRetrieveBall = random.NextDouble() < ProbabilityOfBallRetrieval;
                 if (decisionToRetrieveBall || isRetrieving)
                 {
                     _movementInput.Move(RetrieveBallDirections());
@@ -163,8 +222,11 @@ namespace Dodgeball.AI
             {
                 isRetrieving = false;
             }
+        }
 
-            var decisionToEvade = random.NextDouble() < probOfEvasion;
+        private void ConsiderEvading(ref bool hasActed)
+        {
+            var decisionToEvade = random.NextDouble() < ProbabilityOfEvasion;
             if (!hasActed && !isWandering && (ShouldEvade && (decisionToEvade || isEvading)))
             {
                 isEvading = true;
@@ -177,8 +239,11 @@ namespace Dodgeball.AI
                 isEvading = false;
                 timeEvading = 0;
             }
+        }
 
-            var decisionToWander = random.NextDouble() < probOfWandering;
+        private void ConsiderWanderingAimlessly(ref bool hasActed)
+        {
+            var decisionToWander = random.NextDouble() < ProbabilityOfWandering;
             if (!hasActed && !isEvading && (ShouldWander && (decisionToWander || isWandering)))
             {
                 isWandering = true;
@@ -192,20 +257,16 @@ namespace Dodgeball.AI
                 isWandering = false;
                 timeWandering = 0;
             }
+        }
 
-            var decisionToTaunt = random.NextDouble() < probOfTaunting;
+        private void ConsiderTaunting(ref bool hasActed)
+        {
+            var decisionToTaunt = random.NextDouble() < ProbabilityOfTaunting;
             if (!hasActed && (ShouldTaunt && decisionToTaunt))
             {
                 _tauntButton.Press();
                 _tauntButton.Release();
                 hasActed = true;
-            }
-
-            if (!hasActed)
-            {
-                currentMovementDirections = AI2DInput.Directions.None;
-                _movementInput.Move(AI2DInput.Directions.None);
-                _aimingInput.Move(AI2DInput.Directions.None);
             }
         }
     }
