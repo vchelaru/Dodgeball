@@ -12,3 +12,4 @@ Dodgeball/DodgeballContent/obj/
 *.sln.metaproj
 DesktopGlSync/DesktopGlSync/bin/
 DesktopGlSync/DesktopGlSync/obj/
+*.mgcontent
