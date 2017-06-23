@@ -185,7 +185,7 @@ namespace Dodgeball.Screens
                     var validPlayers = PlayerList.Where(player => !player.IsDodging && !player.IsHit).ToList();
                     foreach (var player in validPlayers)
                     {
-                        if (player.CollideAgainst(BallInstance))
+                        if (player.IsDying == false && player.CollideAgainst(BallInstance))
                         {
                             PerformPickupLogic(player);
 
@@ -200,7 +200,8 @@ namespace Dodgeball.Screens
                     {
                         var player = PlayerList[i];
 
-                        if (BallInstance.ThrowOwner != player && 
+                        if (BallInstance.ThrowOwner != player &&
+                            player.IsDying == false && 
                             player.IsDodging == false &&
                             player.IsHit == false &&
                             player.CollideAgainst(BallInstance))
