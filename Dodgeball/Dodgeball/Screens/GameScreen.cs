@@ -248,7 +248,7 @@ namespace Dodgeball.Screens
                 PlayersRemaingTextTeam2.Visible = true;
                 this.Call(() => PlayersRemaingTextTeam2.Visible = false).After(2);             
             }
-            if (PlayerList.Count(item => item.TeamIndex == 0) < Team1Players)
+            if (PlayerList.Count(item => item.TeamIndex == 0) < Team1Players) 
             {
                 Team1Players--;
                 if (Team1Players == 1) { playersRemaining = "Player Remaining"; }

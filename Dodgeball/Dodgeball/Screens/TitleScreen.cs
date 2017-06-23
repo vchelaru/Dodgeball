@@ -89,19 +89,31 @@ namespace Dodgeball.Screens
             }
             if (highlightedSelection == MenuItem.Play)
             {
-                //ui highlight code here
+                SettingsButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.Off;
+                SettingsButtonInstance.CurrentSizeCategoryState = GumRuntimes.TextButtonRuntime.SizeCategory.Regular;
+                ExitButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.Off;
+                ExitButtonInstance.CurrentSizeCategoryState = GumRuntimes.TextButtonRuntime.SizeCategory.Regular;
+                PlayButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.On;
+                if (PlayButtonInstance.PulseAnimation.IsPlaying() == false) { PlayButtonInstance.PulseAnimation.Play(); }
             }
             if (highlightedSelection == MenuItem.Settings)
             {
-                //ui highlight code here
-
+                PlayButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.Off;
+                PlayButtonInstance.CurrentSizeCategoryState = GumRuntimes.TextButtonRuntime.SizeCategory.Regular;
+                ExitButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.Off;
+                ExitButtonInstance.CurrentSizeCategoryState = GumRuntimes.TextButtonRuntime.SizeCategory.Regular;
+                SettingsButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.On;
+                if (SettingsButtonInstance.PulseAnimation.IsPlaying() == false) { SettingsButtonInstance.PulseAnimation.Play(); }                
             }
             if (highlightedSelection == MenuItem.Exit)
             {
-                //ui highlight code here
-
+                SettingsButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.Off;
+                SettingsButtonInstance.CurrentSizeCategoryState = GumRuntimes.TextButtonRuntime.SizeCategory.Regular;
+                PlayButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.Off;
+                PlayButtonInstance.CurrentSizeCategoryState = GumRuntimes.TextButtonRuntime.SizeCategory.Regular;
+                ExitButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.On;
+                if (ExitButtonInstance.PulseAnimation.IsPlaying() == false) { ExitButtonInstance.PulseAnimation.Play(); }
             }
         }
-
     }
 }
