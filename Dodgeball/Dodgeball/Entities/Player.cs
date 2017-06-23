@@ -71,7 +71,12 @@ namespace Dodgeball.Entities
         public bool IsHit => new[] {"Hit", "Fall", "Down"}.Contains(SpriteInstance.CurrentChainName);
 	    private bool ShouldFlipHitAnimation;
 
+        public bool IsDying { get; private set; }
+
+
         #endregion
+
+        public event Action Dying;
 
         #region Initialize
         /// <summary>
@@ -243,12 +248,24 @@ namespace Dodgeball.Entities
 
         internal void GetHitBy(Ball ballInstance)
         {
+
             SpriteInstance.CurrentChainName = "Hit";
             //Only take damage from other team
             if (ballInstance.OwnerTeam != TeamIndex)
             {
+                bool wasAlive = HealthPercentage > 0;
+
                 this.HealthPercentage -= DamageWhenHitting;
+
+                bool isAlive = this.HealthPercentage <= 0;
+
+                if(wasAlive && !isAlive)
+                {
+                    IsDying = true;
+                    Dying?.Invoke();
+                }
             }
+
 
             //Set their reaction based on where the ball came from
             ShouldFlipHitAnimation = (ballInstance.X > X);

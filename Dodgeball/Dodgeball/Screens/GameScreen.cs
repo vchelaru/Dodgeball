@@ -22,13 +22,17 @@ namespace Dodgeball.Screens
 {
 	public partial class GameScreen
 	{
-	    private SoundEffectInstance playerHitSound;
+        #region Fields/Properties
+
+        private SoundEffectInstance playerHitSound;
 	    private List<AIController> AIControllers;
 
 	    private float PlayAreaTop => -WorldComponentInstance.PlayArea.Y + (FlatRedBall.Camera.Main.OrthogonalHeight/2);
 	    private float PlayAreaBottom => PlayAreaTop - WorldComponentInstance.PlayArea.Height;
         private int Team1Players = 4;
-        private int Team2Players = 4;
+
+
+        #endregion
 
         #region Initialize
 
@@ -128,13 +132,19 @@ namespace Dodgeball.Screens
 	        for (var i = 0; i < PlayerList.Count; i++)
 	        {
 	            var firstPlayer = PlayerList[i];
-	            for (var j = i + 1; j < PlayerList.Count; j++)
-	            {
-	                var secondPlayer = PlayerList[j];
+                if(firstPlayer.IsDying == false)
+                {
+	                for (var j = i + 1; j < PlayerList.Count; j++)
+	                {
+	                    var secondPlayer = PlayerList[j];
 
-	                firstPlayer.CircleInstance.CollideAgainstBounce(
-	                    secondPlayer.CircleInstance, 1, 1, 0.1f);
-	            }
+                        if(secondPlayer.IsDying == false)
+                        {
+	                        firstPlayer.CircleInstance.CollideAgainstBounce(
+	                            secondPlayer.CircleInstance, 1, 1, 0.1f);
+                        }
+	                }
+                }
 	        }
         }
 
