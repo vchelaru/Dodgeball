@@ -257,7 +257,7 @@ namespace Dodgeball.Entities
 
                 this.HealthPercentage -= DamageWhenHitting;
 
-                bool isAlive = this.HealthPercentage <= 0;
+                bool isAlive = this.HealthPercentage > 0;
 
                 if(wasAlive && !isAlive)
                 {

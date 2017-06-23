@@ -40,11 +40,15 @@ namespace Dodgeball.Screens
         {
             playerHitSound = GlobalContent.player_hit.CreateInstance();
             SharePlayerReferences();
+
             AssignAIControllers();
+
             InitializeInput();
+
+            InitializePlayerEvents();
         }
 
-	    private void AssignAIControllers()
+        private void AssignAIControllers()
 	    {
 	        AIControllers = new List<AIController>();
 
@@ -77,6 +81,14 @@ namespace Dodgeball.Screens
 
         }
 
+        private void InitializePlayerEvents()
+        {
+            foreach(var player in PlayerList)
+            {
+                player.Dying += () => ShowNumberOfPlayersForTeam(player.TeamIndex);
+            }
+        }
+
         #endregion
 
         #region Activity
@@ -86,8 +98,6 @@ namespace Dodgeball.Screens
             CollisionActivity();
 
 		    AIActivity();
-
-            CheckForPlayersOut();
 
             CheckForEndOfGame();
 
@@ -247,26 +257,31 @@ namespace Dodgeball.Screens
 
             player.PickUpBall(BallInstance);
         }
-        private void CheckForPlayersOut()
+
+        private void ShowNumberOfPlayersForTeam(int teamIndex)
         {
             string playersRemaining = "Players Remaining";
-            if(PlayerList.Count(item => item.TeamIndex == 1) < Team2Players)
+
+            var playerCount = PlayerList.Count(item => 
+                item.TeamIndex == teamIndex && item.IsDying == false);
+
+            if (playerCount == 1) { playersRemaining = "Player Remaining"; }
+
+            GumRuntimes.TextRuntime textToShow = null;
+            if(teamIndex == 0)
             {
-                Team2Players--;
-                if (Team2Players == 1) { playersRemaining = "Player Remaining"; } 
-                PlayersRemaingTextTeam2.Text = $"{Team2Players}" + playersRemaining;
-                PlayersRemaingTextTeam2.Visible = true;
-                this.Call(() => PlayersRemaingTextTeam2.Visible = false).After(2);             
+                textToShow = PlayersRemaingTextTeam1;
             }
-            if (PlayerList.Count(item => item.TeamIndex == 0) < Team1Players)
+            else
             {
-                Team1Players--;
-                if (Team1Players == 1) { playersRemaining = "Player Remaining"; }
-                PlayersRemaingTextTeam2.Text = $"{Team1Players}" + playersRemaining;
-                PlayersRemaingTextTeam1.Visible = true;
-                this.Call(() => PlayersRemaingTextTeam1.Visible = false).After(2);               
+                textToShow = PlayersRemaingTextTeam2;
             }
+
+            textToShow.Text = $"{playerCount} {playersRemaining}";
+            textToShow.Visible = true;
+            this.Call(() => textToShow.Visible = false).After(2);
         }
+
         private void CheckForEndOfGame()
         {
             bool didTeam0Win = !PlayerList.Any(item => item.TeamIndex == 1);
