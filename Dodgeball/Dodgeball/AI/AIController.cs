@@ -137,8 +137,8 @@ namespace Dodgeball.AI
 
         private void UpdateInputs()
         {
-            if (!_actionButton.IsDown) _actionButton.Reset();
-            if (!_tauntButton.IsDown) _tauntButton.Reset();
+            _actionButton.Update();
+            _tauntButton.Update();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Dodgeball.Components
 
     public class ChargeThrow
     {
-        private const float MaxValidThrowPercent = 80;
+        public const float MaxValidThrowPercent = 80;
         public float MeterPercent { get; set; }
         private float defaultChargeLevel = 10f;
 
