@@ -17,138 +17,6 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>int</Type>
-      <Name>Team1Rect.Blue</Name>
-      <Value xsi:type="xsd:int">128</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>Team1Rect.Green</Name>
-      <Value xsi:type="xsd:int">128</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>Team1Rect.Height</Name>
-      <Value xsi:type="xsd:float">880</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>Team1Rect.Red</Name>
-      <Value xsi:type="xsd:int">128</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>Team1Rect.Width</Name>
-      <Value xsi:type="xsd:float">300</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>Team1Rect.X</Name>
-      <Value xsi:type="xsd:float">-650</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>Team1Rect.X Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>Team1Rect.X Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>Team1Rect.Y</Name>
-      <Value xsi:type="xsd:float">-500</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>Team1Rect.Y Origin</Name>
-      <Value xsi:type="xsd:int">2</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>Team1Rect.Y Units</Name>
-      <Value xsi:type="xsd:int">8</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>Team2Rect.Blue</Name>
-      <Value xsi:type="xsd:int">128</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>Team2Rect.Green</Name>
-      <Value xsi:type="xsd:int">128</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>Team2Rect.Height</Name>
-      <Value xsi:type="xsd:float">880</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>Team2Rect.Red</Name>
-      <Value xsi:type="xsd:int">128</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>Team2Rect.Width</Name>
-      <Value xsi:type="xsd:float">300</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>Team2Rect.X</Name>
-      <Value xsi:type="xsd:float">650</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>Team2Rect.X Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>Team2Rect.X Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>Team2Rect.Y</Name>
-      <Value xsi:type="xsd:float">-500</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>Team2Rect.Y Origin</Name>
-      <Value xsi:type="xsd:int">2</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>Team2Rect.Y Units</Name>
-      <Value xsi:type="xsd:int">8</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>bool</Type>
       <Name>ExposeChildrenEvents</Name>
       <Value xsi:type="xsd:boolean">true</Value>
@@ -576,6 +444,72 @@
     </Variable>
     <Variable>
       <Type>int</Type>
+      <Name>Team1Rect.Blue</Name>
+      <Value xsi:type="xsd:int">128</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>Team1Rect.Green</Name>
+      <Value xsi:type="xsd:int">128</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Team1Rect.Height</Name>
+      <Value xsi:type="xsd:float">880</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>Team1Rect.Red</Name>
+      <Value xsi:type="xsd:int">128</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Team1Rect.Width</Name>
+      <Value xsi:type="xsd:float">300</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Team1Rect.X</Name>
+      <Value xsi:type="xsd:float">-650</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>Team1Rect.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>Team1Rect.X Units</Name>
+      <Value xsi:type="xsd:int">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Team1Rect.Y</Name>
+      <Value xsi:type="xsd:float">-500</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>Team1Rect.Y Origin</Name>
+      <Value xsi:type="xsd:int">2</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>Team1Rect.Y Units</Name>
+      <Value xsi:type="xsd:int">8</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
       <Name>Team1Text.Blue</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
@@ -643,6 +577,72 @@
     <Variable>
       <Type>PositionUnitType</Type>
       <Name>Team1Text.Y Units</Name>
+      <Value xsi:type="xsd:int">8</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>Team2Rect.Blue</Name>
+      <Value xsi:type="xsd:int">128</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>Team2Rect.Green</Name>
+      <Value xsi:type="xsd:int">128</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Team2Rect.Height</Name>
+      <Value xsi:type="xsd:float">880</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>Team2Rect.Red</Name>
+      <Value xsi:type="xsd:int">128</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Team2Rect.Width</Name>
+      <Value xsi:type="xsd:float">300</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Team2Rect.X</Name>
+      <Value xsi:type="xsd:float">650</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>Team2Rect.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>Team2Rect.X Units</Name>
+      <Value xsi:type="xsd:int">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Team2Rect.Y</Name>
+      <Value xsi:type="xsd:float">-500</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>Team2Rect.Y Origin</Name>
+      <Value xsi:type="xsd:int">2</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>Team2Rect.Y Units</Name>
       <Value xsi:type="xsd:int">8</Value>
       <SetsValue>true</SetsValue>
     </Variable>

@@ -60,6 +60,54 @@
     </Variable>
     <Variable>
       <Type>HighlightCategoryState</Type>
+      <Name>ExitButtonInstance.HighlightCategoryState</Name>
+      <Value xsi:type="xsd:string">Off</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>ExitButtonInstance.Text</Name>
+      <Value xsi:type="xsd:string">Exit</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>ExitButtonInstance.X</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>ExitButtonInstance.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>ExitButtonInstance.X Units</Name>
+      <Value xsi:type="xsd:int">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>ExitButtonInstance.Y</Name>
+      <Value xsi:type="xsd:float">222</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>ExitButtonInstance.Y Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>ExitButtonInstance.Y Units</Name>
+      <Value xsi:type="xsd:int">7</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HighlightCategoryState</Type>
       <Name>PlayButtonInstance.HighlightCategoryState</Name>
       <Value xsi:type="xsd:string">Off</Value>
       <SetsValue>true</SetsValue>
@@ -155,51 +203,21 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>HighlightCategoryState</Type>
-      <Name>ExitButtonInstance.HighlightCategoryState</Name>
-      <Value xsi:type="xsd:string">Off</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>ExitButtonInstance.Text</Name>
-      <Value xsi:type="xsd:string">Exit</Value>
+      <Type>bool</Type>
+      <Name>SettingsComponentInstance.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>ExitButtonInstance.X</Name>
+      <Name>SettingsComponentInstance.X</Name>
       <Value xsi:type="xsd:float">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>ExitButtonInstance.X Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>ExitButtonInstance.X Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>float</Type>
-      <Name>ExitButtonInstance.Y</Name>
-      <Value xsi:type="xsd:float">222</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>ExitButtonInstance.Y Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>ExitButtonInstance.Y Units</Name>
-      <Value xsi:type="xsd:int">7</Value>
+      <Name>SettingsComponentInstance.Y</Name>
+      <Value xsi:type="xsd:float">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -301,5 +319,9 @@
   <Instance>
     <Name>TreeOneSprite</Name>
     <BaseType>Sprite</BaseType>
+  </Instance>
+  <Instance>
+    <Name>SettingsComponentInstance</Name>
+    <BaseType>SettingsComponent</BaseType>
   </Instance>
 </ScreenSave>

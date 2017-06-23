@@ -244,6 +244,8 @@
     <Compile Include="GumRuntimes\HealthBarRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\NineSliceRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\RectangleRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\SettingsButtonRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\SettingsComponentRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TeamSelectionBoxesRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\TextButtonRuntime.Generated.cs" />
@@ -272,7 +274,13 @@
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\TitleScreen.cs" />
+    <Compile Include="Screens\TitleScreen.Event.cs">
+      <DependentUpon>TitleScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\TitleScreen.Generated.cs">
+      <DependentUpon>TitleScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TitleScreen.Generated.Event.cs">
       <DependentUpon>TitleScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\WrapUpScreen.cs" />

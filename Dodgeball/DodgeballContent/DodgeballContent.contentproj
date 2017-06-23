@@ -85,6 +85,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>HealthBar</Name>
     </None>
+    <None Include="GumProject\Components\SettingsButton.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsButton</Name>
+    </None>
+    <None Include="GumProject\Components\SettingsComponent.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsComponent</Name>
+    </None>
     <None Include="GumProject\Components\TeamSelectionBoxes.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TeamSelectionBoxes</Name>
@@ -112,6 +120,14 @@
     <None Include="GumProject\FontCache\Font18Arial_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font32Arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font32Arial</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font32Arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font32Arial_0</Name>
     </None>
     <None Include="GumProject\FontCache\Font48Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

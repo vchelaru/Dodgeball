@@ -15,34 +15,53 @@ using Gum.Wireframe;
 
 namespace Dodgeball.Screens
 {
-	public partial class TitleScreen
-	{
+    public partial class TitleScreen
+    {
         enum MenuItem { Play, Settings, Exit }
+        enum SettingsMenuItem { Volume, Back }
+        private SettingsMenuItem SettingHighlightedSelection = SettingsMenuItem.Volume;
         private MenuItem HighlightedSelection = MenuItem.Play;
+        bool wasBackSelected = false;
 
         void CustomInitialize()
-		{
+        {
 
 
-		}
+        }
 
-		void CustomActivity(bool firstTimeCalled)
-		{
+        void CustomActivity(bool firstTimeCalled)
+        {
             foreach (Xbox360GamePad gamePad in InputManager.Xbox360GamePads)
             {
                 HandleGamePadInput(gamePad.LeftStick.UpAsButton, gamePad.LeftStick.DownAsButton, ref HighlightedSelection);
 
                 if (gamePad.ButtonPushed(Xbox360GamePad.Button.A))
                 {
-                    if(HighlightedSelection == MenuItem.Play)
+                    if (HighlightedSelection == MenuItem.Play)
                     {
                         MoveToScreen(typeof(CharacterSelectScreen));
                     }
-                    if(HighlightedSelection == MenuItem.Settings)
+                    if (HighlightedSelection == MenuItem.Settings)
                     {
-                        //Settings paghe
+                        SettingsComponentInstance.Visible = true;
+                        while (wasBackSelected == false)
+                        {
+                            SettingsMenuHandleGamePadInput(gamePad.LeftStick.UpAsButton, gamePad.LeftStick.DownAsButton, ref SettingHighlightedSelection);
+                            if (gamePad.ButtonPushed(Xbox360GamePad.Button.A))
+                            {
+                                if (SettingHighlightedSelection == SettingsMenuItem.Volume)
+                                {
+                                    //handle volume control
+                                }
+                                if (SettingHighlightedSelection == SettingsMenuItem.Back)
+                                {
+                                    OnSettingsComponentInstanceSettingsButtonInstanceClick(SettingsButtonInstance);
+                                }
+                            }
+                        }
+                        wasBackSelected = false;
                     }
-                    if(HighlightedSelection == MenuItem.Exit)
+                    if (HighlightedSelection == MenuItem.Exit)
                     {
                         //Exit code here
                     }
@@ -51,11 +70,11 @@ namespace Dodgeball.Screens
 
         }
 
-		void CustomDestroy()
-		{
+        void CustomDestroy()
+        {
 
 
-		}
+        }
 
         static void CustomLoadStaticContent(string contentManagerName)
         {
@@ -103,7 +122,7 @@ namespace Dodgeball.Screens
                 ExitButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.Off;
                 ExitButtonInstance.CurrentSizeCategoryState = GumRuntimes.TextButtonRuntime.SizeCategory.Regular;
                 SettingsButtonInstance.CurrentHighlightCategoryState = GumRuntimes.TextButtonRuntime.HighlightCategory.On;
-                if (SettingsButtonInstance.PulseAnimation.IsPlaying() == false) { SettingsButtonInstance.PulseAnimation.Play(); }                
+                if (SettingsButtonInstance.PulseAnimation.IsPlaying() == false) { SettingsButtonInstance.PulseAnimation.Play(); }
             }
             if (highlightedSelection == MenuItem.Exit)
             {
@@ -115,5 +134,33 @@ namespace Dodgeball.Screens
                 if (ExitButtonInstance.PulseAnimation.IsPlaying() == false) { ExitButtonInstance.PulseAnimation.Play(); }
             }
         }
+
+        void SettingsMenuHandleGamePadInput(IPressableInput upPress, IPressableInput downPress, ref SettingsMenuItem SettingHighlightedSelection)
+        {
+            if (upPress.WasJustReleased)
+            {
+                if (SettingHighlightedSelection == SettingsMenuItem.Back)
+                {
+                    SettingHighlightedSelection = SettingsMenuItem.Volume;
+                }
+            }
+            if (downPress.WasJustReleased)
+            {
+                if (SettingHighlightedSelection == SettingsMenuItem.Volume)
+                {
+                    SettingHighlightedSelection = SettingsMenuItem.Back;
+                }
+            }
+            if (SettingHighlightedSelection == SettingsMenuItem.Volume)
+            {
+                SettingsComponentInstance.CurrentHighlightCategoryState = GumRuntimes.SettingsComponentRuntime.HighlightCategory.On;
+
+            }
+            if (SettingHighlightedSelection == SettingsMenuItem.Back)
+            {
+                SettingsComponentInstance.CurrentHighlightCategoryState = GumRuntimes.SettingsComponentRuntime.HighlightCategory.Off;
+            }
+        }
+
     }
-}
+    }

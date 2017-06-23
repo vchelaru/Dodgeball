@@ -37,6 +37,14 @@
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>
+    <Name>SettingsButton</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
+  <ComponentReference>
+    <Name>SettingsComponent</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>TeamSelectionBoxes</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>

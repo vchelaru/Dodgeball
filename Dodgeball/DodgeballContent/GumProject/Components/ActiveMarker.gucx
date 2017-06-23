@@ -1,9 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ComponentSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>ActiveMarker</Name>
-  <BaseType>Container</BaseType>
+  <BaseType>ColoredRectangle</BaseType>
   <State>
     <Name>Default</Name>
+    <Variable>
+      <Type>int</Type>
+      <Name>Alpha</Name>
+      <Value xsi:type="xsd:int">255</Value>
+      <Category>Rendering</Category>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>Blend</Type>
+      <Name>Blend</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <Category>Rendering</Category>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>Blue</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <Category>Rendering</Category>
+      <SetsValue>true</SetsValue>
+    </Variable>
     <Variable>
       <Type>ChildrenLayout</Type>
       <Name>Children Layout</Name>
@@ -17,88 +38,17 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>int</Type>
-      <Name>ColoredRectangleInstance.Blue</Name>
-      <Value xsi:type="xsd:int">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>ColoredRectangleInstance.Green</Name>
-      <Value xsi:type="xsd:int">255</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>ColoredRectangleInstance.Height</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>DimensionUnitType</Type>
-      <Name>ColoredRectangleInstance.Height Units</Name>
-      <Value xsi:type="xsd:int">2</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>ColoredRectangleInstance.Red</Name>
-      <Value xsi:type="xsd:int">255</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>ColoredRectangleInstance.Width</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>DimensionUnitType</Type>
-      <Name>ColoredRectangleInstance.Width Units</Name>
-      <Value xsi:type="xsd:int">2</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>ColoredRectangleInstance.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>ColoredRectangleInstance.X Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>ColoredRectangleInstance.X Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>ColoredRectangleInstance.Y</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>ColoredRectangleInstance.Y Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>ColoredRectangleInstance.Y Units</Name>
-      <Value xsi:type="xsd:int">7</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>bool</Type>
       <Name>ExposeChildrenEvents</Name>
       <Value xsi:type="xsd:boolean">true</Value>
       <Category>Behavior</Category>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>Green</Name>
+      <Value xsi:type="xsd:int">255</Value>
+      <Category>Rendering</Category>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -117,7 +67,7 @@
     <Variable>
       <Type>float</Type>
       <Name>Height</Name>
-      <Value xsi:type="xsd:float">16</Value>
+      <Value xsi:type="xsd:float">10</Value>
       <Category>Dimensions</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -134,6 +84,20 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>int</Type>
+      <Name>Red</Name>
+      <Value xsi:type="xsd:int">255</Value>
+      <Category>Rendering</Category>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Rotation</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <Category>Flip and Rotation</Category>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
       <Type>State</Type>
       <Name>State</Name>
       <SetsValue>true</SetsValue>
@@ -147,7 +111,7 @@
     <Variable>
       <Type>float</Type>
       <Name>Width</Name>
-      <Value xsi:type="xsd:float">16</Value>
+      <Value xsi:type="xsd:float">10</Value>
       <Category>Dimensions</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -167,14 +131,13 @@
     <Variable>
       <Type>float</Type>
       <Name>X</Name>
-      <Value xsi:type="xsd:float">0</Value>
       <Category>Position</Category>
-      <SetsValue>true</SetsValue>
+      <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
       <Name>X Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
+      <Value xsi:type="xsd:int">0</Value>
       <Category>Position</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -188,14 +151,13 @@
     <Variable>
       <Type>float</Type>
       <Name>Y</Name>
-      <Value xsi:type="xsd:float">130</Value>
       <Category>Position</Category>
-      <SetsValue>true</SetsValue>
+      <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
       <Name>Y Origin</Name>
-      <Value xsi:type="xsd:int">2</Value>
+      <Value xsi:type="xsd:int">0</Value>
       <Category>Position</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -207,9 +169,5 @@
       <SetsValue>true</SetsValue>
     </Variable>
   </State>
-  <Instance>
-    <Name>ColoredRectangleInstance</Name>
-    <BaseType>ColoredRectangle</BaseType>
-  </Instance>
   <Behaviors />
 </ComponentSave>

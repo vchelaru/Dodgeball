@@ -199,10 +199,10 @@ namespace Dodgeball.Entities
         private void HudActivity()
         {
             this.ActiveMarkerRuntimeInstance.X = this.X;
-            this.ActiveMarkerRuntimeInstance.Y = this.Y + 200;
+            this.ActiveMarkerRuntimeInstance.Y = this.Y + 230;
 
             this.HealthBarRuntimeInstance.X = this.X - this.HealthBarRuntimeInstance.Width/2;
-            this.HealthBarRuntimeInstance.Y = this.Y + 160;
+            this.HealthBarRuntimeInstance.Y = this.Y + 195;
             this.HealthBarRuntimeInstance.HealthWidth = this.HealthPercentage;
 
 
@@ -211,7 +211,7 @@ namespace Dodgeball.Entities
             this.EnergyBarRuntimeInstance.EnergyHeight = this.EnergyPercentage;
 
             ThrowChargeMeterRuntimeInstance.X = X;
-            ThrowChargeMeterRuntimeInstance.Y = Y+200;
+            ThrowChargeMeterRuntimeInstance.Y = Y+215;
         }
 
         private void ThrowOrDodgeActivity()
