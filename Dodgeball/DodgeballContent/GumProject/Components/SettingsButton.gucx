@@ -352,8 +352,8 @@
       <Name>ButtonPressed</Name>
       <Variable>
         <Type>int</Type>
-        <Name>ColoredRectangleInstance.Red</Name>
-        <Value xsi:type="xsd:int">139</Value>
+        <Name>ColoredRectangleInstance.Blue</Name>
+        <Value xsi:type="xsd:int">0</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -364,8 +364,8 @@
       </Variable>
       <Variable>
         <Type>int</Type>
-        <Name>ColoredRectangleInstance.Blue</Name>
-        <Value xsi:type="xsd:int">0</Value>
+        <Name>ColoredRectangleInstance.Red</Name>
+        <Value xsi:type="xsd:int">139</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>

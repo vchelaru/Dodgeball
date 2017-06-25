@@ -8,19 +8,19 @@
         <AnimatedStateSave>
           <StateName>SizeCategory/Regular</StateName>
           <Time>0</Time>
-          <InterpolationType>Linear</InterpolationType>
+          <InterpolationType>Quartic</InterpolationType>
           <Easing>Out</Easing>
         </AnimatedStateSave>
         <AnimatedStateSave>
           <StateName>SizeCategory/Large</StateName>
-          <Time>1</Time>
+          <Time>0.6</Time>
           <InterpolationType>Linear</InterpolationType>
           <Easing>Out</Easing>
         </AnimatedStateSave>
         <AnimatedStateSave>
           <StateName>SizeCategory/Regular</StateName>
-          <Time>2</Time>
-          <InterpolationType>Linear</InterpolationType>
+          <Time>1.2</Time>
+          <InterpolationType>Sinusoidal</InterpolationType>
           <Easing>Out</Easing>
         </AnimatedStateSave>
       </States>

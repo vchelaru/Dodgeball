@@ -77,6 +77,12 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>string</Type>
+      <Name>TextInstance.Font</Name>
+      <Value xsi:type="xsd:string">Arial Black</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>TextInstance.Font Scale</Name>
       <Value xsi:type="xsd:float">1</Value>
@@ -276,19 +282,19 @@
       <Variable>
         <Type>int</Type>
         <Name>TextInstance.Blue</Name>
-        <Value xsi:type="xsd:int">0</Value>
+        <Value xsi:type="xsd:int">197</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
         <Type>int</Type>
         <Name>TextInstance.Green</Name>
-        <Value xsi:type="xsd:int">165</Value>
+        <Value xsi:type="xsd:int">255</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
         <Type>int</Type>
         <Name>TextInstance.Red</Name>
-        <Value xsi:type="xsd:int">255</Value>
+        <Value xsi:type="xsd:int">231</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>

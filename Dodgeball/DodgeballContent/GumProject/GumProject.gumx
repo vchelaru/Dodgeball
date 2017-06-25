@@ -29,6 +29,10 @@
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>
+    <Name>BackgroundAirplane</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>EnergyBar</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>
@@ -54,6 +58,10 @@
   </ComponentReference>
   <ComponentReference>
     <Name>ThrowChargeMeter</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
+  <ComponentReference>
+    <Name>Token</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>

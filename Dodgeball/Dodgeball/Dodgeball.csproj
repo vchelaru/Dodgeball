@@ -234,6 +234,7 @@
     <Compile Include="GumCore\VariableSave.cs" />
     <Compile Include="GumCore\VariableSaveExtensionMethods.cs" />
     <Compile Include="GumRuntimes\ActiveMarkerRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\BackgroundAirplaneRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CharacterSelectScreenGumRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CircleRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\ColoredRectangleRuntime.Generated.cs" />
@@ -255,6 +256,7 @@
       <DependentUpon>ThrowChargeMeterRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="GumRuntimes\TitleScreenGumRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\TokenRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\WorldComponentRuntime.cs" />
     <Compile Include="GumRuntimes\WorldComponentRuntime.Generated.cs">
       <DependentUpon>WorldComponentRuntime.cs</DependentUpon>

@@ -13,7 +13,37 @@
       <IsFile>true</IsFile>
       <Type>string</Type>
       <Name>DodgeballLogo.SourceFile</Name>
-      <Value xsi:type="xsd:string">DodgeballLogo.png</Value>
+      <Value xsi:type="xsd:string">UISpriteSheet.png</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>TextureAddress</Type>
+      <Name>DodgeballLogo.Texture Address</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>DodgeballLogo.Texture Height</Name>
+      <Value xsi:type="xsd:int">256</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>DodgeballLogo.Texture Left</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>DodgeballLogo.Texture Top</Name>
+      <Value xsi:type="xsd:int">1024</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>DodgeballLogo.Texture Width</Name>
+      <Value xsi:type="xsd:int">1024</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -230,7 +260,37 @@
       <IsFile>true</IsFile>
       <Type>string</Type>
       <Name>TitleScreenBackground.SourceFile</Name>
-      <Value xsi:type="xsd:string">TitleScreenBackground.jpg</Value>
+      <Value xsi:type="xsd:string">UISpriteSheet.png</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>TextureAddress</Type>
+      <Name>TitleScreenBackground.Texture Address</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>TitleScreenBackground.Texture Height</Name>
+      <Value xsi:type="xsd:int">1024</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>TitleScreenBackground.Texture Left</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>TitleScreenBackground.Texture Top</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>TitleScreenBackground.Texture Width</Name>
+      <Value xsi:type="xsd:int">1792</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

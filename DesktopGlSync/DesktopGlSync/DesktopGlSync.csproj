@@ -354,6 +354,9 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\ActiveMarkerRuntime.Generated.cs">
       <Link>GumRuntimes\ActiveMarkerRuntime.Generated.cs</Link>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\BackgroundAirplaneRuntime.Generated.cs">
+      <Link>GumRuntimes\BackgroundAirplaneRuntime.Generated.cs</Link>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\CharacterSelectScreenGumRuntime.Generated.cs">
       <Link>GumRuntimes\CharacterSelectScreenGumRuntime.Generated.cs</Link>
     </Compile>
@@ -412,6 +415,9 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\TitleScreenGumRuntime.Generated.cs">
       <Link>GumRuntimes\TitleScreenGumRuntime.Generated.cs</Link>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\TokenRuntime.Generated.cs">
+      <Link>GumRuntimes\TokenRuntime.Generated.cs</Link>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\WorldComponentRuntime.cs">
       <Link>GumRuntimes\WorldComponentRuntime.cs</Link>
     </Compile>
@@ -447,6 +453,7 @@
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Screens\TitleScreen.Event.cs">
       <Link>Screens\TitleScreen.Event.cs</Link>
+      <DependentUpon>TitleScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Screens\TitleScreen.Generated.cs">
       <Link>Screens\TitleScreen.Generated.cs</Link>
@@ -454,6 +461,7 @@
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Screens\TitleScreen.Generated.Event.cs">
       <Link>Screens\TitleScreen.Generated.Event.cs</Link>
+      <DependentUpon>TitleScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Screens\WrapUpScreen.cs">
       <Link>Screens\WrapUpScreen.cs</Link>
@@ -680,6 +688,11 @@
       <Name>ActiveMarker</Name>
       <Link>content\gumproject\components\activemarker.gucx</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\backgroundairplane.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BackgroundAirplane</Name>
+      <Link>content\gumproject\components\backgroundairplane.gucx</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\energybar.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>EnergyBar</Name>
@@ -715,6 +728,11 @@
       <Name>ThrowChargeMeter</Name>
       <Link>content\gumproject\components\throwchargemeter.gucx</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\token.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Token</Name>
+      <Link>content\gumproject\components\token.gucx</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\worldcomponent.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WorldComponent</Name>
@@ -724,6 +742,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>DodgeballLogo</Name>
       <Link>content\gumproject\dodgeballlogo.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font18arial black.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Arial Black</Name>
+      <Link>content\gumproject\fontcache\font18arial black.fnt</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font18arial black_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Arial Black_0</Name>
+      <Link>content\gumproject\fontcache\font18arial black_0.png</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font18arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -745,6 +773,21 @@
       <Name>Font32Arial_0</Name>
       <Link>content\gumproject\fontcache\font32arial_0.png</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font48arial black.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial Black</Name>
+      <Link>content\gumproject\fontcache\font48arial black.fnt</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font48arial black_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial Black_0</Name>
+      <Link>content\gumproject\fontcache\font48arial black_0.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font48arial black_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial Black_1</Name>
+      <Link>content\gumproject\fontcache\font48arial black_1.png</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font48arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font48Arial</Name>
@@ -759,6 +802,31 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font48Arial_1</Name>
       <Link>content\gumproject\fontcache\font48arial_1.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial black.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black</Name>
+      <Link>content\gumproject\fontcache\font72arial black.fnt</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial black_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black_0</Name>
+      <Link>content\gumproject\fontcache\font72arial black_0.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial black_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black_1</Name>
+      <Link>content\gumproject\fontcache\font72arial black_1.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial black_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black_2</Name>
+      <Link>content\gumproject\fontcache\font72arial black_2.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial black_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black_3</Name>
+      <Link>content\gumproject\fontcache\font72arial black_3.png</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font72arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -929,6 +997,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TitleScreenBackground</Name>
       <Link>content\gumproject\titlescreenbackground.jpg</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\uispritesheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>UISpriteSheet</Name>
+      <Link>content\gumproject\uispritesheet.png</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\yellowgreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
