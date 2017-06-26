@@ -5483,7 +5483,8 @@
         </member>
         <member name="T:FlatRedBall.Input.AnalogButton">
             <summary>
-            A button or single-axis input device which can return a range of values like the shoulder triggers.
+            A button or single-axis input device which can return a range of values.
+            Common examples include shoulder triggers on the Xbox360GamePad.
             </summary>
         </member>
         <member name="P:FlatRedBall.Input.AnalogButton.Position">
@@ -5507,6 +5508,50 @@
             one value then the user could hold the stick near the threshold
             and get rapid on/off values due to the inaccuracy of the analog stick. 
             </summary>
+        </member>
+        <member name="P:FlatRedBall.Input.AnalogStick.LeftAsButton">
+            <summary>
+            Returns the left direction of the analog stick as an AnalogButton instance.
+            </summary>
+            <remarks>
+            Value range is 0 to 1.
+            Value if analog stick is held all the way to the left is 1. Note that
+            the value is positive in this case, which is the opposite of the AnalogStick's Position.X.
+            Value if analog stick is in neutral position is 0.
+            Value if analog stick is held all the way to the right is still 0.
+            </remarks>
+        </member>
+        <member name="P:FlatRedBall.Input.AnalogStick.RightAsButton">
+            <summary>
+            Returns the right direction of the analog stick as an AnalogButton instance.
+            </summary>
+            <remarks>
+            Value range is 0 to 1.
+            Value if analog stick is held all the way to the left is 0.
+            Value if analog stick is in neutral position is 0.
+            Value if analog stick is held all the way to the right is 1.
+            </remarks>
+        </member>
+        <member name="P:FlatRedBall.Input.AnalogStick.UpAsButton">
+            <summary>
+            Returns the up direction of the analog stick as an AnalogButton instance.
+            </summary>
+            <remarks>
+            Value range is 0 to 1.
+            Value if analog stick is held all the way downward is 0.
+            Value if analog stick is in neutral position is 0.
+            Value if analog stick is held all the way upward is 1.
+            </remarks>
+        </member>
+        <member name="P:FlatRedBall.Input.AnalogStick.DownAsButton">
+            <summary>
+            Returns the down direction of the analog stick as an AnalogButton instance.
+            </summary>
+            Value range is 0 to 1.
+            Value if analog stick is held all the way downward is 1. Note that 
+            the value is positive, which is the opposite of the AnalogStick's Position.Y.
+            Value if analog stick is in neutral position is 0.
+            Value if analog stick is held all the way upward is 0.
         </member>
         <member name="P:FlatRedBall.Input.AnalogStick.Angle">
             <summary>
@@ -5662,13 +5707,21 @@
             portability between FlatRedBall Managed DirectX and FlatRedBall XNA.
             </summary>
         </member>
+        <member name="P:FlatRedBall.Input.Xbox360GamePad.IsConnected">
+            <summary>
+            Returns whether the current Xbox360GamePad hardware is connected, or if 
+            the FakeIsConnected property is set to true.
+            </summary>
+            <seealso cref="P:FlatRedBall.Input.Xbox360GamePad.FakeIsConnected"/>
+        </member>
         <member name="P:FlatRedBall.Input.Xbox360GamePad.FakeIsConnected">
             <summary>
             This value can force an Xbox360GamePad's 
             IsConnected to be true even if the controller
-            is not connected.  This can be used if game logic
-            requires a certain number of GamePads to be connected.
+            is not connected.  This can be used to simulate
+            multiple connected controllers.
             </summary>
+            <seealso cref="P:FlatRedBall.Input.Xbox360GamePad.IsConnected"/>
         </member>
         <member name="P:FlatRedBall.Input.Xbox360GamePad.LeftTrigger">
             <summary>
@@ -8205,6 +8258,13 @@
             <param name="yPos">The resulting Y value.</param>
             <param name="zPos">The resulting Z value.</param>
         </member>
+        <member name="M:FlatRedBall.Math.MathFunctions.LengthSquared2D(Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Returnes the length squared of the 2D distance. In other words, the Z component is ignored.
+            </summary>
+            <param name="vectorToMeasure">The vector to </param>
+            <returns>The length squared, ignoring Z.</returns>
+        </member>
         <member name="M:FlatRedBall.Math.MathFunctions.RegulateAngle(System.Single@)">
             <summary>
             Keeps an angle between 0 and 2*PI.
@@ -9742,6 +9802,15 @@
             Creates a new SpriteManager.  Also creates a new FileManager, TextureManager, and Renderer.
             </summary>
             <param name="game"></param>
+        </member>
+        <member name="M:FlatRedBall.SpriteManager.AddManualParticleSprite(Microsoft.Xna.Framework.Graphics.Texture2D)">
+            <summary>
+            Returns a particle Sprite which is not managed internally by the engine. This is the most
+            efficient type of Sprite in FlatRedBall because it is pooled and the engine does not internally
+            update the sprite. 
+            </summary>
+            <param name="texture">The texture to assign to the sprite.</param>
+            <returns>The sprite, which may be returned from a pool of sprites.</returns>
         </member>
         <member name="M:FlatRedBall.SpriteManager.GetDuplicateMembership">
             <summary>

@@ -46,18 +46,11 @@ namespace Dodgeball.Screens
             {
                 var gamepad = InputManager.Xbox360GamePads[i];
 
-                MultiplePressableInputs leftForThisGamepad = new MultiplePressableInputs();
-                leftForThisGamepad.Inputs.Add(gamepad.LeftStick.LeftAsButton);
-                leftForThisGamepad.Inputs.Add(gamepad.GetButton(Xbox360GamePad.Button.DPadLeft));
-
-                LeftInputs[i] = leftForThisGamepad;
-
-                MultiplePressableInputs rightForThisGamepad = new MultiplePressableInputs();
-                rightForThisGamepad.Inputs.Add(gamepad.LeftStick.RightAsButton);
-                rightForThisGamepad.Inputs.Add(gamepad.GetButton(Xbox360GamePad.Button.DPadRight));
-
-                RightInputs[i] = rightForThisGamepad;
-
+                LeftInputs[i] = gamepad.LeftStick.LeftAsButton
+                    .Or(gamepad.GetButton(Xbox360GamePad.Button.DPadLeft));
+                
+                RightInputs[i] = gamepad.LeftStick.RightAsButton
+                    .Or(gamepad.GetButton(Xbox360GamePad.Button.DPadRight));
             }
         }
 
@@ -124,7 +117,7 @@ namespace Dodgeball.Screens
         }
         void HandleGamePadInput(IPressableInput rightPress, IPressableInput leftPress, ref JoinStatus joinStatus, GraphicalUiElement playerMarker)
         {
-            if (rightPress.WasJustReleased)
+            if (rightPress.WasJustPressed)
             {
                 if (joinStatus == JoinStatus.Team1)
                 {
@@ -135,7 +128,8 @@ namespace Dodgeball.Screens
                     joinStatus = JoinStatus.Team2;
                 }
             }
-            if (leftPress.WasJustReleased)
+
+            if (leftPress.WasJustPressed)
             {
                 if (joinStatus == JoinStatus.Team2)
                 {
