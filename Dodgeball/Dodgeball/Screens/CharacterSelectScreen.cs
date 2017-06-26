@@ -20,6 +20,8 @@ namespace Dodgeball.Screens
         enum JoinStatus { Team1, Undecided, Team2 };
 
         private JoinStatus[] JoinStatuses;
+        private IPressableInput[] LeftInputs;
+        private IPressableInput[] RightInputs;
 
 
         void CustomInitialize()
@@ -37,7 +39,26 @@ namespace Dodgeball.Screens
         }
         private void InitializeInput()
         {
+            LeftInputs = new IPressableInput[4];
+            RightInputs = new IPressableInput[4];
 
+            for (int i = 0; i < 4; i++)
+            {
+                var gamepad = InputManager.Xbox360GamePads[i];
+
+                MultiplePressableInputs leftForThisGamepad = new MultiplePressableInputs();
+                leftForThisGamepad.Inputs.Add(gamepad.LeftStick.LeftAsButton);
+                leftForThisGamepad.Inputs.Add(gamepad.GetButton(Xbox360GamePad.Button.DPadLeft));
+
+                LeftInputs[i] = leftForThisGamepad;
+
+                MultiplePressableInputs rightForThisGamepad = new MultiplePressableInputs();
+                rightForThisGamepad.Inputs.Add(gamepad.LeftStick.RightAsButton);
+                rightForThisGamepad.Inputs.Add(gamepad.GetButton(Xbox360GamePad.Button.DPadRight));
+
+                RightInputs[i] = rightForThisGamepad;
+
+            }
         }
 
         void CustomActivity(bool firstTimeCalled)
@@ -55,7 +76,7 @@ namespace Dodgeball.Screens
 
                 if (InputManager.Xbox360GamePads[i].IsConnected)
                 {
-                    HandleGamePadInput(gamepad.LeftStick.RightAsButton, gamepad.LeftStick.LeftAsButton, ref JoinStatuses[i], markers[i]);
+                    HandleGamePadInput(RightInputs[i], LeftInputs[i], ref JoinStatuses[i], markers[i]);
                 }
             }
             
