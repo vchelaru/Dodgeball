@@ -18,68 +18,90 @@ namespace Dodgeball.Screens
     public partial class CharacterSelectScreen
     {
         enum JoinStatus { Team1, Undecided, Team2 };
-        private JoinStatus Player1JoinStatus = JoinStatus.Undecided;
-        private JoinStatus Player2JoinStatus = JoinStatus.Undecided;
-        private JoinStatus Player3JoinStatus = JoinStatus.Undecided;
-        private JoinStatus Player4JoinStatus = JoinStatus.Undecided;
+
+        private JoinStatus[] JoinStatuses;
+        private IPressableInput[] LeftInputs;
+        private IPressableInput[] RightInputs;
 
 
         void CustomInitialize()
         {
+            JoinStatuses = new JoinStatus[]
+            {
+                JoinStatus.Undecided,
+                JoinStatus.Undecided,
+                JoinStatus.Undecided,
+                JoinStatus.Undecided
+            };
+
             InitializeInput();
 
         }
         private void InitializeInput()
         {
+            LeftInputs = new IPressableInput[4];
+            RightInputs = new IPressableInput[4];
 
+            for (int i = 0; i < 4; i++)
+            {
+                var gamepad = InputManager.Xbox360GamePads[i];
+
+                LeftInputs[i] = gamepad.LeftStick.LeftAsButton
+                    .Or(gamepad.GetButton(Xbox360GamePad.Button.DPadLeft));
+                
+                RightInputs[i] = gamepad.LeftStick.RightAsButton
+                    .Or(gamepad.GetButton(Xbox360GamePad.Button.DPadRight));
+            }
         }
 
         void CustomActivity(bool firstTimeCalled)
         {
-            var player1Marker = TeamSelectionBoxesInstance.Children.Find(item => item.Name == "Player1Marker") as GraphicalUiElement;
-            var player2Marker = TeamSelectionBoxesInstance.Children.Find(item => item.Name == "Player2Marker") as GraphicalUiElement;
-            var player3Marker = TeamSelectionBoxesInstance.Children.Find(item => item.Name == "Player3Marker") as GraphicalUiElement;
-            var player4Marker = TeamSelectionBoxesInstance.Children.Find(item => item.Name == "Player4Marker") as GraphicalUiElement;
-            if (InputManager.Xbox360GamePads[0].IsConnected)
+            var markers = TeamSelectionBoxesInstance.Children
+                .Where(item => item.Name.StartsWith("Player") && item.Name.EndsWith("Marker"))
+                .OrderBy(item => item.Name)
+                .Select(item => item as GraphicalUiElement)
+                .ToList();
+
+            for(int i = 0; i < 4; i++)
             {
-                HandleGamePadInput(InputManager.Xbox360GamePads[0].LeftStick.RightAsButton, InputManager.Xbox360GamePads[0].LeftStick.LeftAsButton, ref Player1JoinStatus, player1Marker);
-                player1Marker.Visible = true;
+                var gamepad = InputManager.Xbox360GamePads[i];
+                markers[i].Visible = gamepad.IsConnected;
+
+                if (InputManager.Xbox360GamePads[i].IsConnected)
+                {
+                    HandleGamePadInput(RightInputs[i], LeftInputs[i], ref JoinStatuses[i], markers[i]);
+                }
             }
-            else { player1Marker.Visible = false; }
-            if (InputManager.Xbox360GamePads[1].IsConnected)
-            {
-                HandleGamePadInput(InputManager.Xbox360GamePads[1].LeftStick.RightAsButton, InputManager.Xbox360GamePads[1].LeftStick.LeftAsButton, ref Player2JoinStatus, player2Marker);
-                player2Marker.Visible = true;
-            }
-            else { player1Marker.Visible = false; }
-            if (InputManager.Xbox360GamePads[2].IsConnected)
-            {
-                HandleGamePadInput(InputManager.Xbox360GamePads[2].LeftStick.RightAsButton, InputManager.Xbox360GamePads[2].LeftStick.LeftAsButton, ref Player3JoinStatus, player3Marker);
-                player3Marker.Visible = true;
-            }
-            else { player3Marker.Visible = false; }
-            if (InputManager.Xbox360GamePads[3].IsConnected)
-            {
-                HandleGamePadInput(InputManager.Xbox360GamePads[3].LeftStick.RightAsButton, InputManager.Xbox360GamePads[3].LeftStick.LeftAsButton, ref Player4JoinStatus, player4Marker);
-                player4Marker.Visible = true;
-            }
-            else { player4Marker.Visible = false; }
+            
             foreach (Xbox360GamePad gamePad in InputManager.Xbox360GamePads)
             {
                 if (gamePad.ButtonPushed(Xbox360GamePad.Button.A))
                 {
-                    if ((Player1JoinStatus != JoinStatus.Undecided || InputManager.Xbox360GamePads[0].IsConnected == false) &&
-                        (Player2JoinStatus != JoinStatus.Undecided || InputManager.Xbox360GamePads[1].IsConnected == false) &&
-                        (Player3JoinStatus != JoinStatus.Undecided || InputManager.Xbox360GamePads[2].IsConnected == false) &&
-                        (Player4JoinStatus != JoinStatus.Undecided || InputManager.Xbox360GamePads[3].IsConnected == false))
+                    bool hasAnyUndecided = GetIfHasAnyUndecided();
+
+                    if (hasAnyUndecided == false)
                     {
                         TeamSelectionBoxesInstance.SelectTeamVisible = false;
                         TeamSelectionBoxesInstance.LoadingVisible = true;
                         this.Call(() => MoveToScreen(typeof(GameScreen))).After(0);
                     }
-
                 }
             }
+        }
+
+        private bool GetIfHasAnyUndecided()
+        {
+            bool hasAnyUndecided = false;
+            for (int i = 0; i < 4; i++)
+            {
+                if (JoinStatuses[i] == JoinStatus.Undecided && InputManager.Xbox360GamePads[i].IsConnected)
+                {
+                    hasAnyUndecided = true;
+                    break;
+                }
+            }
+
+            return hasAnyUndecided;
         }
 
         void CustomDestroy()
@@ -95,7 +117,7 @@ namespace Dodgeball.Screens
         }
         void HandleGamePadInput(IPressableInput rightPress, IPressableInput leftPress, ref JoinStatus joinStatus, GraphicalUiElement playerMarker)
         {
-            if (rightPress.WasJustReleased)
+            if (rightPress.WasJustPressed)
             {
                 if (joinStatus == JoinStatus.Team1)
                 {
@@ -106,7 +128,8 @@ namespace Dodgeball.Screens
                     joinStatus = JoinStatus.Team2;
                 }
             }
-            if (leftPress.WasJustReleased)
+
+            if (leftPress.WasJustPressed)
             {
                 if (joinStatus == JoinStatus.Team2)
                 {
