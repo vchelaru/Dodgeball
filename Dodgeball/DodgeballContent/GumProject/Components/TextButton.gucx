@@ -316,7 +316,19 @@
       <Variable>
         <Type>float</Type>
         <Name>TextInstance.Font Scale</Name>
-        <Value xsi:type="xsd:float">1.5</Value>
+        <Value xsi:type="xsd:float">1.2</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>TextInstance.X</Name>
+        <Value xsi:type="xsd:float">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>TextInstance.Y</Name>
+        <Value xsi:type="xsd:float">-10</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>
