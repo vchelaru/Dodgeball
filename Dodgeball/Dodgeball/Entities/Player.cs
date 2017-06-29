@@ -190,7 +190,7 @@ namespace Dodgeball.Entities
 
         #if DEBUG
 		    if (IsHoldingBall && DebuggingVariables.ShowTargetedPlayers) ShowTargetedPlayers();
-#endif
+        #endif
 
 		    SetAnimation();
 		}
@@ -198,7 +198,7 @@ namespace Dodgeball.Entities
 	    private void ThrowActivity()
 	    {
             //Early out for null inputs, or performing other action
-            if (ActionButton == null || MovementInput == null || IsDodging || IsAttemptingCatch) return;
+            if (ActionButton == null || MovementInput == null || IsDodging || IsPerformingSuccessfulCatch) return;
 
 	        if (ActionButton.WasJustPressed)
 	        {
@@ -245,38 +245,6 @@ namespace Dodgeball.Entities
 	        }
 	    }
 
-#if DEBUG
-	    private void ShowTargetedPlayers()
-	    {
-            foreach (var player in AllPlayers)
-            {
-                player.CircleInstance.Color = (player.TeamIndex == 0 ? Color.Red : Color.Blue);
-            }
-
-	        var targetPlayer = GetTargetedPlayer();
-            if (targetPlayer != null) targetPlayer.CircleInstance.Color = Color.Yellow;
-        }
-#endif
-
-
-        private void HudActivity()
-        {
-            this.ActiveMarkerRuntimeInstance.X = this.X;
-            this.ActiveMarkerRuntimeInstance.Y = this.Y + 230;
-
-            this.HealthBarRuntimeInstance.X = this.X - this.HealthBarRuntimeInstance.Width/2;
-            this.HealthBarRuntimeInstance.Y = this.Y + 195;
-            this.HealthBarRuntimeInstance.HealthWidth = this.HealthPercentage;
-
-
-            this.EnergyBarRuntimeInstance.X = this.X + (this.TeamIndex == 0 ? -120 : 120); 
-            this.EnergyBarRuntimeInstance.Y = this.Y;
-            this.EnergyBarRuntimeInstance.EnergyHeight = this.EnergyPercentage;
-
-            ThrowChargeMeterRuntimeInstance.X = X;
-            ThrowChargeMeterRuntimeInstance.Y = Y+215;
-        }
-
         private void DodgeActivity()
         {
             //Early out for null inputs or performing other activity
@@ -293,7 +261,77 @@ namespace Dodgeball.Entities
             }
         }
 
-	    internal void CatchBall(Ball ballInstance)
+	    private void MovementActivity()
+	    {
+	        if (MovementInput != null &&
+	            !IsThrowing && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch)
+	        {
+	            this.Velocity.X = MovementInput.X * MovementSpeed;
+	            this.Velocity.Y = MovementInput.Y * MovementSpeed;
+	        }
+	        else
+	        {
+	            this.Velocity.X = 0;
+	            this.Velocity.Y = 0;
+	        }
+
+	        //Keep player from moving over lines
+	        if (Position.X > TeamRectangleRight)
+	        {
+	            Position.X = TeamRectangleRight;
+	        }
+	        else if (Position.X < TeamRectangleLeft)
+	        {
+	            Position.X = TeamRectangleLeft;
+	        }
+
+	        if (Position.Y > TeamRectangleTop)
+	        {
+	            Position.Y = TeamRectangleTop;
+	        }
+	        else if (Position.Y < TeamRectangleBottom)
+	        {
+	            Position.Y = TeamRectangleBottom;
+	        }
+	    }
+
+
+	    private void HudActivity()
+	    {
+	        this.ActiveMarkerRuntimeInstance.X = this.X;
+	        this.ActiveMarkerRuntimeInstance.Y = this.Y + 230;
+
+	        this.HealthBarRuntimeInstance.X = this.X - this.HealthBarRuntimeInstance.Width / 2;
+	        this.HealthBarRuntimeInstance.Y = this.Y + 195;
+	        this.HealthBarRuntimeInstance.HealthWidth = this.HealthPercentage;
+
+
+	        this.EnergyBarRuntimeInstance.X = this.X + (this.TeamIndex == 0 ? -120 : 120);
+	        this.EnergyBarRuntimeInstance.Y = this.Y;
+	        this.EnergyBarRuntimeInstance.EnergyHeight = this.EnergyPercentage;
+
+	        ThrowChargeMeterRuntimeInstance.X = X;
+	        ThrowChargeMeterRuntimeInstance.Y = Y + 215;
+	    }
+
+
+#if DEBUG
+	    private void ShowTargetedPlayers()
+	    {
+	        foreach (var player in AllPlayers)
+	        {
+	            player.CircleInstance.Color = (player.TeamIndex == 0 ? Color.Red : Color.Blue);
+	        }
+
+	        var targetPlayer = GetTargetedPlayer();
+	        if (targetPlayer != null) targetPlayer.CircleInstance.Color = Color.Yellow;
+	    }
+#endif
+
+        #endregion
+
+        #region Actions and Reactions
+        internal void CatchBall(Ball ballInstance)
 	    {
 	        IsAttemptingCatch = false;
             IsPerformingSuccessfulCatch = true;
@@ -307,6 +345,7 @@ namespace Dodgeball.Entities
 
         internal void GetHitBy(Ball ballInstance)
         {
+            IsAttemptingCatch = false;
 
             SpriteInstance.CurrentChainName = "Hit";
             //Only take damage from other team
@@ -441,42 +480,10 @@ namespace Dodgeball.Entities
             }
 	        return targetedPlayer;
 	    }
+        #endregion
 
-        private void MovementActivity()
-        {
-            if (MovementInput != null &&
-                !IsThrowing && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch)
-            {
-                this.Velocity.X = MovementInput.X * MovementSpeed;
-                this.Velocity.Y = MovementInput.Y * MovementSpeed;
-            }
-            else
-            {
-                this.Velocity.X = 0;
-                this.Velocity.Y = 0;
-            }
-
-            //Keep player from moving over lines
-            if (Position.X > TeamRectangleRight)
-            {
-                Position.X = TeamRectangleRight;
-            }
-            else if (Position.X < TeamRectangleLeft)
-            {
-                Position.X = TeamRectangleLeft;
-            }
-
-            if (Position.Y > TeamRectangleTop)
-            {
-                Position.Y = TeamRectangleTop;
-            }
-            else if (Position.Y < TeamRectangleBottom)
-            {
-                Position.Y = TeamRectangleBottom;
-            }
-        }
-
-	    private void SetAnimation()
+        #region Animation
+        private void SetAnimation()
 	    {
 	        var canThrowOrDodge = ActionButton != null && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch;
 	        if (canThrowOrDodge)
@@ -505,7 +512,7 @@ namespace Dodgeball.Entities
 	            SpriteInstance.FlipHorizontal = TeamIndex == 0;
             }
 
-	        var canCatch = (IsAttemptingCatch || (IsPerformingSuccessfulCatch && !SpriteInstance.CurrentChainName.Contains("Catch")));
+	        var canCatch = (IsAttemptingCatch || (IsPerformingSuccessfulCatch));
 	        if (canCatch)
 	        {
 	            if (IsAttemptingCatch && CatchIsEffective)
@@ -518,7 +525,15 @@ namespace Dodgeball.Entities
 	            }
 	            else if (IsPerformingSuccessfulCatch)
 	            {
-	                SpriteInstance.CurrentChainName = IsHardCatch ? "HardCatch" : "SoftCatch";
+	                if (new[] {"HardCatch", "SoftCatch"}.Contains(SpriteInstance.CurrentChainName) &&
+	                    SpriteInstance.JustCycled)
+	                {
+	                    IsPerformingSuccessfulCatch = false;
+	                }
+	                else
+	                {
+	                    SpriteInstance.CurrentChainName = IsHardCatch ? "HardCatch" : "SoftCatch";
+	                }
 	            }
 
 	            SpriteInstance.FlipHorizontal = TeamIndex == 0;
