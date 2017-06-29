@@ -206,7 +206,14 @@ namespace Dodgeball.Screens
                             player.IsHit == false &&
                             player.CollideAgainst(BallInstance))
                         {
-                            PerformGetHitLogic(player);
+                            if (player.IsAttemptingCatch && player.CatchIsEffective)
+                            {
+                                PerformCatchBallLogic(player);
+                            }
+                            else
+                            {
+                                PerformGetHitLogic(player);
+                            }
                         }
                     }
                 }
@@ -214,7 +221,12 @@ namespace Dodgeball.Screens
             }
         }
 
-        private void PerformGetHitLogic(Entities.Player player)
+	    private void PerformCatchBallLogic(Player player)
+	    {
+	        player.CatchBall(BallInstance);
+	    }
+
+	    private void PerformGetHitLogic(Entities.Player player)
         {
             //Let player react and determine if they'll take damage
             player.GetHitBy(BallInstance);

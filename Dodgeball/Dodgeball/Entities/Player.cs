@@ -40,6 +40,12 @@ namespace Dodgeball.Entities
 
         public bool IsDodging { get; private set; }
 
+	    public bool IsAttemptingCatch { get; private set; }
+        private double CurrentCatchAttemptTime;
+	    public bool CatchIsEffective => CurrentCatchAttemptTime <= CatchEffectivenessDuration;
+        public bool IsPerformingSuccessfulCatch { get; private set; }
+	    private bool IsHardCatch;
+
 	    public WorldComponentRuntime WorldComponent;
 	    public IPositionedSizedObject TeamRectangle => (TeamIndex == 0
 	        ? WorldComponent.LeftTeamRectangle
@@ -157,6 +163,9 @@ namespace Dodgeball.Entities
 
         internal void PickUpBall(Ball ballInstance)
         {
+            IsAttemptingCatch = false;
+            IsDodging = false;
+
             BallHolding = ballInstance;
             BallHolding.ThrowOwner = this;
             ballInstance.OwnerTeam = this.TeamIndex;
@@ -171,7 +180,11 @@ namespace Dodgeball.Entities
 		{
             MovementActivity();
 
-            ThrowOrDodgeActivity();
+            DodgeActivity();
+
+		    CatchActivity();
+
+		    ThrowActivity();
 
             HudActivity();
 
@@ -181,6 +194,56 @@ namespace Dodgeball.Entities
 
 		    SetAnimation();
 		}
+
+	    private void ThrowActivity()
+	    {
+            //Early out for null inputs, or performing other action
+            if (ActionButton == null || MovementInput == null || IsDodging || IsAttemptingCatch) return;
+
+	        if (ActionButton.WasJustPressed)
+	        {
+	            chargeThrowComponent.Reset();
+	        }
+
+	        if (ActionButton.WasJustReleased && IsHoldingBall)
+	        {
+	            ExecuteThrow();
+	        }
+
+	        bool isCharging = IsHoldingBall && ActionButton.IsDown;
+	        if (isCharging)
+	        {
+	            chargeThrowComponent.ChargeActivity();
+	            ThrowChargeMeterRuntimeInstance.MeterPercent = chargeThrowComponent.MeterPercent;
+	        }
+	        ThrowChargeMeterRuntimeInstance.Visible = isCharging;
+        }
+
+	    private void CatchActivity()
+	    {
+            //Check current catching status
+	        if (IsAttemptingCatch)
+	        {
+	            CurrentCatchAttemptTime += FlatRedBall.TimeManager.SecondDifference;
+                
+                //Catch has ended
+	            if (CurrentCatchAttemptTime > CatchEffectivenessDuration + CatchFailRecoveryDuration)
+	            {
+	                IsAttemptingCatch = false;
+	            }
+	        }
+
+	        //Early out for null inputs or performing other activity
+            if (MovementInput == null || ActionButton == null || IsHoldingBall || IsDodging || IsAttemptingCatch) return;
+
+            //Actionbutton pressed and not pressing any direction
+	        if (ActionButton.WasJustPressed && 
+                (MovementInput.Y == 0 && MovementInput.X == 0))
+	        {
+	            IsAttemptingCatch = true;
+	            CurrentCatchAttemptTime = 0;
+	        }
+	    }
 
 #if DEBUG
 	    private void ShowTargetedPlayers()
@@ -214,36 +277,32 @@ namespace Dodgeball.Entities
             ThrowChargeMeterRuntimeInstance.Y = Y+215;
         }
 
-        private void ThrowOrDodgeActivity()
+        private void DodgeActivity()
         {
-            if(ActionButton != null)
+            //Early out for null inputs or performing other activity
+            if (ActionButton == null || MovementInput == null || IsHoldingBall || IsAttemptingCatch) return;
+
+            //Check if player pressed action button in combination with direction
+            if (ActionButton.WasJustPressed && 
+                (MovementInput.X != 0 || MovementInput.Y != 0))
             {
-                if (ActionButton.WasJustPressed && !IsDodging && !IsHoldingBall)
-                {
-                    IsDodging = true;
-                    var dodgeSoundPan = MathHelper.Clamp(X / 540f, -1, 1);
-                    playerDodgeSound.Pan = dodgeSoundPan;
-                    playerDodgeSound.Play();
-                }
-
-                if (ActionButton.WasJustPressed)
-                {
-                    chargeThrowComponent.Reset();
-                }
-
-                if (ActionButton.WasJustReleased && IsHoldingBall)
-                {
-                    ExecuteThrow();
-                }
-
-                bool isCharging = IsHoldingBall && ActionButton.IsDown;
-                if (isCharging)
-                {
-                    chargeThrowComponent.ChargeActivity();
-                    ThrowChargeMeterRuntimeInstance.MeterPercent = chargeThrowComponent.MeterPercent;
-                }
-                ThrowChargeMeterRuntimeInstance.Visible = isCharging;
+                IsDodging = true;
+                var dodgeSoundPan = MathHelper.Clamp(X / 540f, -1, 1);
+                playerDodgeSound.Pan = dodgeSoundPan;
+                playerDodgeSound.Play();
             }
+        }
+
+	    internal void CatchBall(Ball ballInstance)
+	    {
+	        IsAttemptingCatch = false;
+            IsPerformingSuccessfulCatch = true;
+	        IsHardCatch = ballInstance.Velocity.Length() > 1800;
+
+            BallHolding = ballInstance;
+	        BallHolding.CurrentOwnershipState = Ball.OwnershipState.Held;
+            BallHolding.ThrowOwner = this;
+	        BallHolding.OwnerTeam = this.TeamIndex;
         }
 
         internal void GetHitBy(Ball ballInstance)
@@ -386,7 +445,7 @@ namespace Dodgeball.Entities
         private void MovementActivity()
         {
             if (MovementInput != null &&
-                !IsThrowing && !IsHit)
+                !IsThrowing && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch)
             {
                 this.Velocity.X = MovementInput.X * MovementSpeed;
                 this.Velocity.Y = MovementInput.Y * MovementSpeed;
@@ -419,17 +478,17 @@ namespace Dodgeball.Entities
 
 	    private void SetAnimation()
 	    {
-	        var canThrowOrDodge = ActionButton != null && !IsHit;
+	        var canThrowOrDodge = ActionButton != null && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch;
 	        if (canThrowOrDodge)
 	        {
 	            if (justReleasedBall)
 	            {
-	                SpriteInstance.SetAnimationChain("Throw");
+	                SpriteInstance.CurrentChainName = "Throw";
 	                justReleasedBall = false;
 	            }
                 else if (ActionButton.IsDown && IsHoldingBall)
 	            {
-	                SpriteInstance.SetAnimationChain("Aim");
+	                SpriteInstance.CurrentChainName = "Aim";
 	            }
                 else if (IsDodging)
 	            {
@@ -439,15 +498,37 @@ namespace Dodgeball.Entities
 	                }
 	                else if (SpriteInstance.CurrentChainName != "Dodge")
 	                {
-	                    SpriteInstance.SetAnimationChain("Dodge");
+	                    SpriteInstance.CurrentChainName = "Dodge";
                     }
 	            }
 
 	            SpriteInstance.FlipHorizontal = TeamIndex == 0;
             }
 
+	        var canCatch = (IsAttemptingCatch || (IsPerformingSuccessfulCatch && !SpriteInstance.CurrentChainName.Contains("Catch")));
+	        if (canCatch)
+	        {
+	            if (IsAttemptingCatch && CatchIsEffective)
+	            {
+	                SpriteInstance.CurrentChainName = "Catch";
+	            }
+	            else if (IsAttemptingCatch && !CatchIsEffective)
+	            {
+	                SpriteInstance.CurrentChainName = "StaleCatch";
+	            }
+	            else if (IsPerformingSuccessfulCatch)
+	            {
+	                SpriteInstance.CurrentChainName = IsHardCatch ? "HardCatch" : "SoftCatch";
+	            }
 
-	        var canStandOrRun = !IsHit &&
+	            SpriteInstance.FlipHorizontal = TeamIndex == 0;
+	        }
+	        else if (IsPerformingSuccessfulCatch && SpriteInstance.JustCycled)
+	        {
+	            IsPerformingSuccessfulCatch = false;
+	        }
+
+            var canStandOrRun = !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch &&
 	                            ((!IsThrowing && !IsDodging) || SpriteInstance.JustCycled);
             if (canStandOrRun)
 	        {

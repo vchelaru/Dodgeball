@@ -421,4 +421,15 @@
       <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>StaleCatch</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
 </AnimationChainArraySave>

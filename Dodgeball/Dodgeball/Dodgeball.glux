@@ -803,6 +803,28 @@
           <Type>float</Type>
           <DefaultValue xsi:type="xsd:float">330</DefaultValue>
         </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>double</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>CatchEffectivenessDuration</Name>
+          <Type>double</Type>
+          <DefaultValue xsi:type="xsd:double">0.5</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>double</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>CatchFailRecoveryDuration</Name>
+          <Type>double</Type>
+          <DefaultValue xsi:type="xsd:double">1</DefaultValue>
+        </CustomVariable>
       </CustomVariables>
       <ImplementsIVisible>true</ImplementsIVisible>
       <ImplementsIDrawableBatch>false</ImplementsIDrawableBatch>
