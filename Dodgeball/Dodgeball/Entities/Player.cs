@@ -169,18 +169,6 @@ namespace Dodgeball.Entities
 
             Velocity = Vector3.Zero;
         }
-
-        internal void PickUpBall(Ball ballInstance)
-        {
-            IsAttemptingCatch = false;
-            IsDodging = false;
-
-            BallHolding = ballInstance;
-            BallHolding.ThrowOwner = this;
-            ballInstance.OwnerTeam = this.TeamIndex;
-        }
-
-
         #endregion
 
         #region Activity
@@ -208,27 +196,33 @@ namespace Dodgeball.Entities
 
 	    private void ThrowActivity()
 	    {
-            //Early out for null inputs, or performing other action
-            if (ActionButton == null || MovementInput == null || IsDodging || IsPerformingSuccessfulCatch) return;
+	        var canThrow = !(ActionButton == null || MovementInput == null || IsDodging || IsPerformingSuccessfulCatch);
 
-	        if (ActionButton.WasJustPressed)
+	        if (canThrow)
 	        {
-	            chargeThrowComponent.Reset();
-	        }
+	            if (ActionButton.WasJustPressed)
+	            {
+	                chargeThrowComponent.Reset();
+	            }
 
-	        if (ActionButton.WasJustReleased && IsHoldingBall)
-	        {
-	            ExecuteThrow();
-	        }
+	            if (ActionButton.WasJustReleased && IsHoldingBall)
+	            {
+	                ExecuteThrow();
+	            }
 
-	        bool isCharging = IsHoldingBall && ActionButton.IsDown;
-	        if (isCharging)
-	        {
-	            chargeThrowComponent.ChargeActivity();
-	            ThrowChargeMeterRuntimeInstance.MeterPercent = chargeThrowComponent.MeterPercent;
+	            bool isCharging = IsHoldingBall && ActionButton.IsDown;
+	            if (isCharging)
+	            {
+	                chargeThrowComponent.ChargeActivity();
+	                ThrowChargeMeterRuntimeInstance.MeterPercent = chargeThrowComponent.MeterPercent;
+	            }
+	            ThrowChargeMeterRuntimeInstance.Visible = isCharging;
 	        }
-	        ThrowChargeMeterRuntimeInstance.Visible = isCharging;
-        }
+	        else
+	        {
+	            ThrowChargeMeterRuntimeInstance.Visible = false;
+            }
+	    }
 
 	    private void CatchActivity()
 	    {
@@ -244,31 +238,35 @@ namespace Dodgeball.Entities
 	            }
 	        }
 
-	        //Early out for null inputs or performing other activity
-            if (MovementInput == null || ActionButton == null || IsHoldingBall || IsDodging || IsAttemptingCatch) return;
-
-            //Actionbutton pressed and not pressing any direction
-	        if (ActionButton.WasJustPressed && 
-                (MovementInput.Y == 0 && MovementInput.X == 0))
+	        var canCatch = !(MovementInput == null || ActionButton == null || IsHoldingBall || IsDodging ||
+	                         IsAttemptingCatch);
+	        if (canCatch)
 	        {
-	            IsAttemptingCatch = true;
-	            CurrentCatchAttemptTime = 0;
+	            //Actionbutton pressed and not pressing any direction
+	            if (ActionButton.WasJustPressed &&
+	                (MovementInput.Y == 0 && MovementInput.X == 0))
+	            {
+	                IsAttemptingCatch = true;
+	                CurrentCatchAttemptTime = 0;
+	            }
 	        }
 	    }
 
         private void DodgeActivity()
         {
-            //Early out for null inputs or performing other activity
-            if (ActionButton == null || MovementInput == null || IsHoldingBall || IsAttemptingCatch) return;
+            var canDodge = !(ActionButton == null || MovementInput == null || IsHoldingBall || IsAttemptingCatch);
 
-            //Check if player pressed action button in combination with direction
-            if (ActionButton.WasJustPressed && 
-                (MovementInput.X != 0 || MovementInput.Y != 0))
+            if (canDodge)
             {
-                IsDodging = true;
-                var dodgeSoundPan = MathHelper.Clamp(X / 540f, -1, 1);
-                playerDodgeSound.Pan = dodgeSoundPan;
-                playerDodgeSound.Play();
+                //Check if player pressed action button in combination with direction
+                if (ActionButton.WasJustPressed &&
+                    (MovementInput.X != 0 || MovementInput.Y != 0))
+                {
+                    IsDodging = true;
+                    var dodgeSoundPan = MathHelper.Clamp(X / 540f, -1, 1);
+                    playerDodgeSound.Pan = dodgeSoundPan;
+                    playerDodgeSound.Play();
+                }
             }
         }
 
@@ -342,17 +340,28 @@ namespace Dodgeball.Entities
         #endregion
 
         #region Actions and Reactions
-        internal void CatchBall(Ball ballInstance)
+
+	    internal void PickUpBall(Ball ballInstance)
 	    {
 	        IsAttemptingCatch = false;
+	        IsDodging = false;
+
+	        BallHolding = ballInstance;
+
+	        BallHolding.CurrentOwnershipState = Entities.Ball.OwnershipState.Held;
+	        BallHolding.Velocity = Vector3.Zero;
+	        BallHolding.ThrowOwner = this;
+	        BallHolding.OwnerTeam = this.TeamIndex;
+	        BallHolding.AttachTo(this, false);
+        }
+
+        internal void CatchBall(Ball ballInstance)
+	    {
             IsPerformingSuccessfulCatch = true;
 	        IsHardCatch = ballInstance.Velocity.Length() > 1800;
 
-            BallHolding = ballInstance;
-	        BallHolding.CurrentOwnershipState = Ball.OwnershipState.Held;
-            BallHolding.ThrowOwner = this;
-	        BallHolding.OwnerTeam = this.TeamIndex;
-        }
+	        PickUpBall(ballInstance);
+	    }
         private void SwitchPlayerActivity()
         {
             bool shouldSwitch = false;
@@ -564,12 +573,14 @@ namespace Dodgeball.Entities
 	            }
 	            else if (IsPerformingSuccessfulCatch)
 	            {
-	                if (new[] {"HardCatch", "SoftCatch"}.Contains(SpriteInstance.CurrentChainName) &&
-	                    SpriteInstance.JustCycled)
+	                var catchTypes = new[] {"HardCatch", "SoftCatch"};
+	                var catchAnimationIsSet = catchTypes.Contains(SpriteInstance.CurrentChainName);
+
+                    if (catchAnimationIsSet && SpriteInstance.JustCycled)
 	                {
 	                    IsPerformingSuccessfulCatch = false;
 	                }
-	                else
+	                else if (!catchAnimationIsSet)
 	                {
 	                    SpriteInstance.CurrentChainName = IsHardCatch ? "HardCatch" : "SoftCatch";
 	                }

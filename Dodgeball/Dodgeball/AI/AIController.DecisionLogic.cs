@@ -9,7 +9,7 @@ namespace Dodgeball.AI
     {
         #region Constant Probabilities
 
-        //The % chance of an action, when appropriate, on each frame
+        //The base chance of an action, when appropriate, on each frame
 
         //Bypasses all below actions, used as difficulty modifier
         private readonly float _probOfInaction = 0.1f;
@@ -19,6 +19,8 @@ namespace Dodgeball.AI
         private readonly float _probOfEvasion = 0.1f;
         private readonly float _probOfWandering = 0.01f;
         private readonly float _probOfTaunting = 0.003f;
+        private readonly float _probOfFailedCatch = 0.02f;
+        private readonly float _probOfSuccesfulCatch = 0.02f;
 
         private readonly float _probOfOptimalThrow = 0.04f;
 
@@ -41,8 +43,9 @@ namespace Dodgeball.AI
         private float ProbabilityOfWandering => _probOfWandering * IncreaseWithDifficulty;
         private float ProbabilityOfTaunting => _probOfTaunting * (DecreaseWithDifficulty / 2);
         private float ProbabilityOfOptimalThrow => _probOfOptimalThrow * IncreaseWithDifficulty;
-        private float ProbabilityOfSuboptimalThrow => _baseProbOfSuboptimalThrow * DecreaseWithDifficulty;
-
+        private float ProbabilityOfSuboptimalThrow => _probOfNonOptimalThrow * DecreaseWithDifficulty;
+        private float ProbabilityOfFailedCatch => _probOfFailedCatch * DecreaseWithDifficulty;
+        private float ProbabilityOfSuccessfulCatch => _probOfFailedCatch * IncreaseWithDifficulty;
 
         #endregion
 
@@ -54,14 +57,11 @@ namespace Dodgeball.AI
 
         #region Decision checks
 
+        private bool ShouldDoNothing => !isWandering && !isEvading && !isRetrieving && !isPositioningForThrow && !IsChargingThrow;
+
         private bool ShouldPositionForThrow => ball.ThrowOwner == player && !player.IsInFront && !IsChargingThrow;
 
         private bool ShouldThrowBall => player.IsHoldingBall && ballHeldTime > timeToDelayThrow && !IsChargingThrow;
-
-        private bool IsChargingThrow => player.IsHoldingBall && _actionButton.IsDown;
-
-        private bool ThrowChargeIsOptimal => CurrentThrowCharge > ChargeThrow.MaxValidThrowPercent * 0.8f &&
-                                             CurrentThrowCharge <= ChargeThrow.MaxValidThrowPercent;
 
         private bool ShouldTaunt => ball.CurrentOwnershipState == Ball.OwnershipState.Held &&
                                     ball.OwnerTeam == player.TeamIndex && ball.ThrowOwner != player;
@@ -78,7 +78,15 @@ namespace Dodgeball.AI
         private bool ShouldDodge => (ball.CurrentOwnershipState == Ball.OwnershipState.Thrown &&
                                      ball.OwnerTeam != player.TeamIndex &&
                                      !player.IsDodging &&
+                                     !player.IsAttemptingCatch &&
                                      (ball.Position - player.Position).Length() < distanceToConsiderDodging &&
+                                     ball.TrajectoryPolygon.CollideAgainst(player.CircleInstance));
+
+        private bool ShouldCatch => (ball.CurrentOwnershipState == Ball.OwnershipState.Thrown &&
+                                     ball.OwnerTeam != player.TeamIndex &&
+                                     !player.IsDodging &&
+                                     !player.IsAttemptingCatch &&
+                                     (ball.Position - player.Position).Length() < distanceToConsiderCatching &&
                                      ball.TrajectoryPolygon.CollideAgainst(player.CircleInstance));
 
         private bool ShouldRetrieveBall => ball.CurrentOwnershipState == Ball.OwnershipState.Free;
@@ -93,6 +101,17 @@ namespace Dodgeball.AI
                                                          Math.Max(maxTolerableDistanceToBallHolder,
                                                              maxTolerableDistanceToBallHolder *
                                                              Math.Abs(player.X - ball.ThrowOwner.X) / 125);
+        #endregion
+
+        #region Condition checks
+
+        private bool IsChargingThrow => player.IsHoldingBall && _actionButton.IsDown;
+
+        private bool ThrowChargeIsOptimal => CurrentThrowCharge > ChargeThrow.MaxValidThrowPercent * 0.8f &&
+                                             CurrentThrowCharge <= ChargeThrow.MaxValidThrowPercent;
+
+        private bool CatchAttemptIsOptimal => (ball.Position - player.Position).Length() < distanceToOptimalCatch &&
+                                              ball.TrajectoryPolygon.CollideAgainst(player.CircleInstance);
 
         #endregion
 
@@ -102,11 +121,13 @@ namespace Dodgeball.AI
 
             ConsiderGettingOutOfTheWay(ref hasActed);
 
-            ConsiderPositioningToThrow(ref hasActed);
+            ConsiderDoingNothing(ref hasActed);
 
             ConsiderThrowingTheBall(ref hasActed);
 
-            ConsiderDoingNothing(ref hasActed);
+            ConsiderPositioningToThrow(ref hasActed);
+
+            ConsiderCatching(ref hasActed);
 
             ConsiderDodging(ref hasActed);
 
@@ -183,13 +204,30 @@ namespace Dodgeball.AI
 
         private void ConsiderDoingNothing(ref bool hasActed)
         {
-            if (!hasActed && !isWandering && !isEvading && !isRetrieving)
+            if (!hasActed && ShouldDoNothing)
             {
                 var decisionToDoNothing = random.NextDouble() < ProbabilityOfInaction;
                 hasActed = decisionToDoNothing;
                 currentMovementDirections = AI2DInput.Directions.None;
                 _movementInput.Move(AI2DInput.Directions.None);
                 _aimingInput.Move(AI2DInput.Directions.None);
+            }
+        }
+
+        private void ConsiderCatching(ref bool hasActed)
+        {
+            if (!hasActed && ShouldCatch)
+            {
+                var chanceOfCatch = random.NextDouble();
+                var decisionToCatch = (!CatchAttemptIsOptimal && (chanceOfCatch < ProbabilityOfFailedCatch)) ||
+                                      (CatchAttemptIsOptimal && chanceOfCatch < ProbabilityOfSuccessfulCatch);
+                if (decisionToCatch)
+                {
+                    _actionButton.Press();
+                    currentMovementDirections = AI2DInput.Directions.None;
+                    _movementInput.Move(currentMovementDirections);
+                    hasActed = true;
+                }
             }
         }
 
@@ -201,6 +239,8 @@ namespace Dodgeball.AI
                 if (decisionToDodge)
                 {
                     _actionButton.Press();
+                    currentMovementDirections = DodgeDirection();
+                    _movementInput.Move(currentMovementDirections);
                     hasActed = true;
                 }
             }
@@ -230,7 +270,7 @@ namespace Dodgeball.AI
             if (!hasActed && !isWandering && (ShouldEvade && (decisionToEvade || isEvading)))
             {
                 isEvading = true;
-                currentMovementDirections = DodgeDirection();
+                currentMovementDirections = EvadeDirection();
                 _movementInput.Move(currentMovementDirections);
                 hasActed = true;
             }

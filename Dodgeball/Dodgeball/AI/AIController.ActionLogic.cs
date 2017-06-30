@@ -55,7 +55,7 @@
             return currentMovementDirections;
         }
 
-        private AI2DInput.Directions DodgeDirection()
+        private AI2DInput.Directions EvadeDirection()
         {
             if (timeEvading >= timeToEvade)
             {
@@ -95,6 +95,27 @@
 
                 currentMovementDirections = RemoveOffendingDirections(upDown | leftRight);
             }
+            return currentMovementDirections;
+        }
+
+        private AI2DInput.Directions DodgeDirection()
+        {
+            var movement = ball.Position - player.Position;
+            movement.Normalize();
+
+            var upDown = movement.Y < 0
+                ? AI2DInput.Directions.Up
+                : movement.Y > 0
+                    ? AI2DInput.Directions.Down
+                    : AI2DInput.Directions.None;
+
+            var leftRight = movement.X > 0
+                ? AI2DInput.Directions.Left
+                : movement.X < 0
+                    ? AI2DInput.Directions.Right
+                    : AI2DInput.Directions.None;
+
+            currentMovementDirections = RemoveOffendingDirections(upDown | leftRight);
             return currentMovementDirections;
         }
 

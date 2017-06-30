@@ -87,6 +87,10 @@ namespace Dodgeball.AI
 
         //Dodging logic
         private const double distanceToConsiderDodging = 500;
+
+        //Catching logic
+        private const double distanceToConsiderCatching = 500;
+        private double distanceToOptimalCatch => player.CatchEffectivenessDuration * ball.Velocity.Length();
         #endregion
 
         #region Initialize

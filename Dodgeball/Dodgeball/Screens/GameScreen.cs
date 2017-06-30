@@ -226,6 +226,25 @@ namespace Dodgeball.Screens
 	    private void PerformCatchBallLogic(Player player)
 	    {
 	        player.CatchBall(BallInstance);
+
+            #if DEBUG
+            if (DebuggingVariables.PlayerAlwaysControlsBallholder)
+	        {
+	            foreach (var playerToClear in PlayerList)
+	            {
+	                playerToClear.ClearInput();
+	            }
+
+	            if (InputManager.NumberOfConnectedGamePads != 0)
+	            {
+	                player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+	            }
+	            else
+	            {
+	                Player1.InitializeKeyboardControls();
+	            }
+	        }
+            #endif
 	    }
 
 	    private void PerformGetHitLogic(Entities.Player player)
@@ -247,9 +266,7 @@ namespace Dodgeball.Screens
 
         private void PerformPickupLogic(Entities.Player player)
         {
-            BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Held;
-            BallInstance.Velocity = Vector3.Zero;
-            BallInstance.AttachTo(player, false);
+            player.PickUpBall(BallInstance);
 
             #if DEBUG
             if (DebuggingVariables.PlayerAlwaysControlsBallholder)
@@ -269,8 +286,6 @@ namespace Dodgeball.Screens
                 }
             }
             #endif
-
-            player.PickUpBall(BallInstance);
         }
 
         private void ShowNumberOfPlayersForTeam(int teamIndex)
