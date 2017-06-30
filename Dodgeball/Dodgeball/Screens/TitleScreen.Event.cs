@@ -15,7 +15,6 @@ namespace Dodgeball.Screens
         void OnSettingsComponentInstanceSettingsButtonInstanceClick (FlatRedBall.Gui.IWindow window)
         {
             SettingsComponentInstance.Visible = false;
-            wasBackSelected = true;
         }
 		
 	}

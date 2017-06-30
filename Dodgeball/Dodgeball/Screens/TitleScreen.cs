@@ -21,7 +21,6 @@ namespace Dodgeball.Screens
         enum SettingsMenuItem { Volume, Back }
         private SettingsMenuItem SettingHighlightedSelection = SettingsMenuItem.Volume;
         private MenuItem HighlightedSelection = MenuItem.Play;
-        bool wasBackSelected = false;
 
         void CustomInitialize()
         {
@@ -31,12 +30,38 @@ namespace Dodgeball.Screens
 
         void CustomActivity(bool firstTimeCalled)
         {
+            bool isSettingsPopupVisible = SettingsComponentInstance.Visible;
+            if(isSettingsPopupVisible)
+            {
+                SettingsPopupActivity();
+            }
+            else
+            {
+                foreach (Xbox360GamePad gamePad in InputManager.Xbox360GamePads)
+                {
+                    HandleGamePadInput(gamePad, ref HighlightedSelection);
+                    TryHandleSelectConfirm(gamePad);
+                }
+            }
+        }
+
+        private void SettingsPopupActivity()
+        {
             foreach (Xbox360GamePad gamePad in InputManager.Xbox360GamePads)
             {
-                HandleGamePadInput(gamePad, ref HighlightedSelection);
-                TryHandleSelectConfirm(gamePad);
+                SettingsMenuHandleGamePadInput(gamePad.LeftStick.UpAsButton, gamePad.LeftStick.DownAsButton, ref SettingHighlightedSelection);
+                if (gamePad.ButtonPushed(Xbox360GamePad.Button.A))
+                {
+                    if (SettingHighlightedSelection == SettingsMenuItem.Volume)
+                    {
+                        //handle volume control
+                    }
+                    if (SettingHighlightedSelection == SettingsMenuItem.Back)
+                    {
+                        OnSettingsComponentInstanceSettingsButtonInstanceClick(SettingsButtonInstance);
+                    }
+                }
             }
-
         }
 
         private void TryHandleSelectConfirm(Xbox360GamePad gamePad)
@@ -50,22 +75,7 @@ namespace Dodgeball.Screens
                 if (HighlightedSelection == MenuItem.Settings)
                 {
                     SettingsComponentInstance.Visible = true;
-                    while (wasBackSelected == false)
-                    {
-                        SettingsMenuHandleGamePadInput(gamePad.LeftStick.UpAsButton, gamePad.LeftStick.DownAsButton, ref SettingHighlightedSelection);
-                        if (gamePad.ButtonPushed(Xbox360GamePad.Button.A))
-                        {
-                            if (SettingHighlightedSelection == SettingsMenuItem.Volume)
-                            {
-                                //handle volume control
-                            }
-                            if (SettingHighlightedSelection == SettingsMenuItem.Back)
-                            {
-                                OnSettingsComponentInstanceSettingsButtonInstanceClick(SettingsButtonInstance);
-                            }
-                        }
-                    }
-                    wasBackSelected = false;
+
                 }
                 if (HighlightedSelection == MenuItem.Exit)
                 {
