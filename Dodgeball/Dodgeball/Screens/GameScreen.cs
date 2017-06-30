@@ -71,7 +71,10 @@ namespace Dodgeball.Screens
         {
             if(InputManager.NumberOfConnectedGamePads != 0)
             {
-                Player1.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+                if (InputManager.Xbox360GamePads[0].IsConnected) { Player1.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]); }
+                if (InputManager.Xbox360GamePads[1].IsConnected) { Player2.InitializeXbox360Controls(InputManager.Xbox360GamePads[1]); }
+                if (InputManager.Xbox360GamePads[2].IsConnected) { Player3.InitializeXbox360Controls(InputManager.Xbox360GamePads[2]); }
+                if (InputManager.Xbox360GamePads[3].IsConnected) { Player4.InitializeXbox360Controls(InputManager.Xbox360GamePads[3]); }
             }
             else
             {
