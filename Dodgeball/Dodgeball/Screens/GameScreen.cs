@@ -29,9 +29,8 @@ namespace Dodgeball.Screens
 
 	    private float PlayAreaTop => -WorldComponentInstance.PlayArea.Y + (FlatRedBall.Camera.Main.OrthogonalHeight/2);
 	    private float PlayAreaBottom => PlayAreaTop - WorldComponentInstance.PlayArea.Height;
-        private int Team1Players = 4;
 
-
+        
         #endregion
 
         #region Initialize

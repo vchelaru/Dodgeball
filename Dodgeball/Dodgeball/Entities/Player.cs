@@ -31,6 +31,7 @@ namespace Dodgeball.Entities
 
         I2DInput AimingInput { get; set; }
         IPressableInput TauntButton { get; set; }
+        IPressableInput SwitchPlayerButton { get; set; }
 
         public PositionedObjectList<Player> AllPlayers { get; set; }
 
@@ -79,6 +80,8 @@ namespace Dodgeball.Entities
 
         public bool IsDying { get; private set; }
 
+        int nextPlayerIndex = -1;
+
 
         #endregion
 
@@ -120,6 +123,7 @@ namespace Dodgeball.Entities
 
             TauntButton = keyboard.GetKey(Keys.T);
 
+            SwitchPlayerButton = keyboard.GetKey(Keys.Space);
         }
 
         public void InitializeXbox360Controls(Xbox360GamePad gamePad)
@@ -134,6 +138,7 @@ namespace Dodgeball.Entities
             AimingInput = gamePad.RightStick;
             TauntButton = gamePad.GetButton(Xbox360GamePad.Button.LeftShoulder);
 
+            SwitchPlayerButton = gamePad.GetButton(Xbox360GamePad.Button.Y);
         }
 
         public void InitializeAIControl(AIController aicontrol)
@@ -157,6 +162,7 @@ namespace Dodgeball.Entities
 
             AimingInput = null;
             TauntButton = null;
+            SwitchPlayerButton = null;
 
             Velocity = Vector3.Zero;
         }
@@ -185,6 +191,8 @@ namespace Dodgeball.Entities
 		    CatchActivity();
 
 		    ThrowActivity();
+
+            SwitchPlayer();
 
             HudActivity();
 
@@ -342,7 +350,42 @@ namespace Dodgeball.Entities
             BallHolding.ThrowOwner = this;
 	        BallHolding.OwnerTeam = this.TeamIndex;
         }
+        private void SwitchPlayer()
+        {
+            //Position[] clockWiseCornerPosition{
+            //    WorldComponent.PlayArea.X + WorldComponent.PlayArea.Width;
+          //  }
+         
+           
+            var teamPlayers = AllPlayers.Where(p => p.TeamIndex == TeamIndex && !p.IsHit && !p.IsHoldingBall).ToList();
+            int m = teamPlayers.Count();
+            //var targetedPlayer = teamPlayers.Aggregate(
+            //        (p1, p2) => (p1.Position - Position < (p2.Position - Position).Length() ? p1 : p2);
+            if (!teamPlayers.Any())
+            {
+                //No players left!
+                SwitchPlayerButton = null;
+            }
+            if (SwitchPlayerButton != null)
+            {
+                if (SwitchPlayerButton.WasJustReleased)
+                {
+                    if (nextPlayerIndex < teamPlayers.Count()) { nextPlayerIndex++; }
+                    else { nextPlayerIndex = 0; }
+                    this.ClearInput();
+                    if (InputManager.NumberOfConnectedGamePads != 0)
+                    {
+                        teamPlayers[nextPlayerIndex].InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+                    }
+                    else
+                    {
+                        teamPlayers[0].InitializeKeyboardControls();
+                    }
+                    
+                }
+            }
 
+        }
         internal void GetHitBy(Ball ballInstance)
         {
             IsAttemptingCatch = false;
@@ -436,8 +479,8 @@ namespace Dodgeball.Entities
 	    {
             //Exclude our players, and exclude players that are knocked out
 	        var opposingTeamPlayers = AllPlayers.Where(p => p.TeamIndex != TeamIndex && !p.IsHit).ToList();
-            
-	        if (!opposingTeamPlayers.Any())
+            int nn = opposingTeamPlayers.Count;
+            if (!opposingTeamPlayers.Any())
 	        {
 	            //No players left!
                 return null;

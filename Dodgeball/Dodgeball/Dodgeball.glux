@@ -1029,7 +1029,7 @@
   <SyncedProjects>
     <string>../../DesktopGlSync/DesktopGlSync/DesktopGlSync.csproj</string>
   </SyncedProjects>
-  <StartUpScreen>Screens\TitleScreen</StartUpScreen>
+  <StartUpScreen>Screens\GameScreen</StartUpScreen>
   <ResolutionPresets />
   <PerformanceSettingsSave>
     <ThrowExceptionOnPostInitializeContentLoad>false</ThrowExceptionOnPostInitializeContentLoad>
