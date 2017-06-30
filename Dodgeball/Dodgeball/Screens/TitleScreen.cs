@@ -33,44 +33,47 @@ namespace Dodgeball.Screens
         {
             foreach (Xbox360GamePad gamePad in InputManager.Xbox360GamePads)
             {
-                HandleGamePadInput(gamePad.LeftStick.UpAsButton, gamePad.LeftStick.DownAsButton, ref HighlightedSelection);
-
-                if (gamePad.ButtonPushed(Xbox360GamePad.Button.A))
-                {
-                    if (HighlightedSelection == MenuItem.Play)
-                    {
-                        MoveToScreen(typeof(CharacterSelectScreen));
-                    }
-                    if (HighlightedSelection == MenuItem.Settings)
-                    {
-                        SettingsComponentInstance.Visible = true;
-                        while (wasBackSelected == false)
-                        {
-                            SettingsMenuHandleGamePadInput(gamePad.LeftStick.UpAsButton, gamePad.LeftStick.DownAsButton, ref SettingHighlightedSelection);
-                            if (gamePad.ButtonPushed(Xbox360GamePad.Button.A))
-                            {
-                                if (SettingHighlightedSelection == SettingsMenuItem.Volume)
-                                {
-                                    //handle volume control
-                                }
-                                if (SettingHighlightedSelection == SettingsMenuItem.Back)
-                                {
-                                    OnSettingsComponentInstanceSettingsButtonInstanceClick(SettingsButtonInstance);
-                                }
-                            }
-                        }
-                        wasBackSelected = false;
-                    }
-                    if (HighlightedSelection == MenuItem.Exit)
-                    {
-                        //Exit code here
-                    }
-                }
+                HandleGamePadInput(gamePad, ref HighlightedSelection);
+                TryHandleSelectConfirm(gamePad);
             }
 
         }
 
-         
+        private void TryHandleSelectConfirm(Xbox360GamePad gamePad)
+        {
+            if (gamePad.ButtonPushed(Xbox360GamePad.Button.A))
+            {
+                if (HighlightedSelection == MenuItem.Play)
+                {
+                    MoveToScreen(typeof(CharacterSelectScreen));
+                }
+                if (HighlightedSelection == MenuItem.Settings)
+                {
+                    SettingsComponentInstance.Visible = true;
+                    while (wasBackSelected == false)
+                    {
+                        SettingsMenuHandleGamePadInput(gamePad.LeftStick.UpAsButton, gamePad.LeftStick.DownAsButton, ref SettingHighlightedSelection);
+                        if (gamePad.ButtonPushed(Xbox360GamePad.Button.A))
+                        {
+                            if (SettingHighlightedSelection == SettingsMenuItem.Volume)
+                            {
+                                //handle volume control
+                            }
+                            if (SettingHighlightedSelection == SettingsMenuItem.Back)
+                            {
+                                OnSettingsComponentInstanceSettingsButtonInstanceClick(SettingsButtonInstance);
+                            }
+                        }
+                    }
+                    wasBackSelected = false;
+                }
+                if (HighlightedSelection == MenuItem.Exit)
+                {
+                    FlatRedBallServices.Game.Exit();
+                }
+            }
+        }
+
 
         void CustomDestroy()
         {
@@ -83,9 +86,9 @@ namespace Dodgeball.Screens
 
 
         }
-        void HandleGamePadInput(IPressableInput upPress, IPressableInput downPress, ref MenuItem highlightedSelection)
+        void HandleGamePadInput(Xbox360GamePad gamePad, ref MenuItem highlightedSelection)
         {
-            if (upPress.WasJustReleased)
+            if(gamePad.ButtonPushed(Xbox360GamePad.Button.DPadUp) || gamePad.LeftStick.AsDPadPushed(Xbox360GamePad.DPadDirection.Up))
             {
                 if (highlightedSelection == MenuItem.Settings)
                 {
@@ -96,7 +99,7 @@ namespace Dodgeball.Screens
                     highlightedSelection = MenuItem.Settings;
                 }
             }
-            if (downPress.WasJustReleased)
+            if (gamePad.ButtonPushed(Xbox360GamePad.Button.DPadDown) || gamePad.LeftStick.AsDPadPushed(Xbox360GamePad.DPadDirection.Down))
             {
                 if (highlightedSelection == MenuItem.Play)
                 {
