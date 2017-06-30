@@ -370,11 +370,11 @@ namespace Dodgeball.Entities
                 {
                     indexToAssign = 0;
                 }
-
+                var gamepad = this.lastAssignedGamePad;
                 this.ClearInput();
-                if (InputManager.NumberOfConnectedGamePads != 0)
+                if (lastAssignedGamePad == null)
                 {
-                    teamPlayers[indexToAssign].InitializeXbox360Controls(lastAssignedGamePad);
+                    teamPlayers[indexToAssign].InitializeXbox360Controls(gamepad);
                 }
                 else
                 {
