@@ -354,6 +354,12 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\ActiveMarkerRuntime.Generated.cs">
       <Link>GumRuntimes\ActiveMarkerRuntime.Generated.cs</Link>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\AIPlayersScreenGumRuntime.Generated.cs">
+      <Link>GumRuntimes\AIPlayersScreenGumRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\AISelectBoxesRuntime.Generated.cs">
+      <Link>GumRuntimes\AISelectBoxesRuntime.Generated.cs</Link>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\BackgroundAirplaneRuntime.Generated.cs">
       <Link>GumRuntimes\BackgroundAirplaneRuntime.Generated.cs</Link>
     </Compile>
@@ -803,6 +809,11 @@
       <Name>ActiveMarker</Name>
       <Link>content\gumproject\components\activemarker.gucx</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\aiselectboxes.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AISelectBoxes</Name>
+      <Link>content\gumproject\components\aiselectboxes.gucx</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\backgroundairplane.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>BackgroundAirplane</Name>
@@ -992,6 +1003,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>QuitOn</Name>
       <Link>content\gumproject\quiton.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\screens\aiplayersscreengum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AIPlayersScreenGum</Name>
+      <Link>content\gumproject\screens\aiplayersscreengum.gusx</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\screens\characterselectscreengum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
