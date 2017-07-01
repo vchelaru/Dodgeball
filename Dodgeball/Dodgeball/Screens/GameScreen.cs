@@ -25,7 +25,6 @@ namespace Dodgeball.Screens
         #region Fields/Properties
 
         private SoundEffectInstance playerHitSound;
-	    private List<AIController> AIControllers;
 
 	    private float PlayAreaTop => -WorldComponentInstance.PlayArea.Y + (FlatRedBall.Camera.Main.OrthogonalHeight/2);
 	    private float PlayAreaBottom => PlayAreaTop - WorldComponentInstance.PlayArea.Height;
@@ -49,12 +48,10 @@ namespace Dodgeball.Screens
 
         private void AssignAIControllers()
 	    {
-	        AIControllers = new List<AIController>();
 
             foreach (var player in this.PlayerList)
 	        {
-	            var newAI = new AIController(player, BallInstance);
-                AIControllers.Add(newAI);
+                player.InitializeAIControl();
 	        }
         }
 
@@ -64,6 +61,7 @@ namespace Dodgeball.Screens
             {
                 player.AllPlayers = PlayerList;
                 player.WorldComponent = WorldComponentInstance;
+                player.Ball = BallInstance;
             }
         }
 
@@ -99,22 +97,12 @@ namespace Dodgeball.Screens
 		{
             CollisionActivity();
 
-		    AIActivity();
-
             CheckForEndOfGame();
 
 #if DEBUG
             DebugActivity();
 #endif
         }
-
-	    private void AIActivity()
-	    {
-	        foreach (var AI in AIControllers)
-	        {
-	            AI.Activity();
-	        }
-	    }
 
 #if DEBUG
         private void DebugActivity()
@@ -183,47 +171,57 @@ namespace Dodgeball.Screens
             {
                 if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Free)
                 {
-                    //Can't catch a ball you're dodging or hit
-                    var validPlayers = PlayerList.Where(player => !player.IsDodging && !player.IsHit).ToList();
-                    foreach (var player in validPlayers)
-                    {
-                        if (player.IsDying == false && player.CollideAgainst(BallInstance))
-                        {
-                            PerformPickupLogic(player);
-
-                            break;
-                        }
-                    }
+                    PickUpFreeBallActivity();
                 }
                 else if (BallInstance.CurrentOwnershipState == Entities.Ball.OwnershipState.Thrown)
                 {
-                    // reverse loop since players can be removed:
-                    for (int i = PlayerList.Count - 1; i > -1; i--)
-                    {
-                        var player = PlayerList[i];
-
-                        if (BallInstance.ThrowOwner != player &&
-                            player.IsDying == false && 
-                            player.IsDodging == false &&
-                            player.IsHit == false &&
-                            player.CollideAgainst(BallInstance))
-                        {
-                            if (player.IsAttemptingCatch && player.CatchIsEffective)
-                            {
-                                PerformCatchBallLogic(player);
-                            }
-                            else
-                            {
-                                PerformGetHitLogic(player);
-                            }
-                        }
-                    }
+                    CatchAndGetHitByBallCollisionActivity();
                 }
                 // don't perform collision if the ball is being held
             }
         }
 
-	    private void PerformCatchBallLogic(Player player)
+        private void CatchAndGetHitByBallCollisionActivity()
+        {
+            // reverse loop since players can be removed:
+            for (int i = PlayerList.Count - 1; i > -1; i--)
+            {
+                var player = PlayerList[i];
+
+                if (BallInstance.ThrowOwner != player &&
+                    player.IsDying == false &&
+                    player.IsDodging == false &&
+                    player.IsHit == false &&
+                    player.CollideAgainst(BallInstance))
+                {
+                    if (player.IsAttemptingCatch && player.CatchIsEffective)
+                    {
+                        PerformCatchBallLogic(player);
+                    }
+                    else
+                    {
+                        PerformGetHitLogic(player);
+                    }
+                }
+            }
+        }
+
+        private void PickUpFreeBallActivity()
+        {
+            //Can't catch a ball you're dodging or hit
+            var validPlayers = PlayerList.Where(player => !player.IsDodging && !player.IsHit).ToList();
+            foreach (var player in validPlayers)
+            {
+                if (player.IsDying == false && player.CollideAgainst(BallInstance))
+                {
+                    PerformPickupLogic(player);
+
+                    break;
+                }
+            }
+        }
+
+        private void PerformCatchBallLogic(Player player)
 	    {
 	        player.CatchBall(BallInstance);
 
@@ -287,28 +285,28 @@ namespace Dodgeball.Screens
 	        }
 	    }
 
-	    private void PerformPickupLogic(Entities.Player player)
+	    private void PerformPickupLogic(Entities.Player playerPickingUpBall)
         {
-            player.PickUpBall(BallInstance);
+            playerPickingUpBall.PickUpBall();
 
-            #if DEBUG
-            if (DebuggingVariables.PlayerAlwaysControlsBallholder)
+            if(playerPickingUpBall.IsAiControlled)
             {
-                foreach (var playerToClear in PlayerList)
-                {
-                    playerToClear.ClearInput();
-                }
+                var eligiblePlayerControlledTeammates =
+                    PlayerList
+                    .Where(item => item.IsAiControlled == false && 
+                        item.IsDying == false && 
+                        item.TeamIndex == playerPickingUpBall.TeamIndex);
 
-                if(InputManager.NumberOfConnectedGamePads != 0)
+                var playerToSwitchInputFrom = eligiblePlayerControlledTeammates
+                    .OrderBy(item => (item.Position - playerPickingUpBall.Position).LengthSquared())
+                    .FirstOrDefault();
+
+                if(playerToSwitchInputFrom != null)
                 {
-                    player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
-                }
-                else
-                {
-                    Player1.InitializeKeyboardControls();
+                    playerToSwitchInputFrom.SwitchInputTo(playerPickingUpBall);
                 }
             }
-            #endif
+
         }
 
         private void ShowNumberOfPlayersForTeam(int teamIndex)

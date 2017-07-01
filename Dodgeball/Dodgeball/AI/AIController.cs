@@ -124,16 +124,13 @@ namespace Dodgeball.AI
 
             //Determine spacing between players
             maxTolerableDistanceToBallHolder = player.CircleInstance.Radius * 2f;
-
-            AssignInputsToPlayer();
+            
         }
         #endregion
 
         #region Activity
         public void Activity()
         {
-            //Re-assign inputs if the player has taken control of the character for debug logic
-            if (!player.HasInputs) AssignInputsToPlayer();
             UpdateInputs();
             UpdateConditions();
             MakeDecisions();
@@ -166,10 +163,6 @@ namespace Dodgeball.AI
         #endregion
 
         #region Input methods
-        private void AssignInputsToPlayer()
-        {
-            player?.InitializeAIControl(this);
-        }
 
         private void UpdateInputs()
         {

@@ -35,9 +35,9 @@ namespace Dodgeball.Entities
 
         public PositionedObjectList<Player> AllPlayers { get; set; }
 
-        public Ball BallHolding { get; set; }
+        public Ball Ball { get; set; }
 	    private bool justReleasedBall = false;
-	    public bool IsHoldingBall => BallHolding != null;
+	    public bool IsHoldingBall { get; set; }
 
         public bool IsDodging { get; private set; }
 
@@ -82,6 +82,9 @@ namespace Dodgeball.Entities
 
         private Xbox360GamePad lastAssignedGamePad;
 
+        public bool IsAiControlled => AIController != null;
+
+        public AIController AIController { get; set; }
 
         #endregion
 
@@ -114,6 +117,8 @@ namespace Dodgeball.Entities
 
         public void InitializeKeyboardControls()
         {
+            ClearInput();
+
             var keyboard = InputManager.Keyboard;
 
             MovementInput = keyboard.Get2DInput(Keys.Left, Keys.Right, Keys.Up, Keys.Down);
@@ -128,6 +133,8 @@ namespace Dodgeball.Entities
 
         public void InitializeXbox360Controls(Xbox360GamePad gamePad)
         {
+            ClearInput();
+
             var movementLocal = new Multiple2DInputs();
             movementLocal.Inputs.Add(gamePad.LeftStick);
             movementLocal.Inputs.Add(gamePad.DPad);
@@ -143,21 +150,21 @@ namespace Dodgeball.Entities
             lastAssignedGamePad = gamePad;
         }
 
-        public void InitializeAIControl(AIController aicontrol)
+        public void InitializeAIControl()
 	    {
-	        this.ActiveMarkerRuntimeInstance.Visible = false;
-            this.EnergyBarRuntimeInstance.Visible = false;
+            ClearInput();
 
-            MovementInput = aicontrol.MovementInput;
-	        ActionButton = aicontrol.ActionButton;
-	        AimingInput = aicontrol.AimingInput;
-	        TauntButton = aicontrol.TauntButton;
+            this.AIController = new AI.AIController(this, Ball);
+
+            MovementInput = AIController.MovementInput;
+	        ActionButton = AIController.ActionButton;
+	        AimingInput = AIController.AimingInput;
+	        TauntButton = AIController.TauntButton;
         }
 
         public void ClearInput()
         {
-            this.ActiveMarkerRuntimeInstance.Visible = false;
-            this.EnergyBarRuntimeInstance.Visible = false;
+            AIController = null;
 
             MovementInput = null;
             ActionButton = null;
@@ -175,6 +182,8 @@ namespace Dodgeball.Entities
 
         private void CustomActivity()
 		{
+            AIController?.Activity();
+
             MovementActivity();
 
             DodgeActivity();
@@ -337,22 +346,18 @@ namespace Dodgeball.Entities
 	    }
 #endif
 
-        #endregion
-
-        #region Actions and Reactions
-
-	    internal void PickUpBall(Ball ballInstance)
+	    internal void PickUpBall()
 	    {
 	        IsAttemptingCatch = false;
 	        IsDodging = false;
 
-	        BallHolding = ballInstance;
+            IsHoldingBall = true;
 
-	        BallHolding.CurrentOwnershipState = Entities.Ball.OwnershipState.Held;
-	        BallHolding.Velocity = Vector3.Zero;
-	        BallHolding.ThrowOwner = this;
-	        BallHolding.OwnerTeam = this.TeamIndex;
-	        BallHolding.AttachTo(this, false);
+	        Ball.CurrentOwnershipState = Entities.Ball.OwnershipState.Held;
+            Ball.Velocity = Vector3.Zero;
+            Ball.ThrowOwner = this;
+            Ball.OwnerTeam = this.TeamIndex;
+            Ball.AttachTo(this, false);
         }
 
         internal void CatchBall(Ball ballInstance)
@@ -360,8 +365,9 @@ namespace Dodgeball.Entities
             IsPerformingSuccessfulCatch = true;
 	        IsHardCatch = ballInstance.Velocity.Length() > 1800;
 
-	        PickUpBall(ballInstance);
+	        PickUpBall();
 	    }
+
         private void SwitchPlayerActivity()
         {
             bool shouldSwitch = false;
@@ -379,18 +385,27 @@ namespace Dodgeball.Entities
                 {
                     indexToAssign = 0;
                 }
-                var gamepad = this.lastAssignedGamePad;
-                this.ClearInput();
-                if (lastAssignedGamePad == null)
-                {
-                    teamPlayers[indexToAssign].InitializeXbox360Controls(gamepad);
-                }
-                else
-                {
-                    teamPlayers[0].InitializeKeyboardControls();
-                }
+
+                var playerToSwitchTo = teamPlayers[indexToAssign];
+                SwitchInputTo(playerToSwitchTo);
             }
         }
+
+        public void SwitchInputTo(Player playerToSwitchTo)
+        {
+            var gamepad = this.lastAssignedGamePad;
+            this.ClearInput();
+            this.InitializeAIControl();
+            if (lastAssignedGamePad == null)
+            {
+                playerToSwitchTo.InitializeXbox360Controls(gamepad);
+            }
+            else
+            {
+                playerToSwitchTo.InitializeKeyboardControls();
+            }
+        }
+
         internal void GetHitBy(Ball ballInstance)
         {
             IsAttemptingCatch = false;
@@ -442,7 +457,7 @@ namespace Dodgeball.Entities
                 if (isFailedThrow)
                 {
                     // Throw it straight, slow, it'll hit the ground right away
-                    BallHolding.AltitudeVelocity = 0;
+                    Ball.AltitudeVelocity = 0;
                 }
                 else
                 {
@@ -451,17 +466,18 @@ namespace Dodgeball.Entities
                     var timeToTarget = .5f * distanceToTarget / ThrowVelocity;
 
                     // arc that badboy:
-                    float desiredYVelocity = BallHolding.BallGravity * timeToTarget;
+                    float desiredYVelocity = Ball.BallGravity * timeToTarget;
 
-                    BallHolding.AltitudeVelocity = desiredYVelocity;
+                    Ball.AltitudeVelocity = desiredYVelocity;
                 }
 
 
                 direction.Normalize();
-                BallHolding.Detach();
-                BallHolding.PerformThrownLogic(this, direction * ThrowVelocity);
+                Ball.Detach();
+                Ball.PerformThrownLogic(this, direction * ThrowVelocity);
 
-                BallHolding = null;
+                IsHoldingBall = false;
+
                 justReleasedBall = true;
 
 #if DEBUG
