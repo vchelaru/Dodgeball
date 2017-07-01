@@ -128,7 +128,7 @@ namespace Dodgeball.Entities
 	        CurrentOwnershipState = Ball.OwnershipState.Thrown;
 
 	        var percentRequiredForSpecial = 0.9f;
-	        var isFailedThrow = velocity.Equals(player.MinThrowVelocity);
+	        var isFailedThrow = Math.Abs(velocity.Length() - player.MinThrowVelocity) < 1;
 	        var isSpecialThrow = velocity.Length() > player.MaxThrowVelocity * percentRequiredForSpecial;
 
 	        if (isSpecialThrow)
