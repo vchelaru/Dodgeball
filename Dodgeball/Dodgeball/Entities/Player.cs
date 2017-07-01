@@ -407,6 +407,7 @@ namespace Dodgeball.Entities
 
                 if(wasAlive && !isAlive)
                 {
+                    GlobalContent.player_death.Play();
                     IsDying = true;
                     Dying?.Invoke();
                 }

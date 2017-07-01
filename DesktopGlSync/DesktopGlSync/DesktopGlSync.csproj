@@ -633,6 +633,11 @@
       <Name>ball_wall_bounce</Name>
       <Link>Content\GlobalContent\Sounds\ball_wall_bounce.xnb</Link>
     </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_death.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_death</Name>
+      <Link>Content\GlobalContent\Sounds\player_death.xnb</Link>
+    </None>
     <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_dodge.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>player_dodge</Name>
@@ -642,6 +647,51 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>player_hit</Name>
       <Link>Content\GlobalContent\Sounds\player_hit.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit_0.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_hit_0</Name>
+      <Link>Content\GlobalContent\Sounds\player_hit_0.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit_1.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_hit_1</Name>
+      <Link>Content\GlobalContent\Sounds\player_hit_1.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit_2.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_hit_2</Name>
+      <Link>Content\GlobalContent\Sounds\player_hit_2.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit_3.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_hit_3</Name>
+      <Link>Content\GlobalContent\Sounds\player_hit_3.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit_4.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_hit_4</Name>
+      <Link>Content\GlobalContent\Sounds\player_hit_4.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit_5.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_hit_5</Name>
+      <Link>Content\GlobalContent\Sounds\player_hit_5.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit_6.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_hit_6</Name>
+      <Link>Content\GlobalContent\Sounds\player_hit_6.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit_7.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_hit_7</Name>
+      <Link>Content\GlobalContent\Sounds\player_hit_7.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit_8.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_hit_8</Name>
+      <Link>Content\GlobalContent\Sounds\player_hit_8.xnb</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\animationchainball.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

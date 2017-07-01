@@ -502,8 +502,7 @@ namespace FlatRedBall.Gum
 
         public void Destroy()
         {
-            // This may be an element-less IDB added just to support rendering Gum components without a screen
-            element?.RemoveFromManagers();
+            element.RemoveFromManagers();
 
             foreach (var kvp in mFrbToGumLayers)
             {

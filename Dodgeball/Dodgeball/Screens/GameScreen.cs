@@ -37,7 +37,7 @@ namespace Dodgeball.Screens
 
         void CustomInitialize()
         {
-            playerHitSound = GlobalContent.player_hit.CreateInstance();
+            playerHitSound = GlobalContent.player_hit_0.CreateInstance();
             SharePlayerReferences();
 
             AssignAIControllers();
@@ -253,8 +253,13 @@ namespace Dodgeball.Screens
             player.GetHitBy(BallInstance);
 
             //Make a hit sound
+            var ballVelocity = BallInstance.Velocity.Length();
+            var maxVelocity = player.MaxThrowVelocity;
             var playerHitPan = MathHelper.Clamp(player.X / 540f, -1, 1);
-            var playerHitVol = MathHelper.Clamp(BallInstance.Velocity.Length() / 1000f, 0, 1);
+            var playerHitVol = MathHelper.Clamp((ballVelocity * 2) / maxVelocity, 0.1f, 1);
+
+            SetPlayerHitSoundByVelocity(ballVelocity, maxVelocity);
+
             playerHitSound.Pan = playerHitPan;
             playerHitSound.Volume = playerHitVol;
             playerHitSound.Play();
@@ -264,7 +269,23 @@ namespace Dodgeball.Screens
             BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
         }
 
-        private void PerformPickupLogic(Entities.Player player)
+	    private void SetPlayerHitSoundByVelocity(float ballVelocity, float maxVelocity)
+	    {
+	        var pctOfPossibleVelocity = ballVelocity / maxVelocity;
+	        var hitIndex = Convert.ToInt32(pctOfPossibleVelocity * 8);
+	        hitIndex = MathHelper.Clamp(hitIndex, 0, 8);
+
+	        var playerHitSoundName = $"player_hit_{hitIndex}";
+
+	        var hitSound = GlobalContent.GetFile(playerHitSoundName) as SoundEffect;
+            
+	        if (hitSound != null)
+	        {
+	            playerHitSound = hitSound.CreateInstance();
+	        }
+	    }
+
+	    private void PerformPickupLogic(Entities.Player player)
         {
             player.PickUpBall(BallInstance);
 

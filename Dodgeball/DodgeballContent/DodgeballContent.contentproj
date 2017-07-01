@@ -294,15 +294,60 @@
       <Processor>SoundEffectProcessor</Processor>
       <Name>ball_wall_bounce</Name>
     </Compile>
+    <Compile Include="GlobalContent\Sounds\player_death.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_death</Name>
+    </Compile>
     <Compile Include="GlobalContent\Sounds\player_dodge.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Name>player_dodge</Name>
     </Compile>
-    <Compile Include="GlobalContent\Sounds\player_hit.wav">
+    <Compile Include="GlobalContent\Sounds\player_hit_0.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
-      <Name>player_hit</Name>
+      <Name>player_hit_0</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_hit_1.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_hit_1</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_hit_2.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_hit_2</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_hit_3.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_hit_3</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_hit_4.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_hit_4</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_hit_5.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_hit_5</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_hit_6.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_hit_6</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_hit_7.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_hit_7</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_hit_8.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_hit_8</Name>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
