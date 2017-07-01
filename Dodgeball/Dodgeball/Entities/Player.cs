@@ -100,12 +100,18 @@ namespace Dodgeball.Entities
         {
             playerDodgeSound = GlobalContent.player_dodge.CreateInstance();
 
-            this.ActiveMarkerRuntimeInstance.Visible = false;
-            this.EnergyBarRuntimeInstance.Visible = false;
+            HideUi();
 
             InstantiateChargeThrowComponent();
 
             CircleInstance.Color = TeamIndex == 0 ? Color.Red : Color.Blue;
+        }
+
+        private void HideUi()
+        {
+            this.ActiveMarkerRuntimeInstance.Visible = false;
+            this.EnergyBarRuntimeInstance.Visible = false;
+            this.ThrowChargeMeterRuntimeInstance.Visible = false;
         }
 
         private void InstantiateChargeThrowComponent()
@@ -211,12 +217,15 @@ namespace Dodgeball.Entities
 	        {
 	            if (ActionButton.WasJustPressed)
 	            {
+                    ThrowChargeMeterRuntimeInstance.Visible = true;
 	                chargeThrowComponent.Reset();
 	            }
 
 	            if (ActionButton.WasJustReleased && IsHoldingBall)
 	            {
 	                ExecuteThrow();
+                    const int TimeToShowThrowMeterAfterThrow = 1;
+                    this.Call(() => ThrowChargeMeterRuntimeInstance.Visible = false).After(TimeToShowThrowMeterAfterThrow);
 	            }
 
 	            bool isCharging = IsHoldingBall && ActionButton.IsDown;
@@ -225,12 +234,8 @@ namespace Dodgeball.Entities
 	                chargeThrowComponent.ChargeActivity();
 	                ThrowChargeMeterRuntimeInstance.MeterPercent = chargeThrowComponent.MeterPercent;
 	            }
-	            ThrowChargeMeterRuntimeInstance.Visible = isCharging;
 	        }
-	        else
-	        {
-	            ThrowChargeMeterRuntimeInstance.Visible = false;
-            }
+
 	    }
 
 	    private void CatchActivity()
