@@ -321,7 +321,7 @@ namespace Dodgeball.Entities
 
 	        this.HealthBarRuntimeInstance.X = this.X - this.HealthBarRuntimeInstance.Width / 2;
 	        this.HealthBarRuntimeInstance.Y = this.Y + 195;
-	        this.HealthBarRuntimeInstance.HealthWidth = this.HealthPercentage;
+	        this.HealthBarRuntimeInstance.HealthPercentage = this.HealthPercentage;
 
 
 	        this.EnergyBarRuntimeInstance.X = this.X + (this.TeamIndex == 0 ? -120 : 120);
