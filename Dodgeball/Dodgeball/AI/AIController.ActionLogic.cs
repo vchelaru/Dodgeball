@@ -1,14 +1,20 @@
-﻿namespace Dodgeball.AI
+﻿using System;
+using System.Linq;
+using Dodgeball.Entities;
+using FlatRedBall.Math.Geometry;
+using Microsoft.Xna.Framework;
+
+namespace Dodgeball.AI
 {
     public partial class AIController
     {
-        private AI2DInput.Directions AimDirection()
+        private AI2DInput.Directions GetAimDirection()
         {
             //TODO:  Aim at particular player
             return AI2DInput.Directions.Down;
         }
 
-        private AI2DInput.Directions WanderDirection()
+        private AI2DInput.Directions GetWanderDirection()
         {
             if (timeWandering >= timeToWander)
             {
@@ -55,7 +61,7 @@
             return currentMovementDirections;
         }
 
-        private AI2DInput.Directions EvadeDirection()
+        private AI2DInput.Directions GetEvadeDirection(Vector3 positionToEvade)
         {
             if (timeEvading >= timeToEvade)
             {
@@ -79,7 +85,7 @@
 
                 timeToEvade = MaxEvasionTime * random.NextDouble();
 
-                var movement = ball.Position - player.Position;
+                var movement = positionToEvade - player.Position;
                 movement.Normalize();
 
                 var upDown = movement.Y < 0
@@ -98,7 +104,7 @@
             return currentMovementDirections;
         }
 
-        private AI2DInput.Directions DodgeDirection()
+        private AI2DInput.Directions GetDodgeDirection()
         {
             var movement = ball.Position - player.Position;
             movement.Normalize();
@@ -119,7 +125,7 @@
             return currentMovementDirections;
         }
 
-        private AI2DInput.Directions RetrieveBallDirections()
+        private AI2DInput.Directions GetRetrieveBallDirection()
         {
             var leftRight = ball.Position.X > player.Position.X
                 ? AI2DInput.Directions.Right
@@ -135,7 +141,7 @@
             return upDown | leftRight;
         }
 
-        private AI2DInput.Directions RetrieveGetOutOfTheWayDirections()
+        private AI2DInput.Directions GetMoveOutOfTheWayOfBallHolderDirection()
         {
             if (currentMovementDirections == AI2DInput.Directions.None)
             {
@@ -177,7 +183,7 @@
             return newDirections;
         }
 
-        private AI2DInput.Directions RetrieveDirectionsForThrowPositioning()
+        private AI2DInput.Directions GetThrowPositioningDirection()
         {
             if (currentMovementDirections == AI2DInput.Directions.None)
             {
@@ -194,6 +200,56 @@
                 }
             }
             return currentMovementDirections;
+        }
+
+        private Player GetClosestTeamPlayer()
+        {
+            var closestPlayer = teamPlayers.FirstOrDefault();
+            var closestPlayerDistance = float.MaxValue;
+
+            foreach (var teamPlayer in teamPlayers)
+            {
+                var teamPlayerDistance = (player.Position - teamPlayer.Position).Length();
+                if (teamPlayerDistance < closestPlayerDistance)
+                {
+                    closestPlayer = teamPlayer;
+                    closestPlayerDistance = teamPlayerDistance;
+                }
+            }
+
+            return closestPlayer;
+        }
+
+        private float GetBallLocationProbabilityModifier()
+        {
+            float halfwayX;
+            bool ballIsInMyCourt;
+
+            float toReturn = 1f;
+
+            //Left side of the screen
+            if (player.TeamIndex == 0)
+            {
+                halfwayX = player.TeamRectangleRight;
+                ballIsInMyCourt = ball.Position.X < halfwayX;
+            }
+            else
+            {
+                halfwayX =  player.TeamRectangleLeft;
+                ballIsInMyCourt = ball.Position.X > halfwayX;
+            }
+
+            if (ballIsInMyCourt == false)
+            {
+                //The closer it gets, the more likely, but still not as likely as if it was in my court
+                var distanceOfBallToMiddle = ball.Position.X - halfwayX;
+                var relativeDistanceToMiddle = distanceOfBallToMiddle / player.TeamRectangle.Width;
+                var ballIsTravelingAway = Math.Sign(distanceOfBallToMiddle) == Math.Sign(ball.Velocity.X);
+
+                toReturn = relativeDistanceToMiddle * (ballIsTravelingAway ? 0.25f : 1f);
+            }
+
+            return toReturn;
         }
     }
 }

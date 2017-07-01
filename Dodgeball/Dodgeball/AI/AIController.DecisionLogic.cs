@@ -15,7 +15,6 @@ namespace Dodgeball.AI
         private readonly float _probOfInaction = 0.1f;
 
         private readonly float _probOfDodge = 0.03f;
-        private readonly float _probOfBallRetrieval = 0.05f;
         private readonly float _probOfEvasion = 0.1f;
         private readonly float _probOfWandering = 0.01f;
         private readonly float _probOfTaunting = 0.003f;
@@ -26,11 +25,13 @@ namespace Dodgeball.AI
 
         //These are probabilities that aren't directly referenced by logic, but are altered then used as a dynamic probability
         private readonly float _baseProbOfSuboptimalThrow = 0.1f;
+        private readonly float _baseProbOfBallRetrieval = 0.05f;
         #endregion
 
         #region Dynamic Probabilities
         //The base chance of an action, altered by conditions
         private float _probOfNonOptimalThrow => _baseProbOfSuboptimalThrow * CurrentThrowCharge/100;
+        private float _probOfBallRetrieval => _baseProbOfBallRetrieval * GetBallLocationProbabilityModifier();
 
         #endregion
 
@@ -101,6 +102,10 @@ namespace Dodgeball.AI
                                                          Math.Max(maxTolerableDistanceToBallHolder,
                                                              maxTolerableDistanceToBallHolder *
                                                              Math.Abs(player.X - ball.ThrowOwner.X) / 125);
+
+        private bool ShouldGetOutOfTheWayOfAnotherPlayer => teamPlayers.Exists(
+            tp => (Math.Abs(tp.X - player.X) <= myPersonalSpace ||
+                  Math.Abs(tp.Y - player.Y) <= myPersonalSpace));
         #endregion
 
         #region Condition checks
@@ -158,8 +163,32 @@ namespace Dodgeball.AI
             if (!hasActed && ShouldGetOutOfTheWayOfBallHolder)
             {
                 isGettingOutOfTheWay = true;
-                _movementInput.Move(RetrieveGetOutOfTheWayDirections());
+                _movementInput.Move(GetMoveOutOfTheWayOfBallHolderDirection());
                 hasActed = true;
+            }
+            else if (!hasActed && ShouldGetOutOfTheWayOfAnotherPlayer)
+            {
+                var closestPlayer = GetClosestTeamPlayer();
+                if (closestPlayer != null)
+                {
+                    //var closestPlayerIsMoving = closestPlayer != null && closestPlayer.Velocity.Length() > 0;
+                    //if (closestPlayerIsMoving)
+                    //{
+
+                    //}
+                    isGettingOutOfTheWay = true;
+                    var outOfTheWayDirections = GetEvadeDirection(closestPlayer.Position);
+                    if (outOfTheWayDirections != AI2DInput.Directions.None)
+                    {
+                        currentMovementDirections = outOfTheWayDirections;
+                        _movementInput.Move(currentMovementDirections);
+                        hasActed = true;
+                    }
+                }
+                else
+                {
+                    isGettingOutOfTheWay = false;
+                }
             }
             else
             {
@@ -172,7 +201,7 @@ namespace Dodgeball.AI
             if (!hasActed && ShouldPositionForThrow)
             {
                 isPositioningForThrow = true;
-                _movementInput.Move(RetrieveDirectionsForThrowPositioning());
+                _movementInput.Move(GetThrowPositioningDirection());
                 hasActed = true;
             }
             else
@@ -186,7 +215,7 @@ namespace Dodgeball.AI
             if (!hasActed && ShouldThrowBall)
             {
                 isPositioningForThrow = false;
-                _aimingInput.Move(AimDirection());
+                _aimingInput.Move(GetAimDirection());
                 _movementInput.Move(AI2DInput.Directions.None);
                 _actionButton.Press();
                 ballHeldTime = 0;
@@ -239,7 +268,7 @@ namespace Dodgeball.AI
                 if (decisionToDodge)
                 {
                     _actionButton.Press();
-                    currentMovementDirections = DodgeDirection();
+                    currentMovementDirections = GetDodgeDirection();
                     _movementInput.Move(currentMovementDirections);
                     hasActed = true;
                 }
@@ -253,7 +282,7 @@ namespace Dodgeball.AI
                 var decisionToRetrieveBall = random.NextDouble() < ProbabilityOfBallRetrieval;
                 if (decisionToRetrieveBall || isRetrieving)
                 {
-                    _movementInput.Move(RetrieveBallDirections());
+                    _movementInput.Move(GetRetrieveBallDirection());
                     isRetrieving = true;
                     hasActed = true;
                 }
@@ -270,7 +299,7 @@ namespace Dodgeball.AI
             if (!hasActed && !isWandering && (ShouldEvade && (decisionToEvade || isEvading)))
             {
                 isEvading = true;
-                currentMovementDirections = EvadeDirection();
+                currentMovementDirections = GetEvadeDirection(ball.Position);
                 _movementInput.Move(currentMovementDirections);
                 hasActed = true;
             }
@@ -287,7 +316,7 @@ namespace Dodgeball.AI
             if (!hasActed && !isEvading && (ShouldWander && (decisionToWander || isWandering)))
             {
                 isWandering = true;
-                currentMovementDirections = WanderDirection();
+                currentMovementDirections = GetWanderDirection();
                 _movementInput.Move(currentMovementDirections);
 
                 hasActed = true;

@@ -55,8 +55,10 @@ namespace Dodgeball.AI
         #region Other Fields/Properties
         //Object references
         private readonly Player player;
-        private PositionedObjectList<Player> allPlayers;
+        private List<Player> teamPlayers;
         private readonly Ball ball;
+
+        private float myPersonalSpace;
 
         //Random determinations
         private Random random;
@@ -100,8 +102,10 @@ namespace Dodgeball.AI
 
             //Object references
             this.player = player;
-            allPlayers = player.AllPlayers;
+            teamPlayers = player.AllPlayers.Where(p => p.TeamIndex == player.TeamIndex && p != this.player).ToList();
             this.ball = ball;
+
+            myPersonalSpace = player.CircleInstance.Radius * 1.5f;
 
             //Local simulated inputs
             _movementInput = new AI2DInput();
