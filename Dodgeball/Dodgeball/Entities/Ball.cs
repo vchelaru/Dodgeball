@@ -127,10 +127,22 @@ namespace Dodgeball.Entities
 	        ThrowOwner = player;
 	        CurrentOwnershipState = Ball.OwnershipState.Thrown;
 
+	        var percentRequiredForSpecial = 0.9f;
 	        var isFailedThrow = velocity.Equals(player.MinThrowVelocity);
-	        var isSpecialThrow = velocity.Length() > player.MaxThrowVelocity * 0.90f;
+	        var isSpecialThrow = velocity.Length() > player.MaxThrowVelocity * percentRequiredForSpecial;
 
-	        SetBallThrowSoundByVelocity(velocity.Length(), player.MaxThrowVelocity, isFailedThrow, isSpecialThrow);
+	        if (isSpecialThrow)
+	        {
+                //This normalized velocity to be in the range of minimum for special to max for special
+                var effectiveVelocity = velocity.Length() - (player.MaxThrowVelocity* percentRequiredForSpecial);
+	            var effectiveMax = player.MaxThrowVelocity * (1 - percentRequiredForSpecial);
+
+                SetBallThrowSoundByVelocity(effectiveVelocity, effectiveMax, isFailedThrow, isSpecialThrow);
+            }
+	        else
+	        {
+	            SetBallThrowSoundByVelocity(velocity.Length(), player.MaxThrowVelocity, isFailedThrow, isSpecialThrow);
+            }
 
             var ballThrowPan = MathHelper.Clamp(X / 540f, -1, 1);
 	        var ballThrowVol = MathHelper.Clamp(Velocity.Length() / 1000f, 0, 1);
@@ -150,8 +162,8 @@ namespace Dodgeball.Entities
 	        else
 	        {
 	            var pctOfPossibleVelocity = ballVelocity / maxVelocity;
-
-                //This is the number of sound effects available in GlobalContent: 4 special, 6 regular
+	            
+	            //This is the number of sound effects available in GlobalContent: 4 special, 6 regular
                 var maxThrowIndex = isSpecialThrow ? 4 : 6;
 	            var throwIndex = Convert.ToInt32(pctOfPossibleVelocity * maxThrowIndex);
 
