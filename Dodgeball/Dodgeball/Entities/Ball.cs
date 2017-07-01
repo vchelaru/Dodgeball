@@ -71,7 +71,7 @@ namespace Dodgeball.Entities
             Altitude = this.HeightWhenThrown;
 		    ballFloorBounceSound = GlobalContent.ball_bounce.CreateInstance();
 		    ballWallBounceSound = GlobalContent.ball_wall_bounce.CreateInstance();
-		    ballThrowSound = GlobalContent.ball_throw.CreateInstance();
+		    ballThrowSound = GlobalContent.ball_throw_0.CreateInstance();
 #if DEBUG
             if (DebuggingVariables.ShowBallTrajectory)
 		    {
@@ -127,12 +127,44 @@ namespace Dodgeball.Entities
 	        ThrowOwner = player;
 	        CurrentOwnershipState = Ball.OwnershipState.Thrown;
 
+	        var isFailedThrow = velocity.Equals(player.MinThrowVelocity);
+	        var isSpecialThrow = velocity.Length() > player.MaxThrowVelocity * 0.90f;
+
+	        SetBallThrowSoundByVelocity(velocity.Length(), player.MaxThrowVelocity, isFailedThrow, isSpecialThrow);
+
             var ballThrowPan = MathHelper.Clamp(X / 540f, -1, 1);
 	        var ballThrowVol = MathHelper.Clamp(Velocity.Length() / 1000f, 0, 1);
             ballThrowSound.Pan = ballThrowPan;
 	        ballThrowSound.Volume = ballThrowVol;
             ballThrowSound.Play();
         }
+
+	    private void SetBallThrowSoundByVelocity(float ballVelocity, float maxVelocity, bool isFailedThrow, bool isSpecialThrow)
+	    {
+	        string ballThrowSoundName;
+
+	        if (isFailedThrow)
+	        {
+	            ballThrowSoundName = "ball_throw_0";
+            }
+	        else
+	        {
+	            var pctOfPossibleVelocity = ballVelocity / maxVelocity;
+
+                //This is the number of sound effects available in GlobalContent: 4 special, 6 regular
+                var maxThrowIndex = isSpecialThrow ? 4 : 6;
+	            var throwIndex = Convert.ToInt32(pctOfPossibleVelocity * maxThrowIndex);
+
+	            ballThrowSoundName = isSpecialThrow ? $"ball_throw_special_{throwIndex}" : $"ball_throw_{throwIndex}";
+            }
+
+	        var throwSound = GlobalContent.GetFile(ballThrowSoundName) as SoundEffect;
+
+	        if (throwSound != null)
+	        {
+	            ballThrowSound = throwSound.CreateInstance();
+	        }
+	    }
 
         private void PerformFallingAndBouncingActivity()
         {
@@ -193,6 +225,7 @@ namespace Dodgeball.Entities
 	            bounceVolume = MathHelper.Clamp(Math.Abs(YVelocity) / 1000f, 0, 1);
                 YVelocity *= -1;
             }
+
 	        var bouncePan = MathHelper.Clamp(X / 540f,-1,1);
 	        ballWallBounceSound.Pan = bouncePan;
 	        ballWallBounceSound.Pitch = bounceVolume/4;

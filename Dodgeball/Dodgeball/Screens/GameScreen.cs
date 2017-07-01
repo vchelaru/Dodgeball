@@ -271,9 +271,11 @@ namespace Dodgeball.Screens
 
 	    private void SetPlayerHitSoundByVelocity(float ballVelocity, float maxVelocity)
 	    {
-	        var pctOfPossibleVelocity = ballVelocity / maxVelocity;
-	        var hitIndex = Convert.ToInt32(pctOfPossibleVelocity * 8);
-	        hitIndex = MathHelper.Clamp(hitIndex, 0, 8);
+	        //This is the number of sound effects available in GlobalContent: 8 player_hit sounds
+	        var maxThrowIndex = 8;
+
+            var pctOfPossibleVelocity = ballVelocity / maxVelocity;
+	        var hitIndex = Convert.ToInt32(pctOfPossibleVelocity * maxThrowIndex);
 
 	        var playerHitSoundName = $"player_hit_{hitIndex}";
 

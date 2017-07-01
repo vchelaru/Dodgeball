@@ -284,10 +284,70 @@
       <Processor>SoundEffectProcessor</Processor>
       <Name>ball_bounce</Name>
     </Compile>
-    <Compile Include="GlobalContent\Sounds\ball_throw.wav">
+    <Compile Include="GlobalContent\Sounds\ball_throw_0.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
-      <Name>ball_throw</Name>
+      <Name>ball_throw_0</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_1.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_1</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_2.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_2</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_3.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_3</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_4.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_4</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_5.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_5</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_6.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_6</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_special_0.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_special_0</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_special_1.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_special_1</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_special_2.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_special_2</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_special_3.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_special_3</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_special_4.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_special_4</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_throw_special_5.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_throw_special_5</Name>
     </Compile>
     <Compile Include="GlobalContent\Sounds\ball_wall_bounce.wav">
       <Importer>WavImporter</Importer>

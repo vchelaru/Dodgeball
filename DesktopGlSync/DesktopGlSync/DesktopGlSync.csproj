@@ -628,6 +628,71 @@
       <Name>ball_throw</Name>
       <Link>Content\GlobalContent\Sounds\ball_throw.xnb</Link>
     </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_0.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_0</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_0.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_1.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_1</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_1.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_2.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_2</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_2.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_3.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_3</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_3.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_4.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_4</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_4.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_5.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_5</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_5.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_6.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_6</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_6.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_special_0.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_special_0</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_special_0.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_special_1.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_special_1</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_special_1.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_special_2.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_special_2</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_special_2.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_special_3.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_special_3</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_special_3.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_special_4.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_special_4</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_special_4.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_throw_special_5.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ball_throw_special_5</Name>
+      <Link>Content\GlobalContent\Sounds\ball_throw_special_5.xnb</Link>
+    </None>
     <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_wall_bounce.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ball_wall_bounce</Name>
