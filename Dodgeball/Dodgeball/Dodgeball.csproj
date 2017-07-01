@@ -234,6 +234,8 @@
     <Compile Include="GumCore\VariableSave.cs" />
     <Compile Include="GumCore\VariableSaveExtensionMethods.cs" />
     <Compile Include="GumRuntimes\ActiveMarkerRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\AIPlayersScreenGumRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\AISelectBoxesRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\BackgroundAirplaneRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CharacterSelectScreenGumRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CircleRuntime.Generated.cs" />
