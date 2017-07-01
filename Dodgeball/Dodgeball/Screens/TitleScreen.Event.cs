@@ -12,10 +12,5 @@ namespace Dodgeball.Screens
 {
 	public partial class TitleScreen
 	{
-        void OnSettingsComponentInstanceSettingsButtonInstanceClick (FlatRedBall.Gui.IWindow window)
-        {
-            SettingsComponentInstance.Visible = false;
-        }
-		
 	}
 }

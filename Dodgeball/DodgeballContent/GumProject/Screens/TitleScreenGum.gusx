@@ -6,7 +6,7 @@
     <Variable>
       <Type>float</Type>
       <Name>DodgeballLogo.Height</Name>
-      <Value xsi:type="xsd:float">120</Value>
+      <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -49,7 +49,7 @@
     <Variable>
       <Type>float</Type>
       <Name>DodgeballLogo.Width</Name>
-      <Value xsi:type="xsd:float">120</Value>
+      <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -121,7 +121,7 @@
     <Variable>
       <Type>float</Type>
       <Name>ExitButtonInstance.Y</Name>
-      <Value xsi:type="xsd:float">222</Value>
+      <Value xsi:type="xsd:float">144</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -185,72 +185,6 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>HighlightCategoryState</Type>
-      <Name>SettingsButtonInstance.HighlightCategoryState</Name>
-      <Value xsi:type="xsd:string">Off</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>SettingsButtonInstance.Text</Name>
-      <Value xsi:type="xsd:string">Settings</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>SettingsButtonInstance.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>SettingsButtonInstance.X Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>SettingsButtonInstance.X Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>SettingsButtonInstance.Y</Name>
-      <Value xsi:type="xsd:float">134</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>SettingsButtonInstance.Y Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>SettingsButtonInstance.Y Units</Name>
-      <Value xsi:type="xsd:int">7</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>bool</Type>
-      <Name>SettingsComponentInstance.Visible</Name>
-      <Value xsi:type="xsd:boolean">false</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>SettingsComponentInstance.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>SettingsComponentInstance.Y</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>DimensionUnitType</Type>
       <Name>TitleScreenBackground.Height Units</Name>
       <Value xsi:type="xsd:int">1</Value>
@@ -299,54 +233,6 @@
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>TreeOneSprite.Parent</Name>
-      <Value xsi:type="xsd:string">MidgroundContainer</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>bool</Type>
-      <Name>TreeOneSprite.Visible</Name>
-      <Value xsi:type="xsd:boolean">false</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>TreeOneSprite.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>TreeOneSprite.X Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>TreeOneSprite.X Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>TreeOneSprite.Y</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>TreeOneSprite.Y Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>TreeOneSprite.Y Units</Name>
-      <Value xsi:type="xsd:int">7</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
     <VariableList xsi:type="VariableListSaveOfString">
       <Type>string</Type>
       <Name>AnimationFrames</Name>
@@ -369,19 +255,7 @@
     <BaseType>TextButton</BaseType>
   </Instance>
   <Instance>
-    <Name>SettingsButtonInstance</Name>
-    <BaseType>TextButton</BaseType>
-  </Instance>
-  <Instance>
     <Name>ExitButtonInstance</Name>
     <BaseType>TextButton</BaseType>
-  </Instance>
-  <Instance>
-    <Name>TreeOneSprite</Name>
-    <BaseType>Sprite</BaseType>
-  </Instance>
-  <Instance>
-    <Name>SettingsComponentInstance</Name>
-    <BaseType>SettingsComponent</BaseType>
   </Instance>
 </ScreenSave>
