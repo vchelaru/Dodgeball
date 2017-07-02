@@ -25,4 +25,15 @@
       <BottomCoordinate>64</BottomCoordinate>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>BallShadow</Name>
+    <Frame>
+      <TextureName>../player/playeranimationsheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>55</RightCoordinate>
+      <TopCoordinate>4022</TopCoordinate>
+      <BottomCoordinate>4040</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
 </AnimationChainArraySave>
