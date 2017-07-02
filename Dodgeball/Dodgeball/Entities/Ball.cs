@@ -67,7 +67,8 @@ namespace Dodgeball.Entities
         /// added to managers will not have this method called.
         /// </summary>
         private void CustomInitialize()
-		{
+        {
+            ShadowSprite.RelativeZ = -1;
             Altitude = this.HeightWhenThrown;
 		    ballFloorBounceSound = GlobalContent.ball_bounce_0.CreateInstance();
 		    ballWallBounceSound = GlobalContent.ball_wall_bounce_0.CreateInstance();

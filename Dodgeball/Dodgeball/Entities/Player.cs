@@ -46,6 +46,7 @@ namespace Dodgeball.Entities
         private double CurrentCatchAttemptTime;
 	    public bool CatchIsEffective => CurrentCatchAttemptTime <= GameVariables.CatchEffectivenessDuration;
         public bool IsPerformingSuccessfulCatch { get; private set; }
+        public bool IsPickingUpBall { get; private set; }
 	    private bool IsHardCatch;
 
 	    public WorldComponentRuntime WorldComponent;
@@ -219,6 +220,7 @@ namespace Dodgeball.Entities
 
         #if DEBUG
 		    if (IsHoldingBall && DebuggingVariables.ShowTargetedPlayers) ShowTargetedPlayers();
+		    if (IsAiControlled && DebuggingVariables.ShowCurrentAIAction) ShowCurrentAIAction();
         #endif
 
 		    SetAnimation();
@@ -226,7 +228,7 @@ namespace Dodgeball.Entities
 
 	    private void ThrowActivity()
 	    {
-	        var canThrow = !(ActionButton == null || MovementInput == null || IsPerformingSuccessfulCatch) && IsHoldingBall;
+	        var canThrow = !(ActionButton == null || MovementInput == null || IsPerformingSuccessfulCatch || IsPickingUpBall) && IsHoldingBall;
 
 	        if (canThrow)
 	        {
@@ -327,7 +329,7 @@ namespace Dodgeball.Entities
 	    private void MovementActivity()
 	    {
 	        if (MovementInput != null &&
-	            !IsThrowing && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsDying)
+	            !IsThrowing && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsDying && !IsPickingUpBall)
 	        {
 	            this.Velocity.X = MovementInput.X * MovementSpeed;
 	            this.Velocity.Y = MovementInput.Y * MovementSpeed;
@@ -389,11 +391,18 @@ namespace Dodgeball.Entities
 	        var targetPlayer = GetTargetedPlayer();
 	        if (targetPlayer != null) targetPlayer.CircleInstance.Color = Color.Yellow;
 	    }
+
+
+	    private void ShowCurrentAIAction()
+	    {
+	        TextInstance.DisplayText = AIController?.CurrentAction;
+	    }
 #endif
 
-	    internal void PickUpBall()
-	    {
-	        IsAttemptingCatch = false;
+        internal void PickUpBall()
+        {
+            IsPickingUpBall = true;
+            IsAttemptingCatch = false;
 	        IsDodging = false;
 
             IsHoldingBall = true;
@@ -452,7 +461,7 @@ namespace Dodgeball.Entities
             var gamepad = this.lastAssignedGamePad;
             this.ClearInput();
             this.InitializeAIControl();
-            if (lastAssignedGamePad == null)
+            if (gamepad != null)
             {
                 playerToSwitchTo.InitializeXbox360Controls(gamepad);
             }
@@ -590,7 +599,20 @@ namespace Dodgeball.Entities
         #region Animation
         private void SetAnimation()
 	    {
-	        var canThrowOrDodge = ActionButton != null && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsDying;
+	        if (IsPickingUpBall)
+	        {
+	            if (SpriteInstance.CurrentChainName != "PickUp")
+	            {
+	                SpriteInstance.CurrentChainName = "PickUp";
+                }
+	            else if (SpriteInstance.JustCycled)
+	            {
+	                IsPickingUpBall = false;
+	            }
+	            SpriteInstance.FlipHorizontal = TeamIndex == 0;
+            }
+
+            var canThrowOrDodge = ActionButton != null && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsDying && !IsPickingUpBall;
 	        if (canThrowOrDodge)
 	        {
 	            if (justReleasedBall)
@@ -617,7 +639,7 @@ namespace Dodgeball.Entities
 	            SpriteInstance.FlipHorizontal = TeamIndex == 0;
             }
 
-	        var canCatch = (IsAttemptingCatch || (IsPerformingSuccessfulCatch)) && !IsDying;
+	        var canCatch = (IsAttemptingCatch || (IsPerformingSuccessfulCatch)) && !IsDying && !IsPickingUpBall;
 	        if (canCatch)
 	        {
 	            if (IsAttemptingCatch && CatchIsEffective)
@@ -650,8 +672,8 @@ namespace Dodgeball.Entities
 	            IsPerformingSuccessfulCatch = false;
 	        }
 
-            var canStandOrRun = !IsHit && !IsDying && !IsAttemptingCatch && !IsPerformingSuccessfulCatch &&
-	                            ((!IsThrowing && !IsDodging) || SpriteInstance.JustCycled);
+            var canStandOrRun = !IsHit && !IsDying && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsPickingUpBall &&
+                                ((!IsThrowing && !IsDodging) || SpriteInstance.JustCycled);
             if (canStandOrRun)
 	        {
 

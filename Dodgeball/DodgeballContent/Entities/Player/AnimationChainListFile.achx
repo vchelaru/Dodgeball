@@ -443,4 +443,23 @@
       <BottomCoordinate>4087</BottomCoordinate>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>PickUp</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1792</LeftCoordinate>
+      <RightCoordinate>2048</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
 </AnimationChainArraySave>

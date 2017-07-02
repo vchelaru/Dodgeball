@@ -16,6 +16,8 @@ namespace Dodgeball.AI
     {
 
         #region Difficulty Fields/Properties
+        public string CurrentAction { get; private set; }
+
         /// <summary>
         /// This determines how difficult the AI is on a scale of 1-9
         /// </summary>
@@ -64,7 +66,8 @@ namespace Dodgeball.AI
         private Random random;
 
         //Getting out of the way logic
-        private bool isGettingOutOfTheWay = false;
+        private bool isGettingOutOfTheWayOfBallHolder = false;
+        
         private float maxTolerableDistanceToBallHolder;
 
         //Ball-throwing logic
@@ -80,6 +83,11 @@ namespace Dodgeball.AI
         
         //Retrieving logic
         private bool isRetrieving;
+
+        //Personal space logic
+        private const double timeToFindPersonalSpace = 0.5f;
+        private bool isFindingPersonalSpace = false;
+        private double timeFindingPersonalSpace = 0;
 
         //Evasion logic
         private const double MaxEvasionTime = 1;
@@ -98,6 +106,7 @@ namespace Dodgeball.AI
         #region Initialize
         public AIController(Player player, Ball ball, int difficulty = 5)
         {
+            CurrentAction = "";
             DifficultyLevel = difficulty;
 
             //Object references
@@ -138,7 +147,7 @@ namespace Dodgeball.AI
 
         private void UpdateConditions()
         {
-            if (player.IsHoldingBall)
+            if (player.IsHoldingBall && !player.IsPerformingSuccessfulCatch && !player.IsPickingUpBall)
             {
                 ballHeldTime += FlatRedBall.TimeManager.LastSecondDifference;
             }
@@ -150,12 +159,38 @@ namespace Dodgeball.AI
             {
                 timeEvading += FlatRedBall.TimeManager.LastSecondDifference;
             }
+            if (isFindingPersonalSpace)
+            {
+                timeFindingPersonalSpace += FlatRedBall.TimeManager.LastSecondDifference;
+            }
+            if (isEvading)
+            {
+                timeEvading += FlatRedBall.TimeManager.LastSecondDifference;
+            }
             if (isRetrieving)
             {
                 isRetrieving = ShouldRetrieveBall;
             }
-            if (!isEvading && !isPositioningForThrow && !isWandering && !isRetrieving && !isGettingOutOfTheWay)
+
+            //Check for expirations
+            if (timeEvading >= timeToEvade)
             {
+                isEvading = false;
+            }
+
+            if (timeWandering >= timeToWander)
+            {
+                isWandering = false;
+            }
+
+            if (timeFindingPersonalSpace >= timeToFindPersonalSpace)
+            {
+                isFindingPersonalSpace = false;
+            }
+
+            if (!isEvading && !isPositioningForThrow && !isWandering && !isRetrieving && !isGettingOutOfTheWayOfBallHolder && !isFindingPersonalSpace)
+            {
+                CurrentAction = "";
                 currentMovementDirections = AI2DInput.Directions.None;
             }
         }

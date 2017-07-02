@@ -16,96 +16,80 @@ namespace Dodgeball.AI
 
         private AI2DInput.Directions GetWanderDirection()
         {
-            if (timeWandering >= timeToWander)
-            {
-                isWandering = false;
-                currentMovementDirections = AI2DInput.Directions.None;
-            }
-            //Use an existing wander direction to make movement more natural
-            else if (currentMovementDirections != AI2DInput.Directions.None)
-            {
-                //If player has gone out of bounds, start a new direction
-                var currentDirection = currentMovementDirections;
-                currentMovementDirections = RemoveOffendingDirections(currentMovementDirections);
+            var wanderDirections = AI2DInput.Directions.None;
 
-                if (currentMovementDirections != currentDirection) currentMovementDirections = AI2DInput.Directions.None;
+            //Random directions
+            var upDown = AI2DInput.Directions.None;
+            var upDownRandom = random.NextDouble();
+            if (upDownRandom > 0.5)
+            {
+                upDown = upDownRandom > 0.75
+                    ? AI2DInput.Directions.Up
+                    : AI2DInput.Directions.Down;
             }
 
-            if (isWandering && currentMovementDirections == AI2DInput.Directions.None)
+            var leftRight = AI2DInput.Directions.None;
+            var leftRightRandom = random.NextDouble();
+            if (leftRightRandom > 0.5)
             {
-                //Mark the start of a new wander
-                timeWandering = 0;
-
-                timeToWander = MaxWanderTime * random.NextDouble();
-
-                //Random directions
-                var upDown = AI2DInput.Directions.None;
-                var upDownRandom = random.NextDouble();
-                if (upDownRandom > 0.5)
-                {
-                    upDown = upDownRandom > 0.75
-                        ? AI2DInput.Directions.Up
-                        : AI2DInput.Directions.Down;
-                }
-
-                var leftRight = AI2DInput.Directions.None;
-                var leftRightRandom = random.NextDouble();
-                if (leftRightRandom > 0.5)
-                {
-                    leftRight = leftRightRandom > (0.8 - (player.TeamIndex/10f))
-                        ? AI2DInput.Directions.Left
-                        : AI2DInput.Directions.Right;
-                }
-                currentMovementDirections = RemoveOffendingDirections(upDown | leftRight);
+                leftRight = leftRightRandom > (0.8 - (player.TeamIndex/10f))
+                    ? AI2DInput.Directions.Left
+                    : AI2DInput.Directions.Right;
             }
-            return currentMovementDirections;
+            wanderDirections = RemoveOffendingDirections(upDown | leftRight);
+
+            return wanderDirections;
         }
 
         private AI2DInput.Directions GetEvadeDirection(Vector3 positionToEvade)
         {
-            if (timeEvading >= timeToEvade)
-            {
-                isEvading = false;
-                currentMovementDirections = AI2DInput.Directions.None;
-            }
-            //Use an existing dodge direction to make movement more natural
-            else if (timeEvading < timeToEvade && currentMovementDirections != AI2DInput.Directions.None)
-            {
-                //If player has gone out of bounds, start a new direction
-                var currentDirection = currentMovementDirections;
-                currentMovementDirections = RemoveOffendingDirections(currentMovementDirections);
+            var evadeDirections = AI2DInput.Directions.None;
 
-                if (currentMovementDirections != currentDirection) currentMovementDirections = AI2DInput.Directions.None;
-            }
+            var movement = positionToEvade - player.Position;
+            movement.Normalize();
 
-            if (isEvading && currentMovementDirections == AI2DInput.Directions.None)
-            {
-                //Mark the start of a new dodge
-                timeEvading = 0;
+            var upDown = movement.Y < 0
+                ? AI2DInput.Directions.Up
+                : movement.Y > 0
+                    ? AI2DInput.Directions.Down
+                    : AI2DInput.Directions.None;
+            var leftRight = movement.X > 0
+                ? AI2DInput.Directions.Left
+                : movement.X < 0
+                    ? AI2DInput.Directions.Right
+                    : AI2DInput.Directions.None;
 
-                timeToEvade = MaxEvasionTime * random.NextDouble();
+            evadeDirections = RemoveOffendingDirections(upDown | leftRight);
+            return evadeDirections;
+        }
 
-                var movement = positionToEvade - player.Position;
-                movement.Normalize();
+        private AI2DInput.Directions GetPersonalSpaceDirections(Vector3 positionToEvade)
+        {
+            var spaceDirections = AI2DInput.Directions.None;
 
-                var upDown = movement.Y < 0
-                    ? AI2DInput.Directions.Up
-                    : movement.Y > 0
-                        ? AI2DInput.Directions.Down
-                        : AI2DInput.Directions.None;
-                var leftRight = movement.X > 0
-                    ? AI2DInput.Directions.Left
-                    : movement.X < 0
-                        ? AI2DInput.Directions.Right
-                        : AI2DInput.Directions.None;
+            var movement = positionToEvade - player.Position;
+            movement.Normalize();
 
-                currentMovementDirections = RemoveOffendingDirections(upDown | leftRight);
-            }
-            return currentMovementDirections;
+            var upDown = movement.Y < 0
+                ? AI2DInput.Directions.Up
+                : movement.Y > 0
+                    ? AI2DInput.Directions.Down
+                    : AI2DInput.Directions.None;
+            var leftRight = movement.X > 0
+                ? AI2DInput.Directions.Left
+                : movement.X < 0
+                    ? AI2DInput.Directions.Right
+                    : AI2DInput.Directions.None;
+
+            spaceDirections = RemoveOffendingDirections(upDown | leftRight);
+
+            return spaceDirections;
         }
 
         private AI2DInput.Directions GetDodgeDirection()
         {
+            var dodgeDirections = AI2DInput.Directions.None;
+
             var movement = ball.Position - player.Position;
             movement.Normalize();
 
@@ -121,8 +105,8 @@ namespace Dodgeball.AI
                     ? AI2DInput.Directions.Right
                     : AI2DInput.Directions.None;
 
-            currentMovementDirections = RemoveOffendingDirections(upDown | leftRight);
-            return currentMovementDirections;
+            dodgeDirections = RemoveOffendingDirections(upDown | leftRight);
+            return dodgeDirections;
         }
 
         private AI2DInput.Directions GetRetrieveBallDirection()
@@ -143,29 +127,29 @@ namespace Dodgeball.AI
 
         private AI2DInput.Directions GetMoveOutOfTheWayOfBallHolderDirection()
         {
-            if (currentMovementDirections == AI2DInput.Directions.None)
+            var getOutOfWayDirections = AI2DInput.Directions.None;
+
+            var upDown = AI2DInput.Directions.None;
+            var leftRight = AI2DInput.Directions.None;
+            if (player.Y > ball.ThrowOwner.Y)
             {
-                var upDown = AI2DInput.Directions.None;
-                var leftRight = AI2DInput.Directions.None;
-                if (player.Y > ball.ThrowOwner.Y)
-                {
-                    upDown = player.Y < (player.TeamRectangleTop - player.CircleInstance.Radius) ? AI2DInput.Directions.Up : AI2DInput.Directions.Down;
-                }
-                else
-                {
-                    upDown = player.Y > (player.TeamRectangleBottom + player.CircleInstance.Radius) ? AI2DInput.Directions.Down : AI2DInput.Directions.Up;
-                }
-                if (player.TeamIndex == 0)
-                {
-                    leftRight = player.X > player.TeamRectangleLeft + player.CircleInstance.Radius ? AI2DInput.Directions.Left : AI2DInput.Directions.Right;
-                }
-                else
-                {
-                    leftRight = player.X < player.TeamRectangleRight - player.CircleInstance.Radius ? AI2DInput.Directions.Right : AI2DInput.Directions.Left;
-                }
-                currentMovementDirections = upDown | leftRight;
+                upDown = player.Y < (player.TeamRectangleTop - player.CircleInstance.Radius) ? AI2DInput.Directions.Up : AI2DInput.Directions.Down;
             }
-            return currentMovementDirections;
+            else
+            {
+                upDown = player.Y > (player.TeamRectangleBottom + player.CircleInstance.Radius) ? AI2DInput.Directions.Down : AI2DInput.Directions.Up;
+            }
+            if (player.TeamIndex == 0)
+            {
+                leftRight = player.X > player.TeamRectangleLeft + player.CircleInstance.Radius ? AI2DInput.Directions.Left : AI2DInput.Directions.Right;
+            }
+            else
+            {
+                leftRight = player.X < player.TeamRectangleRight - player.CircleInstance.Radius ? AI2DInput.Directions.Right : AI2DInput.Directions.Left;
+            }
+            getOutOfWayDirections = upDown | leftRight;
+            
+            return getOutOfWayDirections;
         }
 
         private AI2DInput.Directions RemoveOffendingDirections(AI2DInput.Directions originalDirections)
@@ -185,21 +169,21 @@ namespace Dodgeball.AI
 
         private AI2DInput.Directions GetThrowPositioningDirection()
         {
-            if (currentMovementDirections == AI2DInput.Directions.None)
-            {
-                currentMovementDirections = player.TeamIndex == 0
+            var positioningDirections = AI2DInput.Directions.None;
+
+            positioningDirections = player.TeamIndex == 0
                     ? AI2DInput.Directions.Right
                     : AI2DInput.Directions.Left;
-                var randomUpDown = random.NextDouble();
-                if (randomUpDown > 0.5)
-                {
-                    currentMovementDirections = currentMovementDirections |
-                                                (randomUpDown > 0.75
-                                                    ? AI2DInput.Directions.Up
-                                                    : AI2DInput.Directions.Down);
-                }
+            var randomUpDown = random.NextDouble();
+            if (randomUpDown > 0.5)
+            {
+                positioningDirections = positioningDirections |
+                                            (randomUpDown > 0.75
+                                                ? AI2DInput.Directions.Up
+                                                : AI2DInput.Directions.Down);
             }
-            return currentMovementDirections;
+            
+            return positioningDirections;
         }
 
         private Player GetClosestTeamPlayer()
@@ -226,6 +210,12 @@ namespace Dodgeball.AI
             bool ballIsInMyCourt;
 
             float toReturn = 1f;
+
+            var onlyPlayerLeft = !teamPlayers.Any(p => !p.IsDying);
+            if (onlyPlayerLeft)
+            {
+                toReturn = 2f;
+            }
 
             //Left side of the screen
             if (player.TeamIndex == 0)
