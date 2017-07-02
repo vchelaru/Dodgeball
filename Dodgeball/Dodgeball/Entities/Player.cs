@@ -99,7 +99,7 @@ namespace Dodgeball.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            playerDodgeSound = GlobalContent.player_dodge.CreateInstance();
+            playerDodgeSound = GlobalContent.player_dodge_0.CreateInstance();
 
             HideUi();
 
@@ -292,11 +292,32 @@ namespace Dodgeball.Entities
                     (MovementInput.X != 0 || MovementInput.Y != 0))
                 {
                     IsDodging = true;
+
+                    SetRandomPlayerDodgeSound();
+
                     var dodgeSoundPan = MathHelper.Clamp(X / 540f, -1, 1);
                     playerDodgeSound.Pan = dodgeSoundPan;
                     playerDodgeSound.Play();
                 }
             }
+        }
+
+	    private void SetRandomPlayerDodgeSound()
+	    {
+	        string playerDodgeSoundName;
+
+	        //This is the highest numbered sound effect available in GlobalContent:
+	        var maxDodgeIndex = 2;
+            var randomIndex = FlatRedBallServices.Random.Next(0, maxDodgeIndex);
+            
+	        playerDodgeSoundName = $"player_dodge_{randomIndex}";
+
+	        var dodgeSound = GlobalContent.GetFile(playerDodgeSoundName) as SoundEffect;
+
+	        if (dodgeSound != null)
+	        {
+	            playerDodgeSound = dodgeSound.CreateInstance();
+	        }
         }
 
 	    private void MovementActivity()

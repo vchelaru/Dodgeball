@@ -985,18 +985,6 @@
           <ValueAsBool>true</ValueAsBool>
         </PropertySave>
       </Properties>
-      <Name>GlobalContent/Sounds/player_dodge.wav</Name>
-      <IsSharedStatic>true</IsSharedStatic>
-      <HasPublicProperty>true</HasPublicProperty>
-      <ProjectsToExcludeFrom />
-    </ReferencedFileSave>
-    <ReferencedFileSave>
-      <Properties>
-        <PropertySave>
-          <Name>UseContentPipeline</Name>
-          <ValueAsBool>true</ValueAsBool>
-        </PropertySave>
-      </Properties>
       <Name>GlobalContent/Sounds/player_death.wav</Name>
       <IsSharedStatic>true</IsSharedStatic>
       <HasPublicProperty>true</HasPublicProperty>
@@ -1364,6 +1352,24 @@
     </ReferencedFileSave>
     <ReferencedFileSave>
       <Name>GlobalContent/Sounds/button_click.wav</Name>
+      <IsSharedStatic>true</IsSharedStatic>
+      <HasPublicProperty>true</HasPublicProperty>
+      <ProjectsToExcludeFrom />
+    </ReferencedFileSave>
+    <ReferencedFileSave>
+      <Name>GlobalContent/Sounds/player_dodge_0.wav</Name>
+      <IsSharedStatic>true</IsSharedStatic>
+      <HasPublicProperty>true</HasPublicProperty>
+      <ProjectsToExcludeFrom />
+    </ReferencedFileSave>
+    <ReferencedFileSave>
+      <Name>GlobalContent/Sounds/player_dodge_1.wav</Name>
+      <IsSharedStatic>true</IsSharedStatic>
+      <HasPublicProperty>true</HasPublicProperty>
+      <ProjectsToExcludeFrom />
+    </ReferencedFileSave>
+    <ReferencedFileSave>
+      <Name>GlobalContent/Sounds/player_dodge_2.wav</Name>
       <IsSharedStatic>true</IsSharedStatic>
       <HasPublicProperty>true</HasPublicProperty>
       <ProjectsToExcludeFrom />

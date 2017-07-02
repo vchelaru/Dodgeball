@@ -848,6 +848,21 @@
       <Name>player_dodge</Name>
       <Link>Content\GlobalContent\Sounds\player_dodge.xnb</Link>
     </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_dodge_0.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_dodge_0</Name>
+      <Link>Content\GlobalContent\Sounds\player_dodge_0.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_dodge_1.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_dodge_1</Name>
+      <Link>Content\GlobalContent\Sounds\player_dodge_1.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_dodge_2.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>player_dodge_2</Name>
+      <Link>Content\GlobalContent\Sounds\player_dodge_2.xnb</Link>
+    </None>
     <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_hit.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>player_hit</Name>

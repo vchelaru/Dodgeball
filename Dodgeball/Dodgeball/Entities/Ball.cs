@@ -238,8 +238,8 @@ namespace Dodgeball.Entities
 	        }
 	        else
 	        {
-	            //This is the number of sound effects available in GlobalContent: 4 special, 6 regular
-	            var maxThrowIndex = isSpecialThrow ? 4 : 6;
+	            //This is the highest numbered sound effect available in GlobalContent: 5 special, 6 regular
+	            var maxThrowIndex = isSpecialThrow ? 5 : 6;
 
                 var pctOfPossibleVelocity = velocityLength / maxVelocity;
 
@@ -269,8 +269,8 @@ namespace Dodgeball.Entities
 	        }
 	        else
 	        {
-	            //This is the number of sound effects available in GlobalContent:
-	            var maxBounceIndex = 6;
+	            //This is the highest numbered sound effect available in GlobalContent:
+                var maxBounceIndex = 6;
 
                 var effectiveVelocity = velocityLength - GameVariables.MinThrowVelocity;
 	            var effectiveMax = GameVariables.MaxThrowVelocity - GameVariables.MinThrowVelocity;
@@ -305,8 +305,8 @@ namespace Dodgeball.Entities
 	        }
 	        else
 	        {
-	            //This is the number of sound effects available in GlobalContent:
-	            var maxBounceIndex = 7;
+	            //This is the highest numbered sound effect available in GlobalContent:
+                var maxBounceIndex = 7;
 
                 var effectiveVelocity = velocityLength - GameVariables.MinThrowVelocity;
 	            var effectiveMax = GameVariables.MaxThrowVelocity - GameVariables.MinThrowVelocity;

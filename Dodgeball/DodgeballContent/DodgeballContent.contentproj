@@ -478,10 +478,20 @@
       <Processor>SoundEffectProcessor</Processor>
       <Name>player_death</Name>
     </Compile>
-    <Compile Include="GlobalContent\Sounds\player_dodge.wav">
+    <Compile Include="GlobalContent\Sounds\player_dodge_0.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
-      <Name>player_dodge</Name>
+      <Name>player_dodge_0</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_dodge_1.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_dodge_1</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_dodge_2.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_dodge_2</Name>
     </Compile>
     <Compile Include="GlobalContent\Sounds\player_hit_0.wav">
       <Importer>WavImporter</Importer>
