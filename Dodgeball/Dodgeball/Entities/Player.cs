@@ -219,6 +219,7 @@ namespace Dodgeball.Entities
 
         #if DEBUG
 		    if (IsHoldingBall && DebuggingVariables.ShowTargetedPlayers) ShowTargetedPlayers();
+		    if (IsAiControlled && DebuggingVariables.ShowCurrentAIAction) ShowCurrentAIAction();
         #endif
 
 		    SetAnimation();
@@ -389,9 +390,15 @@ namespace Dodgeball.Entities
 	        var targetPlayer = GetTargetedPlayer();
 	        if (targetPlayer != null) targetPlayer.CircleInstance.Color = Color.Yellow;
 	    }
+
+
+	    private void ShowCurrentAIAction()
+	    {
+	        TextInstance.DisplayText = AIController?.CurrentAction;
+	    }
 #endif
 
-	    internal void PickUpBall()
+        internal void PickUpBall()
 	    {
 	        IsAttemptingCatch = false;
 	        IsDodging = false;

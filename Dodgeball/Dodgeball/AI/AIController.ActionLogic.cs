@@ -104,6 +104,29 @@ namespace Dodgeball.AI
             return currentMovementDirections;
         }
 
+        private AI2DInput.Directions GetPersonalSpaceDirections(Vector3 positionToEvade)
+        {
+            if (currentMovementDirections == AI2DInput.Directions.None)
+            {
+                var movement = positionToEvade - player.Position;
+                movement.Normalize();
+
+                var upDown = movement.Y < 0
+                    ? AI2DInput.Directions.Up
+                    : movement.Y > 0
+                        ? AI2DInput.Directions.Down
+                        : AI2DInput.Directions.None;
+                var leftRight = movement.X > 0
+                    ? AI2DInput.Directions.Left
+                    : movement.X < 0
+                        ? AI2DInput.Directions.Right
+                        : AI2DInput.Directions.None;
+
+                currentMovementDirections = RemoveOffendingDirections(upDown | leftRight);
+            }
+            return currentMovementDirections;
+        }
+
         private AI2DInput.Directions GetDodgeDirection()
         {
             var movement = ball.Position - player.Position;
@@ -226,6 +249,12 @@ namespace Dodgeball.AI
             bool ballIsInMyCourt;
 
             float toReturn = 1f;
+
+            var onlyPlayerLeft = !teamPlayers.Any(p => !p.IsDying);
+            if (onlyPlayerLeft)
+            {
+                toReturn = 2f;
+            }
 
             //Left side of the screen
             if (player.TeamIndex == 0)

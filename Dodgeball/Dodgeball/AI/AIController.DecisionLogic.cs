@@ -96,8 +96,8 @@ namespace Dodgeball.AI
                                                              maxTolerableDistanceToBallHolder *
                                                              Math.Abs(player.X - ball.ThrowOwner.X) / 125);
 
-        private bool ShouldGetOutOfTheWayOfAnotherPlayer => teamPlayers.Exists(
-            tp => (Math.Abs(tp.X - player.X) <= myPersonalSpace ||
+        private bool ShouldFindPersonalSpace => !player.IsHoldingBall && teamPlayers.Exists(
+            tp => (Math.Abs(tp.X - player.X) <= myPersonalSpace &&
                   Math.Abs(tp.Y - player.Y) <= myPersonalSpace));
         #endregion
 
@@ -117,7 +117,7 @@ namespace Dodgeball.AI
         {
             var hasActed = false;
 
-            ConsiderGettingOutOfTheWay(ref hasActed);
+            ConsiderGettingOutOfTheWayOfBallHolder(ref hasActed);
 
             ConsiderThrowingTheBall(ref hasActed);
 
@@ -128,6 +128,8 @@ namespace Dodgeball.AI
             ConsiderDodging(ref hasActed);
 
             ConsiderRetrievingTheBall(ref hasActed);
+
+            ConsiderFindingPersonalSpace(ref hasActed);
 
             ConsiderEvading(ref hasActed);
 
@@ -149,48 +151,66 @@ namespace Dodgeball.AI
             }
         }
 
-        private void ConsiderGettingOutOfTheWay(ref bool hasActed)
+        private void ConsiderGettingOutOfTheWayOfBallHolder(ref bool hasActed)
         {
-            if (!hasActed && ShouldGetOutOfTheWayOfBallHolder)
+            if (!hasActed && (ShouldGetOutOfTheWayOfBallHolder || isGettingOutOfTheWayOfBallHolder))
             {
-                isGettingOutOfTheWay = true;
+                CurrentAction = "GettingOutOfTheWay";
+                isGettingOutOfTheWayOfBallHolder = true;
                 _movementInput.Move(GetMoveOutOfTheWayOfBallHolderDirection());
                 hasActed = true;
             }
-            else if (!hasActed && ShouldGetOutOfTheWayOfAnotherPlayer)
+            else
+            {
+                isGettingOutOfTheWayOfBallHolder = false;
+            }
+        }
+
+        private void ConsiderFindingPersonalSpace(ref bool hasActed)
+        {
+            var isAlreadyDoingSomething = isRetrieving || isEvading ||
+                                          isGettingOutOfTheWayOfBallHolder || isPositioningForThrow ||
+                                          isWandering || IsChargingThrow;
+
+            if (!hasActed && !isAlreadyDoingSomething && (ShouldFindPersonalSpace || isFindingPersonalSpace))
             {
                 var closestPlayer = GetClosestTeamPlayer();
                 if (closestPlayer != null)
                 {
-                    //var closestPlayerIsMoving = closestPlayer != null && closestPlayer.Velocity.Length() > 0;
-                    //if (closestPlayerIsMoving)
-                    //{
-
-                    //}
-                    isGettingOutOfTheWay = true;
-                    var outOfTheWayDirections = GetEvadeDirection(closestPlayer.Position);
-                    if (outOfTheWayDirections != AI2DInput.Directions.None)
+                    var personalSpaceDirections = GetPersonalSpaceDirections(closestPlayer.Position);
+                    if (personalSpaceDirections != AI2DInput.Directions.None)
                     {
-                        currentMovementDirections = outOfTheWayDirections;
+                        CurrentAction = "FindingPersonalSpace";
+                        isFindingPersonalSpace = true;
+                        currentMovementDirections = personalSpaceDirections;
                         _movementInput.Move(currentMovementDirections);
                         hasActed = true;
+                    }
+                    else
+                    {
+                        isFindingPersonalSpace = false;
                     }
                 }
                 else
                 {
-                    isGettingOutOfTheWay = false;
+                    isFindingPersonalSpace = false;
                 }
             }
             else
             {
-                isGettingOutOfTheWay = false;
+                isFindingPersonalSpace = false;
             }
         }
 
         private void ConsiderPositioningToThrow(ref bool hasActed)
         {
-            if (!hasActed && ShouldPositionForThrow)
+            var isAlreadyDoingSomething = isRetrieving || isEvading ||
+                                          isGettingOutOfTheWayOfBallHolder || 
+                                          isWandering || IsChargingThrow || isFindingPersonalSpace;
+
+            if (!hasActed && !isAlreadyDoingSomething && (ShouldPositionForThrow || isPositioningForThrow))
             {
+                CurrentAction = "PositioningForThrow";
                 isPositioningForThrow = true;
                 _movementInput.Move(GetThrowPositioningDirection());
                 hasActed = true;
@@ -205,6 +225,7 @@ namespace Dodgeball.AI
         {
             if (!hasActed && ShouldThrowBall)
             {
+                CurrentAction = "Throwing";
                 isPositioningForThrow = false;
                 _aimingInput.Move(GetAimDirection());
                 _movementInput.Move(AI2DInput.Directions.None);
@@ -212,8 +233,9 @@ namespace Dodgeball.AI
                 ballHeldTime = 0;
                 hasActed = true;
             }
-            else if (!hasActed && IsChargingThrow)
+            else if (IsChargingThrow)
             {
+                CurrentAction = "ChargingThrow";
                 var chanceOfThrow = random.NextDouble();
                 var decisionToRelease = (!ThrowChargeIsOptimal && (chanceOfThrow < ProbabilityOfSuboptimalThrow)) ||
                                         (ThrowChargeIsOptimal && chanceOfThrow < ProbabilityOfOptimalThrow);
@@ -227,10 +249,11 @@ namespace Dodgeball.AI
             if (!hasActed && ShouldCatch)
             {
                 var chanceOfCatch = random.NextDouble();
-                var decisionToCatch = (!CatchAttemptIsOptimal && (chanceOfCatch < ProbabilityOfFailedCatch)) ||
+                var decisionToCatch = (!CatchAttemptIsOptimal && chanceOfCatch < ProbabilityOfFailedCatch) ||
                                       (CatchAttemptIsOptimal && chanceOfCatch < ProbabilityOfSuccessfulCatch);
                 if (decisionToCatch)
                 {
+                    CurrentAction = "Catching";
                     _actionButton.Press();
                     currentMovementDirections = AI2DInput.Directions.None;
                     _movementInput.Move(currentMovementDirections);
@@ -246,6 +269,7 @@ namespace Dodgeball.AI
                 var decisionToDodge = random.NextDouble() < ProbabilityOfDodge;
                 if (decisionToDodge)
                 {
+                    CurrentAction = "Dodging";
                     _actionButton.Press();
                     currentMovementDirections = GetDodgeDirection();
                     _movementInput.Move(currentMovementDirections);
@@ -261,6 +285,7 @@ namespace Dodgeball.AI
                 var decisionToRetrieveBall = random.NextDouble() < ProbabilityOfBallRetrieval;
                 if (decisionToRetrieveBall || isRetrieving)
                 {
+                    CurrentAction = "Retrieving";
                     _movementInput.Move(GetRetrieveBallDirection());
                     isRetrieving = true;
                     hasActed = true;
@@ -274,9 +299,14 @@ namespace Dodgeball.AI
 
         private void ConsiderEvading(ref bool hasActed)
         {
+            var isAlreadyDoingSomething = isRetrieving || 
+                                          isGettingOutOfTheWayOfBallHolder ||
+                                          isWandering || IsChargingThrow || isFindingPersonalSpace;
+
             var decisionToEvade = random.NextDouble() < ProbabilityOfEvasion;
-            if (!hasActed && !isWandering && (ShouldEvade && (decisionToEvade || isEvading)))
+            if (!hasActed && !isAlreadyDoingSomething && (ShouldEvade && (decisionToEvade || isEvading)))
             {
+                CurrentAction = "Evading";
                 isEvading = true;
                 currentMovementDirections = GetEvadeDirection(ball.Position);
                 _movementInput.Move(currentMovementDirections);
@@ -291,9 +321,14 @@ namespace Dodgeball.AI
 
         private void ConsiderWanderingAimlessly(ref bool hasActed)
         {
+            var isAlreadyDoingSomething = isRetrieving || isEvading || 
+                                          isGettingOutOfTheWayOfBallHolder ||
+                                          IsChargingThrow || isFindingPersonalSpace;
+
             var decisionToWander = random.NextDouble() < ProbabilityOfWandering;
-            if (!hasActed && !isEvading && (ShouldWander && (decisionToWander || isWandering)))
+            if (!hasActed && !isAlreadyDoingSomething && (ShouldWander && (decisionToWander || isWandering)))
             {
+                CurrentAction = "Wandering";
                 isWandering = true;
                 currentMovementDirections = GetWanderDirection();
                 _movementInput.Move(currentMovementDirections);
@@ -309,9 +344,14 @@ namespace Dodgeball.AI
 
         private void ConsiderTaunting(ref bool hasActed)
         {
+            var isAlreadyDoingSomething = isRetrieving || isEvading || isWandering ||
+                                          isGettingOutOfTheWayOfBallHolder ||
+                                          IsChargingThrow || isFindingPersonalSpace;
+
             var decisionToTaunt = random.NextDouble() < ProbabilityOfTaunting;
-            if (!hasActed && (ShouldTaunt && decisionToTaunt))
+            if (!hasActed && !isAlreadyDoingSomething && (ShouldTaunt && decisionToTaunt))
             {
+                CurrentAction = "Taunting";
                 _tauntButton.Press();
                 _tauntButton.Release();
                 hasActed = true;

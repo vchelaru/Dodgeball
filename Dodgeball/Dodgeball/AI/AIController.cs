@@ -16,6 +16,8 @@ namespace Dodgeball.AI
     {
 
         #region Difficulty Fields/Properties
+        public string CurrentAction { get; private set; }
+
         /// <summary>
         /// This determines how difficult the AI is on a scale of 1-9
         /// </summary>
@@ -64,7 +66,8 @@ namespace Dodgeball.AI
         private Random random;
 
         //Getting out of the way logic
-        private bool isGettingOutOfTheWay = false;
+        private bool isGettingOutOfTheWayOfBallHolder = false;
+        private bool isFindingPersonalSpace = false;
         private float maxTolerableDistanceToBallHolder;
 
         //Ball-throwing logic
@@ -98,6 +101,7 @@ namespace Dodgeball.AI
         #region Initialize
         public AIController(Player player, Ball ball, int difficulty = 5)
         {
+            CurrentAction = "";
             DifficultyLevel = difficulty;
 
             //Object references
@@ -154,7 +158,7 @@ namespace Dodgeball.AI
             {
                 isRetrieving = ShouldRetrieveBall;
             }
-            if (!isEvading && !isPositioningForThrow && !isWandering && !isRetrieving && !isGettingOutOfTheWay)
+            if (!isEvading && !isPositioningForThrow && !isWandering && !isRetrieving && !isGettingOutOfTheWayOfBallHolder)
             {
                 currentMovementDirections = AI2DInput.Directions.None;
             }
