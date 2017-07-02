@@ -44,7 +44,7 @@ namespace Dodgeball.Entities
 
 	    public bool IsAttemptingCatch { get; private set; }
         private double CurrentCatchAttemptTime;
-	    public bool CatchIsEffective => CurrentCatchAttemptTime <= CatchEffectivenessDuration;
+	    public bool CatchIsEffective => CurrentCatchAttemptTime <= GameVariables.CatchEffectivenessDuration;
         public bool IsPerformingSuccessfulCatch { get; private set; }
 	    private bool IsHardCatch;
 
@@ -130,8 +130,8 @@ namespace Dodgeball.Entities
         private void InstantiateChargeThrowComponent()
         {
             chargeThrowComponent = new ChargeThrow();
-            chargeThrowComponent.LowEndChargeRate = LowEndChargeRate;
-            chargeThrowComponent.HighEndChargeRate = HighEndChargeRate;
+            chargeThrowComponent.LowEndChargeRate = GameVariables.LowEndChargeRate;
+            chargeThrowComponent.HighEndChargeRate = GameVariables.HighEndChargeRate;
         }
 
         public void InitializeKeyboardControls()
@@ -261,7 +261,7 @@ namespace Dodgeball.Entities
 	            CurrentCatchAttemptTime += FlatRedBall.TimeManager.SecondDifference;
                 
                 //Catch has ended
-	            if (CurrentCatchAttemptTime > CatchEffectivenessDuration + CatchFailRecoveryDuration)
+	            if (CurrentCatchAttemptTime > GameVariables.CatchEffectivenessDuration + GameVariables.CatchFailRecoveryDuration)
 	            {
 	                IsAttemptingCatch = false;
 	            }
@@ -437,7 +437,7 @@ namespace Dodgeball.Entities
             {
                 bool wasAlive = HealthPercentage > 0;
 
-                this.HealthPercentage -= DamageWhenHitting;
+                this.HealthPercentage -= GameVariables.BaseDamageWhenHitting;
 
                 bool isAlive = this.HealthPercentage > 0;
 
@@ -461,11 +461,11 @@ namespace Dodgeball.Entities
 
             if ( isFailedThrow)
             {
-                ThrowVelocity = MinThrowVelocity;
+                ThrowVelocity = GameVariables.MinThrowVelocity;
             }
             else
             {
-                ThrowVelocity = MinThrowVelocity + ((MaxThrowVelocity - MinThrowVelocity) *
+                ThrowVelocity = GameVariables.MinThrowVelocity + ((GameVariables.MaxThrowVelocity - GameVariables.MinThrowVelocity) *
                                                     chargeThrowComponent.EffectiveChargePercent);
             }
 

@@ -252,7 +252,7 @@ namespace Dodgeball.Screens
 
             //Make a hit sound
             var ballVelocity = BallInstance.Velocity.Length();
-            var maxVelocity = player.MaxThrowVelocity;
+            var maxVelocity = GameVariables.MaxThrowVelocity;
             var playerHitPan = MathHelper.Clamp(player.X / 540f, -1, 1);
             var playerHitVol = MathHelper.Clamp((ballVelocity * 2) / maxVelocity, 0.1f, 1);
 
