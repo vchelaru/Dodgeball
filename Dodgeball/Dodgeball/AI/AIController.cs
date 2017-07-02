@@ -67,7 +67,7 @@ namespace Dodgeball.AI
 
         //Getting out of the way logic
         private bool isGettingOutOfTheWayOfBallHolder = false;
-        private bool isFindingPersonalSpace = false;
+        
         private float maxTolerableDistanceToBallHolder;
 
         //Ball-throwing logic
@@ -83,6 +83,11 @@ namespace Dodgeball.AI
         
         //Retrieving logic
         private bool isRetrieving;
+
+        //Personal space logic
+        private const double timeToFindPersonalSpace = 0.5f;
+        private bool isFindingPersonalSpace = false;
+        private double timeFindingPersonalSpace = 0;
 
         //Evasion logic
         private const double MaxEvasionTime = 1;
@@ -154,12 +159,38 @@ namespace Dodgeball.AI
             {
                 timeEvading += FlatRedBall.TimeManager.LastSecondDifference;
             }
+            if (isFindingPersonalSpace)
+            {
+                timeFindingPersonalSpace += FlatRedBall.TimeManager.LastSecondDifference;
+            }
+            if (isEvading)
+            {
+                timeEvading += FlatRedBall.TimeManager.LastSecondDifference;
+            }
             if (isRetrieving)
             {
                 isRetrieving = ShouldRetrieveBall;
             }
-            if (!isEvading && !isPositioningForThrow && !isWandering && !isRetrieving && !isGettingOutOfTheWayOfBallHolder)
+
+            //Check for expirations
+            if (timeEvading >= timeToEvade)
             {
+                isEvading = false;
+            }
+
+            if (timeWandering >= timeToWander)
+            {
+                isWandering = false;
+            }
+
+            if (timeFindingPersonalSpace >= timeToFindPersonalSpace)
+            {
+                isFindingPersonalSpace = false;
+            }
+
+            if (!isEvading && !isPositioningForThrow && !isWandering && !isRetrieving && !isGettingOutOfTheWayOfBallHolder && !isFindingPersonalSpace)
+            {
+                CurrentAction = "";
                 currentMovementDirections = AI2DInput.Directions.None;
             }
         }

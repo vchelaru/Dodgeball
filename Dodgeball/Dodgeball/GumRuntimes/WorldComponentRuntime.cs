@@ -10,9 +10,9 @@ namespace Dodgeball.GumRuntimes
 {
     public partial class WorldComponentRuntime
     {
-        public IPositionedSizedObject PlayArea => GameArea as IPositionedSizedObject;
-        public IPositionedSizedObject LeftTeamRectangle => Team0Rectangle as IPositionedSizedObject;
-        public IPositionedSizedObject RightTeamRectangle => Team1Rectangle as IPositionedSizedObject;
+        public IPositionedSizedObject PlayArea => GameArea;
+        public IPositionedSizedObject LeftTeamRectangle => Team0Rectangle;
+        public IPositionedSizedObject RightTeamRectangle => Team1Rectangle;
 
         partial void CustomInitialize()
         {
