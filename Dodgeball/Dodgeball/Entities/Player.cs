@@ -198,6 +198,13 @@ namespace Dodgeball.Entities
 
             Velocity = Vector3.Zero;
         }
+
+        public void MoveUiTo(FlatRedBall.Graphics.Layer uiLayer, FlatRedBall.Gum.GumIdb gumDrawableBatch)
+        {
+            this.ActiveMarkerRuntimeInstance.MoveToFrbLayer(uiLayer, gumDrawableBatch);
+            this.EnergyBarRuntimeInstance.MoveToFrbLayer(uiLayer, gumDrawableBatch);
+            this.ThrowChargeMeterRuntimeInstance.MoveToFrbLayer(uiLayer, gumDrawableBatch);
+        }
         #endregion
 
         #region Activity

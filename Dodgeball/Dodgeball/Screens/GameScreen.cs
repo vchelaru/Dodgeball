@@ -39,7 +39,7 @@ namespace Dodgeball.Screens
         {
             playerHitSound = GlobalContent.player_hit_0.CreateInstance();
             playerCatchSound = GlobalContent.player_catch.CreateInstance();
-            SharePlayerReferences();
+            ShareReferences();
 
             AssignAIControllers();
 
@@ -57,13 +57,15 @@ namespace Dodgeball.Screens
 	        }
         }
 
-	    private void SharePlayerReferences()
+	    private void ShareReferences()
         {
             foreach(var player in this.PlayerList)
             {
                 player.AllPlayers = PlayerList;
                 player.WorldComponent = WorldComponentInstance;
                 player.Ball = BallInstance;
+
+                player.MoveUiTo(UILayer, GameScreenGum);
             }
         }
 
