@@ -10,13 +10,9 @@ namespace Dodgeball.AI
         #region Constant Probabilities
 
         //The base chance of an action, when appropriate, on each frame
-
-        //Bypasses all below actions, used as difficulty modifier
-        private readonly float _probOfInaction = 0.1f;
-
         private readonly float _probOfDodge = 0.03f;
         private readonly float _probOfEvasion = 0.1f;
-        private readonly float _probOfWandering = 0.01f;
+        private readonly float _probOfWandering = 0.05f;
         private readonly float _probOfTaunting = 0.003f;
         private readonly float _probOfFailedCatch = 0.02f;
         private readonly float _probOfSuccesfulCatch = 0.02f;
@@ -25,7 +21,7 @@ namespace Dodgeball.AI
 
         //These are probabilities that aren't directly referenced by logic, but are altered then used as a dynamic probability
         private readonly float _baseProbOfSuboptimalThrow = 0.1f;
-        private readonly float _baseProbOfBallRetrieval = 0.05f;
+        private readonly float _baseProbOfBallRetrieval = 0.15f;
         #endregion
 
         #region Dynamic Probabilities
@@ -37,7 +33,6 @@ namespace Dodgeball.AI
 
         #region Difficulty-adjusted Probabilities
         //Final probability after conditions and difficulty modification have been considered
-        private float ProbabilityOfInaction => _probOfInaction * DecreaseWithDifficulty;
         private float ProbabilityOfDodge => _probOfDodge * IncreaseWithDifficulty;
         private float ProbabilityOfBallRetrieval => _probOfBallRetrieval * IncreaseWithDifficulty;
         private float ProbabilityOfEvasion => _probOfEvasion * IncreaseWithDifficulty;
@@ -46,7 +41,7 @@ namespace Dodgeball.AI
         private float ProbabilityOfOptimalThrow => _probOfOptimalThrow * IncreaseWithDifficulty;
         private float ProbabilityOfSuboptimalThrow => _probOfNonOptimalThrow * DecreaseWithDifficulty;
         private float ProbabilityOfFailedCatch => _probOfFailedCatch * DecreaseWithDifficulty;
-        private float ProbabilityOfSuccessfulCatch => _probOfFailedCatch * IncreaseWithDifficulty;
+        private float ProbabilityOfSuccessfulCatch => _probOfSuccesfulCatch * IncreaseWithDifficulty;
 
         #endregion
 
@@ -57,8 +52,6 @@ namespace Dodgeball.AI
         #endregion
 
         #region Decision checks
-
-        private bool ShouldDoNothing => !isWandering && !isEvading && !isRetrieving && !isPositioningForThrow && !IsChargingThrow;
 
         private bool ShouldPositionForThrow => ball.ThrowOwner == player && !player.IsInFront && !IsChargingThrow;
 
@@ -125,8 +118,6 @@ namespace Dodgeball.AI
             var hasActed = false;
 
             ConsiderGettingOutOfTheWay(ref hasActed);
-
-            ConsiderDoingNothing(ref hasActed);
 
             ConsiderThrowingTheBall(ref hasActed);
 
@@ -228,18 +219,6 @@ namespace Dodgeball.AI
                                         (ThrowChargeIsOptimal && chanceOfThrow < ProbabilityOfOptimalThrow);
                 if (decisionToRelease) _actionButton.Release();
                 hasActed = true;
-            }
-        }
-
-        private void ConsiderDoingNothing(ref bool hasActed)
-        {
-            if (!hasActed && ShouldDoNothing)
-            {
-                var decisionToDoNothing = random.NextDouble() < ProbabilityOfInaction;
-                hasActed = decisionToDoNothing;
-                currentMovementDirections = AI2DInput.Directions.None;
-                _movementInput.Move(AI2DInput.Directions.None);
-                _aimingInput.Move(AI2DInput.Directions.None);
             }
         }
 
