@@ -147,7 +147,7 @@ namespace Dodgeball.AI
 
         private void UpdateConditions()
         {
-            if (player.IsHoldingBall)
+            if (player.IsHoldingBall && !player.IsPerformingSuccessfulCatch && !player.IsPickingUpBall)
             {
                 ballHeldTime += FlatRedBall.TimeManager.LastSecondDifference;
             }
