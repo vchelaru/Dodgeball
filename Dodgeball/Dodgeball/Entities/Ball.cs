@@ -96,7 +96,18 @@ namespace Dodgeball.Entities
             PerformFallingAndBouncingActivity();
 		    UpdateTrajectoryRotation();
 		    SetAnimation();
+		    UpdateShadow();
 		}
+
+	    private void UpdateShadow()
+	    {
+            ShadowSprite.Visible = CurrentOwnershipState != OwnershipState.Held;
+	        if (ShadowSprite.Visible)
+	        {
+	            ShadowSprite.RelativeY = CircleInstance.Radius / 2;
+	            ShadowSprite.TextureScale = 1.25f - (Altitude / 300);
+	        }
+	    }
 
 	    private void SetAnimation()
 	    {
