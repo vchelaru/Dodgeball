@@ -8,12 +8,9 @@ using FlatRedBall.Audio;
 using FlatRedBall.Screens;
 using Dodgeball.Entities;
 using Dodgeball.Screens;
-using FlatRedBall.Graphics;
-
 namespace Dodgeball.Entities
 {
-    public partial class Player
-    {
-
-    }
+	public partial class Player
+	{
+	}
 }
