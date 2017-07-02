@@ -105,13 +105,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>SettingsComponent</Name>
     </None>
+    <None Include="GumProject\Components\SettingsComponent.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsComponent</Name>
+    </None>
     <None Include="GumProject\Components\TeamSelectionBoxes.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TeamSelectionBoxes</Name>
-    </None>
-    <None Include="GumProject\Components\TextButton.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>TextButton</Name>
     </None>
     <None Include="GumProject\Components\TextButton.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -133,10 +133,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial</Name>
     </None>
-    <None Include="GumProject\FontCache\Font18Arial.fnt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font18Arial</Name>
-    </None>
     <None Include="GumProject\FontCache\Font18Arial_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial_0</Name>
@@ -153,21 +149,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font32Arial_0</Name>
     </None>
-    <None Include="GumProject\FontCache\Font32Arial_0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font32Arial_0</Name>
-    </None>
     <None Include="GumProject\FontCache\Font48Arial Black.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font48Arial Black</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font48Arial Black.fnt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font48Arial Black</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font48Arial Black_0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font48Arial Black_0</Name>
     </None>
     <None Include="GumProject\FontCache\Font48Arial Black_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -225,13 +209,17 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font72Arial_2</Name>
     </None>
+    <None Include="GumProject\FontCache\Font72Arial_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_2</Name>
+    </None>
     <None Include="GumProject\GumProject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GumProject</Name>
     </None>
-    <None Include="GumProject\Screens\AIPlayersScreenGum.gusx">
+    <None Include="GumProject\Screens\AISelectScreenGum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>AIPlayersScreenGum</Name>
+      <Name>AISelectScreenGum</Name>
     </None>
     <None Include="GumProject\Screens\CharacterSelectScreenGum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -265,10 +253,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Component</Name>
     </None>
-    <None Include="GumProject\Standards\Component.gutx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Component</Name>
-    </None>
     <None Include="GumProject\Standards\Container.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Container</Name>
@@ -293,21 +277,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Red_bottomLeft</Name>
     </None>
-    <None Include="GumProject\Standards\StandardGraphics\Red_bottomLeft.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Red_bottomLeft</Name>
-    </None>
     <None Include="GumProject\Standards\StandardGraphics\Red_bottomRight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Red_bottomRight</Name>
-    </None>
-    <None Include="GumProject\Standards\StandardGraphics\Red_bottomRight.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Red_bottomRight</Name>
-    </None>
-    <None Include="GumProject\Standards\StandardGraphics\Red_center.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Red_center</Name>
     </None>
     <None Include="GumProject\Standards\StandardGraphics\Red_center.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -333,9 +305,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Red_topRight</Name>
     </None>
-    <None Include="GumProject\Standards\StandardGraphics\Red_topRight.png">
+    <None Include="GumProject\Standards\Text.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Red_topRight</Name>
+      <Name>Text</Name>
     </None>
     <None Include="GumProject\Standards\Text.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -351,10 +323,40 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GlobalContent\Sounds\ball_bounce.wav">
+    <Compile Include="GlobalContent\Sounds\ball_bounce_0.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
-      <Name>ball_bounce</Name>
+      <Name>ball_bounce_0</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_bounce_1.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_bounce_1</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_bounce_2.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_bounce_2</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_bounce_3.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_bounce_3</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_bounce_4.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_bounce_4</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_bounce_5.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_bounce_5</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_bounce_6.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_bounce_6</Name>
     </Compile>
     <Compile Include="GlobalContent\Sounds\ball_throw_0.wav">
       <Importer>WavImporter</Importer>
@@ -421,20 +423,75 @@
       <Processor>SoundEffectProcessor</Processor>
       <Name>ball_throw_special_5</Name>
     </Compile>
-    <Compile Include="GlobalContent\Sounds\ball_wall_bounce.wav">
+    <Compile Include="GlobalContent\Sounds\ball_wall_bounce_0.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
-      <Name>ball_wall_bounce</Name>
+      <Name>ball_wall_bounce_0</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_wall_bounce_1.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_wall_bounce_1</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_wall_bounce_2.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_wall_bounce_2</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_wall_bounce_3.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_wall_bounce_3</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_wall_bounce_4.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_wall_bounce_4</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_wall_bounce_5.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_wall_bounce_5</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_wall_bounce_6.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_wall_bounce_6</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\ball_wall_bounce_7.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>ball_wall_bounce_7</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\button_click.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>button_click</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_catch.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_catch</Name>
     </Compile>
     <Compile Include="GlobalContent\Sounds\player_death.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Name>player_death</Name>
     </Compile>
-    <Compile Include="GlobalContent\Sounds\player_dodge.wav">
+    <Compile Include="GlobalContent\Sounds\player_dodge_0.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
-      <Name>player_dodge</Name>
+      <Name>player_dodge_0</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_dodge_1.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_dodge_1</Name>
+    </Compile>
+    <Compile Include="GlobalContent\Sounds\player_dodge_2.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_dodge_2</Name>
     </Compile>
     <Compile Include="GlobalContent\Sounds\player_hit_0.wav">
       <Importer>WavImporter</Importer>

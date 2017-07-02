@@ -25,6 +25,7 @@ namespace Dodgeball.Screens
         #region Fields/Properties
 
         private SoundEffectInstance playerHitSound;
+	    private SoundEffectInstance playerCatchSound;
 
 	    private float PlayAreaTop => -WorldComponentInstance.PlayArea.Y + (FlatRedBall.Camera.Main.OrthogonalHeight/2);
 	    private float PlayAreaBottom => PlayAreaTop - WorldComponentInstance.PlayArea.Height;
@@ -37,6 +38,7 @@ namespace Dodgeball.Screens
         void CustomInitialize()
         {
             playerHitSound = GlobalContent.player_hit_0.CreateInstance();
+            playerCatchSound = GlobalContent.player_catch.CreateInstance();
             SharePlayerReferences();
 
             AssignAIControllers();
@@ -223,7 +225,12 @@ namespace Dodgeball.Screens
 
         private void PerformCatchBallLogic(Player player)
 	    {
-	        player.CatchBall(BallInstance);
+	        var playerCatchPan = MathHelper.Clamp(player.X / 540f, -1, 1);
+
+            playerCatchSound.Pan = playerCatchPan;
+	        playerCatchSound.Play();
+
+            player.CatchBall(BallInstance);
 
             #if DEBUG
             if (DebuggingVariables.PlayerAlwaysControlsBallholder)
@@ -252,7 +259,7 @@ namespace Dodgeball.Screens
 
             //Make a hit sound
             var ballVelocity = BallInstance.Velocity.Length();
-            var maxVelocity = player.MaxThrowVelocity;
+            var maxVelocity = GameVariables.MaxThrowVelocity;
             var playerHitPan = MathHelper.Clamp(player.X / 540f, -1, 1);
             var playerHitVol = MathHelper.Clamp((ballVelocity * 2) / maxVelocity, 0.1f, 1);
 
@@ -269,11 +276,11 @@ namespace Dodgeball.Screens
 
 	    private void SetPlayerHitSoundByVelocity(float ballVelocity, float maxVelocity)
 	    {
-	        //This is the number of sound effects available in GlobalContent: 8 player_hit sounds
-	        var maxThrowIndex = 8;
+	        //This is the highest numbered sound effect available in GlobalContent: 8 player_hit sounds
+            var maxHitIndex = 8;
 
             var pctOfPossibleVelocity = ballVelocity / maxVelocity;
-	        var hitIndex = Convert.ToInt32(pctOfPossibleVelocity * maxThrowIndex);
+	        var hitIndex = Convert.ToInt32(pctOfPossibleVelocity * maxHitIndex);
 
 	        var playerHitSoundName = $"player_hit_{hitIndex}";
 

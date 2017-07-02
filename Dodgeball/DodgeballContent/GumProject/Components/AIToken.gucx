@@ -131,6 +131,12 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>bool</Type>
+      <Name>DownSpriteHighlight.HasEvents</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>DownSpriteHighlight.Height</Name>
       <Value xsi:type="xsd:float">30</Value>
@@ -243,7 +249,7 @@
     <Variable>
       <Type>bool</Type>
       <Name>HasEvents</Name>
-      <Value xsi:type="xsd:boolean">true</Value>
+      <Value xsi:type="xsd:boolean">false</Value>
       <Category>Behavior</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -431,6 +437,7 @@
       <Type>string</Type>
       <Name>TokenPlayerText.Text</Name>
       <Value xsi:type="xsd:string">5</Value>
+      <ExposedAsName>TokenText</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -667,6 +674,12 @@
       <Type>Blend</Type>
       <Name>UpSpriteHighlight.Blend</Name>
       <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>UpSpriteHighlight.HasEvents</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

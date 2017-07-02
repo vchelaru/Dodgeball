@@ -9,7 +9,7 @@
   <RestrictFileNamesForAndroid>false</RestrictFileNamesForAndroid>
   <Guides />
   <ScreenReference>
-    <Name>AIPlayersScreenGum</Name>
+    <Name>AISelectScreenGum</Name>
     <ElementType>Screen</ElementType>
   </ScreenReference>
   <ScreenReference>

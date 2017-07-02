@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using RenderingLibrary;
 using Dodgeball.Components;
+using Dodgeball.DataRuntime;
 using Microsoft.Xna.Framework.Input;
 
 namespace Dodgeball.Entities
@@ -43,7 +44,7 @@ namespace Dodgeball.Entities
 
 	    public bool IsAttemptingCatch { get; private set; }
         private double CurrentCatchAttemptTime;
-	    public bool CatchIsEffective => CurrentCatchAttemptTime <= CatchEffectivenessDuration;
+	    public bool CatchIsEffective => CurrentCatchAttemptTime <= GameVariables.CatchEffectivenessDuration;
         public bool IsPerformingSuccessfulCatch { get; private set; }
 	    private bool IsHardCatch;
 
@@ -98,13 +99,25 @@ namespace Dodgeball.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            playerDodgeSound = GlobalContent.player_dodge.CreateInstance();
+            playerDodgeSound = GlobalContent.player_dodge_0.CreateInstance();
 
             HideUi();
 
             InstantiateChargeThrowComponent();
 
             CircleInstance.Color = TeamIndex == 0 ? Color.Red : Color.Blue;
+#if DEBUG
+            if (DebuggingVariables.ShowDebugShapes)
+            {
+                CircleInstance.Visible = true;
+            }
+            else
+            {
+#endif
+                CircleInstance.Visible = false;
+#if DEBUG
+            }
+#endif
         }
 
         private void HideUi()
@@ -117,8 +130,8 @@ namespace Dodgeball.Entities
         private void InstantiateChargeThrowComponent()
         {
             chargeThrowComponent = new ChargeThrow();
-            chargeThrowComponent.LowEndChargeRate = LowEndChargeRate;
-            chargeThrowComponent.HighEndChargeRate = HighEndChargeRate;
+            chargeThrowComponent.LowEndChargeRate = GameVariables.LowEndChargeRate;
+            chargeThrowComponent.HighEndChargeRate = GameVariables.HighEndChargeRate;
         }
 
         public void InitializeKeyboardControls()
@@ -160,7 +173,9 @@ namespace Dodgeball.Entities
 	    {
             ClearInput();
 
-            this.AIController = new AI.AIController(this, Ball);
+	        var difficulty = TeamIndex == 0 ? GameStats.Team1AIDifficulty : GameStats.Team2AIDifficulty;
+
+            this.AIController = new AI.AIController(this, Ball, difficulty);
 
             MovementInput = AIController.MovementInput;
 	        ActionButton = AIController.ActionButton;
@@ -246,7 +261,7 @@ namespace Dodgeball.Entities
 	            CurrentCatchAttemptTime += FlatRedBall.TimeManager.SecondDifference;
                 
                 //Catch has ended
-	            if (CurrentCatchAttemptTime > CatchEffectivenessDuration + CatchFailRecoveryDuration)
+	            if (CurrentCatchAttemptTime > GameVariables.CatchEffectivenessDuration + GameVariables.CatchFailRecoveryDuration)
 	            {
 	                IsAttemptingCatch = false;
 	            }
@@ -277,11 +292,32 @@ namespace Dodgeball.Entities
                     (MovementInput.X != 0 || MovementInput.Y != 0))
                 {
                     IsDodging = true;
+
+                    SetRandomPlayerDodgeSound();
+
                     var dodgeSoundPan = MathHelper.Clamp(X / 540f, -1, 1);
                     playerDodgeSound.Pan = dodgeSoundPan;
                     playerDodgeSound.Play();
                 }
             }
+        }
+
+	    private void SetRandomPlayerDodgeSound()
+	    {
+	        string playerDodgeSoundName;
+
+	        //This is the highest numbered sound effect available in GlobalContent:
+	        var maxDodgeIndex = 2;
+            var randomIndex = FlatRedBallServices.Random.Next(0, maxDodgeIndex);
+            
+	        playerDodgeSoundName = $"player_dodge_{randomIndex}";
+
+	        var dodgeSound = GlobalContent.GetFile(playerDodgeSoundName) as SoundEffect;
+
+	        if (dodgeSound != null)
+	        {
+	            playerDodgeSound = dodgeSound.CreateInstance();
+	        }
         }
 
 	    private void MovementActivity()
@@ -368,6 +404,7 @@ namespace Dodgeball.Entities
         internal void CatchBall(Ball ballInstance)
 	    {
             IsPerformingSuccessfulCatch = true;
+            //TODO:  Check percent of MaxThrowVelocity, rather than hard-code HardCatch velocity requirement
 	        IsHardCatch = ballInstance.Velocity.Length() > 1800;
 
 	        PickUpBall();
@@ -421,7 +458,7 @@ namespace Dodgeball.Entities
             {
                 bool wasAlive = HealthPercentage > 0;
 
-                this.HealthPercentage -= DamageWhenHitting;
+                this.HealthPercentage -= GameVariables.BaseDamageWhenHitting;
 
                 bool isAlive = this.HealthPercentage > 0;
 
@@ -445,11 +482,11 @@ namespace Dodgeball.Entities
 
             if ( isFailedThrow)
             {
-                ThrowVelocity = MinThrowVelocity;
+                ThrowVelocity = GameVariables.MinThrowVelocity;
             }
             else
             {
-                ThrowVelocity = MinThrowVelocity + ((MaxThrowVelocity - MinThrowVelocity) *
+                ThrowVelocity = GameVariables.MinThrowVelocity + ((GameVariables.MaxThrowVelocity - GameVariables.MinThrowVelocity) *
                                                     chargeThrowComponent.EffectiveChargePercent);
             }
 

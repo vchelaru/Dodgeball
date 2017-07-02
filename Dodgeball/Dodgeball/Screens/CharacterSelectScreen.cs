@@ -81,6 +81,7 @@ namespace Dodgeball.Screens
 
                     if (hasAnyUndecided == false)
                     {
+                        GlobalContent.button_click.Play();
                         TeamSelectionBoxesInstance.SelectTeamVisible = false;
                         TeamSelectionBoxesInstance.LoadingVisible = true;
                         this.Call(() => MoveToScreen(typeof(GameScreen))).After(0);
