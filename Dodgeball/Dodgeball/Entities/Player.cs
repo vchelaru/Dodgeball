@@ -339,18 +339,18 @@ namespace Dodgeball.Entities
 	        {
 	            Position.X = TeamRectangleRight;
 	        }
-	        else if (Position.X < TeamRectangleLeft)
+	        else if (Position.X < TeamRectangleLeft+ CircleInstance.Radius)
 	        {
-	            Position.X = TeamRectangleLeft;
+	            Position.X = TeamRectangleLeft + CircleInstance.Radius;
 	        }
 
-	        if (Position.Y > TeamRectangleTop)
+	        if (Position.Y - (CircleInstance.Radius/2) > TeamRectangleTop)
 	        {
-	            Position.Y = TeamRectangleTop;
+	            Position.Y = TeamRectangleTop + (CircleInstance.Radius/2);
 	        }
-	        else if (Position.Y < TeamRectangleBottom)
+	        else if (Position.Y-CircleInstance.Radius < TeamRectangleBottom)
 	        {
-	            Position.Y = TeamRectangleBottom;
+	            Position.Y = TeamRectangleBottom + CircleInstance.Radius;
 	        }
 	    }
 

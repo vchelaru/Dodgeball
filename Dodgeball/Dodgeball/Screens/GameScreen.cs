@@ -152,14 +152,14 @@ namespace Dodgeball.Screens
 
         private void BallVsWallsCollision()
         {
-            if (BallInstance.XVelocity < 0 && BallInstance.X < -1920/2.0f + 30 ||
-                BallInstance.XVelocity > 0 && BallInstance.X > 1920 / 2.0f - 30)
+            if (BallInstance.XVelocity < 0 && BallInstance.X < -1920/2.0f + BallInstance.CircleInstance.Radius ||
+                BallInstance.XVelocity > 0 && BallInstance.X > 1920 / 2.0f - BallInstance.CircleInstance.Radius)
             { 
                 BallInstance.BounceOffWall(isLeftOrRightWall: true);
             }
 
-            if(BallInstance.YVelocity > 0 && BallInstance.Y > PlayAreaTop ||
-                BallInstance.YVelocity < 0 && BallInstance.Y < PlayAreaBottom + 30)
+            if((BallInstance.YVelocity > 0 && (BallInstance.Y - (BallInstance.CircleInstance.Radius / 2) > PlayAreaTop)) ||
+                (BallInstance.YVelocity < 0 && BallInstance.Y - BallInstance.CircleInstance.Radius < PlayAreaBottom))
             {
                 BallInstance.BounceOffWall(isLeftOrRightWall: false);
             }
