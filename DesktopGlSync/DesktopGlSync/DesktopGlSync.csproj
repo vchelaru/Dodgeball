@@ -39,7 +39,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.ActionLogic.cs" />
+    <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.ActionLogic.cs">
+      <DependentUpon>AIController.cs</DependentUpon>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\AI\AIController.cs">
       <Link>AI\AIController.cs</Link>
     </Compile>

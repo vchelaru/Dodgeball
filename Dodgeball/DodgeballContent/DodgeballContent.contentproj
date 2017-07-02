@@ -105,10 +105,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>SettingsComponent</Name>
     </None>
-    <None Include="GumProject\Components\SettingsComponent.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>SettingsComponent</Name>
-    </None>
     <None Include="GumProject\Components\TeamSelectionBoxes.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TeamSelectionBoxes</Name>
@@ -132,10 +128,6 @@
     <None Include="GumProject\FontCache\Font18Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font18Arial_0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font18Arial_0</Name>
     </None>
     <None Include="GumProject\FontCache\Font18Arial_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -173,17 +165,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font72Arial Black_1</Name>
     </None>
-    <None Include="GumProject\FontCache\Font72Arial Black_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font72Arial Black_1</Name>
-    </None>
     <None Include="GumProject\FontCache\Font72Arial Black_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font72Arial Black_2</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font72Arial Black_3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font72Arial Black_3</Name>
     </None>
     <None Include="GumProject\FontCache\Font72Arial Black_3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -200,14 +184,6 @@
     <None Include="GumProject\FontCache\Font72Arial_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font72Arial_1</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font72Arial_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font72Arial_1</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font72Arial_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font72Arial_2</Name>
     </None>
     <None Include="GumProject\FontCache\Font72Arial_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -240,10 +216,6 @@
     <None Include="GumProject\Standards\Circle.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Circle</Name>
-    </None>
-    <None Include="GumProject\Standards\ColoredRectangle.gutx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>ColoredRectangle</Name>
     </None>
     <None Include="GumProject\Standards\ColoredRectangle.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -304,10 +276,6 @@
     <None Include="GumProject\Standards\StandardGraphics\Red_topRight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Red_topRight</Name>
-    </None>
-    <None Include="GumProject\Standards\Text.gutx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Text</Name>
     </None>
     <None Include="GumProject\Standards\Text.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
