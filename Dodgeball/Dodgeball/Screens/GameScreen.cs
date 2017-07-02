@@ -223,36 +223,19 @@ namespace Dodgeball.Screens
             }
         }
 
-        private void PerformCatchBallLogic(Player player)
+        private void PerformCatchBallLogic(Player playerCatchingBall)
 	    {
-	        var playerCatchPan = MathHelper.Clamp(player.X / 540f, -1, 1);
+	        var playerCatchPan = MathHelper.Clamp(playerCatchingBall.X / 540f, -1, 1);
 
             playerCatchSound.Pan = playerCatchPan;
 	        playerCatchSound.Play();
 
-            player.CatchBall(BallInstance);
+            playerCatchingBall.CatchBall(BallInstance);
 
-            #if DEBUG
-            if (DebuggingVariables.PlayerAlwaysControlsBallholder)
-	        {
-	            foreach (var playerToClear in PlayerList)
-	            {
-	                playerToClear.ClearInput();
-	            }
+            TrySwitchingControlToPlayerGettingBall(playerCatchingBall);
+        }
 
-	            if (InputManager.NumberOfConnectedGamePads != 0)
-	            {
-	                player.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
-	            }
-	            else
-	            {
-	                Player1.InitializeKeyboardControls();
-	            }
-	        }
-            #endif
-	    }
-
-	    private void PerformGetHitLogic(Entities.Player player)
+        private void PerformGetHitLogic(Entities.Player player)
         {
             //Let player react and determine if they'll take damage
             player.GetHitBy(BallInstance);
@@ -296,24 +279,29 @@ namespace Dodgeball.Screens
         {
             playerPickingUpBall.PickUpBall();
 
-            if(playerPickingUpBall.IsAiControlled)
+            TrySwitchingControlToPlayerGettingBall(playerPickingUpBall);
+
+        }
+
+        private void TrySwitchingControlToPlayerGettingBall(Player playerGettingBall)
+        {
+            if (playerGettingBall.IsAiControlled)
             {
                 var eligiblePlayerControlledTeammates =
                     PlayerList
-                    .Where(item => item.IsAiControlled == false && 
-                        item.IsDying == false && 
-                        item.TeamIndex == playerPickingUpBall.TeamIndex);
+                    .Where(item => item.IsAiControlled == false &&
+                        item.IsDying == false &&
+                        item.TeamIndex == playerGettingBall.TeamIndex);
 
                 var playerToSwitchInputFrom = eligiblePlayerControlledTeammates
-                    .OrderBy(item => (item.Position - playerPickingUpBall.Position).LengthSquared())
+                    .OrderBy(item => (item.Position - playerGettingBall.Position).LengthSquared())
                     .FirstOrDefault();
 
-                if(playerToSwitchInputFrom != null)
+                if (playerToSwitchInputFrom != null)
                 {
-                    playerToSwitchInputFrom.SwitchInputTo(playerPickingUpBall);
+                    playerToSwitchInputFrom.SwitchInputTo(playerGettingBall);
                 }
             }
-
         }
 
         private void ShowNumberOfPlayersForTeam(int teamIndex)

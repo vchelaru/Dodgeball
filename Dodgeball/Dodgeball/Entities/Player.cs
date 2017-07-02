@@ -520,21 +520,6 @@ namespace Dodgeball.Entities
                 IsHoldingBall = false;
 
                 justReleasedBall = true;
-
-#if DEBUG
-                if (DebuggingVariables.PlayerAlwaysControlsBallholder)
-                {
-                    this.ClearInput();
-                    if(InputManager.NumberOfConnectedGamePads != 0)
-                    {
-                        targetPlayer.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
-                    }
-                    else
-                    {
-                        targetPlayer.InitializeKeyboardControls();
-                    }
-                }
-#endif
             }
         }
 
