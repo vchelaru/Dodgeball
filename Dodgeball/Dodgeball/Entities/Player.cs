@@ -426,9 +426,20 @@ namespace Dodgeball.Entities
         {
             bool shouldSwitch = false;
 
-            var teamPlayers = AllPlayers.Where(p => p.TeamIndex == TeamIndex && !p.IsHit && !p.IsDying && !p.IsThrowing && !p.IsCharging).ToList();
-            shouldSwitch = teamPlayers.Any() && SwitchPlayerButton != null &&
-               SwitchPlayerButton.WasJustReleased;
+            var teamPlayers = AllPlayers
+                .Where(p => 
+                        p.TeamIndex == TeamIndex && 
+                        !p.IsHit && 
+                        !p.IsDying && 
+                        !p.IsThrowing && 
+                        !p.IsCharging &&
+                        // include this and the AI players, so we can use currentIndex:
+                        (p == this || p.IsAiControlled)
+                        ).ToList();
+
+            shouldSwitch = teamPlayers.Any(item => item != this) && 
+                SwitchPlayerButton != null &&
+                SwitchPlayerButton.WasJustReleased;
 
             if (shouldSwitch)
             {
