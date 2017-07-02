@@ -111,6 +111,9 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GlobalContent.Generated.cs">
       <Link>GlobalContent.Generated.cs</Link>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GlobalData.cs">
+      <Link>GlobalData.cs</Link>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumCore\AnimationFrame.cs">
       <Link>GumCore\AnimationFrame.cs</Link>
     </Compile>

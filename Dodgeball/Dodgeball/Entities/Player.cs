@@ -563,8 +563,10 @@ namespace Dodgeball.Entities
 	    private Player GetTargetedPlayer()
 	    {
             //Exclude our players, and exclude players that are knocked out
-	        var opposingTeamPlayers = AllPlayers.Where(p => p.TeamIndex != TeamIndex && !p.IsHit).ToList();
-            int nn = opposingTeamPlayers.Count;
+	        var opposingTeamPlayers = AllPlayers
+                .Where(p => p.TeamIndex != TeamIndex && !p.IsHit && !p.IsDying)
+                .ToArray();
+            
             if (!opposingTeamPlayers.Any())
 	        {
 	            //No players left!

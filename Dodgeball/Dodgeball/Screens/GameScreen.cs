@@ -29,8 +29,9 @@ namespace Dodgeball.Screens
 
 	    private float PlayAreaTop => -WorldComponentInstance.PlayArea.Y + (FlatRedBall.Camera.Main.OrthogonalHeight/2);
 	    private float PlayAreaBottom => PlayAreaTop - WorldComponentInstance.PlayArea.Height;
+        private float PlayAreaLeft = -1920 / 2.0f;
+        private float PlayAreaRight = 1920 / 2.0f;
 
-        
         #endregion
 
         #region Initialize
@@ -41,11 +42,34 @@ namespace Dodgeball.Screens
             playerCatchSound = GlobalContent.player_catch.CreateInstance();
             ShareReferences();
 
+            InitializePlayerEvents();
+
+            PositionPlayers();
+
             AssignAIControllers();
 
             InitializeInput();
+        }
 
-            InitializePlayerEvents();
+        private void PositionPlayers()
+        {
+            var team1 = PlayerList.Where(item => item.TeamIndex == 0).ToArray();
+            var team2 = PlayerList.Where(item => item.TeamIndex == 1).ToArray();
+
+            var top = PlayAreaTop - PlayerList[0].CircleInstance.Radius;
+            var bottom = PlayAreaBottom + PlayerList[0].CircleInstance.Radius;
+            var distanceBetween = (top - bottom) / 3.0f;
+            for (int i = 0; i < team1.Length; i++)
+            {
+                team1[i].X = PlayAreaLeft;
+                team1[i].Y = top - distanceBetween * i;
+            }
+
+            for (int i = 0; i < team2.Length; i++)
+            {
+                team2[i].X = PlayAreaRight;
+                team2[i].Y = top - distanceBetween * i;
+            }
         }
 
         private void AssignAIControllers()
@@ -73,13 +97,40 @@ namespace Dodgeball.Screens
         {
             if(InputManager.NumberOfConnectedGamePads != 0)
             {
-                if (InputManager.Xbox360GamePads[0].IsConnected) { Player1.InitializeXbox360Controls(InputManager.Xbox360GamePads[0]); }
-                if (InputManager.Xbox360GamePads[1].IsConnected) { Player2.InitializeXbox360Controls(InputManager.Xbox360GamePads[1]); }
-                if (InputManager.Xbox360GamePads[2].IsConnected) { Player3.InitializeXbox360Controls(InputManager.Xbox360GamePads[2]); }
-                if (InputManager.Xbox360GamePads[3].IsConnected) { Player4.InitializeXbox360Controls(InputManager.Xbox360GamePads[3]); }
+                bool hasAnyAssigned = GlobalData.JoinStatuses.Any(item => item != JoinStatus.Undecided);
+
+                if(hasAnyAssigned)
+                {
+                    for(int i = 0; i < 4; i++)
+                    {
+                        var gamepad = InputManager.Xbox360GamePads[i];
+                        var joinStatus = GlobalData.JoinStatuses[i];
+                        if (joinStatus != JoinStatus.Undecided && gamepad.IsConnected)
+                        {
+                            int teamToJoin;
+                            if(joinStatus == JoinStatus.Team1)
+                            {
+                                teamToJoin = 0;
+                            }
+                            else
+                            {
+                                teamToJoin = 1;
+                            }
+
+                            var playerToAssign = PlayerList.First(item => item.TeamIndex == teamToJoin && item.IsAiControlled);
+                            playerToAssign.InitializeXbox360Controls(gamepad);
+                        }
+                    }
+                }
+                else
+                {
+                    // didn't go through the screen to assign characters, so let's default to one control
+                    PlayerList[0].InitializeXbox360Controls(InputManager.Xbox360GamePads[0]);
+                }
             }
             else
             {
+                // no controllers connected, so just use a keyboard:
                 Player1.InitializeKeyboardControls();
             }
 
@@ -164,8 +215,8 @@ namespace Dodgeball.Screens
 
         private void BallVsWallsCollision()
         {
-            if (BallInstance.XVelocity < 0 && BallInstance.X < -1920/2.0f + BallInstance.CircleInstance.Radius ||
-                BallInstance.XVelocity > 0 && BallInstance.X > 1920 / 2.0f - BallInstance.CircleInstance.Radius)
+            if (BallInstance.XVelocity < 0 && BallInstance.X < PlayAreaLeft + BallInstance.CircleInstance.Radius ||
+                BallInstance.XVelocity > 0 && BallInstance.X > PlayAreaRight - BallInstance.CircleInstance.Radius)
             { 
                 BallInstance.BounceOffWall(isLeftOrRightWall: true);
             }

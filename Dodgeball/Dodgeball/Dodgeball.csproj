@@ -150,6 +150,7 @@
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalContent.Generated.cs" />
+    <Compile Include="GlobalData.cs" />
     <Compile Include="GumCore\AnimationFrame.cs" />
     <Compile Include="GumCore\Atlas.cs" />
     <Compile Include="GumCore\AtlasedTexture.cs" />

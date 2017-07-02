@@ -17,12 +17,21 @@ namespace Dodgeball.Screens
 {
     public partial class CharacterSelectScreen
     {
-        enum JoinStatus { Team1, Undecided, Team2 };
+        #region Enums
+
+
+
+        #endregion
+
+        #region Fields/Properties
 
         private JoinStatus[] JoinStatuses;
         private IPressableInput[] LeftInputs;
         private IPressableInput[] RightInputs;
 
+        private GraphicalUiElement[] markers;
+
+        #endregion
 
         void CustomInitialize()
         {
@@ -33,6 +42,13 @@ namespace Dodgeball.Screens
                 JoinStatus.Undecided,
                 JoinStatus.Undecided
             };
+
+            markers = TeamSelectionBoxesInstance.Children
+                .Where(item => item.Name.StartsWith("Player") && item.Name.EndsWith("Marker"))
+                .OrderBy(item => item.Name)
+                .Select(item => item as GraphicalUiElement)
+                .ToArray();
+
 
             InitializeInput();
 
@@ -56,12 +72,7 @@ namespace Dodgeball.Screens
 
         void CustomActivity(bool firstTimeCalled)
         {
-            var markers = TeamSelectionBoxesInstance.Children
-                .Where(item => item.Name.StartsWith("Player") && item.Name.EndsWith("Marker"))
-                .OrderBy(item => item.Name)
-                .Select(item => item as GraphicalUiElement)
-                .ToList();
-
+            
             for(int i = 0; i < 4; i++)
             {
                 var gamepad = InputManager.Xbox360GamePads[i];
@@ -84,6 +95,13 @@ namespace Dodgeball.Screens
                         GlobalContent.button_click.Play();
                         TeamSelectionBoxesInstance.SelectTeamVisible = false;
                         TeamSelectionBoxesInstance.LoadingVisible = true;
+
+                        for(int i = 0; i < 4; i++)
+                        {
+                            GlobalData.JoinStatuses[i] = this.JoinStatuses[i];
+                        }
+
+                        // Using Call makes the moving to screen happen next frame
                         this.Call(() => MoveToScreen(typeof(GameScreen))).After(0);
                     }
                 }
