@@ -432,4 +432,15 @@
       <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
   </AnimationChain>
+  <AnimationChain>
+    <Name>PlayerShadow</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>188</RightCoordinate>
+      <TopCoordinate>4055</TopCoordinate>
+      <BottomCoordinate>4087</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
 </AnimationChainArraySave>
