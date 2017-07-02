@@ -103,10 +103,20 @@ namespace Dodgeball.Screens
 
             CheckForEndOfGame();
 
+		    PlayMusic();
+
 #if DEBUG
             DebugActivity();
 #endif
         }
+
+	    private void PlayMusic()
+	    {
+	        if (FlatRedBall.Audio.AudioManager.CurrentlyPlayingSong == null)
+	        {
+	            FlatRedBall.Audio.AudioManager.PlaySong(GlobalContent.dodgeball_bgm, true, true);
+	        }
+	    }
 
 #if DEBUG
         private void DebugActivity()
