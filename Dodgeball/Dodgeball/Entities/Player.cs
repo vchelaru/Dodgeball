@@ -106,6 +106,18 @@ namespace Dodgeball.Entities
             InstantiateChargeThrowComponent();
 
             CircleInstance.Color = TeamIndex == 0 ? Color.Red : Color.Blue;
+#if DEBUG
+            if (DebuggingVariables.ShowDebugShapes)
+            {
+                CircleInstance.Visible = true;
+            }
+            else
+            {
+#endif
+                CircleInstance.Visible = false;
+#if DEBUG
+            }
+#endif
         }
 
         private void HideUi()

@@ -629,7 +629,7 @@
               <ValueAsString>bool</ValueAsString>
             </PropertySave>
           </Properties>
-          <Name>ShowBallTrajectory</Name>
+          <Name>ShowDebugShapes</Name>
           <Type>bool</Type>
           <DefaultValue xsi:type="xsd:boolean">true</DefaultValue>
           <IsShared>true</IsShared>

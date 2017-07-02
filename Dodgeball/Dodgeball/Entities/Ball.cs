@@ -73,15 +73,17 @@ namespace Dodgeball.Entities
 		    ballWallBounceSound = GlobalContent.ball_wall_bounce.CreateInstance();
 		    ballThrowSound = GlobalContent.ball_throw_0.CreateInstance();
 #if DEBUG
-            if (DebuggingVariables.ShowBallTrajectory)
+            if (DebuggingVariables.ShowDebugShapes)
 		    {
 		        TrajectoryPolygon.Visible = true;
+		        CircleInstance.Visible = true;
 		        TrajectoryPolygon.Color = Color.Red;
 		    }
 		    else
 		    {
 #endif
-		        TrajectoryPolygon.Visible = false;
+		        CircleInstance.Visible = false;
+                TrajectoryPolygon.Visible = false;
 #if DEBUG
 		    }
 #endif
@@ -114,7 +116,7 @@ namespace Dodgeball.Entities
 	    {
 	        TrajectoryPolygon.RelativeRotationZ = (float) Math.Atan2(Velocity.Y, Velocity.X);
 #if DEBUG
-	        if (DebuggingVariables.ShowBallTrajectory)
+	        if (DebuggingVariables.ShowDebugShapes)
 	        {
 	            TrajectoryPolygon.Visible = Velocity.X != 0 || Velocity.Y != 0;
 	        }
