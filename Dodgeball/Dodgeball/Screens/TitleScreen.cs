@@ -39,6 +39,7 @@ namespace Dodgeball.Screens
         {
             if (gamePad.ButtonPushed(Xbox360GamePad.Button.A))
             {
+                GlobalContent.button_click.Play();
                 if (HighlightedSelection == MenuItem.Play)
                 {
                     MoveToScreen(typeof(CharacterSelectScreen));

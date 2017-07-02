@@ -828,6 +828,11 @@
       <Name>ball_wall_bounce_7</Name>
       <Link>Content\GlobalContent\Sounds\ball_wall_bounce_7.xnb</Link>
     </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\button_click.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>button_click</Name>
+      <Link>Content\GlobalContent\Sounds\button_click.xnb</Link>
+    </None>
     <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\player_catch.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>player_catch</Name>

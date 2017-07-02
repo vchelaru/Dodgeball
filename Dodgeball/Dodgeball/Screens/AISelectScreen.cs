@@ -135,7 +135,8 @@ namespace Dodgeball.Screens
 
 	            if (Team1AcceptInputs.Any(input => input.WasJustPressed))
 	            {
-	                AISelectBoxesInstance.CurrentTeam1ArrowsState = AISelectBoxesRuntime.Team1Arrows.AllHighlight;
+	                GlobalContent.button_click.Play();
+                    AISelectBoxesInstance.CurrentTeam1ArrowsState = AISelectBoxesRuntime.Team1Arrows.AllHighlight;
                 }
 	        }
 	    }
@@ -167,7 +168,8 @@ namespace Dodgeball.Screens
 
 	            if (Team2AcceptInputs.Any(input => input.WasJustPressed))
 	            {
-	                AISelectBoxesInstance.CurrentTeam2ArrowsState = AISelectBoxesRuntime.Team2Arrows.AllHighlight;
+	                GlobalContent.button_click.Play();
+                    AISelectBoxesInstance.CurrentTeam2ArrowsState = AISelectBoxesRuntime.Team2Arrows.AllHighlight;
 	            }
 	        }
         }
@@ -176,7 +178,8 @@ namespace Dodgeball.Screens
 	    {
 	        if (Team1Ready && Team2Ready)
 	        {
-	            GameStats.Team1AIDifficulty = Team1Difficulty;
+	            GlobalContent.button_click.Play();
+                GameStats.Team1AIDifficulty = Team1Difficulty;
 	            GameStats.Team2AIDifficulty = Team2Difficulty;
                 this.Call(() => MoveToScreen(typeof(GameScreen))).After(0);
             }
