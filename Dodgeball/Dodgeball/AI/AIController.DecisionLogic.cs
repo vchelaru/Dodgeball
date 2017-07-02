@@ -12,7 +12,7 @@ namespace Dodgeball.AI
         //The base chance of an action, when appropriate, on each frame
         private readonly float _probOfDodge = 0.03f;
         private readonly float _probOfEvasion = 0.1f;
-        private readonly float _probOfWandering = 0.01f;
+        private readonly float _probOfWandering = 0.05f;
         private readonly float _probOfTaunting = 0.003f;
         private readonly float _probOfFailedCatch = 0.02f;
         private readonly float _probOfSuccesfulCatch = 0.02f;
@@ -21,7 +21,7 @@ namespace Dodgeball.AI
 
         //These are probabilities that aren't directly referenced by logic, but are altered then used as a dynamic probability
         private readonly float _baseProbOfSuboptimalThrow = 0.1f;
-        private readonly float _baseProbOfBallRetrieval = 0.05f;
+        private readonly float _baseProbOfBallRetrieval = 0.15f;
         #endregion
 
         #region Dynamic Probabilities

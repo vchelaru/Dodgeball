@@ -226,7 +226,7 @@ namespace Dodgeball.Entities
 
 	    private void ThrowActivity()
 	    {
-	        var canThrow = !(ActionButton == null || MovementInput == null || IsDodging || IsPerformingSuccessfulCatch);
+	        var canThrow = !(ActionButton == null || MovementInput == null || IsPerformingSuccessfulCatch) && IsHoldingBall;
 
 	        if (canThrow)
 	        {
@@ -240,7 +240,11 @@ namespace Dodgeball.Entities
 	            {
 	                ExecuteThrow();
                     const int TimeToShowThrowMeterAfterThrow = 1;
-                    this.Call(() => ThrowChargeMeterRuntimeInstance.Visible = false).After(TimeToShowThrowMeterAfterThrow);
+                    this.Call(() =>
+                        {
+                            ThrowChargeMeterRuntimeInstance.Visible = IsHoldingBall;
+                        }
+                    ).After(TimeToShowThrowMeterAfterThrow);
 	            }
 
 	            bool isCharging = IsHoldingBall && ActionButton.IsDown;
@@ -267,7 +271,7 @@ namespace Dodgeball.Entities
 	            }
 	        }
 
-	        var canCatch = !(MovementInput == null || ActionButton == null || IsHoldingBall || IsDodging ||
+	        var canCatch = !(MovementInput == null || ActionButton == null || IsHoldingBall || IsDodging || IsPerformingSuccessfulCatch || IsHit || IsDying ||
 	                         IsAttemptingCatch);
 	        if (canCatch)
 	        {
@@ -404,8 +408,7 @@ namespace Dodgeball.Entities
         internal void CatchBall(Ball ballInstance)
 	    {
             IsPerformingSuccessfulCatch = true;
-            //TODO:  Check percent of MaxThrowVelocity, rather than hard-code HardCatch velocity requirement
-	        IsHardCatch = ballInstance.Velocity.Length() > 1800;
+	        IsHardCatch = ballInstance.Velocity.Length() > 0.9f * GameVariables.MaxThrowVelocity;
 
 	        PickUpBall();
 	    }
