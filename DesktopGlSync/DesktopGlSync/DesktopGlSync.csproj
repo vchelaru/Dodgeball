@@ -360,6 +360,9 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\AISelectBoxesRuntime.Generated.cs">
       <Link>GumRuntimes\AISelectBoxesRuntime.Generated.cs</Link>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\AITokenRuntime.Generated.cs">
+      <Link>GumRuntimes\AITokenRuntime.Generated.cs</Link>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\BackgroundAirplaneRuntime.Generated.cs">
       <Link>GumRuntimes\BackgroundAirplaneRuntime.Generated.cs</Link>
     </Compile>
@@ -813,6 +816,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AISelectBoxes</Name>
       <Link>content\gumproject\components\aiselectboxes.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\aitoken.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AIToken</Name>
+      <Link>content\gumproject\components\aitoken.gucx</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\backgroundairplane.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
