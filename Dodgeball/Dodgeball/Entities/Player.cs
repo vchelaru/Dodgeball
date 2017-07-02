@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using RenderingLibrary;
 using Dodgeball.Components;
+using Dodgeball.DataRuntime;
 using Microsoft.Xna.Framework.Input;
 
 namespace Dodgeball.Entities
@@ -160,7 +161,9 @@ namespace Dodgeball.Entities
 	    {
             ClearInput();
 
-            this.AIController = new AI.AIController(this, Ball);
+	        var difficulty = TeamIndex == 0 ? GameStats.Team1AIDifficulty : GameStats.Team2AIDifficulty;
+
+            this.AIController = new AI.AIController(this, Ball, difficulty);
 
             MovementInput = AIController.MovementInput;
 	        ActionButton = AIController.ActionButton;
@@ -368,6 +371,7 @@ namespace Dodgeball.Entities
         internal void CatchBall(Ball ballInstance)
 	    {
             IsPerformingSuccessfulCatch = true;
+            //TODO:  Check percent of MaxThrowVelocity, rather than hard-code HardCatch velocity requirement
 	        IsHardCatch = ballInstance.Velocity.Length() > 1800;
 
 	        PickUpBall();

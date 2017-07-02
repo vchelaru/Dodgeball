@@ -65,9 +65,261 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PlayerAnimationSheet</Name>
     </None>
+    <None Include="GumProject\BackgroundSpriteSheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BackgroundSpriteSheet</Name>
+    </None>
+    <None Include="GumProject\BackgroundTempHD.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BackgroundTempHD</Name>
+    </None>
+    <None Include="GumProject\Components\ActiveMarker.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ActiveMarker</Name>
+    </None>
+    <None Include="GumProject\Components\AISelectBoxes.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AISelectBoxes</Name>
+    </None>
+    <None Include="GumProject\Components\AIToken.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AIToken</Name>
+    </None>
+    <None Include="GumProject\Components\BackgroundAirplane.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>BackgroundAirplane</Name>
+    </None>
+    <None Include="GumProject\Components\EnergyBar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>EnergyBar</Name>
+    </None>
+    <None Include="GumProject\Components\HealthBar.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>HealthBar</Name>
+    </None>
+    <None Include="GumProject\Components\SettingsButton.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsButton</Name>
+    </None>
+    <None Include="GumProject\Components\SettingsComponent.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsComponent</Name>
+    </None>
+    <None Include="GumProject\Components\SettingsComponent.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SettingsComponent</Name>
+    </None>
+    <None Include="GumProject\Components\TeamSelectionBoxes.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TeamSelectionBoxes</Name>
+    </None>
+    <None Include="GumProject\Components\TextButton.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TextButton</Name>
+    </None>
+    <None Include="GumProject\Components\ThrowChargeMeter.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ThrowChargeMeter</Name>
+    </None>
+    <None Include="GumProject\Components\Token.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Token</Name>
+    </None>
+    <None Include="GumProject\Components\WorldComponent.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WorldComponent</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Arial</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Arial_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font18Arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font18Arial_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font32Arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font32Arial</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font32Arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font32Arial_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font48Arial Black.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial Black</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font48Arial Black_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial Black_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font48Arial Black_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font48Arial Black_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial Black.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial Black_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial Black_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial Black_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial Black_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial Black_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black_3</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial Black_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial Black_3</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_2</Name>
+    </None>
     <None Include="GumProject\GumProject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GumProject</Name>
+    </None>
+    <None Include="GumProject\Screens\AISelectScreenGum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AISelectScreenGum</Name>
+    </None>
+    <None Include="GumProject\Screens\CharacterSelectScreenGum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>CharacterSelectScreenGum</Name>
+    </None>
+    <None Include="GumProject\Screens\GameScreenGum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>GameScreenGum</Name>
+    </None>
+    <None Include="GumProject\Screens\TitleScreenGum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>TitleScreenGum</Name>
+    </None>
+    <None Include="GumProject\Screens\WrapUpScreenGum.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WrapUpScreenGum</Name>
+    </None>
+    <None Include="GumProject\Standards\Circle.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Circle</Name>
+    </None>
+    <None Include="GumProject\Standards\ColoredRectangle.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ColoredRectangle</Name>
+    </None>
+    <None Include="GumProject\Standards\ColoredRectangle.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>ColoredRectangle</Name>
+    </None>
+    <None Include="GumProject\Standards\Component.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Component</Name>
+    </None>
+    <None Include="GumProject\Standards\Container.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Container</Name>
+    </None>
+    <None Include="GumProject\Standards\NineSlice.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>NineSlice</Name>
+    </None>
+    <None Include="GumProject\Standards\Rectangle.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Rectangle</Name>
+    </None>
+    <None Include="GumProject\Standards\Sprite.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Sprite</Name>
+    </None>
+    <None Include="GumProject\Standards\StandardGraphics\Red_bottomCenter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_bottomCenter</Name>
+    </None>
+    <None Include="GumProject\Standards\StandardGraphics\Red_bottomLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_bottomLeft</Name>
+    </None>
+    <None Include="GumProject\Standards\StandardGraphics\Red_bottomRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_bottomRight</Name>
+    </None>
+    <None Include="GumProject\Standards\StandardGraphics\Red_center.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_center</Name>
+    </None>
+    <None Include="GumProject\Standards\StandardGraphics\Red_left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_left</Name>
+    </None>
+    <None Include="GumProject\Standards\StandardGraphics\Red_right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_right</Name>
+    </None>
+    <None Include="GumProject\Standards\StandardGraphics\Red_topCenter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_topCenter</Name>
+    </None>
+    <None Include="GumProject\Standards\StandardGraphics\Red_topLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_topLeft</Name>
+    </None>
+    <None Include="GumProject\Standards\StandardGraphics\Red_topRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Red_topRight</Name>
+    </None>
+    <None Include="GumProject\Standards\Text.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Text</Name>
+    </None>
+    <None Include="GumProject\Standards\Text.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Text</Name>
+    </None>
+    <None Include="GumProject\UISpriteSheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>UISpriteSheet</Name>
+    </None>
+    <None Include="GumProject\yellowgreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>yellowgreen</Name>
     </None>
   </ItemGroup>
   <ItemGroup>

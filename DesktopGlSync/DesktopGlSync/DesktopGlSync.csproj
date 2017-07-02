@@ -354,11 +354,14 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\ActiveMarkerRuntime.Generated.cs">
       <Link>GumRuntimes\ActiveMarkerRuntime.Generated.cs</Link>
     </Compile>
-    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\AIPlayersScreenGumRuntime.Generated.cs">
-      <Link>GumRuntimes\AIPlayersScreenGumRuntime.Generated.cs</Link>
-    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\AISelectBoxesRuntime.Generated.cs">
       <Link>GumRuntimes\AISelectBoxesRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\AISelectScreenGumRuntime.Generated.cs">
+      <Link>GumRuntimes\AISelectScreenGumRuntime.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\AITokenRuntime.Generated.cs">
+      <Link>GumRuntimes\AITokenRuntime.Generated.cs</Link>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\BackgroundAirplaneRuntime.Generated.cs">
       <Link>GumRuntimes\BackgroundAirplaneRuntime.Generated.cs</Link>
@@ -439,6 +442,13 @@
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Performance\PoolList.Generated.cs">
       <Link>Performance\PoolList.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Screens\AISelectScreen.cs">
+      <Link>Screens\AISelectScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Screens\AISelectScreen.Generated.cs">
+      <Link>Screens\AISelectScreen.Generated.cs</Link>
+      <DependentUpon>AISelectScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\Screens\CharacterSelectScreen.cs">
       <Link>Screens\CharacterSelectScreen.cs</Link>
@@ -814,6 +824,11 @@
       <Name>AISelectBoxes</Name>
       <Link>content\gumproject\components\aiselectboxes.gucx</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\aitoken.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>AIToken</Name>
+      <Link>content\gumproject\components\aitoken.gucx</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\backgroundairplane.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>BackgroundAirplane</Name>
@@ -1004,10 +1019,10 @@
       <Name>QuitOn</Name>
       <Link>content\gumproject\quiton.png</Link>
     </None>
-    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\screens\aiplayersscreengum.gusx">
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\screens\aiselectscreengum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>AIPlayersScreenGum</Name>
-      <Link>content\gumproject\screens\aiplayersscreengum.gusx</Link>
+      <Name>AISelectScreenGum</Name>
+      <Link>content\gumproject\screens\aiselectscreengum.gusx</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\screens\characterselectscreengum.gusx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

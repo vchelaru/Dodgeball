@@ -234,8 +234,9 @@
     <Compile Include="GumCore\VariableSave.cs" />
     <Compile Include="GumCore\VariableSaveExtensionMethods.cs" />
     <Compile Include="GumRuntimes\ActiveMarkerRuntime.Generated.cs" />
-    <Compile Include="GumRuntimes\AIPlayersScreenGumRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\AISelectBoxesRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\AISelectScreenGumRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\AITokenRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\BackgroundAirplaneRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CharacterSelectScreenGumRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\CircleRuntime.Generated.cs" />
@@ -269,6 +270,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Screens\AISelectScreen.cs" />
+    <Compile Include="Screens\AISelectScreen.Generated.cs">
+      <DependentUpon>AISelectScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\CharacterSelectScreen.cs" />
     <Compile Include="Screens\CharacterSelectScreen.Generated.cs">
       <DependentUpon>CharacterSelectScreen.cs</DependentUpon>

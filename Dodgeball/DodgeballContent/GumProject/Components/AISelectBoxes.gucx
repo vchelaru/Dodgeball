@@ -68,7 +68,7 @@
     <Variable>
       <Type>bool</Type>
       <Name>HasEvents</Name>
-      <Value xsi:type="xsd:boolean">true</Value>
+      <Value xsi:type="xsd:boolean">false</Value>
       <Category>Behavior</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -585,6 +585,12 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>bool</Type>
+      <Name>Team1Token.HasEvents</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>Team1Token.Height</Name>
       <Value xsi:type="xsd:float">500</Value>
@@ -594,6 +600,12 @@
       <Type>string</Type>
       <Name>Team1Token.Parent</Name>
       <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>Team1Token.TokenText</Name>
+      <ExposedAsName>Team1TokenText</ExposedAsName>
+      <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
@@ -766,6 +778,12 @@
       <Type>string</Type>
       <Name>Team2Token.Parent</Name>
       <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>Team2Token.TokenText</Name>
+      <ExposedAsName>Team2TokenText</ExposedAsName>
+      <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
@@ -1139,14 +1157,14 @@
     <State>
       <Name>UpHighlight</Name>
       <Variable>
-        <Type>HighlightedState</Type>
-        <Name>Team1Token.HighlightedState</Name>
-        <Value xsi:type="xsd:string">UpHighlighted</Value>
+        <Type>Team1ArrowsState</Type>
+        <Name>Team1ArrowsState</Name>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
-        <Type>Team1ArrowsState</Type>
-        <Name>Team1ArrowsState</Name>
+        <Type>HighlightedState</Type>
+        <Name>Team1Token.HighlightedState</Name>
+        <Value xsi:type="xsd:string">UpHighlighted</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -1158,14 +1176,14 @@
     <State>
       <Name>DownHighlight</Name>
       <Variable>
-        <Type>HighlightedState</Type>
-        <Name>Team1Token.HighlightedState</Name>
-        <Value xsi:type="xsd:string">DownHighlighted</Value>
+        <Type>Team1ArrowsState</Type>
+        <Name>Team1ArrowsState</Name>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
-        <Type>Team1ArrowsState</Type>
-        <Name>Team1ArrowsState</Name>
+        <Type>HighlightedState</Type>
+        <Name>Team1Token.HighlightedState</Name>
+        <Value xsi:type="xsd:string">DownHighlighted</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -1220,28 +1238,28 @@
     <State>
       <Name>UpHighlight</Name>
       <Variable>
-        <Type>HighlightedState</Type>
-        <Name>Team2Token.HighlightedState</Name>
-        <Value xsi:type="xsd:string">UpHighlighted</Value>
+        <Type>Team2ArrowsState</Type>
+        <Name>Team2ArrowsState</Name>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
-        <Type>Team2ArrowsState</Type>
-        <Name>Team2ArrowsState</Name>
+        <Type>HighlightedState</Type>
+        <Name>Team2Token.HighlightedState</Name>
+        <Value xsi:type="xsd:string">UpHighlighted</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>
     <State>
       <Name>DownHighlight</Name>
       <Variable>
-        <Type>HighlightedState</Type>
-        <Name>Team2Token.HighlightedState</Name>
-        <Value xsi:type="xsd:string">DownHighlighted</Value>
+        <Type>Team2ArrowsState</Type>
+        <Name>Team2ArrowsState</Name>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
-        <Type>Team2ArrowsState</Type>
-        <Name>Team2ArrowsState</Name>
+        <Type>HighlightedState</Type>
+        <Name>Team2Token.HighlightedState</Name>
+        <Value xsi:type="xsd:string">DownHighlighted</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>
