@@ -8,10 +8,10 @@
     <Frame>
       <TextureName>BallSlow.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>0</LeftCoordinate>
-      <RightCoordinate>64</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>64</BottomCoordinate>
+      <LeftCoordinate>9</LeftCoordinate>
+      <RightCoordinate>54</RightCoordinate>
+      <TopCoordinate>8</TopCoordinate>
+      <BottomCoordinate>54</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
