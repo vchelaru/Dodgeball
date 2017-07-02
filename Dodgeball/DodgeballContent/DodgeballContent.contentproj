@@ -463,6 +463,11 @@
       <Processor>SoundEffectProcessor</Processor>
       <Name>ball_wall_bounce_7</Name>
     </Compile>
+    <Compile Include="GlobalContent\Sounds\player_catch.wav">
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Name>player_catch</Name>
+    </Compile>
     <Compile Include="GlobalContent\Sounds\player_death.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>

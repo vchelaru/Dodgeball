@@ -1356,6 +1356,12 @@
       <HasPublicProperty>true</HasPublicProperty>
       <ProjectsToExcludeFrom />
     </ReferencedFileSave>
+    <ReferencedFileSave>
+      <Name>GlobalContent/Sounds/player_catch.wav</Name>
+      <IsSharedStatic>true</IsSharedStatic>
+      <HasPublicProperty>true</HasPublicProperty>
+      <ProjectsToExcludeFrom />
+    </ReferencedFileSave>
   </GlobalFiles>
   <GlobalContentSettingsSave>
     <LoadAsynchronously>false</LoadAsynchronously>

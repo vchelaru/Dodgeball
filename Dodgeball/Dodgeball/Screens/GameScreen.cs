@@ -25,6 +25,7 @@ namespace Dodgeball.Screens
         #region Fields/Properties
 
         private SoundEffectInstance playerHitSound;
+	    private SoundEffectInstance playerCatchSound;
 
 	    private float PlayAreaTop => -WorldComponentInstance.PlayArea.Y + (FlatRedBall.Camera.Main.OrthogonalHeight/2);
 	    private float PlayAreaBottom => PlayAreaTop - WorldComponentInstance.PlayArea.Height;
@@ -37,6 +38,7 @@ namespace Dodgeball.Screens
         void CustomInitialize()
         {
             playerHitSound = GlobalContent.player_hit_0.CreateInstance();
+            playerCatchSound = GlobalContent.player_catch.CreateInstance();
             SharePlayerReferences();
 
             AssignAIControllers();
@@ -223,7 +225,12 @@ namespace Dodgeball.Screens
 
         private void PerformCatchBallLogic(Player player)
 	    {
-	        player.CatchBall(BallInstance);
+	        var playerCatchPan = MathHelper.Clamp(player.X / 540f, -1, 1);
+
+            playerCatchSound.Pan = playerCatchPan;
+	        playerCatchSound.Play();
+
+            player.CatchBall(BallInstance);
 
             #if DEBUG
             if (DebuggingVariables.PlayerAlwaysControlsBallholder)
