@@ -220,7 +220,7 @@ namespace Dodgeball.Entities
 
         #if DEBUG
 		    if (IsHoldingBall && DebuggingVariables.ShowTargetedPlayers) ShowTargetedPlayers();
-		    if (IsAiControlled && DebuggingVariables.ShowCurrentAIAction) ShowCurrentAIAction();
+		    if (DebuggingVariables.ShowCurrentAIAction) ShowCurrentAIAction();
         #endif
 
 		    SetAnimation();
@@ -395,7 +395,14 @@ namespace Dodgeball.Entities
 
 	    private void ShowCurrentAIAction()
 	    {
-	        TextInstance.DisplayText = AIController?.CurrentAction;
+	        if (IsAiControlled)
+	        {
+	            TextInstance.DisplayText = AIController?.CurrentAction;
+	        }
+	        else
+	        {
+	            TextInstance.DisplayText = "";
+	        }
 	    }
 #endif
 
