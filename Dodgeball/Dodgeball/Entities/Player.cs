@@ -448,7 +448,7 @@ namespace Dodgeball.Entities
             var gamepad = this.lastAssignedGamePad;
             this.ClearInput();
             this.InitializeAIControl();
-            if (lastAssignedGamePad == null)
+            if (gamepad != null)
             {
                 playerToSwitchTo.InitializeXbox360Controls(gamepad);
             }
