@@ -640,6 +640,16 @@
     <Content Include="libSDL2-2.0.0.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\dodgeball_end_sting.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>dodgeball_end_sting</Name>
+      <Link>Content\GlobalContent\dodgeball_end_sting.ogg</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\dodgeball_end_sting.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>dodgeball_end_sting</Name>
+      <Link>Content\GlobalContent\dodgeball_end_sting.xnb</Link>
+    </None>
     <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\ball_bounce.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ball_bounce</Name>

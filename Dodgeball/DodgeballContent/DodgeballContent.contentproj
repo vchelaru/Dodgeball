@@ -291,6 +291,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalContent\dodgeball_end_sting.mp3">
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Name>dodgeball_end_sting</Name>
+    </Compile>
     <Compile Include="GlobalContent\Sounds\ball_bounce_0.wav">
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
