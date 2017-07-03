@@ -8,10 +8,10 @@
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>0</LeftCoordinate>
-      <RightCoordinate>256</RightCoordinate>
-      <TopCoordinate>768</TopCoordinate>
-      <BottomCoordinate>1024</BottomCoordinate>
+      <LeftCoordinate>768</LeftCoordinate>
+      <RightCoordinate>1024</RightCoordinate>
+      <TopCoordinate>2304</TopCoordinate>
+      <BottomCoordinate>2560</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -86,50 +86,50 @@
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.08</FrameLength>
-      <LeftCoordinate>256</LeftCoordinate>
-      <RightCoordinate>512</RightCoordinate>
-      <TopCoordinate>256</TopCoordinate>
-      <BottomCoordinate>512</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.05</FrameLength>
-      <LeftCoordinate>512</LeftCoordinate>
-      <RightCoordinate>768</RightCoordinate>
-      <TopCoordinate>256</TopCoordinate>
-      <BottomCoordinate>512</BottomCoordinate>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.08</FrameLength>
-      <LeftCoordinate>768</LeftCoordinate>
-      <RightCoordinate>1024</RightCoordinate>
-      <TopCoordinate>256</TopCoordinate>
-      <BottomCoordinate>512</BottomCoordinate>
+      <LeftCoordinate>2048</LeftCoordinate>
+      <RightCoordinate>2304</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.02</FrameLength>
-      <LeftCoordinate>1024</LeftCoordinate>
-      <RightCoordinate>1280</RightCoordinate>
-      <TopCoordinate>256</TopCoordinate>
-      <BottomCoordinate>512</BottomCoordinate>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2304</LeftCoordinate>
+      <RightCoordinate>2560</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>1280</LeftCoordinate>
-      <RightCoordinate>1536</RightCoordinate>
-      <TopCoordinate>256</TopCoordinate>
-      <BottomCoordinate>512</BottomCoordinate>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2560</LeftCoordinate>
+      <RightCoordinate>2816</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>1536</LeftCoordinate>
-      <RightCoordinate>1792</RightCoordinate>
-      <TopCoordinate>256</TopCoordinate>
-      <BottomCoordinate>512</BottomCoordinate>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2816</LeftCoordinate>
+      <RightCoordinate>3072</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.2</FrameLength>
+      <LeftCoordinate>3072</LeftCoordinate>
+      <RightCoordinate>3328</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -137,14 +137,30 @@
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.5</FrameLength>
-      <LeftCoordinate>0</LeftCoordinate>
-      <RightCoordinate>256</RightCoordinate>
-      <TopCoordinate>512</TopCoordinate>
-      <BottomCoordinate>768</BottomCoordinate>
+      <LeftCoordinate>3328</LeftCoordinate>
+      <RightCoordinate>3584</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>RunHold</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2048</LeftCoordinate>
+      <RightCoordinate>2304</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2304</LeftCoordinate>
+      <RightCoordinate>2560</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.08</FrameLength>
@@ -177,16 +193,32 @@
       <TopCoordinate>0</TopCoordinate>
       <BottomCoordinate>256</BottomCoordinate>
     </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>3584</LeftCoordinate>
+      <RightCoordinate>3840</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>3840</LeftCoordinate>
+      <RightCoordinate>4096</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>Aim</Name>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>0</LeftCoordinate>
-      <RightCoordinate>256</RightCoordinate>
-      <TopCoordinate>256</TopCoordinate>
-      <BottomCoordinate>512</BottomCoordinate>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -196,8 +228,8 @@
       <FrameLength>0.3</FrameLength>
       <LeftCoordinate>0</LeftCoordinate>
       <RightCoordinate>256</RightCoordinate>
-      <TopCoordinate>1024</TopCoordinate>
-      <BottomCoordinate>1280</BottomCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -207,59 +239,51 @@
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>256</LeftCoordinate>
       <RightCoordinate>512</RightCoordinate>
-      <TopCoordinate>1024</TopCoordinate>
-      <BottomCoordinate>1280</BottomCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>512</LeftCoordinate>
       <RightCoordinate>768</RightCoordinate>
-      <TopCoordinate>1024</TopCoordinate>
-      <BottomCoordinate>1280</BottomCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>768</LeftCoordinate>
       <RightCoordinate>1024</RightCoordinate>
-      <TopCoordinate>1024</TopCoordinate>
-      <BottomCoordinate>1280</BottomCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>1024</LeftCoordinate>
       <RightCoordinate>1280</RightCoordinate>
-      <TopCoordinate>1024</TopCoordinate>
-      <BottomCoordinate>1280</BottomCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>1280</LeftCoordinate>
       <RightCoordinate>1536</RightCoordinate>
-      <TopCoordinate>1024</TopCoordinate>
-      <BottomCoordinate>1280</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>1536</LeftCoordinate>
-      <RightCoordinate>1792</RightCoordinate>
-      <TopCoordinate>1024</TopCoordinate>
-      <BottomCoordinate>1280</BottomCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>Down</Name>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>2</FrameLength>
-      <LeftCoordinate>1536</LeftCoordinate>
-      <RightCoordinate>1792</RightCoordinate>
-      <TopCoordinate>1024</TopCoordinate>
-      <BottomCoordinate>1280</BottomCoordinate>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -269,8 +293,8 @@
       <FrameLength>2</FrameLength>
       <LeftCoordinate>0</LeftCoordinate>
       <RightCoordinate>256</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -280,32 +304,32 @@
       <FrameLength>0.15</FrameLength>
       <LeftCoordinate>256</LeftCoordinate>
       <RightCoordinate>512</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>1280</LeftCoordinate>
       <RightCoordinate>1536</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>1536</LeftCoordinate>
       <RightCoordinate>1792</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>1792</LeftCoordinate>
-      <RightCoordinate>2048</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -313,10 +337,10 @@
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>1792</LeftCoordinate>
-      <RightCoordinate>2048</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -326,88 +350,72 @@
       <FrameLength>0.06</FrameLength>
       <LeftCoordinate>256</LeftCoordinate>
       <RightCoordinate>512</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.06</FrameLength>
       <LeftCoordinate>512</LeftCoordinate>
       <RightCoordinate>768</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.06</FrameLength>
       <LeftCoordinate>768</LeftCoordinate>
       <RightCoordinate>1024</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.06</FrameLength>
-      <LeftCoordinate>1024</LeftCoordinate>
-      <RightCoordinate>1280</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.06</FrameLength>
       <LeftCoordinate>256</LeftCoordinate>
       <RightCoordinate>512</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.06</FrameLength>
       <LeftCoordinate>512</LeftCoordinate>
       <RightCoordinate>768</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.06</FrameLength>
       <LeftCoordinate>768</LeftCoordinate>
       <RightCoordinate>1024</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>1024</LeftCoordinate>
       <RightCoordinate>1280</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>1280</LeftCoordinate>
       <RightCoordinate>1536</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>1536</LeftCoordinate>
       <RightCoordinate>1792</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
-    </Frame>
-    <Frame>
-      <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>1792</LeftCoordinate>
-      <RightCoordinate>2048</RightCoordinate>
-      <TopCoordinate>1280</TopCoordinate>
-      <BottomCoordinate>1536</BottomCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -417,8 +425,8 @@
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>0</LeftCoordinate>
       <RightCoordinate>256</RightCoordinate>
-      <TopCoordinate>1536</TopCoordinate>
-      <BottomCoordinate>1792</BottomCoordinate>
+      <TopCoordinate>2304</TopCoordinate>
+      <BottomCoordinate>2560</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -426,10 +434,10 @@
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>0</LeftCoordinate>
-      <RightCoordinate>256</RightCoordinate>
-      <TopCoordinate>1536</TopCoordinate>
-      <BottomCoordinate>1792</BottomCoordinate>
+      <LeftCoordinate>3072</LeftCoordinate>
+      <RightCoordinate>3328</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
@@ -448,6 +456,224 @@
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>512</LeftCoordinate>
+      <RightCoordinate>768</RightCoordinate>
+      <TopCoordinate>0</TopCoordinate>
+      <BottomCoordinate>256</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>IdleShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>2304</TopCoordinate>
+      <BottomCoordinate>2560</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>IdleShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>2304</TopCoordinate>
+      <BottomCoordinate>2560</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>RunShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>512</LeftCoordinate>
+      <RightCoordinate>768</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>768</LeftCoordinate>
+      <RightCoordinate>1024</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1792</LeftCoordinate>
+      <RightCoordinate>2048</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>RunShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>512</LeftCoordinate>
+      <RightCoordinate>768</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>768</LeftCoordinate>
+      <RightCoordinate>1024</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1792</LeftCoordinate>
+      <RightCoordinate>2048</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>ThrowShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2048</LeftCoordinate>
+      <RightCoordinate>2304</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2304</LeftCoordinate>
+      <RightCoordinate>2560</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2560</LeftCoordinate>
+      <RightCoordinate>2816</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2816</LeftCoordinate>
+      <RightCoordinate>3072</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.2</FrameLength>
+      <LeftCoordinate>3072</LeftCoordinate>
+      <RightCoordinate>3328</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>ThrowShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
       <LeftCoordinate>1536</LeftCoordinate>
       <RightCoordinate>1792</RightCoordinate>
       <TopCoordinate>1280</TopCoordinate>
@@ -455,9 +681,657 @@
     </Frame>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2048</LeftCoordinate>
+      <RightCoordinate>2304</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2304</LeftCoordinate>
+      <RightCoordinate>2560</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2560</LeftCoordinate>
+      <RightCoordinate>2816</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2816</LeftCoordinate>
+      <RightCoordinate>3072</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.2</FrameLength>
+      <LeftCoordinate>3072</LeftCoordinate>
+      <RightCoordinate>3328</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>DodgeShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.5</FrameLength>
+      <LeftCoordinate>3584</LeftCoordinate>
+      <RightCoordinate>3840</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>DodgeShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.5</FrameLength>
+      <LeftCoordinate>3840</LeftCoordinate>
+      <RightCoordinate>4096</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>RunHoldShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2048</LeftCoordinate>
+      <RightCoordinate>2304</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2304</LeftCoordinate>
+      <RightCoordinate>2560</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2560</LeftCoordinate>
+      <RightCoordinate>2816</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2816</LeftCoordinate>
+      <RightCoordinate>3072</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>3072</LeftCoordinate>
+      <RightCoordinate>3328</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>3328</LeftCoordinate>
+      <RightCoordinate>3584</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>3584</LeftCoordinate>
+      <RightCoordinate>3840</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>3840</LeftCoordinate>
+      <RightCoordinate>4096</RightCoordinate>
+      <TopCoordinate>256</TopCoordinate>
+      <BottomCoordinate>512</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>RunHoldShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2048</LeftCoordinate>
+      <RightCoordinate>2304</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2304</LeftCoordinate>
+      <RightCoordinate>2560</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2560</LeftCoordinate>
+      <RightCoordinate>2816</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>2816</LeftCoordinate>
+      <RightCoordinate>3072</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>3072</LeftCoordinate>
+      <RightCoordinate>3328</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>3328</LeftCoordinate>
+      <RightCoordinate>3584</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>3584</LeftCoordinate>
+      <RightCoordinate>3840</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>3840</LeftCoordinate>
+      <RightCoordinate>4096</RightCoordinate>
+      <TopCoordinate>512</TopCoordinate>
+      <BottomCoordinate>768</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>AimShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>1792</LeftCoordinate>
-      <RightCoordinate>2048</RightCoordinate>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>AimShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>HitShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.3</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>HitShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.3</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>FallShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>512</LeftCoordinate>
+      <RightCoordinate>768</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>768</LeftCoordinate>
+      <RightCoordinate>1024</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>FallShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>512</LeftCoordinate>
+      <RightCoordinate>768</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>768</LeftCoordinate>
+      <RightCoordinate>1024</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>DownShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>DownShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>CatchShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>2</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>CatchShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>2</FrameLength>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>256</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>SoftCatchShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.15</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>SoftCatchShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.15</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>IdleHoldShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>IdleHoldShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>HardCatchShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>512</LeftCoordinate>
+      <RightCoordinate>768</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>768</LeftCoordinate>
+      <RightCoordinate>1024</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>512</LeftCoordinate>
+      <RightCoordinate>768</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>768</LeftCoordinate>
+      <RightCoordinate>1024</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>HardCatchShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>512</LeftCoordinate>
+      <RightCoordinate>768</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>768</LeftCoordinate>
+      <RightCoordinate>1024</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>512</LeftCoordinate>
+      <RightCoordinate>768</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.06</FrameLength>
+      <LeftCoordinate>768</LeftCoordinate>
+      <RightCoordinate>1024</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1024</LeftCoordinate>
+      <RightCoordinate>1280</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>PowerUpShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>512</LeftCoordinate>
+      <RightCoordinate>768</RightCoordinate>
+      <TopCoordinate>2304</TopCoordinate>
+      <BottomCoordinate>2560</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>PowerUpShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>256</LeftCoordinate>
+      <RightCoordinate>512</RightCoordinate>
+      <TopCoordinate>2304</TopCoordinate>
+      <BottomCoordinate>2560</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>StaleCatchShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>3072</LeftCoordinate>
+      <RightCoordinate>3328</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>StaleCatchShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>3072</LeftCoordinate>
+      <RightCoordinate>3328</RightCoordinate>
       <TopCoordinate>1280</TopCoordinate>
       <BottomCoordinate>1536</BottomCoordinate>
     </Frame>
