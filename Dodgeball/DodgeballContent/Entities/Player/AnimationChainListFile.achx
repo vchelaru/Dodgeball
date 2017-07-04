@@ -94,6 +94,14 @@
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1792</LeftCoordinate>
+      <RightCoordinate>2048</RightCoordinate>
+      <TopCoordinate>768</TopCoordinate>
+      <BottomCoordinate>1024</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
       <LeftCoordinate>2048</LeftCoordinate>
       <RightCoordinate>2304</RightCoordinate>
       <TopCoordinate>768</TopCoordinate>
@@ -279,7 +287,7 @@
     <Name>Down</Name>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
+      <FrameLength>2</FrameLength>
       <LeftCoordinate>1280</LeftCoordinate>
       <RightCoordinate>1536</RightCoordinate>
       <TopCoordinate>768</TopCoordinate>
@@ -452,17 +460,6 @@
     </Frame>
   </AnimationChain>
   <AnimationChain>
-    <Name>PickUp</Name>
-    <Frame>
-      <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>512</LeftCoordinate>
-      <RightCoordinate>768</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>256</BottomCoordinate>
-    </Frame>
-  </AnimationChain>
-  <AnimationChain>
     <Name>IdleShirt</Name>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
@@ -631,6 +628,14 @@
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1792</LeftCoordinate>
+      <RightCoordinate>2048</RightCoordinate>
+      <TopCoordinate>1024</TopCoordinate>
+      <BottomCoordinate>1280</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
       <LeftCoordinate>2048</LeftCoordinate>
       <RightCoordinate>2304</RightCoordinate>
       <TopCoordinate>1024</TopCoordinate>
@@ -676,6 +681,14 @@
       <FrameLength>0.08</FrameLength>
       <LeftCoordinate>1536</LeftCoordinate>
       <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1280</TopCoordinate>
+      <BottomCoordinate>1536</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.08</FrameLength>
+      <LeftCoordinate>1792</LeftCoordinate>
+      <RightCoordinate>2048</RightCoordinate>
       <TopCoordinate>1280</TopCoordinate>
       <BottomCoordinate>1536</BottomCoordinate>
     </Frame>
@@ -1010,7 +1023,7 @@
     <Name>DownShirt</Name>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
+      <FrameLength>2</FrameLength>
       <LeftCoordinate>1280</LeftCoordinate>
       <RightCoordinate>1536</RightCoordinate>
       <TopCoordinate>1024</TopCoordinate>
@@ -1021,7 +1034,7 @@
     <Name>DownShorts</Name>
     <Frame>
       <TextureName>PlayerAnimationSheet.png</TextureName>
-      <FrameLength>0.1</FrameLength>
+      <FrameLength>2</FrameLength>
       <LeftCoordinate>1280</LeftCoordinate>
       <RightCoordinate>1536</RightCoordinate>
       <TopCoordinate>1280</TopCoordinate>
@@ -1400,6 +1413,63 @@
       <RightCoordinate>3328</RightCoordinate>
       <TopCoordinate>3328</TopCoordinate>
       <BottomCoordinate>4096</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>PickUpShirt</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1792</TopCoordinate>
+      <BottomCoordinate>2048</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>PickUp</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>1536</TopCoordinate>
+      <BottomCoordinate>1792</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>PickUpShorts</Name>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1280</LeftCoordinate>
+      <RightCoordinate>1536</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
+    </Frame>
+    <Frame>
+      <TextureName>PlayerAnimationSheet.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1536</LeftCoordinate>
+      <RightCoordinate>1792</RightCoordinate>
+      <TopCoordinate>2048</TopCoordinate>
+      <BottomCoordinate>2304</BottomCoordinate>
     </Frame>
   </AnimationChain>
 </AnimationChainArraySave>

@@ -10,19 +10,19 @@
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>0</LeftCoordinate>
       <RightCoordinate>64</RightCoordinate>
-      <TopCoordinate>64</TopCoordinate>
-      <BottomCoordinate>128</BottomCoordinate>
+      <TopCoordinate>3840</TopCoordinate>
+      <BottomCoordinate>3904</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
     <Name>FastBall</Name>
     <Frame>
-      <TextureName>BallFast.png</TextureName>
+      <TextureName>../Player/PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
       <LeftCoordinate>0</LeftCoordinate>
       <RightCoordinate>64</RightCoordinate>
-      <TopCoordinate>0</TopCoordinate>
-      <BottomCoordinate>64</BottomCoordinate>
+      <TopCoordinate>3904</TopCoordinate>
+      <BottomCoordinate>3968</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>

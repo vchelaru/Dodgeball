@@ -75,9 +75,9 @@ namespace Dodgeball.Entities
         //Debug property so AI knows when to resume control of player-controlled Player
         public bool HasInputs => MovementInput != null;
 
-	    public bool IsCharging => SpriteInstance.CurrentChainName == "Aim";
-	    public bool IsThrowing => new[] { "Aim", "Throw" }.Contains(SpriteInstance.CurrentChainName);
-        public bool IsHit => SpriteInstance.CurrentChainName == "Hit";
+	    public bool IsCharging => BodySpriteInstance.CurrentChainName == "Aim";
+	    public bool IsThrowing => new[] { "Aim", "Throw" }.Contains(BodySpriteInstance.CurrentChainName);
+        public bool IsHit => BodySpriteInstance.CurrentChainName == "Hit";
 	    private bool ShouldFlipHitAnimation;
 
         public bool IsDying { get; private set; }
@@ -88,7 +88,7 @@ namespace Dodgeball.Entities
 
         public AIController AIController { get; set; }
 
-        #endregion
+        #endregion 
 
         public event Action Dying;
 
@@ -507,9 +507,9 @@ namespace Dodgeball.Entities
             }
 
             //Set their reaction based on where the ball came from
-            SpriteInstance.CurrentChainName = "Hit";
+            BodySpriteInstance.CurrentChainName = "Hit";
             ShouldFlipHitAnimation = (ballInstance.X > X);
-            SpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
+            BodySpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
         }
 
         private void ExecuteThrow()
@@ -617,15 +617,15 @@ namespace Dodgeball.Entities
 	    {
 	        if (IsPickingUpBall)
 	        {
-	            if (SpriteInstance.CurrentChainName != "PickUp")
+	            if (BodySpriteInstance.CurrentChainName != "PickUp")
 	            {
-	                SpriteInstance.CurrentChainName = "PickUp";
+	                BodySpriteInstance.CurrentChainName = "PickUp";
                 }
-	            else if (SpriteInstance.JustCycled)
+	            else if (BodySpriteInstance.JustCycled)
 	            {
 	                IsPickingUpBall = false;
 	            }
-	            SpriteInstance.FlipHorizontal = TeamIndex == 0;
+	            BodySpriteInstance.FlipHorizontal = TeamIndex == 0;
             }
 
             var canThrowOrDodge = ActionButton != null && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsDying && !IsPickingUpBall;
@@ -633,26 +633,26 @@ namespace Dodgeball.Entities
 	        {
 	            if (justReleasedBall)
 	            {
-	                SpriteInstance.CurrentChainName = "Throw";
+	                BodySpriteInstance.CurrentChainName = "Throw";
 	                justReleasedBall = false;
 	            }
                 else if (ActionButton.IsDown && IsHoldingBall)
 	            {
-	                SpriteInstance.CurrentChainName = "Aim";
+	                BodySpriteInstance.CurrentChainName = "Aim";
 	            }
                 else if (IsDodging)
 	            {
-	                if (SpriteInstance.CurrentChainName == "Dodge" && SpriteInstance.JustCycled)
+	                if (BodySpriteInstance.CurrentChainName == "Dodge" && BodySpriteInstance.JustCycled)
 	                {
 	                    IsDodging = false;
 	                }
-	                else if (SpriteInstance.CurrentChainName != "Dodge")
+	                else if (BodySpriteInstance.CurrentChainName != "Dodge")
 	                {
-	                    SpriteInstance.CurrentChainName = "Dodge";
+	                    BodySpriteInstance.CurrentChainName = "Dodge";
                     }
 	            }
 
-	            SpriteInstance.FlipHorizontal = TeamIndex == 0;
+	            BodySpriteInstance.FlipHorizontal = TeamIndex == 0;
             }
 
 	        var canCatch = (IsAttemptingCatch || (IsPerformingSuccessfulCatch)) && !IsDying && !IsPickingUpBall;
@@ -660,85 +660,85 @@ namespace Dodgeball.Entities
 	        {
 	            if (IsAttemptingCatch && CatchIsEffective)
 	            {
-	                SpriteInstance.CurrentChainName = "Catch";
+	                BodySpriteInstance.CurrentChainName = "Catch";
 	            }
 	            else if (IsAttemptingCatch && !CatchIsEffective)
 	            {
-	                SpriteInstance.CurrentChainName = "StaleCatch";
+	                BodySpriteInstance.CurrentChainName = "StaleCatch";
 	            }
 	            else if (IsPerformingSuccessfulCatch)
 	            {
 	                var catchTypes = new[] {"HardCatch", "SoftCatch"};
-	                var catchAnimationIsSet = catchTypes.Contains(SpriteInstance.CurrentChainName);
+	                var catchAnimationIsSet = catchTypes.Contains(BodySpriteInstance.CurrentChainName);
 
-                    if (catchAnimationIsSet && SpriteInstance.JustCycled)
+                    if (catchAnimationIsSet && BodySpriteInstance.JustCycled)
 	                {
 	                    IsPerformingSuccessfulCatch = false;
 	                }
 	                else if (!catchAnimationIsSet)
 	                {
-	                    SpriteInstance.CurrentChainName = IsHardCatch ? "HardCatch" : "SoftCatch";
+	                    BodySpriteInstance.CurrentChainName = IsHardCatch ? "HardCatch" : "SoftCatch";
 	                }
 	            }
 
-	            SpriteInstance.FlipHorizontal = TeamIndex == 0;
+	            BodySpriteInstance.FlipHorizontal = TeamIndex == 0;
 	        }
-	        else if (IsPerformingSuccessfulCatch && SpriteInstance.JustCycled)
+	        else if (IsPerformingSuccessfulCatch && BodySpriteInstance.JustCycled)
 	        {
 	            IsPerformingSuccessfulCatch = false;
 	        }
 
             var canStandOrRun = !IsHit && !IsDying && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsPickingUpBall &&
-                                ((!IsThrowing && !IsDodging) || SpriteInstance.JustCycled);
+                                ((!IsThrowing && !IsDodging) || BodySpriteInstance.JustCycled);
             if (canStandOrRun)
 	        {
 
 	            if (MovementInput?.X != 0 || MovementInput?.Y != 0)
 	            {
-	                SpriteInstance.CurrentChainName = IsHoldingBall ? "RunHold" : "Run";
-	                SpriteInstance.FlipHorizontal = Velocity.X > 0;
+	                BodySpriteInstance.CurrentChainName = IsHoldingBall ? "RunHold" : "Run";
+	                BodySpriteInstance.FlipHorizontal = Velocity.X > 0;
 	            }
 	            else
 	            {
-	                SpriteInstance.CurrentChainName = IsHoldingBall ? "IdleHold" : "Idle";
-	                SpriteInstance.FlipHorizontal = TeamIndex == 0;
+	                BodySpriteInstance.CurrentChainName = IsHoldingBall ? "IdleHold" : "Idle";
+	                BodySpriteInstance.FlipHorizontal = TeamIndex == 0;
 	            }
 	        }
 
 	        if (IsHit && !IsDying)
 	        {
-                if (SpriteInstance.JustCycled && HealthPercentage > 0)
+                if (BodySpriteInstance.JustCycled && HealthPercentage > 0)
 	            {
-	                    //Player still has health, goes back to normal
-	                    SpriteInstance.CurrentChainName = "Idle";
-	                    SpriteInstance.FlipHorizontal = (TeamIndex == 0);   
+                    //Player still has health, goes back to normal
+	                BodySpriteInstance.CurrentChainName = "Idle";
+	                BodySpriteInstance.FlipHorizontal = (TeamIndex == 0);   
 	            }
 	        }
             else if (IsDying)
             {
-                SpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
+                BodySpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
 
-                if (SpriteInstance.CurrentChainName == "Down" && !SpriteInstance.JustCycled)
+                if (BodySpriteInstance.CurrentChainName == "Down" && !BodySpriteInstance.JustCycled)
                 {
                     //Make player blink before disappearing
                     var currentTime = FlatRedBall.TimeManager.CurrentTime;
-                    SpriteInstance.Visible = currentTime % 2 == 1 || currentTime % 0.5 < 0.25;
+                    BodySpriteInstance.Visible = currentTime % 2 == 1 || currentTime % 0.5 < 0.25;
                 }
-                else if (SpriteInstance.JustCycled)
+                else if (BodySpriteInstance.JustCycled)
                 {
-                    if (SpriteInstance.CurrentChainName == "Hit")
+                    if (BodySpriteInstance.CurrentChainName == "Hit")
                     {
                         //Player is out of health, down they go
-                        SpriteInstance.CurrentChainName = "Fall";
-                        SpriteInstance.IgnoreAnimationChainTextureFlip = false;
-                        SpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
+                        BodySpriteInstance.CurrentChainName = "Fall";
+                        BodySpriteInstance.IgnoreAnimationChainTextureFlip = false;
+                        BodySpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
                     }
-                    else if (SpriteInstance.CurrentChainName == "Fall")
+                    else if (BodySpriteInstance.CurrentChainName == "Fall")
                     {
                         //Lay on the ground for the duration of the down animation
-                        SpriteInstance.CurrentChainName = "Down";
-                        SpriteInstance.IgnoreAnimationChainTextureFlip = false;
-                        SpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
+                        BodySpriteInstance.CurrentChainName = "Down";
+                        BodySpriteInstance.IgnoreAnimationChainTextureFlip = false;
+                        BodySpriteInstance.FlipHorizontal = ShouldFlipHitAnimation;
                     }
                     else
                     {
@@ -748,11 +748,31 @@ namespace Dodgeball.Entities
                 }
             }
 
-            SpriteInstance.Animate = SpriteInstance.CurrentChainName != "Aim";
-            this.SpriteInstance.RelativeY = this.SpriteInstance.Height / 2.0f;
-        }
+	        BodySpriteInstance.Animate = BodySpriteInstance.CurrentChainName != "Aim";
+            BodySpriteInstance.RelativeY = BodySpriteInstance.Height / 2.0f;
 
-        #endregion
+	        UpdateShirtAndShorts();
+	    }
+
+	    private void UpdateShirtAndShorts()
+	    {
+	        ShortsSpriteInstance.CurrentChainName = BodySpriteInstance.CurrentChainName + "Shorts";
+	        ShirtSpriteInstance.CurrentChainName = BodySpriteInstance.CurrentChainName + "Shirt";
+
+	        ShortsSpriteInstance.FlipHorizontal = BodySpriteInstance.FlipHorizontal;
+	        ShirtSpriteInstance.FlipHorizontal = BodySpriteInstance.FlipHorizontal;
+
+	        ShortsSpriteInstance.Animate = BodySpriteInstance.Animate;
+	        ShirtSpriteInstance.Animate = BodySpriteInstance.Animate;
+
+	        ShortsSpriteInstance.RelativeY = BodySpriteInstance.RelativeY;
+	        ShirtSpriteInstance.RelativeY = BodySpriteInstance.RelativeY;
+
+	        ShortsSpriteInstance.Visible = BodySpriteInstance.Visible;
+	        ShirtSpriteInstance.Visible = BodySpriteInstance.Visible;
+	    }
+
+	    #endregion
 
         private void CustomDestroy()
 		{
