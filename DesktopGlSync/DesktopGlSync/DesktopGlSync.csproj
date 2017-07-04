@@ -414,6 +414,9 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SpriteRuntime.Generated.cs">
       <Link>GumRuntimes\SpriteRuntime.Generated.cs</Link>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SuperThrowHitRuntime.Generated.cs">
+      <Link>GumRuntimes\SuperThrowHitRuntime.Generated.cs</Link>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SuperThrowZoomRuntime.cs">
       <Link>GumRuntimes\SuperThrowZoomRuntime.cs</Link>
     </Compile>
@@ -1024,6 +1027,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>SettingsComponent</Name>
       <Link>content\gumproject\components\settingscomponent.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\superthrowhit.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SuperThrowHit</Name>
+      <Link>content\gumproject\components\superthrowhit.gucx</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\superthrowzoom.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

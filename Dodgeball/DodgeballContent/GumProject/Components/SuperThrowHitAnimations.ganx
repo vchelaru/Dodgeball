@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ElementAnimationsSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Animations>
+    <AnimationSave>
+      <Loops>false</Loops>
+      <Name>Team0SuperHit</Name>
+      <States>
+        <AnimatedStateSave>
+          <StateName>PlayerPosition/Team1Start</StateName>
+          <Time>0</Time>
+          <InterpolationType>Bounce</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>PlayerPosition/Team1Mid1</StateName>
+          <Time>0.25</Time>
+          <InterpolationType>Linear</InterpolationType>
+          <Easing>InOut</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>PlayerPosition/Team1Mid2</StateName>
+          <Time>0.75</Time>
+          <InterpolationType>Exponential</InterpolationType>
+          <Easing>In</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>PlayerPosition/Team1End</StateName>
+          <Time>1</Time>
+          <InterpolationType>Exponential</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+      </States>
+      <Animations />
+      <Events />
+    </AnimationSave>
+    <AnimationSave>
+      <Loops>false</Loops>
+      <Name>Team1SuperHit</Name>
+      <States>
+        <AnimatedStateSave>
+          <StateName>PlayerPosition/Team0Start</StateName>
+          <Time>0</Time>
+          <InterpolationType>Bounce</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>PlayerPosition/Team0Mid1</StateName>
+          <Time>0.25</Time>
+          <InterpolationType>Linear</InterpolationType>
+          <Easing>InOut</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>PlayerPosition/Team0Mid2</StateName>
+          <Time>0.75</Time>
+          <InterpolationType>Exponential</InterpolationType>
+          <Easing>In</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>PlayerPosition/Team0End</StateName>
+          <Time>1</Time>
+          <InterpolationType>Exponential</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+      </States>
+      <Animations />
+      <Events />
+    </AnimationSave>
+  </Animations>
+</ElementAnimationsSave>

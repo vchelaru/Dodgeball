@@ -256,6 +256,7 @@
     <Compile Include="GumRuntimes\SettingsButtonRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\SettingsComponentRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\SpriteRuntime.Generated.cs" />
+    <Compile Include="GumRuntimes\SuperThrowHitRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\SuperThrowZoomRuntime.cs" />
     <Compile Include="GumRuntimes\SuperThrowZoomRuntime.Generated.cs">
       <DependentUpon>SuperThrowZoomRuntime.cs</DependentUpon>

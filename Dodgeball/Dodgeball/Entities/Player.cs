@@ -51,6 +51,7 @@ namespace Dodgeball.Entities
         public bool IsPerformingSuccessfulCatch { get; private set; }
         public bool IsPickingUpBall { get; private set; }
         public bool IsPerformingSuperThrow { get; set; }
+        public bool IsHitBySuperThrow { get; set; }
 	    public Color ShirtColor;
 	    public Color ShortsColor;
 	    private bool IsHardCatch;
@@ -495,6 +496,8 @@ namespace Dodgeball.Entities
             //Only take damage from other team
             if (ballInstance.OwnerTeam != TeamIndex)
             {
+                IsHitBySuperThrow = ballInstance.Velocity.Length() >= 0.9f * GameVariables.MaxThrowVelocity;
+
                 bool wasAlive = HealthPercentage > 0;
 
                 this.HealthPercentage -= GameVariables.BaseDamageWhenHitting;

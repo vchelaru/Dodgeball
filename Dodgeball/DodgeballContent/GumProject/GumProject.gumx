@@ -65,6 +65,10 @@
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>
+    <Name>SuperThrowHit</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>TeamSelectionBoxes</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>

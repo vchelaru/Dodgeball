@@ -1350,5 +1350,9 @@
     <Name>Team2Name</Name>
     <BaseType>Container</BaseType>
   </Instance>
+  <Instance>
+    <Name>SuperThrowHitInstance</Name>
+    <BaseType>SuperThrowHit</BaseType>
+  </Instance>
   <Behaviors />
 </ComponentSave>

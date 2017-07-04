@@ -2628,6 +2628,12 @@
     </Variable>
     <Variable>
       <Type>bool</Type>
+      <Name>SuperThrowHitInstance.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
       <Name>SuperThrowZoomInstance.Visible</Name>
       <Value xsi:type="xsd:boolean">false</Value>
       <SetsValue>true</SetsValue>
@@ -3332,5 +3338,9 @@
   <Instance>
     <Name>SuperThrowZoomInstance</Name>
     <BaseType>SuperThrowZoom</BaseType>
+  </Instance>
+  <Instance>
+    <Name>SuperThrowHitInstance</Name>
+    <BaseType>SuperThrowHit</BaseType>
   </Instance>
 </ScreenSave>

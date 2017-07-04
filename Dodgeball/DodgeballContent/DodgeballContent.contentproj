@@ -105,6 +105,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>SettingsComponent</Name>
     </None>
+    <None Include="GumProject\Components\SuperThrowHit.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SuperThrowHit</Name>
+    </None>
     <None Include="GumProject\Components\SuperThrowZoom.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>SuperThrowZoom</Name>
