@@ -414,8 +414,12 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SpriteRuntime.Generated.cs">
       <Link>GumRuntimes\SpriteRuntime.Generated.cs</Link>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SuperThrowHitRuntime.cs">
+      <Link>GumRuntimes\SuperThrowHitRuntime.cs</Link>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SuperThrowHitRuntime.Generated.cs">
       <Link>GumRuntimes\SuperThrowHitRuntime.Generated.cs</Link>
+      <DependentUpon>SuperThrowHitRuntime.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SuperThrowZoomRuntime.cs">
       <Link>GumRuntimes\SuperThrowZoomRuntime.cs</Link>
