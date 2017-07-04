@@ -359,6 +359,8 @@ namespace Dodgeball.Screens
             //Let player react and determine if they'll take damage
             player.GetHitBy(BallInstance);
 
+            if (!player.IsAiControlled && player.IsDying) TrySwitchingControlToAliveAIPlayer(player);
+
             //Make a hit sound
             var ballVelocity = BallInstance.Velocity.Length();
             var maxVelocity = GameVariables.MaxThrowVelocity;
@@ -374,6 +376,20 @@ namespace Dodgeball.Screens
             // make the ball bounce off the player:
             BallInstance.CollideAgainstBounce(player, 0, 1, 1);
             BallInstance.CurrentOwnershipState = Entities.Ball.OwnershipState.Free;
+        }
+
+	    private void TrySwitchingControlToAliveAIPlayer(Player playerDying)
+	    {
+	        var eligibleAIControlledTeammate =
+	            PlayerList
+	                .FirstOrDefault(item => item.IsAiControlled == true &&
+	                                item.IsDying == false &&
+	                                item.TeamIndex == playerDying.TeamIndex);
+
+	        if (eligibleAIControlledTeammate != null)
+	        {
+	            playerDying.SwitchInputTo(eligibleAIControlledTeammate);
+	        }
         }
 
 	    private void SetPlayerHitSoundByVelocity(float ballVelocity, float maxVelocity)
