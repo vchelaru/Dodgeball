@@ -405,19 +405,13 @@
       <Name>Frame01</Name>
       <Variable>
         <Type>int</Type>
-        <Name>PropellerSprite.Texture Top</Name>
-        <Value xsi:type="xsd:int">0</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>int</Type>
         <Name>PropellerSprite.Texture Left</Name>
         <Value xsi:type="xsd:int">1920</Value>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
         <Type>int</Type>
-        <Name>PropellerSprite1.Texture Top</Name>
+        <Name>PropellerSprite.Texture Top</Name>
         <Value xsi:type="xsd:int">0</Value>
         <SetsValue>true</SetsValue>
       </Variable>
@@ -425,6 +419,12 @@
         <Type>int</Type>
         <Name>PropellerSprite1.Texture Left</Name>
         <Value xsi:type="xsd:int">1920</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>int</Type>
+        <Name>PropellerSprite1.Texture Top</Name>
+        <Value xsi:type="xsd:int">0</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>

@@ -105,6 +105,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>SettingsComponent</Name>
     </None>
+    <None Include="GumProject\Components\SuperThrowZoom.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SuperThrowZoom</Name>
+    </None>
     <None Include="GumProject\Components\TeamSelectionBoxes.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TeamSelectionBoxes</Name>
@@ -280,6 +284,10 @@
     <None Include="GumProject\Standards\Text.gutx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Text</Name>
+    </None>
+    <None Include="GumProject\SuperThrowArt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SuperThrowArt</Name>
     </None>
     <None Include="GumProject\UISpriteSheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

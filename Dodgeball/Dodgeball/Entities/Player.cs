@@ -17,8 +17,10 @@ using Microsoft.Xna.Framework.Audio;
 using RenderingLibrary;
 using Dodgeball.Components;
 using Dodgeball.DataRuntime;
+using FlatRedBall.Glue.StateInterpolation;
 using FlatRedBall.Graphics;
 using Microsoft.Xna.Framework.Input;
+using StateInterpolationPlugin;
 
 namespace Dodgeball.Entities
 {
@@ -48,6 +50,9 @@ namespace Dodgeball.Entities
 	    public bool CatchIsEffective => CurrentCatchAttemptTime <= GameVariables.CatchEffectivenessDuration;
         public bool IsPerformingSuccessfulCatch { get; private set; }
         public bool IsPickingUpBall { get; private set; }
+        public bool IsPerformingSuperThrow { get; set; }
+	    public Color ShirtColor;
+	    public Color ShortsColor;
 	    private bool IsHardCatch;
 
 	    public WorldComponentRuntime WorldComponent;
@@ -72,9 +77,6 @@ namespace Dodgeball.Entities
 
 	    public bool IsOnTop => Position.Y >= TeamRectangleBottom + (0.8f * TeamRectangle.Height);
 	    public bool IsOnBottom => Position.Y <= TeamRectangleBottom + (0.2f * TeamRectangle.Height);
-
-        //Debug property so AI knows when to resume control of player-controlled Player
-        public bool HasInputs => MovementInput != null;
 
 	    public bool IsCharging => BodySpriteInstance.CurrentChainName == "Aim";
 	    public bool IsThrowing => new[] { "Aim", "Throw" }.Contains(BodySpriteInstance.CurrentChainName);
@@ -525,6 +527,8 @@ namespace Dodgeball.Entities
             {
                 ThrowVelocity = GameVariables.MinThrowVelocity + ((GameVariables.MaxThrowVelocity - GameVariables.MinThrowVelocity) *
                                                     chargeThrowComponent.EffectiveChargePercent);
+
+                if (chargeThrowComponent.EffectiveChargePercent >= 0.9f) IsPerformingSuperThrow = true;
             }
 
             var targetPlayer = GetTargetedPlayer();
@@ -773,25 +777,24 @@ namespace Dodgeball.Entities
 	        ShirtSpriteInstance.Visible = BodySpriteInstance.Visible;
 
 
-	        Color shortsColorToUse;
 	        if (IsAiControlled)
 	        {
-	            shortsColorToUse = TeamIndex == 0 ? GlobalData.Team1ShortsColor : GlobalData.Team2ShortsColor;
+	            ShortsColor = TeamIndex == 0 ? GlobalData.Team1ShortsColor : GlobalData.Team2ShortsColor;
 	        }
 	        else
 	        {
-	            shortsColorToUse = TeamIndex == 0 ? GlobalData.Team1HighlightColor : GlobalData.Team2HighlightColor;
+	            ShortsColor = TeamIndex == 0 ? GlobalData.Team1HighlightColor : GlobalData.Team2HighlightColor;
 	        }
 
-	        ShortsSpriteInstance.Red = shortsColorToUse.R/255f;
-	        ShortsSpriteInstance.Green = shortsColorToUse.G/255f;
-	        ShortsSpriteInstance.Blue = shortsColorToUse.B/255f;
+	        ShortsSpriteInstance.Red = ShortsColor.R/255f;
+	        ShortsSpriteInstance.Green = ShortsColor.G/255f;
+	        ShortsSpriteInstance.Blue = ShortsColor.B/255f;
 
-	        var shirtColorToUse = TeamIndex == 0 ? GlobalData.Team1ShirtColor : GlobalData.Team2ShirtColor;
+	        ShirtColor = TeamIndex == 0 ? GlobalData.Team1ShirtColor : GlobalData.Team2ShirtColor;
 
-	        ShirtSpriteInstance.Red = shirtColorToUse.R / 255f;
-	        ShirtSpriteInstance.Green = shirtColorToUse.G / 255f;
-	        ShirtSpriteInstance.Blue = shirtColorToUse.B / 255f;
+	        ShirtSpriteInstance.Red = ShirtColor.R / 255f;
+	        ShirtSpriteInstance.Green = ShirtColor.G / 255f;
+	        ShirtSpriteInstance.Blue = ShirtColor.B / 255f;
 
 	        ShortsSpriteInstance.ColorOperation = ColorOperation.Modulate;
 	        ShirtSpriteInstance.ColorOperation = ColorOperation.Modulate;

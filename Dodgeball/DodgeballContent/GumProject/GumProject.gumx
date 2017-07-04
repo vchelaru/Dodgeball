@@ -61,6 +61,10 @@
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>
+    <Name>SuperThrowZoom</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>TeamSelectionBoxes</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>

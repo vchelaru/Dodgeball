@@ -149,7 +149,9 @@ namespace Dodgeball.Screens
         #region Activity
 
         void CustomActivity(bool firstTimeCalled)
-		{
+        {
+            SuperThrowZoomIfNecessary();
+
             CollisionActivity();
 
             CheckForEndOfGame();
@@ -160,6 +162,31 @@ namespace Dodgeball.Screens
             DebugActivity();
 #endif
         }
+
+	    private void SuperThrowZoomIfNecessary()
+	    {
+	        var superThrowPlayer = PlayerList.FirstOrDefault(p => p.IsPerformingSuperThrow);
+	        var shouldSuperThrowZoom = superThrowPlayer != null;
+
+	        if (shouldSuperThrowZoom)
+	        {
+	            superThrowPlayer.IsPerformingSuperThrow = false;
+
+	            var superThrowAnimation = superThrowPlayer.TeamIndex == 0
+	                ? SuperThrowZoomInstance.Team0SuperThrowAnimation
+	                : SuperThrowZoomInstance.Team1SuperThrowAnimation;
+
+                PauseThisScreen();
+	            SuperThrowZoomInstance.SetColors(shirtColor: superThrowPlayer.ShirtColor, shortsColor:superThrowPlayer.ShortsColor);
+	            SuperThrowZoomInstance.Visible = true;
+	            superThrowAnimation.Play();
+	            this.Call(() =>
+	            {
+	                SuperThrowZoomInstance.Visible = false;
+                    UnpauseThisScreen();
+	            }).After(superThrowAnimation.Length);
+	        }
+	    }
 
 	    private void PlayMusic()
 	    {

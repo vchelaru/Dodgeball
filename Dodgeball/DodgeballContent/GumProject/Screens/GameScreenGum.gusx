@@ -2627,6 +2627,12 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>bool</Type>
+      <Name>SuperThrowZoomInstance.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>string</Type>
       <Name>TreeOneSprite.Parent</Name>
       <Value xsi:type="xsd:string">MidgroundContainer</Value>
@@ -2922,6 +2928,12 @@
       <Type>float</Type>
       <Name>VineSprite.Y</Name>
       <Value xsi:type="xsd:float">-2</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>Visible</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -3316,5 +3328,9 @@
   <Instance>
     <Name>NineSliceInstance</Name>
     <BaseType>NineSlice</BaseType>
+  </Instance>
+  <Instance>
+    <Name>SuperThrowZoomInstance</Name>
+    <BaseType>SuperThrowZoom</BaseType>
   </Instance>
 </ScreenSave>

@@ -414,6 +414,13 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SpriteRuntime.Generated.cs">
       <Link>GumRuntimes\SpriteRuntime.Generated.cs</Link>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SuperThrowZoomRuntime.cs">
+      <Link>GumRuntimes\SuperThrowZoomRuntime.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\SuperThrowZoomRuntime.Generated.cs">
+      <Link>GumRuntimes\SuperThrowZoomRuntime.Generated.cs</Link>
+      <DependentUpon>SuperThrowZoomRuntime.cs</DependentUpon>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\TeamSelectionBoxesRuntime.Generated.cs">
       <Link>GumRuntimes\TeamSelectionBoxesRuntime.Generated.cs</Link>
     </Compile>
@@ -1018,6 +1025,11 @@
       <Name>SettingsComponent</Name>
       <Link>content\gumproject\components\settingscomponent.gucx</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\superthrowzoom.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SuperThrowZoom</Name>
+      <Link>content\gumproject\components\superthrowzoom.gucx</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\teamselectionboxes.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>TeamSelectionBoxes</Name>
@@ -1042,6 +1054,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WorldComponent</Name>
       <Link>content\gumproject\components\worldcomponent.gucx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\d:\gamedev\projects\dodgeball\dodgeball\dodgeballcontent\entities\player\playeranimationsheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>PlayerAnimationSheet</Name>
+      <Link>content\gumproject\d:\gamedev\projects\dodgeball\dodgeball\dodgeballcontent\entities\player\playeranimationsheet.png</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\dodgeballlogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1302,6 +1319,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Text</Name>
       <Link>content\gumproject\standards\text.gutx</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\superthrowart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SuperThrowArt</Name>
+      <Link>content\gumproject\superthrowart.png</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\titlescreenbackground.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
