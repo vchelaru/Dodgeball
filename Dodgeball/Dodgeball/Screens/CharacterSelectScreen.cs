@@ -102,7 +102,7 @@ namespace Dodgeball.Screens
                         }
 
                         // Using Call makes the moving to screen happen next frame
-                        this.Call(() => MoveToScreen(typeof(GameScreen))).After(0);
+                        this.Call(() => MoveToScreen(typeof(AISelectScreen))).After(0);
                     }
                 }
             }

@@ -22,7 +22,7 @@ namespace Dodgeball.AI
 
         //These are probabilities that aren't directly referenced by logic, but are altered then used as a dynamic probability
         private readonly float _baseProbOfSuboptimalThrow = 0.1f;
-        private readonly float _baseProbOfBallRetrieval = 0.15f;
+        private readonly float _baseProbOfBallRetrieval = 0.45f;
         #endregion
 
         #region Dynamic Probabilities

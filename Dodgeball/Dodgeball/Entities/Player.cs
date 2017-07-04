@@ -178,7 +178,7 @@ namespace Dodgeball.Entities
 	    {
             ClearInput();
 
-	        var difficulty = TeamIndex == 0 ? GameStats.Team1AIDifficulty : GameStats.Team2AIDifficulty;
+	        var difficulty = TeamIndex == 0 ? GameStats.Team0AIDifficulty : GameStats.Team1AIDifficulty;
 
             this.AIController = new AI.AIController(this, Ball, difficulty);
 

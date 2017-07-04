@@ -496,85 +496,85 @@
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Team1Rect1.Alpha</Name>
+      <Name>Team1Rect.Alpha</Name>
       <Value xsi:type="xsd:int">150</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Team1Rect1.Blue</Name>
+      <Name>Team1Rect.Blue</Name>
       <Value xsi:type="xsd:int">128</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Team1Rect1.Green</Name>
+      <Name>Team1Rect.Green</Name>
       <Value xsi:type="xsd:int">128</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>Team1Rect1.Height</Name>
+      <Name>Team1Rect.Height</Name>
       <Value xsi:type="xsd:float">50</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Team1Rect1.Height Units</Name>
+      <Name>Team1Rect.Height Units</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>Team1Rect1.Red</Name>
+      <Name>Team1Rect.Red</Name>
       <Value xsi:type="xsd:int">1255</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>Team1Rect1.Width</Name>
+      <Name>Team1Rect.Width</Name>
       <Value xsi:type="xsd:float">30</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>Team1Rect1.Width Units</Name>
+      <Name>Team1Rect.Width Units</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>Team1Rect1.X</Name>
+      <Name>Team1Rect.X</Name>
       <Value xsi:type="xsd:float">10</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>Team1Rect1.X Origin</Name>
+      <Name>Team1Rect.X Origin</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>Team1Rect1.X Units</Name>
+      <Name>Team1Rect.X Units</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>Team1Rect1.Y</Name>
+      <Name>Team1Rect.Y</Name>
       <Value xsi:type="xsd:float">35</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>Team1Rect1.Y Origin</Name>
+      <Name>Team1Rect.Y Origin</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>Team1Rect1.Y Units</Name>
+      <Name>Team1Rect.Y Units</Name>
       <Value xsi:type="xsd:int">3</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -606,6 +606,12 @@
       <Name>Team1Token.TokenText</Name>
       <ExposedAsName>Team1TokenText</ExposedAsName>
       <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>Team1Token.Visible</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
+      <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
@@ -808,6 +814,11 @@
       <Name>Team2Token.Y</Name>
       <Value xsi:type="xsd:float">400</Value>
       <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>TeamsPresentState</Type>
+      <Name>TeamsPresentState</Name>
+      <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
@@ -1172,6 +1183,12 @@
         <Name>Team2ArrowsState</Name>
         <SetsValue>true</SetsValue>
       </Variable>
+      <Variable>
+        <Type>ColorsState</Type>
+        <Name>Team1Token.ColorsState</Name>
+        <Value xsi:type="xsd:string">Red</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
     </State>
     <State>
       <Name>DownHighlight</Name>
@@ -1189,6 +1206,12 @@
       <Variable>
         <Type>Team2ArrowsState</Type>
         <Name>Team2ArrowsState</Name>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>ColorsState</Type>
+        <Name>Team1Token.ColorsState</Name>
+        <Value xsi:type="xsd:string">Red</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>
@@ -1211,6 +1234,12 @@
         <Value xsi:type="xsd:string">NoHighlight</Value>
         <SetsValue>true</SetsValue>
       </Variable>
+      <Variable>
+        <Type>ColorsState</Type>
+        <Name>Team1Token.ColorsState</Name>
+        <Value xsi:type="xsd:string">Red</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
     </State>
     <State>
       <Name>AllHighlight</Name>
@@ -1224,6 +1253,36 @@
         <Type>HighlightedState</Type>
         <Name>Team1Token.HighlightedState</Name>
         <Value xsi:type="xsd:string">AllHighlighted</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>Team2ArrowsState</Type>
+        <Name>Team2ArrowsState</Name>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>ColorsState</Type>
+        <Name>Team1Token.ColorsState</Name>
+        <Value xsi:type="xsd:string">Red</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+    <State>
+      <Name>Ready</Name>
+      <Variable>
+        <Type>Team1ArrowsState</Type>
+        <Name>Team1ArrowsState</Name>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>ColorsState</Type>
+        <Name>Team1Token.ColorsState</Name>
+        <Value xsi:type="xsd:string">Green</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>HighlightedState</Type>
+        <Name>Team1Token.HighlightedState</Name>
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
@@ -1248,6 +1307,12 @@
         <Value xsi:type="xsd:string">UpHighlighted</Value>
         <SetsValue>true</SetsValue>
       </Variable>
+      <Variable>
+        <Type>ColorsState</Type>
+        <Name>Team2Token.ColorsState</Name>
+        <Value xsi:type="xsd:string">Blue</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
     </State>
     <State>
       <Name>DownHighlight</Name>
@@ -1260,6 +1325,12 @@
         <Type>HighlightedState</Type>
         <Name>Team2Token.HighlightedState</Name>
         <Value xsi:type="xsd:string">DownHighlighted</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>ColorsState</Type>
+        <Name>Team2Token.ColorsState</Name>
+        <Value xsi:type="xsd:string">Blue</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>
@@ -1277,6 +1348,12 @@
         <Value xsi:type="xsd:string">NotHighlighted</Value>
         <SetsValue>true</SetsValue>
       </Variable>
+      <Variable>
+        <Type>ColorsState</Type>
+        <Name>Team2Token.ColorsState</Name>
+        <Value xsi:type="xsd:string">Blue</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
     </State>
     <State>
       <Name>AllHighlight</Name>
@@ -1292,6 +1369,112 @@
         <Value xsi:type="xsd:string">AllHighlighted</Value>
         <SetsValue>true</SetsValue>
       </Variable>
+      <Variable>
+        <Type>ColorsState</Type>
+        <Name>Team2Token.ColorsState</Name>
+        <Value xsi:type="xsd:string">Blue</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+    <State>
+      <Name>Ready</Name>
+      <Variable>
+        <Type>Team2ArrowsState</Type>
+        <Name>Team2ArrowsState</Name>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>ColorsState</Type>
+        <Name>Team2Token.ColorsState</Name>
+        <Value xsi:type="xsd:string">Green</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>HighlightedState</Type>
+        <Name>Team2Token.HighlightedState</Name>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+  </Category>
+  <Category>
+    <Name>TeamsPresent</Name>
+    <State>
+      <Name>NoTeam1</Name>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team1Name.Visible</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team1Rect.Visible</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team1Token.Visible</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team2Name.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team2Token.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team2Rect.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+    <State>
+      <Name>NoTeam2</Name>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team1Name.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team1Rect.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team1Token.Visible</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team2Name.Visible</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team2Rect.Visible</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>Team2Token.Visible</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
     </State>
   </Category>
   <Instance>
@@ -1299,7 +1482,7 @@
     <BaseType>ColoredRectangle</BaseType>
   </Instance>
   <Instance>
-    <Name>Team1Rect1</Name>
+    <Name>Team1Rect</Name>
     <BaseType>ColoredRectangle</BaseType>
   </Instance>
   <Instance>
@@ -1349,10 +1532,6 @@
   <Instance>
     <Name>Team2Name</Name>
     <BaseType>Container</BaseType>
-  </Instance>
-  <Instance>
-    <Name>SuperThrowHitInstance</Name>
-    <BaseType>SuperThrowHit</BaseType>
   </Instance>
   <Behaviors />
 </ComponentSave>

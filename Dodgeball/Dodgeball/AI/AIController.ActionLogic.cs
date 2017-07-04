@@ -13,7 +13,7 @@ namespace Dodgeball.AI
         {
             var aimDirections = AI2DInput.Directions.None;
 
-            var lowestHealth = otherTeamsPlayers.Select(p => p.HealthPercentage).Concat(new[] {100f}).Min();
+            var lowestHealth = otherTeamsPlayers.Where(p => !p.IsDying)?.Select(p => p.HealthPercentage).Concat(new[] {100f}).Min();
 
             if (!(lowestHealth < 100f)) return aimDirections;
 
