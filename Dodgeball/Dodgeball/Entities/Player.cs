@@ -773,7 +773,15 @@ namespace Dodgeball.Entities
 	        ShirtSpriteInstance.Visible = BodySpriteInstance.Visible;
 
 
-	        var shortsColorToUse = TeamIndex == 0 ? GlobalData.Team1ShortsColor : GlobalData.Team2ShortsColor;
+	        Color shortsColorToUse;
+	        if (IsAiControlled)
+	        {
+	            shortsColorToUse = TeamIndex == 0 ? GlobalData.Team1ShortsColor : GlobalData.Team2ShortsColor;
+	        }
+	        else
+	        {
+	            shortsColorToUse = TeamIndex == 0 ? GlobalData.Team1HighlightColor : GlobalData.Team2HighlightColor;
+	        }
 
 	        ShortsSpriteInstance.Red = shortsColorToUse.R/255f;
 	        ShortsSpriteInstance.Green = shortsColorToUse.G/255f;
@@ -785,9 +793,9 @@ namespace Dodgeball.Entities
 	        ShirtSpriteInstance.Green = shirtColorToUse.G / 255f;
 	        ShirtSpriteInstance.Blue = shirtColorToUse.B / 255f;
 
-            ShortsSpriteInstance.ColorOperation = ColorOperation.Modulate;
+	        ShortsSpriteInstance.ColorOperation = ColorOperation.Modulate;
 	        ShirtSpriteInstance.ColorOperation = ColorOperation.Modulate;
-        }
+	    }
 
 	    #endregion
 

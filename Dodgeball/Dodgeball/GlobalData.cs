@@ -15,6 +15,9 @@ namespace Dodgeball
     {
         public static JoinStatus[] JoinStatuses;
 
+        public static Color Team1HighlightColor = Color.CadetBlue;
+        public static Color Team2HighlightColor = Color.OrangeRed;
+        
         public static Color Team1ShirtColor = Color.Red;
         public static Color Team2ShirtColor = Color.Blue;
 
