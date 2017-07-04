@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Dodgeball.Entities;
+using FlatRedBall;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework;
 
@@ -10,8 +11,31 @@ namespace Dodgeball.AI
     {
         private AI2DInput.Directions GetAimDirection()
         {
-            //TODO:  Aim at particular player
-            return AI2DInput.Directions.Down;
+            var aimDirections = AI2DInput.Directions.None;
+
+            var lowestHealth = otherTeamsPlayers.Select(p => p.HealthPercentage).Concat(new[] {100f}).Min();
+
+            if (!(lowestHealth < 100f)) return aimDirections;
+
+            var weakPlayers = otherTeamsPlayers.Where(otp => otp.HealthPercentage <= lowestHealth).ToList();
+            var targetPlayer = weakPlayers.Count() > 1 ? FlatRedBallServices.Random.In<Player>(weakPlayers) : weakPlayers.FirstOrDefault();
+
+            if (targetPlayer == null) return aimDirections;
+            
+            var maxX = otherTeamsPlayers.Max(otp => otp.X);
+            var minX = otherTeamsPlayers.Min(otp => otp.X);
+            var maxY = otherTeamsPlayers.Max(otp => otp.Y);
+            var minY = otherTeamsPlayers.Min(otp => otp.Y);
+
+            var percentX = (targetPlayer.X - minX) / (maxX - minX);
+            var percentY = (targetPlayer.Y - minY) / (maxY - minY);
+
+            var leftRight = percentX > 0.5f ? AI2DInput.Directions.Right : percentX < 0.5f ? AI2DInput.Directions.Left : AI2DInput.Directions.None;
+            var upDown = percentY > 0.5f ? AI2DInput.Directions.Up : percentX < 0.5f ? AI2DInput.Directions.Down : AI2DInput.Directions.None;
+
+            aimDirections = leftRight | upDown;
+            
+            return aimDirections;
         }
 
         private AI2DInput.Directions GetWanderDirection()
@@ -188,10 +212,10 @@ namespace Dodgeball.AI
 
         private Player GetClosestTeamPlayer()
         {
-            var closestPlayer = teamPlayers.FirstOrDefault();
+            var closestPlayer = myTeamOtherPlayers.FirstOrDefault();
             var closestPlayerDistance = float.MaxValue;
 
-            foreach (var teamPlayer in teamPlayers)
+            foreach (var teamPlayer in myTeamOtherPlayers)
             {
                 var teamPlayerDistance = (player.Position - teamPlayer.Position).Length();
                 if (teamPlayerDistance < closestPlayerDistance)
@@ -211,7 +235,7 @@ namespace Dodgeball.AI
 
             float toReturn = 1f;
 
-            var onlyPlayerLeft = !teamPlayers.Any(p => !p.IsDying);
+            var onlyPlayerLeft = !myTeamOtherPlayers.Any(p => !p.IsDying);
             if (onlyPlayerLeft)
             {
                 toReturn = 2f;

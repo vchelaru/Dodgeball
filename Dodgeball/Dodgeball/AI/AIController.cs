@@ -57,7 +57,8 @@ namespace Dodgeball.AI
         #region Other Fields/Properties
         //Object references
         private readonly Player player;
-        private List<Player> teamPlayers;
+        private List<Player> myTeamOtherPlayers;
+        private List<Player> otherTeamsPlayers;
         private readonly Ball ball;
 
         private float myPersonalSpace;
@@ -111,8 +112,9 @@ namespace Dodgeball.AI
 
             //Object references
             this.player = player;
-            teamPlayers = player.AllPlayers.Where(p => p.TeamIndex == player.TeamIndex && p != this.player).ToList();
             this.ball = ball;
+            myTeamOtherPlayers = player.AllPlayers.Where(p => p.TeamIndex == player.TeamIndex && p != this.player).ToList();
+            otherTeamsPlayers = player.AllPlayers.Where(p => p.TeamIndex != player.TeamIndex).ToList();
 
             myPersonalSpace = player.CircleInstance.Radius * 1.5f;
 
@@ -192,6 +194,7 @@ namespace Dodgeball.AI
             {
                 CurrentAction = "";
                 currentMovementDirections = AI2DInput.Directions.None;
+                _aimingInput.Move(AI2DInput.Directions.None);
             }
         }
 

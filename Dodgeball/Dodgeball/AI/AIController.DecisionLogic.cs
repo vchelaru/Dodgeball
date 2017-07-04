@@ -16,6 +16,7 @@ namespace Dodgeball.AI
         private readonly float _probOfTaunting = 0.003f;
         private readonly float _probOfFailedCatch = 0.02f;
         private readonly float _probOfSuccesfulCatch = 0.04f;
+        private readonly float _probOfTargetingWeakPlayer = 0.5f;
 
         private readonly float _probOfOptimalThrow = 0.04f;
 
@@ -42,6 +43,7 @@ namespace Dodgeball.AI
         private float ProbabilityOfSuboptimalThrow => _probOfNonOptimalThrow * DecreaseWithDifficulty;
         private float ProbabilityOfFailedCatch => _probOfFailedCatch * DecreaseWithDifficulty;
         private float ProbabilityOfSuccessfulCatch => _probOfSuccesfulCatch * IncreaseWithDifficulty;
+        private float ProbabilityOfTargetingWeakPlayer => _probOfTargetingWeakPlayer * IncreaseWithDifficulty;
 
         #endregion
 
@@ -96,7 +98,7 @@ namespace Dodgeball.AI
                                                              maxTolerableDistanceToBallHolder *
                                                              Math.Abs(player.X - ball.ThrowOwner.X) / 125);
 
-        private bool ShouldFindPersonalSpace => !player.IsHoldingBall && teamPlayers.Exists(
+        private bool ShouldFindPersonalSpace => !player.IsHoldingBall && myTeamOtherPlayers.Exists(
             tp => (Math.Abs(tp.X - player.X) <= myPersonalSpace &&
                   Math.Abs(tp.Y - player.Y) <= myPersonalSpace));
         #endregion
@@ -255,7 +257,6 @@ namespace Dodgeball.AI
             {
                 CurrentAction = "Throwing";
                 isPositioningForThrow = false;
-                _aimingInput.Move(GetAimDirection());
                 currentMovementDirections = AI2DInput.Directions.None;
                 _movementInput.Move(currentMovementDirections);
                 _actionButton.Press();
@@ -268,7 +269,15 @@ namespace Dodgeball.AI
                 var chanceOfThrow = random.NextDouble();
                 var decisionToRelease = (!ThrowChargeIsOptimal && (chanceOfThrow < ProbabilityOfSuboptimalThrow)) ||
                                         (ThrowChargeIsOptimal && chanceOfThrow < ProbabilityOfOptimalThrow);
-                if (decisionToRelease) _actionButton.Release();
+                if (decisionToRelease)
+                {
+                    var chanceOfTargetWeakPlayer = random.NextDouble();
+                    if (chanceOfTargetWeakPlayer < ProbabilityOfTargetingWeakPlayer)
+                    {
+                        _aimingInput.Move(GetAimDirection());
+                    }
+                    _actionButton.Release();
+                }
                 hasActed = true;
             }
         }
