@@ -952,6 +952,16 @@
       <Name>player_hit_8</Name>
       <Link>Content\GlobalContent\Sounds\player_hit_8.xnb</Link>
     </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\superhit.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>superHit</Name>
+      <Link>Content\GlobalContent\Sounds\superHit.xnb</Link>
+    </None>
+    <None Include="..\..\dodgeball\builtxnbs\globalcontent\sounds\superthrow.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>superThrow</Name>
+      <Link>Content\GlobalContent\Sounds\superThrow.xnb</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\entities\ball\animationchainball.achx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>AnimationChainBall</Name>

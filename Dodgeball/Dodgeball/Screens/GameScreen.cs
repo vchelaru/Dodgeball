@@ -179,7 +179,8 @@ namespace Dodgeball.Screens
 	                : SuperThrowHitInstance.Team1SuperHitAnimation;
 
 	            PauseThisScreen();
-	            SuperThrowHitInstance.SetColors(shirtColor: superHitPlayer.ShirtColor, shortsColor: superHitPlayer.ShortsColor);
+	            GlobalContent.superThrow.Play();
+                SuperThrowHitInstance.SetColors(shirtColor: superHitPlayer.ShirtColor, shortsColor: superHitPlayer.ShortsColor);
 	            SuperThrowHitInstance.Visible = true;
 	            superHitAnimation.Play();
 	            this.Call(() =>
@@ -204,6 +205,7 @@ namespace Dodgeball.Screens
 	                : SuperThrowZoomInstance.Team1SuperThrowAnimation;
 
                 PauseThisScreen();
+	            GlobalContent.superHit.Play();
 	            SuperThrowZoomInstance.SetColors(shirtColor: superThrowPlayer.ShirtColor, shortsColor:superThrowPlayer.ShortsColor);
 	            SuperThrowZoomInstance.Visible = true;
 	            superThrowAnimation.Play();
