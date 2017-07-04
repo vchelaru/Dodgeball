@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework.Audio;
 using RenderingLibrary;
 using Dodgeball.Components;
 using Dodgeball.DataRuntime;
+using FlatRedBall.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Dodgeball.Entities
@@ -770,7 +771,23 @@ namespace Dodgeball.Entities
 
 	        ShortsSpriteInstance.Visible = BodySpriteInstance.Visible;
 	        ShirtSpriteInstance.Visible = BodySpriteInstance.Visible;
-	    }
+
+
+	        var shortsColorToUse = TeamIndex == 0 ? GlobalData.Team1ShortsColor : GlobalData.Team2ShortsColor;
+
+	        ShortsSpriteInstance.Red = shortsColorToUse.R/255f;
+	        ShortsSpriteInstance.Green = shortsColorToUse.G/255f;
+	        ShortsSpriteInstance.Blue = shortsColorToUse.B/255f;
+
+	        var shirtColorToUse = TeamIndex == 0 ? GlobalData.Team1ShirtColor : GlobalData.Team2ShirtColor;
+
+	        ShirtSpriteInstance.Red = shirtColorToUse.R / 255f;
+	        ShirtSpriteInstance.Green = shirtColorToUse.G / 255f;
+	        ShirtSpriteInstance.Blue = shirtColorToUse.B / 255f;
+
+            ShortsSpriteInstance.ColorOperation = ColorOperation.Modulate;
+	        ShirtSpriteInstance.ColorOperation = ColorOperation.Modulate;
+        }
 
 	    #endregion
 
