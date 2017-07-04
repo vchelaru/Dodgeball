@@ -6,12 +6,12 @@
   <AnimationChain>
     <Name>SlowBall</Name>
     <Frame>
-      <TextureName>BallSlow.png</TextureName>
+      <TextureName>../Player/PlayerAnimationSheet.png</TextureName>
       <FrameLength>0.1</FrameLength>
-      <LeftCoordinate>9</LeftCoordinate>
-      <RightCoordinate>54</RightCoordinate>
-      <TopCoordinate>8</TopCoordinate>
-      <BottomCoordinate>54</BottomCoordinate>
+      <LeftCoordinate>0</LeftCoordinate>
+      <RightCoordinate>64</RightCoordinate>
+      <TopCoordinate>64</TopCoordinate>
+      <BottomCoordinate>128</BottomCoordinate>
     </Frame>
   </AnimationChain>
   <AnimationChain>
