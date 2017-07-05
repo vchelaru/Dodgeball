@@ -79,21 +79,21 @@ namespace Dodgeball.AI
         private double maxChargeThrowTime = 2;
 
         //Wandering logic
-        private const double MaxWanderTime = 1.5;
+        private const double MaxWanderTime = 0.5;
         private bool isWandering;
-        private double timeToWander = 2;
+        private double timeToWander = 0.1;
         private double timeWandering = 0;
         
         //Retrieving logic
         private bool isRetrieving;
 
         //Personal space logic
-        private const double timeToFindPersonalSpace = 0.5f;
+        private const double timeToFindPersonalSpace = 0.25f;
         private bool isFindingPersonalSpace = false;
         private double timeFindingPersonalSpace = 0;
 
         //Evasion logic
-        private const double MaxEvasionTime = 1;
+        private const double MaxEvasionTime = 0.5;
         private bool isEvading;
         private double timeToEvade = 2;
         private double timeEvading = 0;
@@ -118,7 +118,7 @@ namespace Dodgeball.AI
             myTeamOtherPlayers = player.AllPlayers.Where(p => p.TeamIndex == player.TeamIndex && p != this.player).ToList();
             otherTeamsPlayers = player.AllPlayers.Where(p => p.TeamIndex != player.TeamIndex).ToList();
 
-            myPersonalSpace = player.CircleInstance.Radius * 1.5f;
+            myPersonalSpace = player.CircleInstance.Radius * 2.5f;
 
             //Local simulated inputs
             _movementInput = new AI2DInput();

@@ -56,9 +56,9 @@ namespace Dodgeball.AI
             var leftRightRandom = random.NextDouble();
             if (leftRightRandom > 0.5)
             {
-                leftRight = leftRightRandom > (0.8 - (player.TeamIndex/10f))
-                    ? AI2DInput.Directions.Left
-                    : AI2DInput.Directions.Right;
+                leftRight = leftRightRandom > (0.9 - (player.TeamIndex/5f))
+                    ? AI2DInput.Directions.Right
+                    : AI2DInput.Directions.Left;
             }
             wanderDirections = RemoveOffendingDirections(upDown | leftRight);
 
@@ -69,17 +69,17 @@ namespace Dodgeball.AI
         {
             var evadeDirections = AI2DInput.Directions.None;
 
-            var movement = positionToEvade - player.Position;
-            movement.Normalize();
+            var relativePosition = positionToEvade - player.Position;
+            relativePosition.Normalize();
 
-            var upDown = movement.Y < 0
+            var upDown = relativePosition.Y < 0
                 ? AI2DInput.Directions.Up
-                : movement.Y > 0
+                : relativePosition.Y > 0
                     ? AI2DInput.Directions.Down
                     : AI2DInput.Directions.None;
-            var leftRight = movement.X > 0
+            var leftRight = relativePosition.X > 0
                 ? AI2DInput.Directions.Left
-                : movement.X < 0
+                : relativePosition.X < 0
                     ? AI2DInput.Directions.Right
                     : AI2DInput.Directions.None;
 

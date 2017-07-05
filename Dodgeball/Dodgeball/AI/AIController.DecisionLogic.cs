@@ -62,13 +62,10 @@ namespace Dodgeball.AI
         private bool ShouldTaunt => ball.CurrentOwnershipState == Ball.OwnershipState.Held &&
                                     ball.OwnerTeam == player.TeamIndex && ball.ThrowOwner != player;
 
-        private bool ShouldWander => (ball.CurrentOwnershipState == Ball.OwnershipState.Held ||
-                                      ball.CurrentOwnershipState == Ball.OwnershipState.Thrown) &&
-                                     ball.ThrowOwner != player &&
-                                     ball.OwnerTeam == player.TeamIndex;
+        private bool ShouldWander => ball.CurrentOwnershipState == Ball.OwnershipState.Held &&
+                                     ball.OwnerTeam != player.TeamIndex;
 
-        private bool ShouldEvade => (ball.CurrentOwnershipState == Ball.OwnershipState.Held ||
-                                     ball.CurrentOwnershipState == Ball.OwnershipState.Thrown) &&
+        private bool ShouldEvade => (ball.CurrentOwnershipState == Ball.OwnershipState.Thrown) &&
                                     ball.OwnerTeam != player.TeamIndex;
 
         private bool ShouldDodge => (ball.CurrentOwnershipState == Ball.OwnershipState.Thrown &&
@@ -99,8 +96,7 @@ namespace Dodgeball.AI
                                                              Math.Abs(player.X - ball.ThrowOwner.X) / 125);
 
         private bool ShouldFindPersonalSpace => !player.IsHoldingBall && myTeamOtherPlayers.Exists(
-            tp => (Math.Abs(tp.X - player.X) <= myPersonalSpace &&
-                  Math.Abs(tp.Y - player.Y) <= myPersonalSpace));
+            tp => (Math.Abs(tp.X - player.X) + Math.Abs(tp.Y - player.Y) <= myPersonalSpace));
         #endregion
 
         #region Condition checks
