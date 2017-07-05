@@ -435,7 +435,7 @@ namespace Dodgeball.Entities
         internal void CatchBall(Ball ballInstance)
 	    {
             IsPerformingSuccessfulCatch = true;
-	        IsHardCatch = ballInstance.Velocity.Length() > 0.9f * GameVariables.MaxThrowVelocity;
+	        IsHardCatch = ballInstance.WasSuperThrown;
 
 	        PickUpBall();
 	    }
@@ -496,7 +496,7 @@ namespace Dodgeball.Entities
             //Only take damage from other team
             if (ballInstance.OwnerTeam != TeamIndex)
             {
-                IsHitBySuperThrow = ballInstance.Velocity.Length() >= 0.9f * GameVariables.MaxThrowVelocity;
+                IsHitBySuperThrow = ballInstance.WasSuperThrown;
 
                 bool wasAlive = HealthPercentage > 0;
 
@@ -521,6 +521,7 @@ namespace Dodgeball.Entities
         private void ExecuteThrow()
         {
             bool isFailedThrow = chargeThrowComponent.FailedThrow;
+            IsPerformingSuperThrow = false;
 
             if ( isFailedThrow)
             {
@@ -533,6 +534,7 @@ namespace Dodgeball.Entities
 
                 if (chargeThrowComponent.EffectiveChargePercent >= 0.9f) IsPerformingSuperThrow = true;
             }
+            Ball.WasSuperThrown = IsPerformingSuperThrow;
 
             var targetPlayer = GetTargetedPlayer();
 

@@ -34,6 +34,7 @@ namespace Dodgeball.Entities
         public int OwnerTeam { get; set; }
 
         public Player ThrowOwner { get; set; }
+        public bool WasSuperThrown { get; set; }
 
         OwnershipState currentOwnershipState;
         public OwnershipState CurrentOwnershipState
