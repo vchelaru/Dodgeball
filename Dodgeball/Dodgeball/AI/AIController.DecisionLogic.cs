@@ -85,7 +85,7 @@ namespace Dodgeball.AI
                                      (ball.Position - player.Position).Length() < distanceToConsiderCatching &&
                                      ball.TrajectoryPolygon.CollideAgainst(player.CircleInstance));
 
-        private bool ShouldRetrieveBall => ball.CurrentOwnershipState == Ball.OwnershipState.Free;
+        private bool ShouldRetrieveBall => ball.CurrentOwnershipState == Ball.OwnershipState.Free && BallIsInMyCourtOrTravelingTowardsIt();
 
         private bool ShouldGetOutOfTheWayOfBallHolder => ball.CurrentOwnershipState == Ball.OwnershipState.Held &&
                                                          ball.OwnerTeam == player.TeamIndex &&

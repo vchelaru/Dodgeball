@@ -228,6 +228,38 @@ namespace Dodgeball.AI
             return closestPlayer;
         }
 
+        private bool BallIsInMyCourtOrTravelingTowardsIt()
+        {
+            var ballIsInMyCourt = false;
+            var ballIsTravelingTowardsMyCourt = false;
+
+            float halfwayX;
+
+            //Left side of the screen
+            if (player.TeamIndex == 0)
+            {
+                halfwayX = player.TeamRectangleRight;
+                ballIsInMyCourt = ball.Position.X <= halfwayX;
+            }
+            else
+            {
+                halfwayX = player.TeamRectangleLeft;
+                ballIsInMyCourt = ball.Position.X >= halfwayX;
+            }
+
+            if (ballIsInMyCourt == false)
+            {
+                //The closer it gets, the more likely, but still not as likely as if it was in my court
+                var distanceOfBallToMiddle = ball.Position.X - halfwayX;
+                var ballIsTravelingAway = Math.Sign(distanceOfBallToMiddle) == Math.Sign(ball.Velocity.X);
+
+                ballIsTravelingTowardsMyCourt = !ballIsTravelingAway;
+            }
+
+            return ballIsInMyCourt || ballIsTravelingTowardsMyCourt;
+        }
+
+
         private float GetBallLocationProbabilityModifier()
         {
             float halfwayX;
@@ -245,12 +277,12 @@ namespace Dodgeball.AI
             if (player.TeamIndex == 0)
             {
                 halfwayX = player.TeamRectangleRight;
-                ballIsInMyCourt = ball.Position.X < halfwayX;
+                ballIsInMyCourt = ball.Position.X <= halfwayX;
             }
             else
             {
                 halfwayX =  player.TeamRectangleLeft;
-                ballIsInMyCourt = ball.Position.X > halfwayX;
+                ballIsInMyCourt = ball.Position.X >= halfwayX;
             }
 
             if (ballIsInMyCourt == false)
