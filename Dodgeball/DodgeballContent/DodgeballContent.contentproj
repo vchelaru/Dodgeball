@@ -133,10 +133,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WorldComponent</Name>
     </None>
-    <None Include="GumProject\D:\GameDev\Projects\Dodgeball\Dodgeball\DodgeballContent\Entities\Player\PlayerAnimationSheet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>PlayerAnimationSheet</Name>
-    </None>
     <None Include="GumProject\FontCache\Font18Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial</Name>

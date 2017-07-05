@@ -26,7 +26,7 @@
       <IsFile>true</IsFile>
       <Type>string</Type>
       <Name>BodySprite.SourceFile</Name>
-      <Value xsi:type="xsd:string">D:/GameDev/Projects/Dodgeball/Dodgeball/DodgeballContent/Entities/Player/PlayerAnimationSheet.png</Value>
+      <Value xsi:type="xsd:string">../Entities/Player/PlayerAnimationSheet.png</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -233,7 +233,7 @@
       <IsFile>true</IsFile>
       <Type>string</Type>
       <Name>ShirtSprite.SourceFile</Name>
-      <Value xsi:type="xsd:string">D:/GameDev/Projects/Dodgeball/Dodgeball/DodgeballContent/Entities/Player/PlayerAnimationSheet.png</Value>
+      <Value xsi:type="xsd:string">../Entities/Player/PlayerAnimationSheet.png</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -330,7 +330,7 @@
       <IsFile>true</IsFile>
       <Type>string</Type>
       <Name>ShortsSprite.SourceFile</Name>
-      <Value xsi:type="xsd:string">D:/GameDev/Projects/Dodgeball/Dodgeball/DodgeballContent/Entities/Player/PlayerAnimationSheet.png</Value>
+      <Value xsi:type="xsd:string">../Entities/Player/PlayerAnimationSheet.png</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
