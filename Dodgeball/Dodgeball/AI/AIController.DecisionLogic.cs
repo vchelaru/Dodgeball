@@ -18,16 +18,16 @@ namespace Dodgeball.AI
         private readonly float _probOfSuccesfulCatch = 0.04f;
         private readonly float _probOfTargetingWeakPlayer = 0.5f;
 
-        private readonly float _probOfOptimalThrow = 0.04f;
-
         //These are probabilities that aren't directly referenced by logic, but are altered then used as a dynamic probability
+        private readonly float _baseProbOfOptimalThrow = 0.04f;
         private readonly float _baseProbOfSuboptimalThrow = 0.1f;
         private readonly float _baseProbOfBallRetrieval = 0.45f;
         #endregion
 
         #region Dynamic Probabilities
         //The base chance of an action, altered by conditions
-        private float _probOfNonOptimalThrow => _baseProbOfSuboptimalThrow * CurrentThrowCharge/100;
+        private float _probOfOptimalThrow => _baseProbOfOptimalThrow * (float)(1+(chargeHeldTime / maxChargeThrowTime));
+        private float _probOfNonOptimalThrow => _baseProbOfSuboptimalThrow * (CurrentThrowCharge/100) * (1+(float)(chargeHeldTime / maxChargeThrowTime));
         private float _probOfBallRetrieval => _baseProbOfBallRetrieval * GetBallLocationProbabilityModifier();
 
         #endregion
@@ -261,6 +261,7 @@ namespace Dodgeball.AI
                 _movementInput.Move(currentMovementDirections);
                 _actionButton.Press();
                 ballHeldTime = 0;
+                chargeHeldTime = 0;
                 hasActed = true;
             }
             else if (IsChargingThrow)

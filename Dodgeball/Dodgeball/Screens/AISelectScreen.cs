@@ -110,10 +110,10 @@ namespace Dodgeball.Screens
 
 	                    if (teamToJoin == 0)
 	                    {
-	                        Team0UpInputs[i] = gamepad.LeftStick.LeftAsButton
+	                        Team0UpInputs[i] = gamepad.LeftStick.UpAsButton
 	                            .Or(gamepad.GetButton(Xbox360GamePad.Button.DPadUp));
 
-	                        Team0DownInputs[i] = gamepad.LeftStick.RightAsButton
+	                        Team0DownInputs[i] = gamepad.LeftStick.DownAsButton
 	                            .Or(gamepad.GetButton(Xbox360GamePad.Button.DPadDown));
 
 	                        Team0AcceptInputs[i] = gamepad.GetButton(Xbox360GamePad.Button.A)
@@ -124,10 +124,10 @@ namespace Dodgeball.Screens
                         }
 	                    else
 	                    {
-	                        Team1UpInputs[i] = gamepad.LeftStick.LeftAsButton
+	                        Team1UpInputs[i] = gamepad.LeftStick.UpAsButton
 	                            .Or(gamepad.GetButton(Xbox360GamePad.Button.DPadUp));
 
-	                        Team1DownInputs[i] = gamepad.LeftStick.RightAsButton
+	                        Team1DownInputs[i] = gamepad.LeftStick.DownAsButton
 	                            .Or(gamepad.GetButton(Xbox360GamePad.Button.DPadDown));
 
 	                        Team1AcceptInputs[i] = gamepad.GetButton(Xbox360GamePad.Button.A)

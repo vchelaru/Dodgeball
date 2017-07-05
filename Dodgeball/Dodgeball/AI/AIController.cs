@@ -74,7 +74,9 @@ namespace Dodgeball.AI
         //Ball-throwing logic
         private bool isPositioningForThrow = false;
         private double ballHeldTime;
+        private double chargeHeldTime;
         private double timeToDelayThrow = 1;
+        private double maxChargeThrowTime = 2;
 
         //Wandering logic
         private const double MaxWanderTime = 1.5;
@@ -168,6 +170,10 @@ namespace Dodgeball.AI
             if (isEvading)
             {
                 timeEvading += FlatRedBall.TimeManager.LastSecondDifference;
+            }
+            if (IsChargingThrow)
+            {
+                chargeHeldTime += FlatRedBall.TimeManager.LastSecondDifference;
             }
             if (isRetrieving)
             {
