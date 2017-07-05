@@ -195,103 +195,6 @@
     </Variable>
     <Variable>
       <Type>int</Type>
-      <Name>ShortsSprite.Blue</Name>
-      <ExposedAsName>ShirtSpriteBlue</ExposedAsName>
-      <SetsValue>false</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>ShortsSprite.Green</Name>
-      <ExposedAsName>ShirtSpriteGreen</ExposedAsName>
-      <SetsValue>false</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>ShortsSprite.Height</Name>
-      <Value xsi:type="xsd:float">540</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>DimensionUnitType</Type>
-      <Name>ShortsSprite.Height Units</Name>
-      <Value xsi:type="xsd:int">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>ShortsSprite.Parent</Name>
-      <Value xsi:type="xsd:string">DarkenedBackgroundRectangle</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>ShortsSprite.Red</Name>
-      <ExposedAsName>ShirtSpriteRed</ExposedAsName>
-      <SetsValue>false</SetsValue>
-    </Variable>
-    <Variable>
-      <IsFile>true</IsFile>
-      <Type>string</Type>
-      <Name>ShortsSprite.SourceFile</Name>
-      <Value xsi:type="xsd:string">../Entities/Player/PlayerAnimationSheet.png</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>TextureAddress</Type>
-      <Name>ShortsSprite.Texture Address</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>ShortsSprite.Texture Height</Name>
-      <Value xsi:type="xsd:int">705</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>ShortsSprite.Texture Left</Name>
-      <Value xsi:type="xsd:int">2304</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>ShortsSprite.Texture Top</Name>
-      <Value xsi:type="xsd:int">3328</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>ShortsSprite.Texture Width</Name>
-      <Value xsi:type="xsd:int">1024</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>bool</Type>
-      <Name>ShortsSprite.Visible</Name>
-      <Value xsi:type="xsd:boolean">true</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>ShortsSprite.Width</Name>
-      <Value xsi:type="xsd:float">794</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>DimensionUnitType</Type>
-      <Name>ShortsSprite.Width Units</Name>
-      <Value xsi:type="xsd:int">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>ShortsSprite.X Units</Name>
-      <Value xsi:type="xsd:int">2</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
       <Name>ShirtSprite.Blue</Name>
       <ExposedAsName>ShortsSpriteBlue</ExposedAsName>
       <SetsValue>false</SetsValue>
@@ -384,6 +287,103 @@
     <Variable>
       <Type>PositionUnitType</Type>
       <Name>ShirtSprite.X Units</Name>
+      <Value xsi:type="xsd:int">2</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ShortsSprite.Blue</Name>
+      <ExposedAsName>ShirtSpriteBlue</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ShortsSprite.Green</Name>
+      <ExposedAsName>ShirtSpriteGreen</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>ShortsSprite.Height</Name>
+      <Value xsi:type="xsd:float">540</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>ShortsSprite.Height Units</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>ShortsSprite.Parent</Name>
+      <Value xsi:type="xsd:string">DarkenedBackgroundRectangle</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ShortsSprite.Red</Name>
+      <ExposedAsName>ShirtSpriteRed</ExposedAsName>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <IsFile>true</IsFile>
+      <Type>string</Type>
+      <Name>ShortsSprite.SourceFile</Name>
+      <Value xsi:type="xsd:string">../Entities/Player/PlayerAnimationSheet.png</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>TextureAddress</Type>
+      <Name>ShortsSprite.Texture Address</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ShortsSprite.Texture Height</Name>
+      <Value xsi:type="xsd:int">705</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ShortsSprite.Texture Left</Name>
+      <Value xsi:type="xsd:int">2304</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ShortsSprite.Texture Top</Name>
+      <Value xsi:type="xsd:int">3328</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>int</Type>
+      <Name>ShortsSprite.Texture Width</Name>
+      <Value xsi:type="xsd:int">1024</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>ShortsSprite.Visible</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>ShortsSprite.Width</Name>
+      <Value xsi:type="xsd:float">794</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>ShortsSprite.Width Units</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>ShortsSprite.X Units</Name>
       <Value xsi:type="xsd:int">2</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -489,18 +489,6 @@
       </Variable>
       <Variable>
         <Type>bool</Type>
-        <Name>ShortsSprite.FlipHorizontal</Name>
-        <Value xsi:type="xsd:boolean">true</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>ShortsSprite.X</Name>
-        <Value xsi:type="xsd:float">-50</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>bool</Type>
         <Name>ShirtSprite.FlipHorizontal</Name>
         <Value xsi:type="xsd:boolean">true</Value>
         <SetsValue>true</SetsValue>
@@ -508,6 +496,18 @@
       <Variable>
         <Type>float</Type>
         <Name>ShirtSprite.X</Name>
+        <Value xsi:type="xsd:float">-50</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>ShortsSprite.FlipHorizontal</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShortsSprite.X</Name>
         <Value xsi:type="xsd:float">-50</Value>
         <SetsValue>true</SetsValue>
       </Variable>
@@ -530,20 +530,6 @@
       </Variable>
       <Variable>
         <Type>bool</Type>
-        <Name>ShortsSprite.FlipHorizontal</Name>
-        <Value xsi:type="xsd:boolean">true</Value>
-        <Category>Flip</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>ShortsSprite.X</Name>
-        <Value xsi:type="xsd:float">20</Value>
-        <Category>Position</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>bool</Type>
         <Name>ShirtSprite.FlipHorizontal</Name>
         <Value xsi:type="xsd:boolean">true</Value>
         <Category>Flip</Category>
@@ -552,6 +538,20 @@
       <Variable>
         <Type>float</Type>
         <Name>ShirtSprite.X</Name>
+        <Value xsi:type="xsd:float">20</Value>
+        <Category>Position</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>ShortsSprite.FlipHorizontal</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <Category>Flip</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShortsSprite.X</Name>
         <Value xsi:type="xsd:float">20</Value>
         <Category>Position</Category>
         <SetsValue>true</SetsValue>
@@ -575,20 +575,6 @@
       </Variable>
       <Variable>
         <Type>bool</Type>
-        <Name>ShortsSprite.FlipHorizontal</Name>
-        <Value xsi:type="xsd:boolean">true</Value>
-        <Category>Flip</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>ShortsSprite.X</Name>
-        <Value xsi:type="xsd:float">40</Value>
-        <Category>Position</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>bool</Type>
         <Name>ShirtSprite.FlipHorizontal</Name>
         <Value xsi:type="xsd:boolean">true</Value>
         <Category>Flip</Category>
@@ -597,6 +583,20 @@
       <Variable>
         <Type>float</Type>
         <Name>ShirtSprite.X</Name>
+        <Value xsi:type="xsd:float">40</Value>
+        <Category>Position</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>ShortsSprite.FlipHorizontal</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <Category>Flip</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShortsSprite.X</Name>
         <Value xsi:type="xsd:float">40</Value>
         <Category>Position</Category>
         <SetsValue>true</SetsValue>
@@ -620,20 +620,6 @@
       </Variable>
       <Variable>
         <Type>bool</Type>
-        <Name>ShortsSprite.FlipHorizontal</Name>
-        <Value xsi:type="xsd:boolean">true</Value>
-        <Category>Flip</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>ShortsSprite.X</Name>
-        <Value xsi:type="xsd:float">100</Value>
-        <Category>Position</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>bool</Type>
         <Name>ShirtSprite.FlipHorizontal</Name>
         <Value xsi:type="xsd:boolean">true</Value>
         <Category>Flip</Category>
@@ -642,6 +628,20 @@
       <Variable>
         <Type>float</Type>
         <Name>ShirtSprite.X</Name>
+        <Value xsi:type="xsd:float">100</Value>
+        <Category>Position</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>ShortsSprite.FlipHorizontal</Name>
+        <Value xsi:type="xsd:boolean">true</Value>
+        <Category>Flip</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShortsSprite.X</Name>
         <Value xsi:type="xsd:float">100</Value>
         <Category>Position</Category>
         <SetsValue>true</SetsValue>
@@ -663,18 +663,6 @@
       </Variable>
       <Variable>
         <Type>bool</Type>
-        <Name>ShortsSprite.FlipHorizontal</Name>
-        <Value xsi:type="xsd:boolean">false</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>ShortsSprite.X</Name>
-        <Value xsi:type="xsd:float">100</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>bool</Type>
         <Name>ShirtSprite.FlipHorizontal</Name>
         <Value xsi:type="xsd:boolean">false</Value>
         <SetsValue>true</SetsValue>
@@ -682,6 +670,18 @@
       <Variable>
         <Type>float</Type>
         <Name>ShirtSprite.X</Name>
+        <Value xsi:type="xsd:float">100</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>ShortsSprite.FlipHorizontal</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShortsSprite.X</Name>
         <Value xsi:type="xsd:float">100</Value>
         <SetsValue>true</SetsValue>
       </Variable>
@@ -704,20 +704,6 @@
       </Variable>
       <Variable>
         <Type>bool</Type>
-        <Name>ShortsSprite.FlipHorizontal</Name>
-        <Value xsi:type="xsd:boolean">false</Value>
-        <Category>Flip</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>ShortsSprite.X</Name>
-        <Value xsi:type="xsd:float">40</Value>
-        <Category>Position</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>bool</Type>
         <Name>ShirtSprite.FlipHorizontal</Name>
         <Value xsi:type="xsd:boolean">false</Value>
         <Category>Flip</Category>
@@ -726,6 +712,20 @@
       <Variable>
         <Type>float</Type>
         <Name>ShirtSprite.X</Name>
+        <Value xsi:type="xsd:float">40</Value>
+        <Category>Position</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>ShortsSprite.FlipHorizontal</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <Category>Flip</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShortsSprite.X</Name>
         <Value xsi:type="xsd:float">40</Value>
         <Category>Position</Category>
         <SetsValue>true</SetsValue>
@@ -749,20 +749,6 @@
       </Variable>
       <Variable>
         <Type>bool</Type>
-        <Name>ShortsSprite.FlipHorizontal</Name>
-        <Value xsi:type="xsd:boolean">false</Value>
-        <Category>Flip</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>ShortsSprite.X</Name>
-        <Value xsi:type="xsd:float">20</Value>
-        <Category>Position</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>bool</Type>
         <Name>ShirtSprite.FlipHorizontal</Name>
         <Value xsi:type="xsd:boolean">false</Value>
         <Category>Flip</Category>
@@ -771,6 +757,20 @@
       <Variable>
         <Type>float</Type>
         <Name>ShirtSprite.X</Name>
+        <Value xsi:type="xsd:float">20</Value>
+        <Category>Position</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>ShortsSprite.FlipHorizontal</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <Category>Flip</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShortsSprite.X</Name>
         <Value xsi:type="xsd:float">20</Value>
         <Category>Position</Category>
         <SetsValue>true</SetsValue>
@@ -794,20 +794,6 @@
       </Variable>
       <Variable>
         <Type>bool</Type>
-        <Name>ShortsSprite.FlipHorizontal</Name>
-        <Value xsi:type="xsd:boolean">false</Value>
-        <Category>Flip</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>ShortsSprite.X</Name>
-        <Value xsi:type="xsd:float">-50</Value>
-        <Category>Position</Category>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>bool</Type>
         <Name>ShirtSprite.FlipHorizontal</Name>
         <Value xsi:type="xsd:boolean">false</Value>
         <Category>Flip</Category>
@@ -816,6 +802,20 @@
       <Variable>
         <Type>float</Type>
         <Name>ShirtSprite.X</Name>
+        <Value xsi:type="xsd:float">-50</Value>
+        <Category>Position</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>bool</Type>
+        <Name>ShortsSprite.FlipHorizontal</Name>
+        <Value xsi:type="xsd:boolean">false</Value>
+        <Category>Flip</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>ShortsSprite.X</Name>
         <Value xsi:type="xsd:float">-50</Value>
         <Category>Position</Category>
         <SetsValue>true</SetsValue>

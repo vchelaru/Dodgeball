@@ -61,11 +61,11 @@
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>
-    <Name>SuperThrowZoom</Name>
+    <Name>SuperThrowHit</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>
-    <Name>SuperThrowHit</Name>
+    <Name>SuperThrowZoom</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>
   <ComponentReference>

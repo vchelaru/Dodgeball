@@ -1719,7 +1719,7 @@
   <SyncedProjects>
     <string>../../DesktopGlSync/DesktopGlSync/DesktopGlSync.csproj</string>
   </SyncedProjects>
-  <StartUpScreen>Screens\GameScreen</StartUpScreen>
+  <StartUpScreen>Screens\CharacterSelectScreen</StartUpScreen>
   <ResolutionPresets />
   <PerformanceSettingsSave>
     <ThrowExceptionOnPostInitializeContentLoad>false</ThrowExceptionOnPostInitializeContentLoad>

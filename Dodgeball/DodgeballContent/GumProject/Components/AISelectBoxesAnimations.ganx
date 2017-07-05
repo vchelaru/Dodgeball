@@ -3,6 +3,46 @@
   <Animations>
     <AnimationSave>
       <Loops>false</Loops>
+      <Name>IncrementTeam0</Name>
+      <States>
+        <AnimatedStateSave>
+          <StateName>Team0Arrows/UpHighlight</StateName>
+          <Time>0.01</Time>
+          <InterpolationType>Linear</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>Team0Arrows/NoHighlight</StateName>
+          <Time>0.2</Time>
+          <InterpolationType>Linear</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+      </States>
+      <Animations />
+      <Events />
+    </AnimationSave>
+    <AnimationSave>
+      <Loops>false</Loops>
+      <Name>DecrementTeam0</Name>
+      <States>
+        <AnimatedStateSave>
+          <StateName>Team0Arrows/DownHighlight</StateName>
+          <Time>0.01</Time>
+          <InterpolationType>Linear</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>Team0Arrows/NoHighlight</StateName>
+          <Time>0.2</Time>
+          <InterpolationType>Linear</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+      </States>
+      <Animations />
+      <Events />
+    </AnimationSave>
+    <AnimationSave>
+      <Loops>false</Loops>
       <Name>IncrementTeam1</Name>
       <States>
         <AnimatedStateSave>
@@ -33,46 +73,6 @@
         </AnimatedStateSave>
         <AnimatedStateSave>
           <StateName>Team1Arrows/NoHighlight</StateName>
-          <Time>0.2</Time>
-          <InterpolationType>Linear</InterpolationType>
-          <Easing>Out</Easing>
-        </AnimatedStateSave>
-      </States>
-      <Animations />
-      <Events />
-    </AnimationSave>
-    <AnimationSave>
-      <Loops>false</Loops>
-      <Name>IncrementTeam2</Name>
-      <States>
-        <AnimatedStateSave>
-          <StateName>Team2Arrows/UpHighlight</StateName>
-          <Time>0.01</Time>
-          <InterpolationType>Linear</InterpolationType>
-          <Easing>Out</Easing>
-        </AnimatedStateSave>
-        <AnimatedStateSave>
-          <StateName>Team2Arrows/NoHighlight</StateName>
-          <Time>0.2</Time>
-          <InterpolationType>Linear</InterpolationType>
-          <Easing>Out</Easing>
-        </AnimatedStateSave>
-      </States>
-      <Animations />
-      <Events />
-    </AnimationSave>
-    <AnimationSave>
-      <Loops>false</Loops>
-      <Name>DecrementTeam2</Name>
-      <States>
-        <AnimatedStateSave>
-          <StateName>Team2Arrows/DownHighlight</StateName>
-          <Time>0.01</Time>
-          <InterpolationType>Linear</InterpolationType>
-          <Easing>Out</Easing>
-        </AnimatedStateSave>
-        <AnimatedStateSave>
-          <StateName>Team2Arrows/NoHighlight</StateName>
           <Time>0.2</Time>
           <InterpolationType>Linear</InterpolationType>
           <Easing>Out</Easing>

@@ -25,18 +25,21 @@ namespace Dodgeball.Screens
 	    private int Team0Difficulty = 5;
 	    private int Team1Difficulty = 5;
 
-        private bool Team0Ready => AISelectBoxesInstance.CurrentTeam1ArrowsState ==
-                                   AISelectBoxesRuntime.Team1Arrows.Ready ||
-            AISelectBoxesInstance.CurrentTeamsPresentState == AISelectBoxesRuntime.TeamsPresent.NoTeam1;
+        private bool Team0Ready => AISelectBoxesInstance.CurrentTeam0ArrowsState ==
+                                   AISelectBoxesRuntime.Team0Arrows.Ready ||
+            AISelectBoxesInstance.CurrentTeamsPresentState == AISelectBoxesRuntime.TeamsPresent.NoTeam0;
 
-        private bool Team1Ready => AISelectBoxesInstance.CurrentTeam2ArrowsState ==
-                                   AISelectBoxesRuntime.Team2Arrows.Ready ||
-                                   AISelectBoxesInstance.CurrentTeamsPresentState == AISelectBoxesRuntime.TeamsPresent.NoTeam2;
+        private bool Team1Ready => AISelectBoxesInstance.CurrentTeam1ArrowsState ==
+                                   AISelectBoxesRuntime.Team1Arrows.Ready ||
+                                   AISelectBoxesInstance.CurrentTeamsPresentState == AISelectBoxesRuntime.TeamsPresent.NoTeam1;
 
 	    private bool BothTeamsHaveAIButOnlyOneTeamHasPlayers { get; set; }
 
 	    private IPressableInput[] Team0UpInputs, Team0DownInputs, Team0AcceptInputs, Team0CancelInputs;
         private IPressableInput[] Team1UpInputs, Team1DownInputs, Team1AcceptInputs, Team1CancelInputs;
+
+        private int NumberOfTeam0Controllers => Team0AcceptInputs.Count(i => i != null);
+	    private int NumberOfTeam1Controllers => Team1AcceptInputs.Count(i => i != null);
 
         void CustomInitialize()
 		{
@@ -47,25 +50,25 @@ namespace Dodgeball.Screens
 
 	    private void AlterInputsAndDisplayIfNeeded()
 	    {
-	        if (Team0AcceptInputs.Length == 4)
+	        if (NumberOfTeam0Controllers == 4)
 	        {//Four players on a team means no AI
-                AISelectBoxesInstance.CurrentTeamsPresentState = AISelectBoxesRuntime.TeamsPresent.NoTeam1;
+                AISelectBoxesInstance.CurrentTeamsPresentState = AISelectBoxesRuntime.TeamsPresent.NoTeam0;
 	            Team1UpInputs = Team0UpInputs;
 	            Team1DownInputs = Team0DownInputs;
 	            Team1AcceptInputs = Team0AcceptInputs;
                 Team1CancelInputs = Team0CancelInputs;
 	            BothTeamsHaveAIButOnlyOneTeamHasPlayers = false;
 	        }
-            else if (Team1AcceptInputs.Length == 4)
+            else if (NumberOfTeam1Controllers == 4)
 	        {//Four players on a team means no AI
-                AISelectBoxesInstance.CurrentTeamsPresentState = AISelectBoxesRuntime.TeamsPresent.NoTeam2;
+                AISelectBoxesInstance.CurrentTeamsPresentState = AISelectBoxesRuntime.TeamsPresent.NoTeam1;
 	            Team0UpInputs = Team1UpInputs;
 	            Team0DownInputs = Team1DownInputs;
 	            Team0AcceptInputs = Team1AcceptInputs;
 	            Team0CancelInputs = Team1CancelInputs;
 	            BothTeamsHaveAIButOnlyOneTeamHasPlayers = false;
             }
-            else if (Team1AcceptInputs.Length == 0 || Team0AcceptInputs.Length == 0)
+            else if (NumberOfTeam0Controllers == 0 || NumberOfTeam1Controllers == 0)
 	        {//Less than four player on one team, and 0 on the other means AI on both teams
 	            BothTeamsHaveAIButOnlyOneTeamHasPlayers = true;
 	        }
@@ -147,8 +150,8 @@ namespace Dodgeball.Screens
 	    {
             //TODO:  Only show difficulty for teams which have AI players
 
-	        AISelectBoxesInstance.Team1TokenText = Team0Difficulty.ToString();
-	        AISelectBoxesInstance.Team2TokenText = Team1Difficulty.ToString();
+	        AISelectBoxesInstance.Team0TokenText = Team0Difficulty.ToString();
+	        AISelectBoxesInstance.Team1TokenText = Team1Difficulty.ToString();
 	    }
 
         void CustomActivity(bool firstTimeCalled)
@@ -159,8 +162,8 @@ namespace Dodgeball.Screens
             }
             else
             {
+                Team0InputActivity();
                 Team1InputActivity();
-                Team2InputActivity();
             }
 
             UpdateDifficultyDisplay();
@@ -171,112 +174,112 @@ namespace Dodgeball.Screens
 	    {
 	        if (Team0Ready)
 	        {
-	            if (Team0CancelInputs.Any(input => input.WasJustPressed) || Team1CancelInputs.Any(input => input.WasJustPressed))
+	            if (Team0CancelInputs.Any(input => input != null && input.WasJustPressed) || Team1CancelInputs.Any(input => input != null && input.WasJustPressed))
 	            {
-	                AISelectBoxesInstance.CurrentTeam1ArrowsState = AISelectBoxesRuntime.Team1Arrows.NoHighlight;
+	                AISelectBoxesInstance.CurrentTeam0ArrowsState = AISelectBoxesRuntime.Team0Arrows.NoHighlight;
 	            }
-                else if (Team0UpInputs.Any(input => input.WasJustPressed) || Team1UpInputs.Any(input => input.WasJustPressed))
+                else if (Team0UpInputs.Any(input => input != null && input.WasJustPressed) || Team1UpInputs.Any(input => input != null && input.WasJustPressed))
 	            {
-	                AISelectBoxesInstance.IncrementTeam2Animation.Play();
+	                AISelectBoxesInstance.IncrementTeam1Animation.Play();
 	                Team1Difficulty++;
 	                Team1Difficulty = Team1Difficulty > MaxDifficulty ? MaxDifficulty : Team1Difficulty;
 	            }
-                else if (Team0DownInputs.Any(input => input.WasJustPressed) || Team1DownInputs.Any(input => input.WasJustPressed))
+                else if (Team0DownInputs.Any(input => input != null && input.WasJustPressed) || Team1DownInputs.Any(input => input != null && input.WasJustPressed))
 	            {
-	                AISelectBoxesInstance.DecrementTeam2Animation.Play();
+	                AISelectBoxesInstance.DecrementTeam1Animation.Play();
 	                Team1Difficulty--;
 	                Team1Difficulty = Team1Difficulty < MinDifficulty ? MinDifficulty : Team1Difficulty;
 	            }
-                else if (Team0AcceptInputs.Any(input => input.WasJustPressed))
-	            {
-	                GlobalContent.button_click.Play();
-	                AISelectBoxesInstance.CurrentTeam2ArrowsState = AISelectBoxesRuntime.Team2Arrows.Ready;
-	            }
-            }
-	        else
-	        {
-	            if (Team0UpInputs.Any(input => input.WasJustPressed) || Team1UpInputs.Any(input => input.WasJustPressed))
-	            {
-	                AISelectBoxesInstance.IncrementTeam1Animation.Play();
-	                Team0Difficulty++;
-	                Team0Difficulty = Team0Difficulty > MaxDifficulty ? MaxDifficulty : Team0Difficulty;
-	            }
-                else if (Team0DownInputs.Any(input => input.WasJustPressed) || Team1DownInputs.Any(input => input.WasJustPressed))
-	            {
-	                AISelectBoxesInstance.DecrementTeam1Animation.Play();
-	                Team0Difficulty--;
-	                Team0Difficulty = Team0Difficulty < MinDifficulty ? MinDifficulty : Team0Difficulty;
-	            }
-                else if (Team0AcceptInputs.Any(input => input.WasJustPressed))
+                else if (Team0AcceptInputs.Any(input => input != null && input.WasJustPressed))
 	            {
 	                GlobalContent.button_click.Play();
 	                AISelectBoxesInstance.CurrentTeam1ArrowsState = AISelectBoxesRuntime.Team1Arrows.Ready;
 	            }
+            }
+	        else
+	        {
+	            if (Team0UpInputs.Any(input => input != null && input.WasJustPressed) || Team1UpInputs.Any(input => input != null && input.WasJustPressed))
+	            {
+	                AISelectBoxesInstance.IncrementTeam0Animation.Play();
+	                Team0Difficulty++;
+	                Team0Difficulty = Team0Difficulty > MaxDifficulty ? MaxDifficulty : Team0Difficulty;
+	            }
+                else if (Team0DownInputs.Any(input => input != null && input.WasJustPressed) || Team1DownInputs.Any(input => input != null && input.WasJustPressed))
+	            {
+	                AISelectBoxesInstance.DecrementTeam0Animation.Play();
+	                Team0Difficulty--;
+	                Team0Difficulty = Team0Difficulty < MinDifficulty ? MinDifficulty : Team0Difficulty;
+	            }
+                else if (Team0AcceptInputs.Any(input => input != null && input.WasJustPressed))
+	            {
+	                GlobalContent.button_click.Play();
+	                AISelectBoxesInstance.CurrentTeam0ArrowsState = AISelectBoxesRuntime.Team0Arrows.Ready;
+	            }
 	        }
         }
 
-	    private void Team1InputActivity()
+	    private void Team0InputActivity()
 	    {
 	        if (Team0Ready)
 	        {
-	            if (Team0CancelInputs.Any(input => input.WasJustPressed))
+	            if (Team0CancelInputs.Any(input => input != null && input.WasJustPressed))
+	            {
+	                AISelectBoxesInstance.CurrentTeam0ArrowsState = AISelectBoxesRuntime.Team0Arrows.NoHighlight;
+	            }
+	        }
+	        else
+	        {
+	            if (Team0UpInputs.Any(input => input != null && input.WasJustPressed))
+	            {
+	                AISelectBoxesInstance.IncrementTeam0Animation.Play();
+	                Team0Difficulty++;
+	                Team0Difficulty = Team0Difficulty > MaxDifficulty ? MaxDifficulty : Team0Difficulty;
+	            }
+
+	            if (Team0DownInputs.Any(input => input != null && input.WasJustPressed))
+	            {
+	                AISelectBoxesInstance.DecrementTeam0Animation.Play();
+	                Team0Difficulty--;
+	                Team0Difficulty = Team0Difficulty < MinDifficulty ? MinDifficulty : Team0Difficulty;
+	            }
+
+	            if (Team0AcceptInputs.Any(input => input != null && input.WasJustPressed))
+	            {
+	                GlobalContent.button_click.Play();
+                    AISelectBoxesInstance.CurrentTeam0ArrowsState = AISelectBoxesRuntime.Team0Arrows.Ready;
+                }
+	        }
+	    }
+
+	    private void Team1InputActivity()
+	    {
+	        if (Team1Ready)
+	        {
+	            if (Team1CancelInputs.Any(input => input != null && input.WasJustPressed))
 	            {
 	                AISelectBoxesInstance.CurrentTeam1ArrowsState = AISelectBoxesRuntime.Team1Arrows.NoHighlight;
 	            }
 	        }
 	        else
 	        {
-	            if (Team0UpInputs.Any(input => input.WasJustPressed))
+	            if (Team1UpInputs.Any(input => input != null && input.WasJustPressed))
 	            {
 	                AISelectBoxesInstance.IncrementTeam1Animation.Play();
-	                Team0Difficulty++;
-	                Team0Difficulty = Team0Difficulty > MaxDifficulty ? MaxDifficulty : Team0Difficulty;
-	            }
-
-	            if (Team0DownInputs.Any(input => input.WasJustPressed))
-	            {
-	                AISelectBoxesInstance.DecrementTeam1Animation.Play();
-	                Team0Difficulty--;
-	                Team0Difficulty = Team0Difficulty < MinDifficulty ? MinDifficulty : Team0Difficulty;
-	            }
-
-	            if (Team0AcceptInputs.Any(input => input.WasJustPressed))
-	            {
-	                GlobalContent.button_click.Play();
-                    AISelectBoxesInstance.CurrentTeam1ArrowsState = AISelectBoxesRuntime.Team1Arrows.Ready;
-                }
-	        }
-	    }
-
-	    private void Team2InputActivity()
-	    {
-	        if (Team1Ready)
-	        {
-	            if (Team1CancelInputs.Any(input => input.WasJustPressed))
-	            {
-	                AISelectBoxesInstance.CurrentTeam2ArrowsState = AISelectBoxesRuntime.Team2Arrows.NoHighlight;
-	            }
-	        }
-	        else
-	        {
-	            if (Team1UpInputs.Any(input => input.WasJustPressed))
-	            {
-	                AISelectBoxesInstance.IncrementTeam2Animation.Play();
 	                Team1Difficulty++;
 	                Team1Difficulty = Team1Difficulty > MaxDifficulty ? MaxDifficulty : Team1Difficulty;
 	            }
 
-	            if (Team1DownInputs.Any(input => input.WasJustPressed))
+	            if (Team1DownInputs.Any(input => input != null && input.WasJustPressed))
 	            {
-	                AISelectBoxesInstance.DecrementTeam2Animation.Play();
+	                AISelectBoxesInstance.DecrementTeam1Animation.Play();
 	                Team1Difficulty--;
 	                Team1Difficulty = Team1Difficulty < MinDifficulty ? MinDifficulty : Team1Difficulty;
 	            }
 
-	            if (Team1AcceptInputs.Any(input => input.WasJustPressed))
+	            if (Team1AcceptInputs.Any(input => input != null && input.WasJustPressed))
 	            {
 	                GlobalContent.button_click.Play();
-                    AISelectBoxesInstance.CurrentTeam2ArrowsState = AISelectBoxesRuntime.Team2Arrows.Ready;
+                    AISelectBoxesInstance.CurrentTeam1ArrowsState = AISelectBoxesRuntime.Team1Arrows.Ready;
 	            }
 	        }
         }

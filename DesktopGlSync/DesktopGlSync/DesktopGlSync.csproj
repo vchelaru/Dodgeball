@@ -987,6 +987,11 @@
       <Name>AnimationChainListFile</Name>
       <Link>content\entities\player\animationchainlistfile.achx</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\entities\player\humanplaceholder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>HumanPlaceholder</Name>
+      <Link>content\entities\player\humanplaceholder.png</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\entities\player\playeranimationsheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PlayerAnimationSheet</Name>
