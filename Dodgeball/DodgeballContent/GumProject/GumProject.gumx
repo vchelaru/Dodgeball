@@ -88,6 +88,10 @@
     <Name>WorldComponent</Name>
     <ElementType>Component</ElementType>
   </ComponentReference>
+  <ComponentReference>
+    <Name>WrapUpComponent</Name>
+    <ElementType>Component</ElementType>
+  </ComponentReference>
   <StandardElementReference>
     <Name>Circle</Name>
     <ElementType>Standard</ElementType>

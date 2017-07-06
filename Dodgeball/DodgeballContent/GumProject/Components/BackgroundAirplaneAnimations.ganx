@@ -20,7 +20,7 @@
         <AnimatedStateSave>
           <StateName>SpriteAnimation/Frame01</StateName>
           <Time>0.12</Time>
-          <InterpolationType>Instant</InterpolationType>
+          <InterpolationType>Linear</InterpolationType>
           <Easing>Out</Easing>
         </AnimatedStateSave>
       </States>

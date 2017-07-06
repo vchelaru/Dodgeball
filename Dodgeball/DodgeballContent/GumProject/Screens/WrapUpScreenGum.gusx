@@ -4,6 +4,16 @@
   <State>
     <Name>Default</Name>
     <Variable>
+      <Type>MoveInState</Type>
+      <Name>MoveInState</Name>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>ScaleState</Type>
+      <Name>ScaleState</Name>
+      <SetsValue>false</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>TextInstance.Height</Name>
       <Value xsi:type="xsd:float">220</Value>
@@ -69,7 +79,57 @@
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>WrapUpComponentInstance.Parent</Name>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>WrapUpComponentInstance.Width</Name>
+      <Value xsi:type="xsd:float">800</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
   </State>
+  <Category>
+    <Name>MoveIn</Name>
+    <State>
+      <Name>Out</Name>
+      <Variable>
+        <Type>float</Type>
+        <Name>WrapUpComponentInstance.X</Name>
+        <Value xsi:type="xsd:float">0</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>WrapUpComponentInstance.Y</Name>
+        <Value xsi:type="xsd:float">930</Value>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+    <State>
+      <Name>In</Name>
+      <Variable>
+        <Type>float</Type>
+        <Name>WrapUpComponentInstance.X</Name>
+        <Value xsi:type="xsd:float">0</Value>
+        <Category>Position</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+      <Variable>
+        <Type>float</Type>
+        <Name>WrapUpComponentInstance.Y</Name>
+        <Value xsi:type="xsd:float">0</Value>
+        <Category>Position</Category>
+        <SetsValue>true</SetsValue>
+      </Variable>
+    </State>
+  </Category>
+  <Instance>
+    <Name>WrapUpComponentInstance</Name>
+    <BaseType>WrapUpComponent</BaseType>
+  </Instance>
   <Instance>
     <Name>TextInstance</Name>
     <BaseType>Text</BaseType>

@@ -137,6 +137,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WorldComponent</Name>
     </None>
+    <None Include="GumProject\Components\WrapUpComponent.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WrapUpComponent</Name>
+    </None>
     <None Include="GumProject\FontCache\Font18Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial</Name>

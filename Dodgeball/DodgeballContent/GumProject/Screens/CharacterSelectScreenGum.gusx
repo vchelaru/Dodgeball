@@ -4,6 +4,24 @@
   <State>
     <Name>Default</Name>
     <Variable>
+      <Type>PlaneMovementState</Type>
+      <Name>BackgroundAirplaneInstance.PlaneMovementState</Name>
+      <Value xsi:type="xsd:string">Down</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>SpriteAnimationState</Type>
+      <Name>BackgroundAirplaneInstance.SpriteAnimationState</Name>
+      <Value xsi:type="xsd:string">Frame02</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>State</Type>
+      <Name>BackgroundAirplaneInstance.State</Name>
+      <Value xsi:type="xsd:string">Default</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>BackgroundAirplaneInstance.X</Name>
       <Value xsi:type="xsd:float">0</Value>
@@ -38,6 +56,11 @@
       <Name>BackgroundAirplaneInstance.Y Units</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PropsState</Type>
+      <Name>PropsState</Name>
+      <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
@@ -116,6 +139,11 @@
       <Name>TeamSelectBackground.Width Units</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>UpAndDownState</Type>
+      <Name>UpAndDownState</Name>
+      <SetsValue>false</SetsValue>
     </Variable>
     <VariableList xsi:type="VariableListSaveOfString">
       <Type>string</Type>
