@@ -89,7 +89,7 @@ namespace Dodgeball.Screens
                 player.WorldComponent = WorldComponentInstance;
                 player.Ball = BallInstance;
 
-                player.MoveUiTo(UILayer, GameScreenGum);
+                player.MoveUiTo(UILayer, UILayerGum);
             }
         }
 

@@ -203,11 +203,12 @@ namespace Dodgeball.Entities
             Velocity = Vector3.Zero;
         }
 
-        public void MoveUiTo(FlatRedBall.Graphics.Layer uiLayer, FlatRedBall.Gum.GumIdb gumDrawableBatch)
+        public void MoveUiTo(FlatRedBall.Graphics.Layer uiLayer, RenderingLibrary.Graphics.Layer gumLayer)
         {
-            this.ActiveMarkerRuntimeInstance.MoveToFrbLayer(uiLayer, gumDrawableBatch);
-            this.EnergyBarRuntimeInstance.MoveToFrbLayer(uiLayer, gumDrawableBatch);
-            this.ThrowChargeMeterRuntimeInstance.MoveToFrbLayer(uiLayer, gumDrawableBatch);
+            this.ActiveMarkerRuntimeInstance.MoveToFrbLayer(uiLayer, gumLayer);
+            this.EnergyBarRuntimeInstance.MoveToFrbLayer(uiLayer, gumLayer);
+            this.ThrowChargeMeterRuntimeInstance.MoveToFrbLayer(uiLayer, gumLayer);
+            this.HealthBarRuntimeInstance.MoveToFrbLayer(uiLayer, gumLayer);
         }
         #endregion
 
@@ -374,11 +375,13 @@ namespace Dodgeball.Entities
 
 	    private void HudActivity()
 	    {
-	        this.ActiveMarkerRuntimeInstance.X = this.X;
-	        this.ActiveMarkerRuntimeInstance.Y = this.Y + 230;
+            const float heightAbove = 220;
 
-	        this.HealthBarRuntimeInstance.X = this.X - this.HealthBarRuntimeInstance.Width / 2;
-	        this.HealthBarRuntimeInstance.Y = this.Y + 195;
+	        this.ActiveMarkerRuntimeInstance.X = this.X;
+	        this.ActiveMarkerRuntimeInstance.Y = this.Y + heightAbove;
+
+	        this.HealthBarRuntimeInstance.X = this.X;
+	        this.HealthBarRuntimeInstance.Y = this.Y + heightAbove;
 	        this.HealthBarRuntimeInstance.HealthPercentage = this.HealthPercentage;
 
 
@@ -387,7 +390,8 @@ namespace Dodgeball.Entities
 	        this.EnergyBarRuntimeInstance.EnergyHeight = this.EnergyPercentage;
 
 	        ThrowChargeMeterRuntimeInstance.X = X;
-	        ThrowChargeMeterRuntimeInstance.Y = Y + 215;
+	        ThrowChargeMeterRuntimeInstance.Y = this.Y + heightAbove;
+            ThrowChargeMeterRuntimeInstance.Z = 1;
 	    }
 
 
