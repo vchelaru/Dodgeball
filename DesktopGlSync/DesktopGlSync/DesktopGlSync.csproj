@@ -457,6 +457,9 @@
       <Link>GumRuntimes\WorldComponentRuntime.Generated.cs</Link>
       <DependentUpon>WorldComponentRuntime.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\WrapUpComponentRuntime.Generated.cs">
+      <Link>GumRuntimes\WrapUpComponentRuntime.Generated.cs</Link>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\GumRuntimes\WrapUpScreenGumRuntime.Generated.cs">
       <Link>GumRuntimes\WrapUpScreenGumRuntime.Generated.cs</Link>
     </Compile>
@@ -1082,6 +1085,11 @@
       <Name>WorldComponent</Name>
       <Link>content\gumproject\components\worldcomponent.gucx</Link>
     </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\components\wrapupcomponent.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>WrapUpComponent</Name>
+      <Link>content\gumproject\components\wrapupcomponent.gucx</Link>
+    </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\d:\gamedev\projects\dodgeball\dodgeball\dodgeballcontent\entities\player\playeranimationsheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>PlayerAnimationSheet</Name>
@@ -1111,6 +1119,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font18Arial_0</Name>
       <Link>content\gumproject\fontcache\font18arial_0.png</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font24arial black.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font24Arial Black</Name>
+      <Link>content\gumproject\fontcache\font24arial black.fnt</Link>
+    </None>
+    <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font24arial black_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font24Arial Black_0</Name>
+      <Link>content\gumproject\fontcache\font24arial black_0.png</Link>
     </None>
     <None Include="..\..\dodgeball\dodgeballcontent\gumproject\fontcache\font32arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

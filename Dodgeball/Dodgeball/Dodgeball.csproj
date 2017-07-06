@@ -277,6 +277,7 @@
     <Compile Include="GumRuntimes\WorldComponentRuntime.Generated.cs">
       <DependentUpon>WorldComponentRuntime.cs</DependentUpon>
     </Compile>
+    <Compile Include="GumRuntimes\WrapUpComponentRuntime.Generated.cs" />
     <Compile Include="GumRuntimes\WrapUpScreenGumRuntime.Generated.cs" />
     <Compile Include="Performance\IEntityFactory.Generated.cs" />
     <Compile Include="Performance\PoolList.Generated.cs" />
