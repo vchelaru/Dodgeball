@@ -196,13 +196,13 @@
     <Variable>
       <Type>int</Type>
       <Name>ShirtSprite.Blue</Name>
-      <ExposedAsName>ShortsSpriteBlue</ExposedAsName>
+      <ExposedAsName>ShirtSpriteBlue</ExposedAsName>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
       <Name>ShirtSprite.Green</Name>
-      <ExposedAsName>ShortsSpriteGreen</ExposedAsName>
+      <ExposedAsName>ShirtSpriteGreen</ExposedAsName>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
@@ -226,7 +226,7 @@
     <Variable>
       <Type>int</Type>
       <Name>ShirtSprite.Red</Name>
-      <ExposedAsName>ShortsSpriteRed</ExposedAsName>
+      <ExposedAsName>ShirtSpriteRed</ExposedAsName>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
@@ -293,13 +293,13 @@
     <Variable>
       <Type>int</Type>
       <Name>ShortsSprite.Blue</Name>
-      <ExposedAsName>ShirtSpriteBlue</ExposedAsName>
+      <ExposedAsName>ShortsSpriteBlue</ExposedAsName>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>int</Type>
       <Name>ShortsSprite.Green</Name>
-      <ExposedAsName>ShirtSpriteGreen</ExposedAsName>
+      <ExposedAsName>ShortsSpriteGreen</ExposedAsName>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
@@ -323,7 +323,7 @@
     <Variable>
       <Type>int</Type>
       <Name>ShortsSprite.Red</Name>
-      <ExposedAsName>ShirtSpriteRed</ExposedAsName>
+      <ExposedAsName>ShortsSpriteRed</ExposedAsName>
       <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
