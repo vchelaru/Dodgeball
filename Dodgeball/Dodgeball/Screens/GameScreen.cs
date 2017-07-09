@@ -17,6 +17,8 @@ using Dodgeball.DataRuntime;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using RenderingLibrary;
+using Dodgeball.GumRuntimes;
+using Dodgeball.Components;
 
 namespace Dodgeball.Screens
 {
@@ -31,6 +33,8 @@ namespace Dodgeball.Screens
 	    private float PlayAreaBottom => PlayAreaTop - WorldComponentInstance.PlayArea.Height;
         private float PlayAreaLeft = -1920 / 2.0f;
         private float PlayAreaRight = 1920 / 2.0f;
+
+        OptionsSelectionLogic optionsSelectionLogic;
 
         #endregion
 
@@ -57,6 +61,11 @@ namespace Dodgeball.Screens
         {
             // moves this above the health bars:
             this.WrapUpComponentInstance.Z = 3;
+
+            var playAgainButton = WrapUpComponentInstance.GetGraphicalUiElementByName("PlayAgainButton") as TextButtonRuntime;
+            var quitButton = WrapUpComponentInstance.GetGraphicalUiElementByName("QuitButton") as TextButtonRuntime;
+
+            optionsSelectionLogic = new OptionsSelectionLogic(playAgainButton, quitButton);
         }
 
         private void InitializeSounds()
@@ -172,6 +181,8 @@ namespace Dodgeball.Screens
 
             EndGameActivity();
 
+            WrapUpComponentActivity();
+
 		    PlayMusicActivity();
 
 #if DEBUG
@@ -179,7 +190,30 @@ namespace Dodgeball.Screens
 #endif
         }
 
-	    private void SuperHitZoomIfNecessary()
+        private void WrapUpComponentActivity()
+        {
+            if(WrapUpComponentInstance.Visible)
+            {
+                optionsSelectionLogic.Activity();
+
+                if(optionsSelectionLogic.DidPushAButton)
+                {
+                    if(optionsSelectionLogic.SelectedOption == 0)
+                    {
+                        FlatRedBall.Audio.AudioManager.StopSong();
+                        // play again
+                        RestartScreen(reloadContent: false);
+                    }
+                    else
+                    {
+                        // go to main menu
+                        MoveToScreen(typeof(TitleScreen));
+                    }
+                }
+            }
+        }
+
+        private void SuperHitZoomIfNecessary()
 	    {
 	        var superHitPlayer = PlayerList.FirstOrDefault(p => p.IsHitBySuperThrow);
 	        var shouldSuperHitZoom = superHitPlayer != null;

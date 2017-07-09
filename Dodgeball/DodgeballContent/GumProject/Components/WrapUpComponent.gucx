@@ -160,97 +160,97 @@
     </Variable>
     <Variable>
       <Type>bool</Type>
-      <Name>PlayTextButton.Clips Children</Name>
+      <Name>PlayAgainButton.Clips Children</Name>
       <Value xsi:type="xsd:boolean">true</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>string</Type>
-      <Name>PlayTextButton.Text</Name>
+      <Name>PlayAgainButton.Text</Name>
       <Value xsi:type="xsd:string">Play Again</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>PlayTextButton.X</Name>
+      <Name>PlayAgainButton.X</Name>
       <Value xsi:type="xsd:float">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>PlayTextButton.X Origin</Name>
+      <Name>PlayAgainButton.X Origin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>PlayTextButton.X Units</Name>
+      <Name>PlayAgainButton.X Units</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>PlayTextButton.Y</Name>
+      <Name>PlayAgainButton.Y</Name>
       <Value xsi:type="xsd:float">79</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>PlayTextButton.Y Origin</Name>
+      <Name>PlayAgainButton.Y Origin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>PlayTextButton.Y Units</Name>
+      <Name>PlayAgainButton.Y Units</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>bool</Type>
-      <Name>PlayTextButton1.Clips Children</Name>
+      <Name>QuitButton.Clips Children</Name>
       <Value xsi:type="xsd:boolean">true</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>string</Type>
-      <Name>PlayTextButton1.Text</Name>
+      <Name>QuitButton.Text</Name>
       <Value xsi:type="xsd:string">Quit</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>PlayTextButton1.X</Name>
+      <Name>QuitButton.X</Name>
       <Value xsi:type="xsd:float">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>PlayTextButton1.X Origin</Name>
+      <Name>QuitButton.X Origin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>PlayTextButton1.X Units</Name>
+      <Name>QuitButton.X Units</Name>
       <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>PlayTextButton1.Y</Name>
+      <Name>QuitButton.Y</Name>
       <Value xsi:type="xsd:float">156</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>PlayTextButton1.Y Origin</Name>
+      <Name>QuitButton.Y Origin</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>PlayTextButton1.Y Units</Name>
+      <Name>QuitButton.Y Units</Name>
       <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -607,11 +607,11 @@
     <BaseType>Sprite</BaseType>
   </Instance>
   <Instance>
-    <Name>PlayTextButton</Name>
+    <Name>PlayAgainButton</Name>
     <BaseType>TextButton</BaseType>
   </Instance>
   <Instance>
-    <Name>PlayTextButton1</Name>
+    <Name>QuitButton</Name>
     <BaseType>TextButton</BaseType>
   </Instance>
   <Behaviors />
