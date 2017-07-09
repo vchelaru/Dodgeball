@@ -38,8 +38,8 @@ namespace Dodgeball.Screens
 
         void CustomInitialize()
         {
-            playerHitSound = GlobalContent.player_hit_0.CreateInstance();
-            playerCatchSound = GlobalContent.player_catch.CreateInstance();
+            InitializeSounds();
+
             ShareReferences();
 
             InitializePlayerEvents();
@@ -49,6 +49,20 @@ namespace Dodgeball.Screens
             AssignAIControllers();
 
             InitializeInput();
+
+            InitializeUi();
+        }
+
+        private void InitializeUi()
+        {
+            // moves this above the health bars:
+            this.WrapUpComponentInstance.Z = 3;
+        }
+
+        private void InitializeSounds()
+        {
+            playerHitSound = GlobalContent.player_hit_0.CreateInstance();
+            playerCatchSound = GlobalContent.player_catch.CreateInstance();
         }
 
         private void PositionPlayers()
@@ -156,9 +170,9 @@ namespace Dodgeball.Screens
 
             CollisionActivity();
 
-            CheckForEndOfGame();
+            EndGameActivity();
 
-		    PlayMusic();
+		    PlayMusicActivity();
 
 #if DEBUG
             DebugActivity();
@@ -217,9 +231,13 @@ namespace Dodgeball.Screens
 	        }
 	    }
 
-	    private void PlayMusic()
+	    private void PlayMusicActivity()
 	    {
-	        if (FlatRedBall.Audio.AudioManager.CurrentlyPlayingSong == null)
+            bool shouldLoop = FlatRedBall.Audio.AudioManager.CurrentlyPlayingSong == null && 
+                // If the wrap component is shown, don't play again, we want it to stay quiet.
+                !this.WrapUpComponentInstance.Visible;
+
+            if (shouldLoop)
 	        {
 	            FlatRedBall.Audio.AudioManager.PlaySong(GlobalContent.dodgeball_bgm, true, true);
 	        }
@@ -463,35 +481,52 @@ namespace Dodgeball.Screens
             this.Call(() => textToShow.Visible = false).After(2);
         }
 
-        private void CheckForEndOfGame()
+        private void EndGameActivity()
         {
-            bool didTeam0Win = !PlayerList.Any(item => item.TeamIndex == 1);
-            bool didTeam1Win = !PlayerList.Any(item => item.TeamIndex == 0);
+            if(WrapUpComponentInstance.Visible == false)
+            {
+                bool didTeam0Win = !PlayerList.Any(item => item.TeamIndex == 1);
+                bool didTeam1Win = !PlayerList.Any(item => item.TeamIndex == 0);
 
-#if DEBUG
-            var keyboard = InputManager.Keyboard;
-            bool ctrlDown = keyboard.KeyDown(Microsoft.Xna.Framework.Input.Keys.LeftControl);
-            if (keyboard.KeyPushed(Keys.D1) && ctrlDown)
-            {
-                didTeam0Win = true;
-            }
-            if (keyboard.KeyPushed(Keys.D2) && ctrlDown)
-            {
-                didTeam1Win = true;
-            }
+    #if DEBUG
+                var keyboard = InputManager.Keyboard;
+                bool ctrlDown = keyboard.KeyDown(Microsoft.Xna.Framework.Input.Keys.LeftControl);
+                if (keyboard.KeyPushed(Keys.D1) && ctrlDown)
+                {
+                    didTeam0Win = true;
+                }
+                if (keyboard.KeyPushed(Keys.D2) && ctrlDown)
+                {
+                    didTeam1Win = true;
+                }
 #endif
 
-            if (didTeam1Win)
-            {
-                GameStats.WinningTeam0Based = 1;
+                if (didTeam0Win || didTeam1Win)
+                {
+                    // todo: stop the normal song...
+                    this.Call(() =>
+                    {
+                        FlatRedBall.Audio.AudioManager.StopSong();
 
-                MoveToScreen(typeof(WrapUpScreen));
-            }
-            else if(didTeam0Win)
-            {
-                GameStats.WinningTeam0Based = 0;
+                        FlatRedBall.Audio.AudioManager.PlaySong(GlobalContent.dodgeball_end_sting, true, true);
+                    }).After(.25);
 
-                MoveToScreen(typeof(WrapUpScreen));
+                    WrapUpComponentInstance.Visible = true;
+
+                    foreach (var player in PlayerList)
+                    {
+                        player.ClearInput();
+                    }
+                }
+                if (didTeam1Win)
+                {
+                    WrapUpComponentInstance.CurrentTeamNumberState = GumRuntimes.WrapUpComponentRuntime.TeamNumber.Team01;
+                }
+                else if(didTeam0Win)
+                {
+                    WrapUpComponentInstance.CurrentTeamNumberState = GumRuntimes.WrapUpComponentRuntime.TeamNumber.Team02;
+
+                }
             }
         }
 

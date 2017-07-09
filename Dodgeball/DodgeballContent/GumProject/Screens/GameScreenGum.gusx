@@ -1913,61 +1913,6 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>string</Type>
-      <Name>NineSliceInstance.Parent</Name>
-      <Value xsi:type="xsd:string">GrassCourtContainter</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <IsFile>true</IsFile>
-      <Type>string</Type>
-      <Name>NineSliceInstance.SourceFile</Name>
-      <Value xsi:type="xsd:string">BackgroundSpriteSheet.png</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>TextureAddress</Type>
-      <Name>NineSliceInstance.Texture Address</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>NineSliceInstance.Texture Height</Name>
-      <Value xsi:type="xsd:int">48</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>NineSliceInstance.Texture Left</Name>
-      <Value xsi:type="xsd:int">1664</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>NineSliceInstance.Texture Top</Name>
-      <Value xsi:type="xsd:int">512</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>NineSliceInstance.Texture Width</Name>
-      <Value xsi:type="xsd:int">96</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>NineSliceInstance.X</Name>
-      <Value xsi:type="xsd:float">88</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>NineSliceInstance.Y</Name>
-      <Value xsi:type="xsd:float">961</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>DimensionUnitType</Type>
       <Name>PlaceHolderBackground.Height Units</Name>
       <Value xsi:type="xsd:int">1</Value>
@@ -3160,6 +3105,48 @@
       <Value xsi:type="xsd:float">13</Value>
       <SetsValue>true</SetsValue>
     </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>WrapUpComponentInstance.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>WrapUpComponentInstance.X</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>WrapUpComponentInstance.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>WrapUpComponentInstance.X Units</Name>
+      <Value xsi:type="xsd:int">6</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>WrapUpComponentInstance.Y</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>WrapUpComponentInstance.Y Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>WrapUpComponentInstance.Y Units</Name>
+      <Value xsi:type="xsd:int">7</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
     <VariableList xsi:type="VariableListSaveOfString">
       <Type>string</Type>
       <Name>AnimationFrames</Name>
@@ -3332,15 +3319,15 @@
     <BaseType>Sprite</BaseType>
   </Instance>
   <Instance>
-    <Name>NineSliceInstance</Name>
-    <BaseType>NineSlice</BaseType>
-  </Instance>
-  <Instance>
     <Name>SuperThrowZoomInstance</Name>
     <BaseType>SuperThrowZoom</BaseType>
   </Instance>
   <Instance>
     <Name>SuperThrowHitInstance</Name>
     <BaseType>SuperThrowHit</BaseType>
+  </Instance>
+  <Instance>
+    <Name>WrapUpComponentInstance</Name>
+    <BaseType>WrapUpComponent</BaseType>
   </Instance>
 </ScreenSave>

@@ -56,7 +56,7 @@ namespace Dodgeball
 
 			CameraSetup.SetupCamera(SpriteManager.Camera, graphics);
 			GlobalContent.Initialize();
-			FlatRedBall.Screens.ScreenManager.Start(typeof(Dodgeball.Screens.CharacterSelectScreen));
+			FlatRedBall.Screens.ScreenManager.Start(typeof(Dodgeball.Screens.TitleScreen));
 
             base.Initialize();
         }

@@ -711,7 +711,7 @@ namespace Dodgeball.Entities
             if (canStandOrRun)
 	        {
 
-	            if (MovementInput?.X != 0 || MovementInput?.Y != 0)
+	            if (MovementInput != null && (MovementInput.X != 0 || MovementInput.Y != 0))
 	            {
 	                BodySpriteInstance.CurrentChainName = IsHoldingBall ? "RunHold" : "Run";
 	                BodySpriteInstance.FlipHorizontal = Velocity.X > 0;

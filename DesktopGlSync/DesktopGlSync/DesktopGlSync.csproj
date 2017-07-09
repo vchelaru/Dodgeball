@@ -56,6 +56,9 @@
     <Compile Include="..\..\Dodgeball\Dodgeball\Components\ChargeThrow.cs">
       <Link>Components\ChargeThrow.cs</Link>
     </Compile>
+    <Compile Include="..\..\Dodgeball\Dodgeball\Components\OptionsSelectionLogic.cs">
+      <Link>Components\OptionsSelectionLogic.cs</Link>
+    </Compile>
     <Compile Include="..\..\Dodgeball\Dodgeball\DataRuntime\GameStats.cs">
       <Link>DataRuntime\GameStats.cs</Link>
     </Compile>

@@ -20,12 +20,6 @@ namespace Dodgeball.Screens
 
 		void CustomInitialize()
 		{
-            TextInstance.Text = $"Team {GameStats.WinningTeam0Based + 1} Wins!";
-		    this.Call(() =>
-		        {
-		            FlatRedBall.Audio.AudioManager.PlaySong(GlobalContent.dodgeball_end_sting, true, true);
-                }
-		    ).After(.25);
             
 		}
 

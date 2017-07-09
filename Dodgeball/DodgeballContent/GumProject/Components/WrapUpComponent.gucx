@@ -167,7 +167,7 @@
     <Variable>
       <Type>string</Type>
       <Name>PlayTextButton.Text</Name>
-      <Value xsi:type="xsd:string">Play Again!</Value>
+      <Value xsi:type="xsd:string">Play Again</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
