@@ -40,7 +40,7 @@ namespace Dodgeball.Entities
         public PositionedObjectList<Player> AllPlayers { get; set; }
 
         public Ball Ball { get; set; }
-	    private bool justReleasedBall = false;
+	    private bool justStartedThrowing = false;
 	    public bool IsHoldingBall { get; set; }
 
         public bool IsDodging { get; private set; }
@@ -80,7 +80,7 @@ namespace Dodgeball.Entities
 	    public bool IsOnBottom => Position.Y <= TeamRectangleBottom + (0.2f * TeamRectangle.Height);
 
 	    public bool IsCharging => BodySpriteInstance.CurrentChainName == "Aim";
-	    public bool IsThrowing => new[] { "Aim", "Throw" }.Contains(BodySpriteInstance.CurrentChainName);
+	    public bool IsThrowing => BodySpriteInstance.CurrentChainName == "Throw";
         public bool IsHit => BodySpriteInstance.CurrentChainName == "Hit";
 	    private bool ShouldFlipHitAnimation;
 
@@ -240,9 +240,13 @@ namespace Dodgeball.Entities
 
 	    private void ThrowActivity()
 	    {
-	        var canThrow = !(ActionButton == null || MovementInput == null || IsPerformingSuccessfulCatch || IsPickingUpBall) && IsHoldingBall;
+	        var canCharge = ActionButton != null &&
+                MovementInput != null &&
+                !IsPerformingSuccessfulCatch &&
+                ! IsPickingUpBall &&
+                IsHoldingBall;
 
-	        if (canThrow)
+	        if (canCharge)
 	        {
 	            if (ActionButton.WasJustPressed)
 	            {
@@ -250,15 +254,17 @@ namespace Dodgeball.Entities
 	                chargeThrowComponent.Reset();
 	            }
 
-	            if (ActionButton.WasJustReleased && IsHoldingBall)
+	            if (ActionButton.WasJustReleased && IsHoldingBall && !IsThrowing)
 	            {
-	                ExecuteThrow();
-                    const int TimeToShowThrowMeterAfterThrow = 1;
+                    justStartedThrowing = true;
+
+                    this.Call(ExecuteThrow).After(TimeToThrowBallAfterThrowAnimationStarts);
+
                     this.Call(() =>
-                        {
-                            ThrowChargeMeterRuntimeInstance.Visible = IsHoldingBall;
-                        }
-                    ).After(TimeToShowThrowMeterAfterThrow);
+                    {
+                        ThrowChargeMeterRuntimeInstance.Visible = IsHoldingBall;
+                    }
+                    ).After(TimeToShowChargeMeterAfterThrow);
 	            }
 
 	            bool isCharging = IsHoldingBall && ActionButton.IsDown;
@@ -341,7 +347,7 @@ namespace Dodgeball.Entities
 	    private void MovementActivity()
 	    {
 	        if (MovementInput != null &&
-	            !IsThrowing && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsDying && !IsPickingUpBall)
+	            !IsThrowing && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsDying && !IsPickingUpBall && !IsCharging)
 	        {
 	            this.Velocity.X = MovementInput.X * MovementSpeed;
 	            this.Velocity.Y = MovementInput.Y * MovementSpeed;
@@ -569,8 +575,6 @@ namespace Dodgeball.Entities
                 Ball.PerformThrownLogic(this, direction * ThrowVelocity);
 
                 IsHoldingBall = false;
-
-                justReleasedBall = true;
             }
         }
 
@@ -645,10 +649,10 @@ namespace Dodgeball.Entities
             var canThrowOrDodge = ActionButton != null && !IsHit && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsDying && !IsPickingUpBall;
 	        if (canThrowOrDodge)
 	        {
-	            if (justReleasedBall)
+	            if (justStartedThrowing)
 	            {
 	                BodySpriteInstance.CurrentChainName = "Throw";
-	                justReleasedBall = false;
+	                justStartedThrowing = false;
 	            }
                 else if (ActionButton.IsDown && IsHoldingBall)
 	            {
@@ -702,7 +706,7 @@ namespace Dodgeball.Entities
 	            IsPerformingSuccessfulCatch = false;
 	        }
 
-            var canStandOrRun = !IsHit && !IsDying && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsPickingUpBall &&
+            var canStandOrRun = !IsHit && !IsDying && !IsAttemptingCatch && !IsPerformingSuccessfulCatch && !IsPickingUpBall && !IsCharging &&
                                 ((!IsThrowing && !IsDodging) || BodySpriteInstance.JustCycled);
             if (canStandOrRun)
 	        {
