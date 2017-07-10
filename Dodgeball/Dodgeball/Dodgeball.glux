@@ -744,7 +744,7 @@
           </Properties>
           <Name>BaseDamageWhenHitting</Name>
           <Type>float</Type>
-          <DefaultValue xsi:type="xsd:float">60</DefaultValue>
+          <DefaultValue xsi:type="xsd:float">25</DefaultValue>
           <IsShared>true</IsShared>
         </CustomVariable>
         <CustomVariable>
