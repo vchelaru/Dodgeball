@@ -79,7 +79,7 @@ namespace Dodgeball.Entities
 	    public bool IsOnTop => Position.Y >= TeamRectangleBottom + (0.8f * TeamRectangle.Height);
 	    public bool IsOnBottom => Position.Y <= TeamRectangleBottom + (0.2f * TeamRectangle.Height);
 
-	    public bool IsCharging => BodySpriteInstance.CurrentChainName == "Aim";
+	    public bool IsCharging { get; set; }
 	    public bool IsThrowing => BodySpriteInstance.CurrentChainName == "Throw";
         public bool IsHit => BodySpriteInstance.CurrentChainName == "Hit";
 	    private bool ShouldFlipHitAnimation;
@@ -250,6 +250,7 @@ namespace Dodgeball.Entities
 	        {
 	            if (ActionButton.WasJustPressed)
 	            {
+                    IsCharging = true;
                     ThrowChargeMeterRuntimeInstance.Visible = true;
 	                chargeThrowComponent.Reset();
 	            }
@@ -258,7 +259,11 @@ namespace Dodgeball.Entities
 	            {
                     justStartedThrowing = true;
 
-                    this.Call(ExecuteThrow).After(TimeToThrowBallAfterThrowAnimationStarts);
+                    this.Call(() =>
+                    {
+                        ExecuteThrow();
+                        IsCharging = false;
+                    }).After(TimeToThrowBallAfterThrowAnimationStarts);
 
                     this.Call(() =>
                     {
@@ -270,7 +275,9 @@ namespace Dodgeball.Entities
 	            bool isCharging = IsHoldingBall && ActionButton.IsDown;
 	            if (isCharging)
 	            {
-	                chargeThrowComponent.ChargeActivity();
+                    IsCharging = true;
+
+                    chargeThrowComponent.ChargeActivity();
 	                ThrowChargeMeterRuntimeInstance.MeterPercent = chargeThrowComponent.MeterPercent;
 	            }
 	        }
@@ -631,6 +638,7 @@ namespace Dodgeball.Entities
         #endregion
 
         #region Animation
+
         private void SetAnimation()
 	    {
 	        if (IsPickingUpBall)
