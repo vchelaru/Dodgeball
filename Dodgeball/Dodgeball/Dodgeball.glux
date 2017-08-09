@@ -1743,9 +1743,7 @@
     <LoadAsynchronously>false</LoadAsynchronously>
     <RecordLockContention>false</RecordLockContention>
   </GlobalContentSettingsSave>
-  <SyncedProjects>
-    <string>../../DesktopGlSync/DesktopGlSync/DesktopGlSync.csproj</string>
-  </SyncedProjects>
+  <SyncedProjects />
   <StartUpScreen>Screens\TitleScreen</StartUpScreen>
   <ResolutionPresets />
   <PerformanceSettingsSave>
@@ -1783,7 +1781,11 @@
   <ExternallyBuiltFileDirectory>../../</ExternallyBuiltFileDirectory>
   <PluginData>
     <RequiredPlugins>
-      <string>Gum Plugin</string>
+      <PluginRequirement>
+        <Name>Gum Plugin</Name>
+        <Version>0.8.7.2</Version>
+        <VersionRequirement>EqualToOrNewerThan</VersionRequirement>
+      </PluginRequirement>
     </RequiredPlugins>
   </PluginData>
   <DisplaySettings>

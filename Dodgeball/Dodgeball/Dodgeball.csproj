@@ -150,6 +150,7 @@
     <Compile Include="Entities\Player.Generated.Event.cs">
       <DependentUpon>Player.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileAliases.Generated.cs" />
     <Compile Include="GlobalContent.Generated.cs" />
     <Compile Include="GlobalData.cs" />
     <Compile Include="GumCore\AnimationFrame.cs" />
