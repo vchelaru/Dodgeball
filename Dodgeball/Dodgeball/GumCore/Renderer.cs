@@ -306,6 +306,8 @@ namespace RenderingLibrary.Graphics
                 PreRender(layer.Renderables);
             }
 
+            SpriteBatchStack.PerformStartOfLayerRenderingLogic();
+
             spriteRenderer.BeginSpriteBatch(mRenderStateVariables, layer, BeginType.Push, mCamera);
 
             layer.SortRenderables();
@@ -407,6 +409,12 @@ namespace RenderingLibrary.Graphics
                 int width = System.Math.Max(0, right - left);
                 int height = System.Math.Max(0, bottom - top);
 
+                // ScissorRectangles are relative to the viewport in Gum, so we need to adjust for that:
+                left += this.GraphicsDevice.Viewport.X;
+                right += this.GraphicsDevice.Viewport.X;
+
+                top += this.GraphicsDevice.Viewport.Y;
+                bottom += this.GraphicsDevice.Viewport.Y;
 
                 Microsoft.Xna.Framework.Rectangle thisRectangle = new Microsoft.Xna.Framework.Rectangle(
                     left,

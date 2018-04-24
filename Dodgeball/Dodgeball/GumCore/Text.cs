@@ -38,6 +38,11 @@ namespace RenderingLibrary.Graphics
         CharacterByCharacter
     }
 
+    public enum TextRenderingPositionMode
+    {
+        SnapToPixel,
+        FreeFloating
+    }
 
     public class Text : IRenderableIpso, IVisible
     {
@@ -111,6 +116,8 @@ namespace RenderingLibrary.Graphics
         // It'll break code but it won't be hard to respond to.
         // As of 0.8.7, CharacterByCharacter is the standard in Gum tool
         public static TextRenderingMode TextRenderingMode = TextRenderingMode.CharacterByCharacter;
+
+        public static TextRenderingPositionMode TextRenderingPositionMode = TextRenderingPositionMode.SnapToPixel;
 
         #endregion
 
@@ -188,10 +195,13 @@ namespace RenderingLibrary.Graphics
             }
             set
             {
-                mWidth = value;
-                UpdateWrappedText();
-                UpdateLinePrimitive();
-                UpdatePreRenderDimensions();
+                if(mWidth != value)
+                {
+                    mWidth = value;
+                    UpdateWrappedText();
+                    UpdateLinePrimitive();
+                    UpdatePreRenderDimensions();
+                }
 
             }
         }
@@ -204,8 +214,11 @@ namespace RenderingLibrary.Graphics
             }
             set
             {
-                mHeight = value;
-                UpdateLinePrimitive();
+                if(mHeight != value)
+                {
+                    mHeight = value;
+                    UpdateLinePrimitive();
+                }
             }
         }
 
@@ -225,7 +238,7 @@ namespace RenderingLibrary.Graphics
                 // priority to the prerendered values as they may be more up-to-date.
                 else if (mPreRenderWidth.HasValue)
                 {
-                    return mPreRenderWidth.Value;
+                    return mPreRenderWidth.Value * mFontScale;
                 }
                 else if (mTextureToRender != null)
                 {
@@ -259,7 +272,7 @@ namespace RenderingLibrary.Graphics
                 // See EffectiveWidth for an explanation of why the prerendered values need to come first
                 else if (mPreRenderHeight.HasValue)
                 {
-                    return mPreRenderHeight.Value;
+                    return mPreRenderHeight.Value * mFontScale;
                 }
                 else if (mTextureToRender != null)
                 {
@@ -721,6 +734,8 @@ namespace RenderingLibrary.Graphics
             }
         }
 
+        // todo: reduce allocs by using a static here (static is prob okay since it can't be multithreaded)
+        static List<int> widths = new List<int>();
         private void RenderCharacterByCharacter(SpriteRenderer spriteRenderer)
         {
             BitmapFont fontToUse = mBitmapFont;
@@ -732,8 +747,7 @@ namespace RenderingLibrary.Graphics
 
             if (fontToUse != null)
             {
-                // todo: reduce allocs by using a static here (static is prob okay since it can't be multithreaded)
-                List<int> widths = new List<int>();
+                widths.Clear();
                 int requiredWidth;
                 int requiredHeight;
                 fontToUse.GetRequiredWidthAndHeight(WrappedText, out requiredWidth, out requiredHeight, widths);

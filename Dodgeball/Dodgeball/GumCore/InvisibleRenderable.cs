@@ -28,9 +28,24 @@ namespace RenderingLibrary.Graphics
         List<IRenderableIpso> children = new List<IRenderableIpso>();
         public List<IRenderableIpso> Children => children;
 
-        public bool ClipsChildren => false;
+        // If a GUE uses this, it needs to support storing the values.
+        public bool ClipsChildren { get; set; }
 
-        public float Height { get; set; }
+        float height;
+        public float Height
+        {
+            get { return height; }
+            set
+            {
+#if DEBUG
+                if(float.IsPositiveInfinity(value))
+                {
+                    throw new ArgumentException();
+                }
+#endif
+                height = value;
+            }
+        }
 
         public string Name { get; set; }
 

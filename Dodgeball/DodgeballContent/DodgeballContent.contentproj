@@ -157,37 +157,17 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font32Arial_0</Name>
     </None>
-    <None Include="GumProject\FontCache\Font48Arial Black.fnt">
+    <None Include="gumproject\fontcache\font48arial_black.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font48Arial Black</Name>
+      <Name>font48arial_black</Name>
     </None>
-    <None Include="GumProject\FontCache\Font48Arial Black_0.png">
+    <None Include="GumProject\FontCache\Font48Arial_Black_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font48Arial Black_0</Name>
+      <Name>Font48Arial_Black_0</Name>
     </None>
-    <None Include="GumProject\FontCache\Font48Arial Black_1.png">
+    <None Include="GumProject\FontCache\Font48Arial_Black_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font48Arial Black_1</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font72Arial Black.fnt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font72Arial Black</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font72Arial Black_0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font72Arial Black_0</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font72Arial Black_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font72Arial Black_1</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font72Arial Black_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font72Arial Black_2</Name>
-    </None>
-    <None Include="GumProject\FontCache\Font72Arial Black_3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Font72Arial Black_3</Name>
+      <Name>Font48Arial_Black_1</Name>
     </None>
     <None Include="GumProject\FontCache\Font72Arial.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -204,6 +184,26 @@
     <None Include="GumProject\FontCache\Font72Arial_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Font72Arial_2</Name>
+    </None>
+    <None Include="gumproject\fontcache\font72arial_black.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>font72arial_black</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial_Black_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_Black_0</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial_Black_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_Black_1</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial_Black_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_Black_2</Name>
+    </None>
+    <None Include="GumProject\FontCache\Font72Arial_Black_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>Font72Arial_Black_3</Name>
     </None>
     <None Include="GumProject\GumProject.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

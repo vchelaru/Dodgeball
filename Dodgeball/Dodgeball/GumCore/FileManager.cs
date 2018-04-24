@@ -91,12 +91,12 @@ namespace ToolsUtilities
 
         public static bool FileExists(string fileName, bool ignoreExtensions)
         {
+            fileName = Standardize(fileName, makeAbsolute: true);
             if (!ignoreExtensions)
             {
 #if ANDROID || IOS || WINDOWS_8 
 				try
                 {
-					fileName = Standardize(fileName);
 					if(fileName.StartsWith(".\\"))
 					{
 						fileName = fileName.Substring(2);
@@ -119,7 +119,6 @@ namespace ToolsUtilities
 #if WINDOWS_8 || UWP
                 throw new NotImplementedException();
 #else
-                fileName = Standardize(fileName);
                 // This takes a little bit of work
                 string fileWithoutExtension = FileManager.RemoveExtension(fileName);
 
@@ -185,6 +184,8 @@ namespace ToolsUtilities
 
         public static string GetDirectory(string fileName)
         {
+            string directoryToReturn = "";
+
             if (fileName == null)
             {
                 throw new Exception("The fileName passed to GetDirectory is null.  Non-null is required");
@@ -216,12 +217,15 @@ namespace ToolsUtilities
                 //{
                 //    return FileManager.Standardize(fileName.Substring(0, lastIndex + 1));
                 //}
-                return fileName.Substring(0, lastIndex + 1);
+                directoryToReturn = fileName.Substring(0, lastIndex + 1);
 
             }
             else
-                return ""; // there was no directory found.
+            {
+                directoryToReturn = ""; // there was no directory found.
+            }
 
+            return directoryToReturn;
         }
 
         #region XML Docs
@@ -346,7 +350,7 @@ namespace ToolsUtilities
                 return true;
 
 #else
-            if(fileName.Length < 1 || !Path.IsPathRooted(fileName))
+            if (fileName.Length < 1 || !Path.IsPathRooted(fileName))
             {
                 relative = true;
             }
@@ -765,7 +769,7 @@ namespace ToolsUtilities
                 Directory.CreateDirectory(directory);
             }
         }
-        
+
         public static void DeleteDirectory(string dir)
         {
             System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(dir);
@@ -885,7 +889,9 @@ namespace ToolsUtilities
             //    directory = mRelativeDirectory;
 
             if (directory.EndsWith(@"\") == false && directory.EndsWith("/") == false)
-                directory += @"\";
+            {
+                directory += @"/";
+            }
 
             // if they passed in a fileType which begins with a period (like ".jpg"), then
             // remove the period so only the extension remains.  That is, convert
@@ -1136,59 +1142,33 @@ namespace ToolsUtilities
 
         public static void XmlSerialize(Type type, object objectToSerialize, string fileName)
         {
-            FileStream fs = null;
-            
-            try
+                // Make sure that the directory for the file exists
+            string directory = FileManager.GetDirectory(fileName);
+            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
             {
-                // Make sure that the directory for the file settings exist
-                string directory = FileManager.GetDirectory(fileName);
-                if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
-                {
-                    Directory.CreateDirectory(FileManager.GetDirectory(fileName));
-                }
-                XmlSerializer serializer = GetXmlSerializer(type);
-
-#if SILVERLIGHT
-                if (!fileName.Contains(IsolatedStoragePrefix))
-                {
-                    throw new ArgumentException("In Silverlight you must use isolated storage.  Use FileManager.GetUserFolder.");
-                }
-
-                string modifiedFileName = GetIsolatedStorageFileName(fileName);
-
-                isfs = new IsolatedStorageFileStream(
-                   modifiedFileName, FileMode.Create, mIsolatedStorageFile);                 
-
-                XmlWriterSettings xms = new XmlWriterSettings();
-                xms.Encoding = System.Text.Encoding.UTF8;
-                xms.Indent = true;
-                writer = XmlWriter.Create(isfs, xms);
-
-#else
-
-                if (FileManager.FileExists(fileName))
-                    fs = System.IO.File.Open(fileName, FileMode.OpenOrCreate | FileMode.Truncate);
-                else
-                    fs = System.IO.File.Open(fileName, FileMode.OpenOrCreate);
-
-                XmlTextWriter writer = new XmlTextWriter(fs, System.Text.Encoding.UTF8);
-                writer.Formatting = System.Xml.Formatting.Indented;
-
-
-#endif
-
-                serializer.Serialize(writer, objectToSerialize);
+                Directory.CreateDirectory(FileManager.GetDirectory(fileName));
             }
-            finally
-            {
-                if (fs != null) fs.Close();
+            XmlSerializer serializer = GetXmlSerializer(type);
 
-#if SILVERLIGHT
-                if (isfs != null)
+            // for info on why we do this:
+            // https://stackoverflow.com/questions/8515720/how-to-prevent-system-io-file-open-with-filemode-truncate-from-causing-a-file-ch
+            if (System.IO.File.Exists(fileName))
+            {
+                System.IO.File.Delete(fileName);
+            }
+
+            using (var fs = System.IO.File.Open(fileName, FileMode.OpenOrCreate))
+            {
+                XmlWriterSettings settings = new XmlWriterSettings();
+                settings.Indent = true;
+                using (var writer = XmlWriter.Create(fs, settings))
                 {
-                    isfs.Close();
+                    // for info on this, see
+                    // http://stackoverflow.com/questions/1127431/xmlserializer-giving-filenotfoundexception-at-constructor
+
+                    serializer.Serialize(writer, objectToSerialize);
+
                 }
-#endif
             }
         }
 

@@ -10,7 +10,7 @@ using Dodgeball.Entities;
 using Dodgeball.Screens;
 namespace Dodgeball.Entities
 {
-	public partial class Player
-	{
-	}
+    public partial class Player
+    {
+    }
 }

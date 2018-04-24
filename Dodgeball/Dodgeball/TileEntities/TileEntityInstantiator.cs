@@ -28,7 +28,7 @@ namespace FlatRedBall.TileEntities
             foreach (var entityToRemove in entitiesToRemove)
             {
                 string remove = entityToRemove;
-                mapLayer.RemoveTiles(t => t.Any(item => item.Name == "EntityToCreate" && item.Value as string == remove), layeredTileMap.TileProperties);
+                mapLayer.RemoveTiles(t => t.Any(item => (item.Name == "EntityToCreate" || item.Name == "Type") && item.Value as string == remove), layeredTileMap.TileProperties);
             }
 
         }
@@ -44,7 +44,7 @@ namespace FlatRedBall.TileEntities
             foreach (var entityToRemove in entitiesToRemove)
             {
                 string remove = entityToRemove;
-                layeredTileMap.RemoveTiles(t => t.Any(item => item.Name == "EntityToCreate" && item.Value as string == remove), layeredTileMap.TileProperties);
+                layeredTileMap.RemoveTiles(t => t.Any(item => (item.Name == "EntityToCreate" || item.Name == "Type") && item.Value as string == remove), layeredTileMap.TileProperties);
             }
             foreach (var shapeCollection in layeredTileMap.ShapeCollections)
             {
@@ -92,11 +92,14 @@ namespace FlatRedBall.TileEntities
 
             foreach (var propertyList in propertiesDictionary.Values)
             {
-                if (propertyList.Any(item2 => item2.Name == "EntityToCreate"))
+                var property =
+                    propertyList.FirstOrDefault(item2 => item2.Name == "EntityToCreate" || item2.Name == "Type");
+
+                if (!string.IsNullOrEmpty(property.Name))
                 {
                     var tileName = propertyList.FirstOrDefault(item => item.Name.ToLowerInvariant() == "name").Value as string;
 
-                    var entityType = propertyList.FirstOrDefault(item => item.Name == "EntityToCreate").Value as string;
+                    var entityType = property.Value as string;
 
                     if (!string.IsNullOrEmpty(entityType) && dictionary.ContainsKey(tileName))
                     {
@@ -114,10 +117,8 @@ namespace FlatRedBall.TileEntities
                             entitiesToRemove.Add(entityType);
                             var indexList = dictionary[tileName];
 
-
                             foreach (var tileIndex in indexList)
                             {
-
                                 var entity = factory.CreateNew(flatRedBallLayer) as PositionedObject;
 
                                 ApplyPropertiesTo(entity, layer, tileIndex, propertyList);
@@ -141,7 +142,7 @@ namespace FlatRedBall.TileEntities
             float left;
             float bottom;
             layer.GetBottomLeftWorldCoordinateForOrderedTile(tileIndex, out left, out bottom);
-            Microsoft.Xna.Framework.Vector3 position = new Microsoft.Xna.Framework.Vector3(left, bottom, layer.Z);
+            Microsoft.Xna.Framework.Vector3 position = new Microsoft.Xna.Framework.Vector3(left, bottom, 0);
 
             var bottomRight = layer.Vertices[tileIndex * 4 + 1].Position;
 
@@ -158,6 +159,8 @@ namespace FlatRedBall.TileEntities
 
             position += entity.RotationMatrix.Right * dimensionHalf;
             position += entity.RotationMatrix.Up * dimensionHalf;
+
+            position += layer.Position;
 
             ApplyPropertiesTo(entity, propertiesToAssign, position);
         }
@@ -250,7 +253,7 @@ namespace FlatRedBall.TileEntities
             {
                 float floatValue;
 
-                if (float.TryParse((string)valueToSet, out floatValue))
+                if (float.TryParse((string)valueToSet, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out floatValue))
                 {
                     valueToSet = floatValue;
                 }
@@ -325,7 +328,7 @@ namespace FlatRedBall.TileEntities
             var factory = factories.FirstOrDefault(item =>
             {
                 var type = item.GetType();
-                var methodInfo = type.GetMethod("CreateNew", new[] { typeof(Layer) });
+                var methodInfo = type.GetMethod("CreateNew", new[] { typeof(Layer), typeof(float), typeof(float) });
                 var returntypeString = methodInfo.ReturnType.Name;
 
                 return entityType == returntypeString || entityType.EndsWith("\\" + returntypeString);
